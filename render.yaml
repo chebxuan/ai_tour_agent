@@ -1,0 +1,17 @@
+# Render 部署配置
+# 部署步骤:
+# 1. 在 https://render.com 创建账号
+# 2. 连接 GitHub 仓库
+# 3. 创建 Web Service，选择 Docker 环境
+# 4. 设置环境变量 API_KEY
+# 5. 部署完成
+
+services:
+  - type: web
+    name: hexa-blueprint-api
+    runtime: docker
+    plan: free
+    envVars:
+      - key: API_KEY
+        generateValue: true  # Render 会自动生成随机值，部署后可修改
+    healthCheckPath: /health

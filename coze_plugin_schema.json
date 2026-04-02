@@ -1,0 +1,69 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Hexa Blueprint 行程规划",
+  "name_for_model": "hexa_blueprint",
+  "description_for_human": "北京旅游行程规划与报价服务，根据用户需求智能推荐行程并计算费用",
+  "description_for_model": "帮助用户规划北京旅游行程，提供产品推荐和费用计算。支持根据出行天数、人数、风格偏好等条件匹配最适合的行程方案。",
+  "auth": {
+    "type": "api_key",
+    "api_key": {
+      "header_name": "X-API-Key"
+    }
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://your-service.onrender.com/openapi.json",
+    "has_user_authentication": false
+  },
+  "logo_url": "https://your-cdn.com/logo.png",
+  "contact_email": "support@hexachina.com",
+  "legal_info_url": "https://hexachina.com/legal",
+  "endpoints": [
+    {
+      "name": "获取问卷",
+      "path": "/api/v1/survey",
+      "method": "GET",
+      "description": "获取结构化问卷，用于收集用户出行偏好",
+      "parameters": []
+    },
+    {
+      "name": "产品推荐",
+      "path": "/api/v1/recommend",
+      "method": "POST",
+      "description": "根据用户意图推荐最适合的旅游产品",
+      "parameters": [
+        {"name": "city", "type": "string", "description": "目标城市", "required": false, "default": "北京"},
+        {"name": "days", "type": "integer", "description": "行程天数(1-7)", "required": true},
+        {"name": "style", "type": "string", "description": "行程风格", "required": false, "default": "经典"},
+        {"name": "persona", "type": "string", "description": "用户画像(family/couple/solo/senior)", "required": false, "default": "standard"},
+        {"name": "has_child", "type": "boolean", "description": "是否带儿童", "required": false, "default": false},
+        {"name": "adults", "type": "integer", "description": "成人数量", "required": false, "default": 2},
+        {"name": "children", "type": "integer", "description": "儿童数量", "required": false, "default": 0},
+        {"name": "seniors", "type": "integer", "description": "老人数量", "required": false, "default": 0},
+        {"name": "is_peak", "type": "boolean", "description": "是否旺季", "required": false, "default": true}
+      ]
+    },
+    {
+      "name": "费用计算",
+      "path": "/api/v1/cost",
+      "method": "POST",
+      "description": "计算行程详细费用",
+      "parameters": [
+        {"name": "days", "type": "integer", "description": "行程天数", "required": true},
+        {"name": "adults", "type": "integer", "description": "成人数量", "required": false, "default": 2},
+        {"name": "children", "type": "integer", "description": "儿童数量", "required": false, "default": 0},
+        {"name": "seniors", "type": "integer", "description": "老人数量", "required": false, "default": 0},
+        {"name": "is_peak", "type": "boolean", "description": "是否旺季", "required": false, "default": true}
+      ]
+    },
+    {
+      "name": "一键规划",
+      "path": "/api/v1/complete",
+      "method": "POST",
+      "description": "一键完成行程规划和费用计算",
+      "parameters": [
+        {"name": "intent", "type": "object", "description": "用户意图对象", "required": true}
+      ]
+    }
+  ]
+}
