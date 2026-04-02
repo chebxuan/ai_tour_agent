@@ -10,7 +10,11 @@ ENV/
 
 # Data files (large)
 *.pdf
-*.csv
+
+# Exclude large raw CSV, keep core data files
+!Product\ Logic\ Library_final_updated.csv
+!beijing_pois_updates.csv
+!mashes/北京_merged.csv
 
 # IDE
 .vscode/
