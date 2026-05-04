@@ -10,6 +10,18 @@ ENV/
 
 # Data files (large)
 *.pdf
+*.csv
+*.db
+*.sqlite
+*.sqlite3
+*.parquet
+*.xlsx
+*.xls
+*.jsonl
+
+# 屏蔽整个data目录下的所有文件
+data/
+assets/data/
 
 # Exclude large raw CSV, keep core data files
 !Product\ Logic\ Library_final_updated.csv
