@@ -1,11 +1,9 @@
+# API 后端
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
 pydantic>=2.5.0
 python-dotenv>=1.0.0
-openai>=1.0.0
-pandas>=1.5.0
-<<<<<<< HEAD
+
+# Streamlit 前端
+streamlit>=1.28.0
 requests>=2.31.0
-=======
-requests>=2.31.0
->>>>>>> d0bf9fc (reduce dependencies)
