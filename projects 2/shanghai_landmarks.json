@@ -1,0 +1,3337 @@
+{
+  "landmarks": [
+    {
+      "node_name": "武康大楼",
+      "address": "武康路与淮海中路交汇处",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "上海标志性建筑，法式老洋房风格",
+        "practical_info": "无门票信息，建议提前了解开放时间",
+        "recommended_action": "拍照打卡，感受历史建筑魅力"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "地标",
+        "历史"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "宋庆龄故居",
+      "address": "武康路50号",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "宋庆龄居住最久的家，包含主楼和文物馆",
+        "practical_info": "周一闭馆，门票20元/人，老人/学生半价",
+        "recommended_action": "参观故居，了解宋庆龄生平"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "历史",
+        "文化"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "城市交集",
+      "address": "武康路附近",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "免费观展空间，可盖章买明信片",
+        "practical_info": "无门票，具体开放时间需查询",
+        "recommended_action": "观展、盖章、购买文创产品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "文化",
+        "艺术"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "老麦咖啡馆",
+      "address": "武康路附近",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "复古风咖啡馆，咖啡口感醇厚",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "品尝咖啡，体验复古氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "咖啡",
+        "休闲"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "大隐书局",
+      "address": "武康路附近",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "可盖章，售卖文创、明信片等",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "购书、盖章、购买文创产品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "文化",
+        "书店"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "武康庭",
+      "address": "武康路附近",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "喝咖啡休息处，有花店可拍照",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "喝咖啡、拍照"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "拍照",
+        "休闲"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "集雅",
+      "address": "武康路附近",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "网红咖啡馆，中式庭院，有精美瓷器",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "喝咖啡、欣赏瓷器"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "咖啡",
+        "文化"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "巴金故居",
+      "address": "武康路113号",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "巴金在此生活了50年",
+        "practical_info": "无具体信息，建议提前查询开放时间",
+        "recommended_action": "参观故居，了解巴金生平"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "历史",
+        "文化"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "罗密欧阳台",
+      "address": "武康路附近",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "网红拍照点，浪漫爱情的见证",
+        "practical_info": "无具体信息，建议提前查询开放时间",
+        "recommended_action": "拍照打卡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "拍照",
+        "网红"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Birdie Cup Coffee",
+      "address": "武康路附近",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "网红咖啡馆",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "品尝咖啡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "咖啡",
+        "网红"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "13DE MARZO",
+      "address": "安福路附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "一楼网红小熊咖啡，二楼服装，三楼饮品和各种小物品",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "购物、喝咖啡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "购物",
+        "网红"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "D.Desirable",
+      "address": "安福路附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "王鹤棣首家潮牌店，一楼咖啡店可get王鹤棣同款咖啡，二楼是服装和展区",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "购物、喝咖啡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "购物",
+        "潮牌"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Wiggle Wiggle",
+      "address": "安福路附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "韩国知名潮牌！超可爱的多巴胺风",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "购物、拍照"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "购物",
+        "网红"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "brandy melville",
+      "address": "安福路附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "女生必逛 BM！超可爱的小码女装",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "购物"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "购物",
+        "时尚"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "多抓鱼循环商店",
+      "address": "安福路附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "二手书店和服装店的集合体！一楼墙上很多绘画，二楼图书区，三楼是服装区",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "购物、看书"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "购物",
+        "二手"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "申井冰店",
+      "address": "安福路附近",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "网红日式甜品店",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "品尝甜品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "甜品",
+        "网红"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "LOOKNOW PARK",
+      "address": "淮海中路附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "有三层楼，售卖服饰和jellycat玩偶",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "购物"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "购物",
+        "网红"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "映水芙蓉",
+      "address": "淮海中路附近",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "超级精致的川菜馆",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "品尝川菜"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "川菜",
+        "美食"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "GM巨人展",
+      "address": "淮海中路附近",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "免费无需预约！有三层楼，店内有咖啡售卖",
+        "practical_info": "无具体信息，建议提前查询开放时间",
+        "recommended_action": "观展、喝咖啡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "展览",
+        "文化"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Niko and",
+      "address": "淮海中路附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "日式杂货之王，有超多原创且有意思的小物件",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "购物"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "购物",
+        "杂货"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "米仓POP",
+      "address": "淮海中路附近",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "网红店，这家松饼口感绵密，舒芙蕾超好吃",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "品尝松饼和舒芙蕾"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "甜点",
+        "网红"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "名创优品",
+      "address": "淮海中路附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "上海旗舰店，有一整面墙的草莓熊",
+        "practical_info": "无具体信息，建议提前查询营业时间",
+        "recommended_action": "购物"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "购物",
+        "网红"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "老麦咖啡",
+      "address": "武康路105号",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "网红复古咖啡馆，提供招牌老麦咖啡。",
+        "practical_info": "无门票，营业时间8:00-22:00",
+        "recommended_action": "点杯招牌老麦咖啡，坐在窗边感受悠闲时光"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "咖啡馆",
+        "网红"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "开普敦公寓",
+      "address": "武康路沿线",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "Art Deco风格的建筑。",
+        "practical_info": "无门票，开放时间全天",
+        "recommended_action": "欣赏Art Deco风格建筑"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "建筑",
+        "历史"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "意大利领事官邸",
+      "address": "武康路沿线",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "地中海风情的建筑。",
+        "practical_info": "无门票，开放时间全天",
+        "recommended_action": "欣赏地中海风格建筑"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "建筑",
+        "历史"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "衡复风貌馆",
+      "address": "武康路沿线",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "展示老建筑历史，集雅呈现新中式美学。",
+        "practical_info": "无门票，开放时间根据展览安排",
+        "recommended_action": "了解老建筑历史和新中式美学"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "文化",
+        "历史"
+      ],
+      "region": "武康路-安福路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "上海邮政博物馆",
+      "address": "天潼路站3号口附近",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "展示上海邮政历史的博物馆，具有复古欧式建筑风格",
+        "practical_info": "免费开放（可能需预约）",
+        "recommended_action": "拍摄复古欧式穹顶和‘上海之门’框景"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "历史",
+        "打卡点",
+        "建筑"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "苏州河畔",
+      "address": "苏州河沿岸，靠近乍浦路桥",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "具有塞纳河般氛围的滨水区域，连接陆家嘴与外滩",
+        "practical_info": "全天开放",
+        "recommended_action": "拍摄河滨大楼、老码头和长椅等胶片感场景"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "江景",
+        "城市景观",
+        "摄影"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "乍浦路桥",
+      "address": "苏州河上，连接两岸",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "具有历史感的桥梁，是苏州河上的标志性建筑",
+        "practical_info": "全天开放",
+        "recommended_action": "拍摄桥身与陆家嘴、外滩的全景"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "桥梁",
+        "城市景观",
+        "摄影"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "新天安堂剧院",
+      "address": "圆明园路步行街",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "红砖哥特式教堂，具有独特建筑风格",
+        "practical_info": "可能需预约参观",
+        "recommended_action": "在教堂广场台阶仰拍钟楼"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "建筑",
+        "宗教场所",
+        "摄影"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "外白渡桥",
+      "address": "外滩与虹口区交界处",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "上海地标性铁桥，影视剧经典取景地",
+        "practical_info": "全天开放",
+        "recommended_action": "拍摄桥身与东方明珠同框画面"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "桥梁",
+        "地标",
+        "摄影"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "滨江观景台",
+      "address": "北外滩滨江步道沿线",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "无遮挡观赏陆家嘴全景的观景地点",
+        "practical_info": "全天开放",
+        "recommended_action": "欣赏江景与陆家嘴全景"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "观景台",
+        "江景",
+        "城市景观"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Manner江景店",
+      "address": "滨江步道沿线",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供咖啡与江景的特色咖啡店",
+        "practical_info": "营业时间：通常为早9点至晚10点",
+        "recommended_action": "品尝咖啡并拍摄江景"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "咖啡店",
+        "江景",
+        "休闲"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "小巨蛋",
+      "address": "航海公园附近",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "网红拍照点，具有现代感的建筑结构",
+        "practical_info": "全天开放",
+        "recommended_action": "拍摄彩虹桥与小巨蛋的组合画面"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "网红景点",
+        "摄影",
+        "现代建筑"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "外滩观景平台",
+      "address": "外滩沿江区域",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "上海著名打卡景点，可俯瞰黄浦江和陆家嘴天际线",
+        "practical_info": "免费开放",
+        "recommended_action": "拍摄外滩夜景和陆家嘴全景"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "地标",
+        "观景",
+        "拍照"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "上海市人民英雄纪念塔",
+      "address": "外滩中段",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "纪念上海革命历史的标志性建筑",
+        "practical_info": "免费开放",
+        "recommended_action": "了解上海近代历史"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "历史",
+        "地标"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "北外滩滨江步道",
+      "address": "北外滩沿江区域",
+      "node_type": "放空",
+      "fact_sheet": {
+        "brief_intro": "人少景美的滨江步行道",
+        "practical_info": "免费开放",
+        "recommended_action": "散步、欣赏江景和城市风光"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "休闲",
+        "观景",
+        "慢游"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "manner coffee（国客滨江店）",
+      "address": "国客滨江",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "位于滨江的咖啡店，拥有绝佳江景视野",
+        "practical_info": "营业时间：通常为早上7点至晚上10点",
+        "recommended_action": "在江景咖啡厅享用咖啡，欣赏城市夜景"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "咖啡",
+        "观景",
+        "休闲"
+      ],
+      "region": "外滩-圆明园路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "豫园",
+      "address": "豫园路153号",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "上海市区唯一保存完好的明代江南古典园林",
+        "practical_info": "淡季30元/旺季40元，开放时间9:00–16:30（16:00停止入场），每周一闭园（法定节假日除外）",
+        "recommended_action": "游览园林景观，感受江南古典建筑艺术"
+      },
+      "walking_logic": {
+        "dwell_time_min": 120,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "古建筑",
+        "园林",
+        "文化"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "三穗堂",
+      "address": "豫园内",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "豫园入园第一景，梁柱雕花精致",
+        "practical_info": "",
+        "recommended_action": "欣赏精美的木雕装饰"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "建筑",
+        "雕刻"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "仰山堂",
+      "address": "豫园内",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "凭栏看假山叠翠、池水涟漪",
+        "practical_info": "",
+        "recommended_action": "欣赏园林景观"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "建筑",
+        "园林"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "大假山",
+      "address": "豫园内",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "豫园标志性景观，登顶视野绝",
+        "practical_info": "",
+        "recommended_action": "登高俯瞰园林全景"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "假山",
+        "景观"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "玉玲珑",
+      "address": "豫园内",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "江南三大名石之一，瘦透漏皱",
+        "practical_info": "",
+        "recommended_action": "观赏奇石"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "奇石",
+        "园林"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "万花楼",
+      "address": "豫园内",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "花木繁盛，氛围感拉满",
+        "practical_info": "",
+        "recommended_action": "欣赏园林花木"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "建筑",
+        "园林"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "古戏台",
+      "address": "豫园内",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "雕梁画栋，藻饰精美，江南第1️⃣",
+        "practical_info": "",
+        "recommended_action": "欣赏传统戏曲舞台"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "建筑",
+        "戏曲"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "鱼乐榭",
+      "address": "豫园内",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "临池观锦鲤，治愈满分",
+        "practical_info": "",
+        "recommended_action": "观赏锦鲤，放松心情"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "园林",
+        "水景"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "九曲桥",
+      "address": "豫园内",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "九曲十八弯，寓意九曲归一",
+        "practical_info": "",
+        "recommended_action": "漫步九曲桥，感受传统意境"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "桥梁",
+        "园林"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "湖心亭",
+      "address": "豫园内",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "豫园内的亭子，可俯瞰园林景色",
+        "practical_info": "",
+        "recommended_action": "欣赏园林景色"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "亭子",
+        "园林"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "城隍庙",
+      "address": "豫园附近",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "上海著名的历史文化景点",
+        "practical_info": "需另外购票",
+        "recommended_action": "参观历史文化建筑"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "文化",
+        "历史"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "南翔小笼",
+      "address": "城隍庙商圈",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "上海老字号美食，以小笼包闻名",
+        "practical_info": "",
+        "recommended_action": "品尝正宗小笼包"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "小吃",
+        "美食"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "松月楼素菜包",
+      "address": "城隍庙商圈",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "上海老字号素菜包店",
+        "practical_info": "",
+        "recommended_action": "品尝素菜包"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "素食",
+        "美食"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "豫园商城",
+      "address": "豫园附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "古城商业街，售卖传统商品",
+        "practical_info": "免费开放，晚上亮灯",
+        "recommended_action": "购买雪花膏、大白兔等传统商品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "商业街",
+        "购物"
+      ],
+      "region": "豫园-老城厢",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "之禾卡纷花园",
+      "address": "衡山路23号附近",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "具有特色的花园建筑",
+        "practical_info": "无门票，开放时间一般为全天",
+        "recommended_action": "拍照打卡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "拍照",
+        "花园",
+        "建筑"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "衡山路23号",
+      "address": "衡山路23号",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "圣诞氛围浓厚的建筑",
+        "practical_info": "无门票，开放时间一般为全天",
+        "recommended_action": "感受节日氛围，拍照"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "节日装饰",
+        "建筑",
+        "拍照"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "国际礼拜堂",
+      "address": "衡山路附近",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "历史悠久的教堂",
+        "practical_info": "可能常闭门，需在马路对面拍摄",
+        "recommended_action": "远观拍照"
+      },
+      "walking_logic": {
+        "dwell_time_min": 5,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "教堂",
+        "建筑",
+        "拍照"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "衡山路8号",
+      "address": "衡山路8号",
+      "node_type": "放空",
+      "fact_sheet": {
+        "brief_intro": "适合休息的广场",
+        "practical_info": "无门票，开放时间一般为全天",
+        "recommended_action": "休息、欣赏周边环境"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "广场",
+        "休息",
+        "城市景观"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "丽波花园",
+      "address": "丽波花园",
+      "node_type": "放空",
+      "fact_sheet": {
+        "brief_intro": "生活化的公园",
+        "practical_info": "无门票，开放时间一般为全天",
+        "recommended_action": "散步、观察居民生活"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "公园",
+        "生活化",
+        "散步"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "徐家汇藏书楼",
+      "address": "徐家汇藏书楼",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "历史悠久的图书馆",
+        "practical_info": "需注意开放时间，周二至周六下午15:30关门",
+        "recommended_action": "参观、了解历史"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 3
+      },
+      "tags": [
+        "图书馆",
+        "文化",
+        "历史"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "徐家汇天主堂",
+      "address": "徐家汇天主堂",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "天主教教堂",
+        "practical_info": "周二至周六下午15:30关门，本月周六可能不开放",
+        "recommended_action": "参观、感受宗教氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 2
+      },
+      "tags": [
+        "教堂",
+        "宗教",
+        "建筑"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "徐汇区书院",
+      "address": "徐汇区书院",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "现代文化空间",
+        "practical_info": "无门票，开放时间一般为全天",
+        "recommended_action": "参观、体验文化活动"
+      },
+      "walking_logic": {
+        "dwell_time_min": 25,
+        "sequence_weight": 1
+      },
+      "tags": [
+        "文化空间",
+        "书院",
+        "现代建筑"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "一尺花园",
+      "address": "衡山路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "一家可以吃brunch的餐厅，适合拍照和休闲。",
+        "practical_info": "需要提早到达，不能预约。",
+        "recommended_action": "选择靠窗位置拍照，或选择室内位置享受温暖氛围。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "brunch",
+        "拍照",
+        "咖啡馆"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "爱庐",
+      "address": "东平路",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "宋美龄故居，具有历史价值。",
+        "practical_info": "无特别说明",
+        "recommended_action": "参观故居，了解其历史背景。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 45,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "历史建筑",
+        "名人故居",
+        "文化"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "普希金纪念碑",
+      "address": "东平路尽头",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "纪念俄罗斯诗人普希金的纪念碑，是打卡点。",
+        "practical_info": "无特别说明",
+        "recommended_action": "拍照打卡，并背诵《假如生活欺骗了你》。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "纪念碑",
+        "拍照",
+        "文化"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "上海交响乐博物馆",
+      "address": "宝庆路",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "介绍古典音乐和上海交响乐团的博物馆。",
+        "practical_info": "免费，建议预约，但有时可直接进入。",
+        "recommended_action": "试听经典音乐作品，了解音乐历史。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 90,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "博物馆",
+        "音乐",
+        "文化"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "聂耳音乐广场",
+      "address": "淮海西路",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "以中国音乐家聂耳为主题的广场，有雕像。",
+        "practical_info": "无特别说明",
+        "recommended_action": "与聂耳雕像合影，感受音乐氛围。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "音乐",
+        "雕像",
+        "拍照"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "黑石公寓",
+      "address": "复兴中路",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "上海折衷主义风格的老建筑，具有历史价值。",
+        "practical_info": "无特别说明",
+        "recommended_action": "在外观拍照，了解建筑风格。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "历史建筑",
+        "建筑",
+        "拍照"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "幸福集荟",
+      "address": "黑石公寓侧门",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "位于黑石公寓侧门的综合商店，包含唱片店、书店等。",
+        "practical_info": "内部正在整修，开放时间待定。",
+        "recommended_action": "在外部打卡，观察店铺外观。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "商店",
+        "书店",
+        "拍照"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "亦庐",
+      "address": "黑石公寓旁边",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "一家旧书店，藏书丰富。",
+        "practical_info": "书籍价格较高。",
+        "recommended_action": "浏览旧书，感受书香氛围。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "旧书店",
+        "文化",
+        "购物"
+      ],
+      "region": "衡山路-复兴西路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "丰盛里",
+      "address": "茂名北路",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "石库门特色建筑群，百年老洋房与现代艺术展的结合。",
+        "practical_info": "免费开放",
+        "recommended_action": "参观建筑和艺术展览"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "历史",
+        "文化"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "莱莱小笼",
+      "address": "茂名北路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "上海传统小吃店，以小笼包闻名。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "品尝上海特色小笼包"
+      },
+      "walking_logic": {
+        "dwell_time_min": 45,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "美食",
+        "传统"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "石窑面包",
+      "address": "茂名北路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供各种烘焙食品的店铺。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "尝试新鲜烘焙的面包"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "美食",
+        "甜点"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "椰子不语",
+      "address": "茂名北路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供椰子相关饮品和甜品的店铺。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "品尝特色椰子饮品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "美食",
+        "饮品"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "珮姐",
+      "address": "茂名北路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "重庆火锅网红店。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "体验重庆火锅风味"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "美食",
+        "火锅"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "广莲申",
+      "address": "茂名北路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供各种上海传统点心的店铺。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "品尝上海传统点心"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "美食",
+        "传统"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "张园",
+      "address": "南京西路",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "上海石库门老弄堂建筑代表，被称为‘海上第一名园’。",
+        "practical_info": "免费开放",
+        "recommended_action": "欣赏石库门建筑和拍照"
+      },
+      "walking_logic": {
+        "dwell_time_min": 45,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "历史",
+        "文化",
+        "建筑"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "LOUIS VUITTON",
+      "address": "张园",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "奢侈品牌旗舰店。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "购买奢侈品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "购物",
+        "奢侈"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "DIOR",
+      "address": "张园",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "奢侈品牌旗舰店。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "购买奢侈品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "购物",
+        "奢侈"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "VACHERON CONSTANTIN",
+      "address": "张园",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "奢侈品牌手表店。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "选购高端手表"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "购物",
+        "奢侈"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Blue Bottle Coffee",
+      "address": "张园",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "知名咖啡品牌，提供高品质咖啡。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "品尝精品咖啡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "咖啡",
+        "美食"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "RE Bike Museum",
+      "address": "张园",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "自行车博物馆，展示各类自行车历史。",
+        "practical_info": "免费开放",
+        "recommended_action": "了解自行车历史"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "文化",
+        "历史"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "DIPTYQUE",
+      "address": "张园",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "法国香氛品牌，提供香水和蜡烛等产品。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "选购香氛产品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "购物",
+        "香氛"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Ortensia Restaurant",
+      "address": "张园",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "源自法国的巴黎米其林一星餐厅。",
+        "practical_info": "营业时间：11:00-22:00",
+        "recommended_action": "体验法式料理"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "美食",
+        "高级"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "吴江路",
+      "address": "南京西路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "美食步行街，提供各种当地特色美食。",
+        "practical_info": "免费开放",
+        "recommended_action": "品尝各地特色美食"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "美食",
+        "步行街"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "BUTTERFUL & CREAMOROUS 黄油与面包",
+      "address": "吴江路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "非常火爆的黄油与面包店。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "尝试特色黄油与面包"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "美食",
+        "甜点"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "马子禄牛肉面",
+      "address": "吴江路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "兰州拉面店，味道不错。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "品尝兰州拉面"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "美食",
+        "面食"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Hot Toys",
+      "address": "吴江路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "玩具手办店，漫威爱好者必去。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "购买手办和玩具"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "购物",
+        "动漫"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Niko and…",
+      "address": "吴江路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "时尚日系服饰店。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "选购日系服饰"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "购物",
+        "时尚"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Potato Corner",
+      "address": "吴江路",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供各种口味薯条的店铺。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "尝试不同口味的薯条"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "美食",
+        "快餐"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "LV路易号巨轮",
+      "address": "兴业太古汇",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "非凡之旅展览，展示路易威登的历史。",
+        "practical_info": "免费开放",
+        "recommended_action": "参观展览"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "文化",
+        "展览"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "星巴克甄选烘焙工坊",
+      "address": "兴业太古汇",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "国内最大的星巴克，提供咖啡制作过程体验。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "体验咖啡制作过程"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "咖啡",
+        "美食"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "BEIGEL TREE贝果树",
+      "address": "兴业太古汇",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "纽约贝果博物馆，提供各种贝果。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "尝试不同口味的贝果"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "美食",
+        "甜点"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "泽田本家",
+      "address": "兴业太古汇",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "网红铜锣烧店。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "品尝铜锣烧"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "美食",
+        "甜点"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "梅龙镇广场",
+      "address": "南京西路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "购物中心，提供多种购物选择。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "购物和休闲"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "购物",
+        "商场"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "中信泰富广场",
+      "address": "南京西路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "购物中心，提供多种购物选择。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "购物和休闲"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "购物",
+        "商场"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "恒隆广场",
+      "address": "南京西路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "高端购物中心，提供奢侈品牌和优质服务。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "购物和享受高端服务"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "购物",
+        "奢侈"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "静安嘉里中心",
+      "address": "南京西路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "综合性购物中心，提供购物、餐饮和娱乐。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "购物、餐饮和娱乐"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "购物",
+        "综合"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "芮欧百货",
+      "address": "南京西路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "高端百货商店，提供奢侈品和时尚商品。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "购物和挑选时尚商品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "购物",
+        "奢侈"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "久光百货",
+      "address": "南京西路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "百货商店，提供多种商品和品牌。",
+        "practical_info": "营业时间：10:00-22:00",
+        "recommended_action": "购物和休闲"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "购物",
+        "百货"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "静安寺",
+      "address": "南京西路与延安中路交汇处",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "上海历史悠久的古刹之一",
+        "practical_info": "门票50元",
+        "recommended_action": "在马路对面的人行天桥上拍照打卡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "宗教",
+        "历史"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "静安公园",
+      "address": "南京西路与延安中路交汇处对面",
+      "node_type": "放空",
+      "fact_sheet": {
+        "brief_intro": "静安寺对面的公园",
+        "practical_info": "免费开放",
+        "recommended_action": "散步或在泰廊餐厅用餐"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "休闲",
+        "公园"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "嘉里中心",
+      "address": "南京西路与石门二路交汇处",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "综合商业体",
+        "practical_info": "营业时间一般为10:00-22:00",
+        "recommended_action": "购物、餐饮和休闲"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "商场",
+        "购物"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "上海展览中心",
+      "address": "南京西路与延安中路交汇处",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "俄罗斯风格建筑，原为中苏友好大厦",
+        "practical_info": "对外开放，可参观",
+        "recommended_action": "拍照和参观欧式建筑"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "建筑",
+        "历史"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "中信泰富",
+      "address": "南京西路与延安中路交汇处",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "高档购物中心",
+        "practical_info": "营业时间一般为10:00-22:00",
+        "recommended_action": "购物和体验高端品牌"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "商场",
+        "购物"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "AND STORE",
+      "address": "南京西路与石门二路交汇处",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "NIKO AND 全新升级的品牌集合店",
+        "practical_info": "营业时间一般为10:00-22:00",
+        "recommended_action": "购物和体验日系品牌"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "商场",
+        "购物"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "星巴克臻选上海烘焙工坊",
+      "address": "南京西路与石门二路交汇处",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "亚洲最大的星巴克烘焙坊",
+        "practical_info": "营业时间一般为10:00-22:00",
+        "recommended_action": "参观咖啡制作过程和购买周边商品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "咖啡",
+        "餐饮"
+      ],
+      "region": "南京西路-静安寺",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "K11购物艺术中心",
+      "address": "黄陂南路与复兴中路交叉口附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "国内首个艺术购物中心，设有美术馆和多个品牌店铺。",
+        "practical_info": "无明确门票信息，营业时间通常为商场营业时间。",
+        "recommended_action": "参观B3层美术馆展览，逛高奢品牌和潮流店铺。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "艺术",
+        "购物",
+        "文化"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "新天地广场",
+      "address": "黄陂南路与马当路交叉口附近",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "以美食为主的商业区，适合用餐休息。",
+        "practical_info": "无明确门票信息，营业时间通常为商场营业时间。",
+        "recommended_action": "在商场内享用特色餐饮，体验上海本地美食。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 45,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "美食",
+        "休闲"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "新天地北里",
+      "address": "黄陂南路与马当路交叉口附近",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "石库门特色街区，融合历史与时尚元素。",
+        "practical_info": "无明确门票信息，开放时间通常为白天至晚上。",
+        "recommended_action": "拍照打卡，探索高颜值店铺和露天酒吧。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "历史",
+        "时尚",
+        "拍照"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "新天地新里",
+      "address": "黄陂南路与马当路交叉口附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "集购物、娱乐于一体的商业区。",
+        "practical_info": "无明确门票信息，营业时间通常为商场营业时间。",
+        "recommended_action": "逛话梅、GM巨人展等特色店铺。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 45,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "潮流",
+        "购物"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "新天地时尚1期",
+      "address": "黄陂南路与马当路交叉口附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "潮流购物地，有安福路同款小熊咖啡店。",
+        "practical_info": "无明确门票信息，营业时间通常为商场营业时间。",
+        "recommended_action": "打卡小熊咖啡店，逛AMAM粉色城堡等网红店铺。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 45,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "潮流",
+        "网红",
+        "购物"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "新天地时尚2期",
+      "address": "黄陂南路与马当路交叉口附近",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "年轻潮流聚集地，有多家特色店铺。",
+        "practical_info": "无明确门票信息，营业时间通常为商场营业时间。",
+        "recommended_action": "逛左右艺术超市、Jellycat玩偶店和韩系女装店。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "潮流",
+        "购物",
+        "韩系"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "一大会址",
+      "address": "黄陂南路与复兴中路交叉口附近",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "中国共产党第一次全国代表大会召开地。",
+        "practical_info": "免费开放，需提前预约，开放时间通常为9:00-17:00。",
+        "recommended_action": "参观革命历史展览，了解中国共产党早期历史。"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "历史",
+        "红色旅游"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "中共一大纪念馆",
+      "address": "黄浦区马当路119号",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "中国共产党第一次全国代表大会的召开地，具有重要历史意义。",
+        "practical_info": "需预约，周一闭馆",
+        "recommended_action": "参观展览，了解中国共产党早期历史"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "历史",
+        "文化"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "% Arabica咖啡",
+      "address": "新天地北里",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "知名精品咖啡品牌，以极简风格和优质咖啡著称。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "品尝咖啡，感受极简设计风格"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "味觉",
+        "视觉"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "新天地时尚I/II",
+      "address": "黄浦区马当路119号",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "集购物、餐饮、休闲于一体的现代化购物中心。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "购物、拍照、享受屋顶花园景观"
+      },
+      "walking_logic": {
+        "dwell_time_min": 45,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "购物",
+        "视觉"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "思南公馆",
+      "address": "黄浦区思南路",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "梧桐树下的洋房建筑群，充满文艺气息。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "享受下午茶，感受文艺氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "视觉",
+        "文化"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "RIO LAB",
+      "address": "思南公馆",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供创意鸡尾酒的酒吧，适合年轻人聚会。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "品尝特色鸡尾酒，体验夜生活"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "味觉",
+        "文化"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "思南书局",
+      "address": "思南公馆",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "位于思南公馆内的书店，兼具阅读与文化空间功能。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "阅读书籍，感受文艺氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "文化",
+        "视觉"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "TX淮海",
+      "address": "黄浦区淮海中路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "集艺术展览与潮流品牌于一体的商业空间。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "观看先锋艺术展，购买小众潮牌"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "购物",
+        "文化"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "蔡澜港式点心",
+      "address": "新天地南里",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供正宗港式点心的餐厅，菜品精致。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "品尝港式点心，体验地道风味"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "味觉",
+        "文化"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "Shake Shack",
+      "address": "新天地南里",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "知名汉堡连锁品牌，提供美式快餐。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "品尝网红汉堡，体验美式风味"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "味觉",
+        "视觉"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "香港寶林糖水鋪",
+      "address": "新天地南里",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供传统港式糖水的店铺，环境复古。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "品尝港式糖水，感受复古氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "味觉",
+        "视觉"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "纽约贝果博物馆",
+      "address": "黄浦区马当路119号",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "以美式复古风格为主题的贝果店，提供多种口味的贝果。",
+        "practical_info": "无特别门票信息",
+        "recommended_action": "尝试不同口味的贝果，欣赏店内装饰"
+      },
+      "walking_logic": {
+        "dwell_time_min": 25,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "视觉",
+        "味觉"
+      ],
+      "region": "新天地-马当路",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "面包咖啡好天气",
+      "address": "江苏路地铁站4号口附近",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "一家提供精致甜品的咖啡店",
+        "practical_info": "无特殊门票信息，营业时间一般为早10点至晚8点",
+        "recommended_action": "品尝精致甜品，感受治愈氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "咖啡店",
+        "甜品"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "董记庐春面馆",
+      "address": "江苏路地铁站4号口附近",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供传统上海面食的面馆",
+        "practical_info": "无特殊门票信息，营业时间一般为早7点至晚9点",
+        "recommended_action": "品尝雪菜肉丝面等传统面食"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "面馆",
+        "传统美食"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "愚园路电台",
+      "address": "愚园路",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "沪上首个广播沉浸式文化地标",
+        "practical_info": "无特殊门票信息，营业时间一般为早10点至晚10点",
+        "recommended_action": "点一杯‘电台咖啡’，感受文艺氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "文化地标",
+        "咖啡馆"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "愚园路百货公司",
+      "address": "愚园路",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "集合潮流品牌和艺术的店铺",
+        "practical_info": "无特殊门票信息，营业时间一般为早10点至晚10点",
+        "recommended_action": "探索潮流品牌和快闪活动"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "购物",
+        "潮流品牌"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "CALEX灯饰店",
+      "address": "愚园路",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "创意感满满的灯饰店",
+        "practical_info": "无特殊门票信息，营业时间一般为早10点至晚10点",
+        "recommended_action": "欣赏玻璃橱窗设计，拍照打卡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "灯饰店",
+        "拍照"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "愚园路故事商店",
+      "address": "愚园路",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "又名‘解忧杂货铺’，常举办主题展览或活动",
+        "practical_info": "无特殊门票信息，营业时间一般为早10点至晚10点",
+        "recommended_action": "参与主题展览或活动"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "文化商店",
+        "展览"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "岐山村",
+      "address": "愚园路1032弄",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "曾是钱学森、施蛰存等名人的居所，展示近代名人事迹",
+        "practical_info": "无特殊门票信息，开放时间为全天",
+        "recommended_action": "参观花园洋房，了解近代历史"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "历史建筑",
+        "名人故居"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "愚楽集·BuBu 市集",
+      "address": "愚园路1088弄创邑SPACE",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "汇聚手工美学、绘画手账等独立品牌的市集",
+        "practical_info": "无特殊门票信息，开放时间为白天",
+        "recommended_action": "淘特色好物，感受慢生活"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "市集",
+        "手工艺品"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "粉家螺蛳粉",
+      "address": "愚园路靠近定西路路段",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "螺蛳粉爱好者不容错过的餐厅",
+        "practical_info": "无特殊门票信息，营业时间一般为中午11点至晚上9点",
+        "recommended_action": "品尝特色螺蛳粉"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "螺蛳粉",
+        "小吃"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "桐乡咬强羊肉面",
+      "address": "愚园路靠近定西路路段",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供热气腾腾的羊肉面的餐厅",
+        "practical_info": "无特殊门票信息，营业时间一般为中午11点至晚上9点",
+        "recommended_action": "在秋冬季节享用羊肉面"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "羊肉面",
+        "地方特色"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "堂屋糖水店",
+      "address": "愚园路靠近定西路路段",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "提供清甜糖水的甜品店",
+        "practical_info": "无特殊门票信息，营业时间一般为下午2点至晚上9点",
+        "recommended_action": "餐后享用清甜糖水"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 3
+      },
+      "tags": [
+        "糖水店",
+        "甜品"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "长宁区图书馆愚园馆",
+      "address": "愚园路",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "提供阅读空间的图书馆",
+        "practical_info": "无特殊门票信息，开放时间为白天",
+        "recommended_action": "静心阅读，享受宁静时光"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "图书馆",
+        "阅读"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "江苏路街道图书馆",
+      "address": "愚园路",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "提供阅读空间的图书馆",
+        "practical_info": "无特殊门票信息，开放时间为白天",
+        "recommended_action": "静心阅读，享受宁静时光"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "图书馆",
+        "阅读"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "新页书房·亲子科普馆",
+      "address": "愚园路",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "提供亲子阅读时光的科普馆",
+        "practical_info": "无特殊门票信息，开放时间为白天",
+        "recommended_action": "与孩子一起享受亲子阅读时光"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "亲子阅读",
+        "科普"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "CP静安",
+      "address": "愚园路与静安寺区域",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "大型购物中心，包含各类品牌和餐饮店铺",
+        "practical_info": "营业时间一般为10:00-22:00",
+        "recommended_action": "逛街购物、品尝美食"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "购物中心",
+        "商业区"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "愚园支路",
+      "address": "愚园路P3至安西路十字路口",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "充满历史保护建筑的街道，建筑风格多样",
+        "practical_info": "全天开放",
+        "recommended_action": "漫步欣赏建筑、探索特色店铺"
+      },
+      "walking_logic": {
+        "dwell_time_min": 90,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "历史建筑",
+        "步行街"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "安西路十字路口",
+      "address": "愚园路与安西路交叉口",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "愚园路的重要交汇点",
+        "practical_info": "全天开放",
+        "recommended_action": "拍照、观察城市景观"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "地标性路口",
+        "城市景观"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "长宁路",
+      "address": "愚园路至长宁路终点",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "愚园路的最后一段，繁华且有特色",
+        "practical_info": "全天开放",
+        "recommended_action": "散步、感受城市氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "城市道路",
+        "商业区"
+      ],
+      "region": "愚园路 (长宁段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "新艺花行",
+      "address": "天潼路地铁站附近",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "花店，位于苏州河沿岸",
+        "practical_info": "无门票信息",
+        "recommended_action": "欣赏花卉布置"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "花店",
+        "苏州河沿岸"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "不止空间",
+      "address": "原新天安堂",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "艺术空间，原为新天安堂教堂",
+        "practical_info": "免费参观，需预约",
+        "recommended_action": "欣赏艺术展览"
+      },
+      "walking_logic": {
+        "dwell_time_min": 25,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "艺术空间",
+        "历史建筑"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "洛克·外滩源",
+      "address": "苏州河与黄浦江交汇处",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "商业综合体，包含多个品牌店铺",
+        "practical_info": "无门票信息",
+        "recommended_action": "购物和休闲"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 3
+      },
+      "tags": [
+        "商业区",
+        "购物"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "圆明园路",
+      "address": "苏州河沿岸",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "历史街道，具有欧式建筑风格",
+        "practical_info": "无门票信息",
+        "recommended_action": "漫步感受历史氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 2
+      },
+      "tags": [
+        "历史街道",
+        "建筑"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "沙美大楼",
+      "address": "苏州河沿岸",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "具有历史感的建筑",
+        "practical_info": "无门票信息",
+        "recommended_action": "拍照留念"
+      },
+      "walking_logic": {
+        "dwell_time_min": 10,
+        "sequence_weight": 1
+      },
+      "tags": [
+        "建筑",
+        "苏州河"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "万国建筑群",
+      "address": "苏州河沿岸",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "汇集多国建筑风格的建筑群",
+        "practical_info": "无门票信息",
+        "recommended_action": "欣赏建筑风格"
+      },
+      "walking_logic": {
+        "dwell_time_min": 25,
+        "sequence_weight": 2
+      },
+      "tags": [
+        "建筑群",
+        "历史"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "和平饭店",
+      "address": "苏州河沿岸",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "历史悠久的豪华酒店",
+        "practical_info": "无门票信息",
+        "recommended_action": "参观建筑和历史"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 3
+      },
+      "tags": [
+        "历史建筑",
+        "文化"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "外滩",
+      "address": "苏州河与黄浦江交汇处",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "上海著名景观带",
+        "practical_info": "无门票信息",
+        "recommended_action": "欣赏夜景和建筑"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "景观带",
+        "夜景"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "观夏",
+      "address": "洛克外滩源",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "香氛品牌店",
+        "practical_info": "无门票信息",
+        "recommended_action": "选购香氛产品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "香氛",
+        "购物"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "伊索aesop",
+      "address": "洛克外滩源",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "洗护品牌店",
+        "practical_info": "无门票信息",
+        "recommended_action": "选购洗护产品"
+      },
+      "walking_logic": {
+        "dwell_time_min": 15,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "洗护",
+        "购物"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "山石榴",
+      "address": "苏州河万象天地店",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "贵州菜餐厅",
+        "practical_info": "无门票信息",
+        "recommended_action": "品尝花溪牛肉粉"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "贵州菜",
+        "餐厅"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "DQ汉堡",
+      "address": "上海门店",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "特色汉堡店",
+        "practical_info": "无门票信息",
+        "recommended_action": "尝试特色汉堡"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "汉堡",
+        "餐厅"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Yugo grill",
+      "address": "福铭远东商务楼店",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "南斯拉夫风味餐厅",
+        "practical_info": "无门票信息",
+        "recommended_action": "品尝南斯拉夫菜"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "南斯拉夫菜",
+        "餐厅"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "Tender bar",
+      "address": "上海",
+      "node_type": "味觉",
+      "fact_sheet": {
+        "brief_intro": "小清吧",
+        "practical_info": "无门票信息",
+        "recommended_action": "体验调酒氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 45,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "酒吧",
+        "夜生活"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记1"
+    },
+    {
+      "node_name": "福新面粉厂旧址",
+      "address": "苏州河畔",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "上海民族工业的起点，荣氏兄弟实业救国精神的见证",
+        "practical_info": "无门票信息",
+        "recommended_action": "参观工业遗存，感受历史沉淀"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 10
+      },
+      "tags": [
+        "历史",
+        "工业遗产"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "Fotografiska影像艺术中心",
+      "address": "苏州河畔",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "文艺青年必去的艺术展览空间",
+        "practical_info": "10:30-23:00（周一也可看）；一楼免费，展览需购票",
+        "recommended_action": "观看摄影展览，购买文创周边"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 8
+      },
+      "tags": [
+        "艺术",
+        "摄影"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "四行仓库抗战纪念馆",
+      "address": "苏州河畔",
+      "node_type": "历史",
+      "fact_sheet": {
+        "brief_intro": "电影《八佰》原型地，展示抗战历史",
+        "practical_info": "9:00-16:30（周一闭馆）；免费参观，免预约",
+        "recommended_action": "参观布满弹孔的西墙，感受历史氛围"
+      },
+      "walking_logic": {
+        "dwell_time_min": 45,
+        "sequence_weight": 9
+      },
+      "tags": [
+        "历史",
+        "抗战"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "JK1933",
+      "address": "苏州河畔",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "老建筑群，包含犀牛书店",
+        "practical_info": "办公区域不可进入",
+        "recommended_action": "参观老建筑，逛犀牛书店"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "建筑",
+        "复古"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "苏河皓司",
+      "address": "苏州河畔",
+      "node_type": "放空",
+      "fact_sheet": {
+        "brief_intro": "免费展览空间，适合安静观展",
+        "practical_info": "10:30-18:00（周二-周六）",
+        "recommended_action": "观展、拍照"
+      },
+      "walking_logic": {
+        "dwell_time_min": 40,
+        "sequence_weight": 6
+      },
+      "tags": [
+        "展览",
+        "拍照"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "没顶画廊",
+      "address": "苏州河畔",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "地下一层画廊，有多个展览",
+        "practical_info": "无门票信息",
+        "recommended_action": "参观近期展览《序与生》"
+      },
+      "walking_logic": {
+        "dwell_time_min": 50,
+        "sequence_weight": 7
+      },
+      "tags": [
+        "艺术",
+        "展览"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "苏河湾万象天地",
+      "address": "苏州河畔",
+      "node_type": "购物",
+      "fact_sheet": {
+        "brief_intro": "开放式商场，包含慎余里和天后宫",
+        "practical_info": "无门票信息",
+        "recommended_action": "逛街、参观石库门建筑群"
+      },
+      "walking_logic": {
+        "dwell_time_min": 60,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "商业",
+        "建筑"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "天后宫",
+      "address": "苏州河畔",
+      "node_type": "文化",
+      "fact_sheet": {
+        "brief_intro": "文物古迹",
+        "practical_info": "无门票信息",
+        "recommended_action": "参观古迹"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 4
+      },
+      "tags": [
+        "宗教",
+        "古迹"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "上海总商会旧址",
+      "address": "苏州河畔",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "具有历史价值的建筑",
+        "practical_info": "无门票信息",
+        "recommended_action": "参观建筑，拍摄喷泉和大草坪"
+      },
+      "walking_logic": {
+        "dwell_time_min": 20,
+        "sequence_weight": 3
+      },
+      "tags": [
+        "建筑",
+        "拍照"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    },
+    {
+      "node_name": "洛克外滩源",
+      "address": "苏州河畔",
+      "node_type": "视觉",
+      "fact_sheet": {
+        "brief_intro": "欧式风情建筑群，包括教堂和划船总会旧址",
+        "practical_info": "无门票信息",
+        "recommended_action": "参观欧式建筑，拍照"
+      },
+      "walking_logic": {
+        "dwell_time_min": 30,
+        "sequence_weight": 5
+      },
+      "tags": [
+        "建筑",
+        "拍照"
+      ],
+      "region": "苏州河 (静安/黄浦段)",
+      "source_note": "笔记2"
+    }
+  ]
+}

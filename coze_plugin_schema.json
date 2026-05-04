@@ -1,69 +1,142 @@
 {
-  "schema_version": "v1",
-  "name_for_human": "Hexa Blueprint 行程规划",
-  "name_for_model": "hexa_blueprint",
-  "description_for_human": "北京旅游行程规划与报价服务，根据用户需求智能推荐行程并计算费用",
-  "description_for_model": "帮助用户规划北京旅游行程，提供产品推荐和费用计算。支持根据出行天数、人数、风格偏好等条件匹配最适合的行程方案。",
-  "auth": {
-    "type": "api_key",
-    "api_key": {
-      "header_name": "X-API-Key"
+  "name": "travel_planner_api",
+  "description": "旅游规划智能助手API服务",
+  "version": "1.0.0",
+  "functions": [
+    {
+      "name": "get_city_survey",
+      "description": "根据城市生成旅游需求问卷",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "description": "目标城市名称",
+            "enum": ["北京", "上海", "广州", "重庆", "西安", "阳朔", "张家界", "贵州", "云南", "成都"]
+          }
+        },
+        "required": ["city"]
+      }
+    },
+    {
+      "name": "get_product_recommendation",
+      "description": "根据用户需求获取旅游产品推荐",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "description": "目标城市"
+          },
+          "days": {
+            "type": "number",
+            "description": "旅游天数"
+          },
+          "adults": {
+            "type": "number",
+            "description": "成人数量"
+          },
+          "children": {
+            "type": "number",
+            "description": "儿童数量"
+          },
+          "seniors": {
+            "type": "number",
+            "description": "老人数量"
+          },
+          "is_peak": {
+            "type": "boolean",
+            "description": "是否为旺季"
+          },
+          "hotel": {
+            "type": "string",
+            "description": "酒店类型"
+          },
+          "transfer": {
+            "type": "string",
+            "description": "交通类型"
+          },
+          "car_days": {
+            "type": "number",
+            "description": "包车天数"
+          },
+          "transfer_times": {
+            "type": "number",
+            "description": "接送次数"
+          },
+          "selected_optional": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "选择的可选项目列表"
+          }
+        },
+        "required": ["city", "days", "adults"]
+      }
+    },
+    {
+      "name": "calculate_total_cost",
+      "description": "计算旅游总费用",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "product_recommendation": {
+            "type": "object",
+            "description": "产品推荐结果"
+          }
+        },
+        "required": ["product_recommendation"]
+      }
+    },
+    {
+      "name": "list_available_cities",
+      "description": "获取可用的城市列表",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
     }
-  },
-  "api": {
-    "type": "openapi",
-    "url": "https://your-service.onrender.com/openapi.json",
-    "has_user_authentication": false
-  },
-  "logo_url": "https://your-cdn.com/logo.png",
-  "contact_email": "support@hexachina.com",
-  "legal_info_url": "https://hexachina.com/legal",
-  "endpoints": [
+  ],
+  "events": [
     {
-      "name": "获取问卷",
-      "path": "/api/v1/survey",
-      "method": "GET",
-      "description": "获取结构化问卷，用于收集用户出行偏好",
-      "parameters": []
+      "name": "session_start",
+      "description": "会话开始事件",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "description": "用户ID"
+          },
+          "session_id": {
+            "type": "string",
+            "description": "会话ID"
+          }
+        }
+      }
     },
     {
-      "name": "产品推荐",
-      "path": "/api/v1/recommend",
-      "method": "POST",
-      "description": "根据用户意图推荐最适合的旅游产品",
-      "parameters": [
-        {"name": "city", "type": "string", "description": "目标城市", "required": false, "default": "北京"},
-        {"name": "days", "type": "integer", "description": "行程天数(1-7)", "required": true},
-        {"name": "style", "type": "string", "description": "行程风格", "required": false, "default": "经典"},
-        {"name": "persona", "type": "string", "description": "用户画像(family/couple/solo/senior)", "required": false, "default": "standard"},
-        {"name": "has_child", "type": "boolean", "description": "是否带儿童", "required": false, "default": false},
-        {"name": "adults", "type": "integer", "description": "成人数量", "required": false, "default": 2},
-        {"name": "children", "type": "integer", "description": "儿童数量", "required": false, "default": 0},
-        {"name": "seniors", "type": "integer", "description": "老人数量", "required": false, "default": 0},
-        {"name": "is_peak", "type": "boolean", "description": "是否旺季", "required": false, "default": true}
-      ]
-    },
-    {
-      "name": "费用计算",
-      "path": "/api/v1/cost",
-      "method": "POST",
-      "description": "计算行程详细费用",
-      "parameters": [
-        {"name": "days", "type": "integer", "description": "行程天数", "required": true},
-        {"name": "adults", "type": "integer", "description": "成人数量", "required": false, "default": 2},
-        {"name": "children", "type": "integer", "description": "儿童数量", "required": false, "default": 0},
-        {"name": "seniors", "type": "integer", "description": "老人数量", "required": false, "default": 0},
-        {"name": "is_peak", "type": "boolean", "description": "是否旺季", "required": false, "default": true}
-      ]
-    },
-    {
-      "name": "一键规划",
-      "path": "/api/v1/complete",
-      "method": "POST",
-      "description": "一键完成行程规划和费用计算",
-      "parameters": [
-        {"name": "intent", "type": "object", "description": "用户意图对象", "required": true}
-      ]
+      "name": "plan_completed",
+      "description": "行程规划完成事件",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "description": "用户ID"
+          },
+          "city": {
+            "type": "string",
+            "description": "规划城市"
+          },
+          "total_cost": {
+            "type": "number",
+            "description": "总费用"
+          }
+        }
+      }
     }
   ]
 }

@@ -1,0 +1,350 @@
+{
+  "北京": {
+    "routes": {
+      "Route 1": {
+        "title": "The Imperial Axis · From National Narrative to Local Life",
+        "description": "Walk the line between the grandeur of the state, the majesty of the Forbidden City, and the intimate charm of hutong alleyways to feel the historical depth of Beijing's central axis.",
+        "attractions": [
+          {"name": "Tiananmen, Forbidden City & Jinshan Park", "duration": "3h", "description": "Imperial axis, symbols of power"},
+          {"name": "Beijing Hutong Light Walk / Cycling", "duration": "2h", "description": "Old Beijing's alleyways, traditional courtyard architecture"}
+        ]
+      },
+      "Route 2": {
+        "title": "Two Faces of an Empire · Might & Serenity",
+        "description": "Contrast the formidable military genius of the Great Wall with the poetic, man-made paradise of the Summer Palace, witnessing the two extremes of an empire's soul.",
+        "attractions": [
+          {"name": "The Great Wall at Mutianyu", "duration": "6h", "description": "Majestic mountain scenery, military genius, legendary fortifications"},
+          {"name": "Summer Palace", "duration": "2h", "description": "Imperial garden design, philosophies of harmony"}
+        ]
+      },
+      "Route 3": {
+        "title": "Dialogue with Heaven · Faith & Philosophy",
+        "description": "Explore the spiritual heart of the capital, from the emperor's sacred rituals at the Temple of Heaven to the vibrant energy of Tibetan Buddhism at the Lama Temple.",
+        "attractions": [
+          {"name": "Temple of Heaven", "duration": "2h", "description": "Sacred architecture, ancient rituals, royal connection to heaven"},
+          {"name": "Yonghe Temple (Lama Temple)", "duration": "2h", "description": "Tibetan Buddhism, vibrant atmosphere, imperial monastery"}
+        ]
+      }
+    },
+    "activities": {
+      "Peking Opera & Dinner": {"duration": "2-3h", "description": "Traditional melodies, vibrant costumes, and authentic local cuisine", "price": "RMB 400 p.p."},
+      "Hanfu Shooting": {"duration": "1-3h", "description": "Wearing traditional Hanfu, capturing your moments in a royal landscape", "price": "RMB 400 p.p."}
+    },
+    "product_days": {
+      "BJ-P-01": {"1": "Route 1", "2": "Route 2"},
+      "BJ-P-02": {"1": "Route 1", "2": "Route 2", "3": "Route 3"},
+      "BJ-P-03": {"1": "Route 3", "2": "Route 2", "3": "Route 1", "4": "Route 2"}
+    }
+  },
+  "西安": {
+    "routes": {
+      "Route 1": {
+        "title": "The Emperor's Eternal Guard · A Journey into Imperial Legend",
+        "description": "Stand before the silent, subterranean legion of China's First Emperor, a UNESCO world wonder. Then, bridge millennia by crafting your own terracotta warrior, connecting with an ancient art form hands-on.",
+        "attractions": [
+          {"name": "Terracotta Army & Mausoleum Park", "duration": "3h", "description": "First Emperor's subterranean legion, Unparalleled archaeological wonder, A life-sized army for the afterlife"}
+        ]
+      },
+      "Route 2": {
+        "title": "Heartbeat of the Ancient Capital · A Silk Road City Walk",
+        "description": "Cycle atop the monumental Ming City Wall, tracing the capital's grand perimeter. Then descend into the vibrant, spice-scented chaos of the Muslim Quarter, and end your journey at the serene Giant Wild Goose Pagoda.",
+        "attractions": [
+          {"name": "Xi'an City Wall", "duration": "1-2h", "description": "China's grandest urban fortification, Monumental Ming Dynasty ramparts"},
+          {"name": "Big Wild Goose Pagoda", "duration": "1-2h", "description": "Enduring symbol of Buddhist pilgrimage, Legacy of monk Xuanzang, A landmark of Silk Road cultural exchange"},
+          {"name": "Bell/Drum Towers & Muslim Quarter", "duration": "2h", "description": "Historic heart of the city, Bustling Silk Road marketplace, A vibrant symphony of street food"}
+        ]
+      }
+    },
+    "activities": {
+      "Tang Dynasty Palace Show": {"duration": "2h", "description": "Imperial courtly splendor, A lavish Tang-era banquet for the senses", "price": "RMB 200 p.p."},
+      "Terracotta Warrior DIY Workshop": {"duration": "2h", "description": "Hands-on artisan craft, Personal dynastic souvenir, The art of ancient sculpting", "price": "RMB 55 p.p."},
+      "Tang Paradise & Everbright City": {"duration": "3-4h", "description": "Imperial garden revival, Dazzling nocturnal spectacle, Tang Dynasty's golden age", "price": "RMB 120 p.p."}
+    },
+    "product_days": {
+      "XA-P-01": {"1": "Route 1", "2": "Route 2"},
+      "XA-P-02": {"1": "Route 1", "2": "Route 2", "3": "Route 2"}
+    }
+  },
+  "上海": {
+    "routes": {
+      "Route 1": {
+        "title": "Classical Gardens v.s. Modern Metropolis",
+        "description": "Weave a path from ancient treasures and old-world markets to the grand waterfront of The Bund, tracing Shanghai's epic transformation from a classical garden city to a dazzling modern metropolis.",
+        "attractions": [
+          {"name": "People's Park & Shanghai Museum", "duration": "3h", "description": "Ancient art treasures, an urban oasis"},
+          {"name": "The Bund Citywalk", "duration": "1-2h", "description": "Iconic architecture, Shanghai skyline"},
+          {"name": "Yu Garden & City God Temple", "duration": "2-3h", "description": "Classical gardens, local snacks, lively bazaar"}
+        ]
+      },
+      "Route 2": {
+        "title": "Red History & Art Deco Glamour",
+        "description": "Stroll from the quiet lanes that birthed Red history to a tranquil downtown temple and along elegant, tree-lined boulevards to discover the eclectic and inclusive 'Haipai' spirit of Shanghai.",
+        "attractions": [
+          {"name": "Site of the First CCP Congress", "duration": "2h", "description": "Modern Chinese history, pivotal landmark"},
+          {"name": "Jing'an Temple & Wukang Road Walk", "duration": "2-3h", "description": "Golden rooftops amid skyscrapers, historical villas"}
+        ]
+      },
+      "Route 3": {
+        "title": "Venice of Shanghai",
+        "description": "Escape the city's frantic pace to drift through a living watercolor of ancient canals, where stone bridges arch over serene waters and traditional life unfolds at a timeless rhythm.",
+        "attractions": [
+          {"name": "Zhujiajiao Water Town", "duration": "5h", "description": "Ancient canals, stone bridges, Ming-Qing architecture"}
+        ]
+      },
+      "Route 4": {
+        "title": "Disneyland & Fireworks",
+        "description": "Step beyond the everyday into a kingdom where classic tales unfold, futuristic worlds ignite, and spectacular fireworks crown a day of pure wonder.",
+        "attractions": [
+          {"name": "Shanghai Disneyland", "duration": "4-8h", "description": "Themed lands, world-class entertainment, nighttime spectacular"}
+        ]
+      }
+    },
+    "activities": {
+      "Huangpu River Night Cruise": {"duration": "1-2h", "description": "Glittering skyline, Bund vs. Puxi dialogue", "price": "RMB 300 p.p."},
+      "Hanfu Shooting": {"duration": "1-3h", "description": "Wearing traditional Hanfu, capturing your moments in a royal landscape", "price": "RMB 400 p.p."},
+      "Zujiajiao Cloth Workshop": {"duration": "1-2h", "description": "Hands-on heritage craft, timeless water town charm, your unique keepsake.", "price": "RMB 200 p.p."}
+    },
+    "product_days": {
+      "SH-P-01": {"1": "Route 1", "2": "Route 2"},
+      "SH-P-02": {"1": "Route 1", "2": "Route 3", "3": "Route 2"},
+      "SH-P-03": {"1": "Route 1", "2": "Route 3", "3": "Route 2", "4": "Route 4"}
+    }
+  },
+  "广州": {
+    "routes": {
+      "Route 1": {
+        "title": "Guangzhou Life",
+        "description": "Trace the legacy of Canton's merchant princes, from the exquisite artistry of their ancestral halls to the colonial echoes of global trade on Shamian Island.",
+        "attractions": [
+          {"name": "Chen Clan Ancestral Hall & Shamian Island & Yongqing Fang", "duration": "3h", "description": "Lingnan craftsmanship, colonial elegance, revitalized local life"},
+          {"name": "Xiguan Folk Museum & Thirteen-Hongs Museum & Canton Tower", "duration": "3h", "description": "Authentic Cantonese life, maritime trade history, Guangzhou's slender icon"}
+        ]
+      },
+      "Route 2": {
+        "title": "Guangzhou History",
+        "description": "Walk Guangzhou's historical axis — from its founding myth and a 2,000-year-old royal tomb to its modern republican heart.",
+        "attractions": [
+          {"name": "Yuexiu Park & Museum of the Nanyue King", "duration": "3h", "description": "Guangzhou's city emblem, royal tomb discovered intact"},
+          {"name": "Sun Yat-sen Memorial & Huiji Old Streets", "duration": "3h", "description": "Legacy of the 'Father of Modern China', historic neighborhoods"}
+        ]
+      },
+      "Route 3": {
+        "title": "Fun Canyon Thrills",
+        "description": "Challenge your senses walking on glass platforms above a jungle-clad canyon, then race the currents on a thrilling whitewater journey.",
+        "attractions": [
+          {"name": "Gu Long Gorge Day Trip", "duration": "4-5h", "description": "Grand waterfalls, a glass bridge & thrilling jungle coaster"}
+        ]
+      },
+      "Route 4": {
+        "title": "Unlocking the World's Factory",
+        "description": "Guided by local insiders to uncover sourcing secrets and unearth a treasure trove of global goods right at the source.",
+        "attractions": [
+          {"name": "Wholesale Market Deep Dive", "duration": "4-5h", "description": "Navigating the heart of 'Made in China', Sourcing secrets from local insiders"}
+        ]
+      }
+    },
+    "activities": {
+      "Wellness SPA": {"duration": "2-4h", "description": "Relax and rejuvenate after a day of adventure", "price": "RMB 600-900 p.p."},
+      "Live-Streaming Hub Visit": {"duration": "1-2h", "description": "Inside the live-streaming phenomenon, China's digital retail revolution", "price": "RMB 300 p.p."},
+      "Wing Chun Kung Fu": {"duration": "1-2h", "description": "A hands-on lesson in the art of close-range combat", "price": "RMB 200 p.p."}
+    },
+    "product_days": {
+      "GZ-P-01": {"1": "Route 4"},
+      "GZ-P-02": {"1": "Route 1", "2": "Route 3"},
+      "GZ-P-03": {"1": "Route 1", "2": "Route 2", "3": "Route 3"}
+    }
+  },
+  "重庆": {
+    "routes": {
+      "Route 1": {
+        "title": "Chongqing 8D City Walk",
+        "description": "Journey from the People's Great Hall, fly across the Yangtze via its iconic cable car, and dive into the tangled, historic alleys of Old Chongqing.",
+        "attractions": [
+          {"name": "Great Hall & Shancheng Lane", "duration": "2h", "description": "A Temple-of-Heaven-styled palace, a historic cliffside path"},
+          {"name": "Yangtze River Cableway", "duration": "1h", "description": "Glide over the river in the city's 'air bus'"},
+          {"name": "Xiahao Li Old Street", "duration": "2h", "description": "A reborn riverside port, historic alleys with a modern heart"}
+        ]
+      },
+      "Route 2": {
+        "title": "UNESCO World Natural Heritage",
+        "description": "Venture deep into a UNESCO-listed landscape of colossal sky-high natural bridges and dramatic narrow abysses carved by the raw power of nature.",
+        "attractions": [
+          {"name": "Wulong Karst", "duration": "7-8h", "description": "Giant sinkholes, natural bridges & a deep fissure gorge"}
+        ]
+      },
+      "Route 3": {
+        "title": "UNESCO World Cultural Heritage",
+        "description": "Journey from the divine stone epics of the UNESCO-listed Dazu Grottoes to the worldly flavors and porcelain echoes of Ciqikou.",
+        "attractions": [
+          {"name": "Dazu Carvings", "duration": "3-4h", "description": "A UNESCO pinnacle of rock art"},
+          {"name": "Ciqikou Town", "duration": "2-3h", "description": "Porcelain past, riverside charm, local street food"}
+        ]
+      },
+      "Route 4": {
+        "title": "Yangtze River Cruise (3D2N)",
+        "description": "Sail in sublime comfort on a world-class inland voyage, where the myth and majesty of the Yangtze River unfold through the breathtaking Three Gorges.",
+        "attractions": [
+          {"name": "Fengdu Ghost City", "duration": "3h", "description": "Taoist underworld, Supernatural architecture"},
+          {"name": "Wuxia (Witch) Gorge Sailing", "duration": "2h", "description": "Poetic scenery, Mythical peaks, Deep & serene beauty"},
+          {"name": "Three Gorges Dam", "duration": "1-2h", "description": "World's largest hydro-project"}
+        ]
+      }
+    },
+    "activities": {
+      "Sichuan Opera Face-Changing": {"duration": "1-2h", "description": "A theatrical show featuring the magical art of instantaneous mask-swapping", "price": "RMB 150 p.p."}
+    },
+    "product_days": {
+      "CQ-P-01": {"1": "Route 1", "2": "Route 2"},
+      "CQ-P-02": {"1": "Route 1", "2": "Route 2", "3": "Route 3"},
+      "CQ-P-03": {"1": "Route 1", "2": "Route 3", "3": "Route 4", "4": "Route 4", "5": "Route 4"}
+    }
+  },
+  "阳朔": {
+    "routes": {
+      "Route 1": {
+        "title": "The Painter's Scroll · A Yangshuo River & Field Journey",
+        "description": "Drift down the idyllic Yulong River on a bamboo raft, cycle through a living landscape painting of karst peaks and paddy fields, and dive into the vibrant energy of West Street.",
+        "attractions": [
+          {"name": "Yulong River Bamboo Raft", "duration": "1h", "description": "Serene river journey, Idyllic countryside scenery, Gentle bamboo rafting"},
+          {"name": "Ten-Mile Gallery Cycling", "duration": "2-3h", "description": "Scenic cycling route, Corridor of karst peaks, Pastoral countryside charm"},
+          {"name": "West Street Stroll", "duration": "2-3h", "description": "Ancient street, modern energy, East-meets-West culture"}
+        ]
+      },
+      "Route 2": {
+        "title": "The Grand Panorama · Where the Li River Meets the Sky",
+        "description": "Sail the most iconic stretch of the Li River, capturing the view immortalized on the 20 RMB note, then ascend Xianggong Mountain for the legendary panorama.",
+        "attractions": [
+          {"name": "Xingping Ancient Town", "duration": "2h", "description": "Iconic 20 RMB banknote view, Historic riverside settlement"},
+          {"name": "Li River Motorized Raft", "duration": "1h", "description": "Classic Li River section, Motorized scenic cruise"},
+          {"name": "Xianggong Hill Climb", "duration": "2-3h", "description": "Breathtaking Li River panorama, Photographer's classic shot"}
+        ]
+      },
+      "Route 3": {
+        "title": "Karst Conquest & Cuisine",
+        "description": "Conquer Yangshuo's iconic karst terrain, explore mysterious caves or ascend sheer cliff faces, then master local flavors in a hands-on cooking class.",
+        "attractions": [
+          {"name": "All-Terrain ATV", "duration": "2-3h", "description": "Charge across red-dirt ridges and hidden jungle trails"},
+          {"name": "Chinese Cooking Class", "duration": "2-3h", "description": "Wok-toss your own kung-pao, hand-pull noodles"},
+          {"name": "Karst Cave Exploration / Via Ferrata Climb", "duration": "2-3h", "description": "Subterranean wonders or cliffside 'iron path' climbing"}
+        ]
+      }
+    },
+    "activities": {},
+    "product_days": {
+      "YS-P-01": {"1": "Route 1", "2": "Route 2"},
+      "YS-P-02": {"1": "Route 1", "2": "Route 2", "3": "Route 3"}
+    }
+  },
+  "张家界": {
+    "routes": {
+      "Route 1": {
+        "title": "Stairway to Heaven · A Vertical Journey to the Sky's Gate",
+        "description": "Ride one of the world's longest cableways to a mountaintop wonderland, walk on air across cliff-hugging glass skywalks, and stand before the majestic Tianmen Cave.",
+        "attractions": [
+          {"name": "Tianmen Mountain Excursion", "duration": "4-5h", "description": "World's longest cable car, Natural 'Heaven's Gate' arch, Thrilling glass skywalk"}
+        ]
+      },
+      "Route 2": {
+        "title": "The Floating Peaks · A Journey into the World of Avatar",
+        "description": "Venture deep into a surreal world of towering sandstone pillars and mist-shrouded canyons that inspired a cinematic universe.",
+        "attractions": [
+          {"name": "Golden Whip Stream", "duration": "2h", "description": "Peaceful morning walk, serene nature"},
+          {"name": "Yuanjiajie & Tianzi Mountain", "duration": "2-3h", "description": "'Avatar' mountains, breathtaking sea of peaks"}
+        ]
+      },
+      "Route 3": {
+        "title": "Echoes of Old Hunan · From Waterfall Towns to Riverside Lanterns",
+        "description": "Discover a town built upon a waterfall, share in the joy of a Miao long-table banquet, and wander the lantern-lit twilight of Fenghuang's Tuo River.",
+        "attractions": [
+          {"name": "Furong (Hibiscus) Town", "duration": "2h", "description": "Ancient town built over a waterfall"},
+          {"name": "Phoenix Ancient Town", "duration": "2h", "description": "Charming streets, romantic Tuo River atmosphere"}
+        ]
+      },
+      "Route 4": {
+        "title": "Vertical Worlds · From Cliffside Dare to Architectural Fantasy",
+        "description": "Challenge a vertical cliff face on a Via Ferrata with breathtaking views, then marvel at the world's tallest Tujia-style stilt building.",
+        "attractions": [
+          {"name": "Qixingshan Via Ferrata", "duration": "3h", "description": "Heart-pounding vertical climb on a sheer mountain cliff"},
+          {"name": "72 Strange Towers", "duration": "2h", "description": "The world's tallest Tujia-style stilt building"}
+        ]
+      }
+    },
+    "activities": {
+      "Charming Xiangxi Show": {"duration": "1-2h", "description": "Vibrant ethnic showcase, Legends of West Hunan", "price": "RMB 228 p.p."}
+    },
+    "product_days": {
+      "ZJJ-P-01": {"1": "Route 1", "2": "Route 2"},
+      "ZJJ-P-02": {"1": "Route 1", "2": "Route 2", "3": "Route 3"}
+    }
+  },
+  "贵州": {
+    "routes": {
+      "Route 1": {
+        "title": "Whispers of the Heartland · A Guizhou Cultural Safari",
+        "description": "Venture beyond the city into the authentic heartland of Guizhou's minority cultures — from Miao silversmiths and Dong drum towers to the emerald karst paradise of Xiaoqikong.",
+        "attractions": [
+          {"name": "Jiaxiu Tower", "duration": "2h", "description": "A tribute to scholarly pre-eminence, Guiyang's enduring literary symbol"},
+          {"name": "Qingyan Ancient Town", "duration": "3h", "description": "A stone-built military fortress, A perfectly preserved Ming Dynasty town"},
+          {"name": "Shidong Miao Silversmith Village", "duration": "3h", "description": "Myths & legends forged in silver"},
+          {"name": "Zhaoxing Dong Village", "duration": "3-4h", "description": "China's largest Dong community, Iconic drum towers & 'wind-and-rain' bridges"},
+          {"name": "Xiaoqikong National Park", "duration": "4-5h", "description": "UNESCO Karst wonderland, Sapphire rivers & cascading waterfalls"}
+        ]
+      }
+    },
+    "activities": {
+      "Shidong Market": {"duration": "2-3h", "description": "Hunt for silver heirlooms by morning; dive into the vibrant chaos of a real Miao market", "price": "RMB 0 p.p."},
+      "Zhaoxing Batik Experience": {"duration": "1-2h", "description": "Paint with hot wax; unveil your masterpiece in a bath of deep indigo", "price": "RMB 100 p.p."},
+      "Guizhou Craft Brewing": {"duration": "2-3h", "description": "Learn the brewer's secrets; taste the province's soul in a glass of local craft spirit", "price": "RMB 400 p.p."}
+    },
+    "product_days": {
+      "GZH-P-01": {"1": "Route 1", "2": "Route 1", "3": "Route 1", "4": "Route 1"}
+    }
+  },
+  "云南": {
+    "routes": {
+      "Route 1": {
+        "title": "Stairway to Shangri-La · A Yunnan Overland Epic",
+        "description": "An epic overland journey ascending through Yunnan's cultural and natural wonders — from Dali's Erhai Lake and Lijiang's timeless alleys to the spiritual highlands of Shangri-La.",
+        "attractions": [
+          {"name": "Kunming Old Street", "duration": "2-3h", "description": "The vibrant pulse of old Kunming"},
+          {"name": "Dali Old Town", "duration": "2-3h", "description": "Legacy of the ancient Bai Kingdom, Cobblestone alleys against Cangshan mountain"},
+          {"name": "Erhai Lake & Xizhou Town", "duration": "3h", "description": "The mirror of the Cangshan mountains"},
+          {"name": "Lijiang Old Town", "duration": "2-3h", "description": "UNESCO labyrinth of canals & cobblestones"},
+          {"name": "Tiger Leaping Gorge", "duration": "2-3h", "description": "One of the world's most profound canyons"},
+          {"name": "Shangri-La & Dukezong", "duration": "3-4h", "description": "The Tibetan 'City of Moonlight'"},
+          {"name": "Pudacuo National Park", "duration": "3-4h", "description": "High-altitude Eden of shimmering lakes & virgin forests"}
+        ]
+      }
+    },
+    "activities": {
+      "Bai Three-Course Tea Ceremony": {"duration": "1-2h", "description": "Step into a Bai courtyard; taste life's journey in three cups of tea", "price": "RMB 40 p.p."},
+      "Tibetan Thangka Painting Class": {"duration": "2h", "description": "Grind mineral pigments; channel ancient faith into your own sacred Thangka", "price": "RMB 200 p.p."}
+    },
+    "product_days": {
+      "YN-P-01": {"1": "Route 1", "2": "Route 1", "3": "Route 1", "4": "Route 1", "5": "Route 1"}
+    }
+  },
+  "成都": {
+    "routes": {
+      "Route 1": {
+        "title": "Panda & Poetry · A Chengdu Cultural Escape",
+        "description": "From the shrine of a legendary strategist to the playful pandas and lively tea houses, experience Chengdu's leisurely charm where history, nature, and food converge.",
+        "attractions": [
+          {"name": "Wuhou Shrine", "duration": "2h", "description": "The sacred shrine of the Three Kingdoms' legendary strategist Zhuge Liang"},
+          {"name": "Chengdu Museum", "duration": "2h", "description": "Modern cultural exhibits in a striking landmark building"},
+          {"name": "Taikoo Li", "duration": "2h", "description": "Sleek modern shopping woven into ancient temple surroundings"},
+          {"name": "Giant Panda Base", "duration": "3h", "description": "See China's national treasure up close in natural habitat"},
+          {"name": "People's Park", "duration": "1-2h", "description": "Experience Chengdu's famous tea house culture"},
+          {"name": "Kuanzhai Alley", "duration": "2h", "description": "Qing-dynasty courtyards transformed into chic boutiques and eateries"}
+        ]
+      }
+    },
+    "activities": {
+      "Sichuan Opera Face-Changing": {"duration": "1-2h", "description": "A theatrical show featuring the magical art of instantaneous mask-swapping", "price": "RMB 150 p.p."},
+      "Chuan Chuan Hotpot": {"duration": "2h", "description": "Chengdu's signature spicy hotpot on skewers", "price": "RMB 100 p.p."}
+    },
+    "product_days": {
+      "CD-P-01": {"1": "Route 1", "2": "Route 1"}
+    }
+  }
+}

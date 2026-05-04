@@ -1,0 +1,90 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Hexa Blueprint API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://soft-lies-prove.loca.lt"
+    }
+  ],
+  "paths": {
+    "/api/v1/complete": {
+      "post": {
+        "summary": "一键规划行程",
+        "operationId": "plan_trip",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["intent"],
+                "properties": {
+                  "intent": {
+                    "type": "object",
+                    "required": ["days"],
+                    "properties": {
+                      "city": { "type": "string", "default": "北京" },
+                      "days": { "type": "integer", "minimum": 1, "maximum": 7 },
+                      "adults": { "type": "integer", "default": 2 },
+                      "children": { "type": "integer", "default": 0 },
+                      "seniors": { "type": "integer", "default": 0 },
+                      "is_peak": { "type": "boolean", "default": true }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "product": {
+                      "type": "object",
+                      "properties": {
+                        "product_name": { "type": "string" },
+                        "days": { "type": "integer" },
+                        "itinerary": { "type": "string" }
+                      }
+                    },
+                    "cost": {
+                      "type": "object",
+                      "properties": {
+                        "summary": {
+                          "type": "object",
+                          "properties": {
+                            "grand_total": { "type": "number" },
+                            "per_person": { "type": "number" }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
