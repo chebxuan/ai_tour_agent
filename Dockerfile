@@ -1,9 +1,6 @@
-# Hexa Blueprint™ API - Docker 镜像
-# 北京行程规划服务 FastAPI 版本
-
+# Hexa Blueprint™ API — Docker 镜像
 FROM python:3.11-slim
 
-# 设置工作目录
 WORKDIR /app
 
 # 安装系统依赖
@@ -20,11 +17,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制应用代码
 COPY api_main.py .
 COPY cli_app.py .
-COPY survey_architect.py .
-COPY product_engine.py .
-COPY cost_engine.py .
-COPY *.csv .
-COPY mashes/ ./mashes/
+COPY schemas.py .
+COPY engines/ ./engines/
+COPY data/ ./data/
 
 # 暴露端口
 EXPOSE 8000

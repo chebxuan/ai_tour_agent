@@ -1,0 +1,11 @@
+.git
+__pycache__
+*.pyc
+.env
+.env.*
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.heic
+.gitignore
