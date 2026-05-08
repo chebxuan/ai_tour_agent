@@ -16,6 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # 复制应用代码
 COPY api_main.py .
+COPY survey_architect.py .
 COPY cli_app.py .
 COPY schemas.py .
 COPY engines/ ./engines/
