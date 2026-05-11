@@ -30,6 +30,17 @@ from pydantic import BaseModel, Field
 from engines.city_config import list_available_cities
 from engines.cost_engine import calculate_total_cost, load_cost_db
 from engines.delivery_engine import build_delivery_draft
+from engines.payment_tracker import (
+    create_payment,
+    delete_payment,
+    get_kanban_stats,
+    get_payment,
+    list_payments,
+    load_cost_items_from_mashes,
+    load_suppliers_from_mashes,
+    update_payment,
+    update_payment_status,
+)
 from engines.plan_engine import build_plan_object
 from engines.product_engine import get_product_recommendation
 from schemas import (
@@ -40,6 +51,15 @@ from schemas import (
     LeadIntent,
     LeadJSON,
     PassengerMix,
+    PaymentCostItem,
+    PaymentCreateRequest,
+    PaymentDetailResponse,
+    PaymentEntry,
+    PaymentListResponse,
+    PaymentStatsResponse,
+    PaymentStatusUpdate,
+    PaymentSuppliersResponse,
+    PaymentUpdateRequest,
     PlanObject,
     PricingResultJSON,
     ProductCandidate,
@@ -1358,6 +1378,154 @@ async def feishu_card_template(intent: UserIntentRequest, api_key: str = Depends
         return {"success": True, "card": card}
     except Exception as e:
         return {"success": False, "error": str(e)}
+
+
+# ── Supplier Payment Management (Kanban) ────────────────────────────
+
+
+@app.get("/api/v2/payments", response_model=PaymentListResponse)
+async def list_payments_endpoint(
+    supplier: Optional[str] = None,
+    status: Optional[str] = None,
+    search: Optional[str] = None,
+    date_from: Optional[str] = None,
+    date_to: Optional[str] = None,
+    api_key: str = Depends(verify_api_key),
+):
+    """List and filter payments with kanban stats."""
+    try:
+        payments = list_payments(
+            supplier=supplier,
+            status=status,
+            search=search,
+            date_from=date_from,
+            date_to=date_to,
+        )
+        stats = get_kanban_stats()
+        return PaymentListResponse(
+            success=True,
+            payments=[PaymentEntry(**p) for p in payments],
+            total_count=len(payments),
+            stats=stats,
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"付款列表查询失败: {str(e)}",
+        )
+
+
+@app.post("/api/v2/payments", response_model=PaymentDetailResponse)
+async def create_payment_endpoint(
+    request: PaymentCreateRequest,
+    api_key: str = Depends(verify_api_key),
+):
+    """Create a new payment entry."""
+    try:
+        payment = create_payment(request.model_dump())
+        return PaymentDetailResponse(success=True, payment=PaymentEntry(**payment))
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"创建付款失败: {str(e)}",
+        )
+
+
+@app.get("/api/v2/payments/suppliers", response_model=PaymentSuppliersResponse)
+async def get_suppliers_endpoint(api_key: str = Depends(verify_api_key)):
+    """Get all supplier names and cost items from mashes data."""
+    try:
+        suppliers = load_suppliers_from_mashes()
+        cost_items = load_cost_items_from_mashes()
+        return PaymentSuppliersResponse(
+            success=True, suppliers=suppliers, cost_items=cost_items
+        )
+    except Exception as e:
+        return PaymentSuppliersResponse(success=False, error=str(e))
+
+
+@app.get("/api/v2/payments/stats", response_model=PaymentStatsResponse)
+async def get_payment_stats_endpoint(api_key: str = Depends(verify_api_key)):
+    """Get kanban aggregate statistics."""
+    try:
+        stats = get_kanban_stats()
+        return PaymentStatsResponse(success=True, stats=stats)
+    except Exception as e:
+        return PaymentStatsResponse(success=False, error=str(e))
+
+
+@app.get("/api/v2/payments/{payment_id}", response_model=PaymentDetailResponse)
+async def get_payment_endpoint(
+    payment_id: str,
+    api_key: str = Depends(verify_api_key),
+):
+    """Get a single payment by ID."""
+    payment = get_payment(payment_id)
+    if not payment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"未找到付款记录: {payment_id}",
+        )
+    return PaymentDetailResponse(success=True, payment=PaymentEntry(**payment))
+
+
+@app.put("/api/v2/payments/{payment_id}", response_model=PaymentDetailResponse)
+async def update_payment_endpoint(
+    payment_id: str,
+    request: PaymentUpdateRequest,
+    api_key: str = Depends(verify_api_key),
+):
+    """Update a payment entry (does not change status)."""
+    updates = {k: v for k, v in request.model_dump().items() if v is not None}
+    payment = update_payment(payment_id, updates)
+    if not payment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"未找到付款记录: {payment_id}",
+        )
+    return PaymentDetailResponse(success=True, payment=PaymentEntry(**payment))
+
+
+@app.patch("/api/v2/payments/{payment_id}/status", response_model=PaymentDetailResponse)
+async def update_payment_status_endpoint(
+    payment_id: str,
+    request: PaymentStatusUpdate,
+    api_key: str = Depends(verify_api_key),
+):
+    """Update only the payment status (pending -> paid -> archived)."""
+    try:
+        payment = update_payment_status(payment_id, request.status)
+        if not payment:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"未找到付款记录: {payment_id}",
+            )
+        return PaymentDetailResponse(success=True, payment=PaymentEntry(**payment))
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e),
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"状态更新失败: {str(e)}",
+        )
+
+
+@app.delete("/api/v2/payments/{payment_id}")
+async def delete_payment_endpoint(
+    payment_id: str,
+    api_key: str = Depends(verify_api_key),
+):
+    """Delete a payment entry."""
+    deleted = delete_payment(payment_id)
+    if not deleted:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"未找到付款记录: {payment_id}",
+        )
+    return {"success": True, "message": f"已删除付款记录: {payment_id}"}
 
 
 # ── 错误处理 ─────────────────────────────────────────────────────

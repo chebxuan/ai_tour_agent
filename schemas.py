@@ -375,3 +375,85 @@ class DeliveryDraftObject(BaseModel):
     global_reminders: List[DeliveryReminder] = Field(default_factory=list)
     generated_by: str = Field("agent_4_delivery_composer")
     generated_at: Optional[str] = None
+
+
+# ============================================================
+# 9. Supplier Payment Tracker (Kanban)
+# ============================================================
+
+
+class PaymentCostItem(BaseModel):
+    item_name: str = Field(..., description="Cost item name, e.g. 导游费用")
+    item_code: Optional[str] = Field(None, description="Item code from mashes, e.g. BJ-GUIDE-01")
+    amount: float = Field(..., ge=0, description="Amount in RMB for this line item")
+    invoice_source: Optional[str] = Field(None, description="Who provides the invoice")
+
+
+class PaymentEntry(BaseModel):
+    payment_id: str = Field(..., description="Unique payment identifier, e.g. PAY-001")
+    booking_id: Optional[str] = Field(None, description="Related booking ID, e.g. BOOK-001")
+    supplier_name: str = Field(..., description="Supplier/partner name")
+    related_customer_order: Optional[str] = Field(None, description="Customer-facing order reference")
+    status: Literal["pending", "paid", "archived"] = Field("pending", description="Payment status")
+    cost_items: List[PaymentCostItem] = Field(default_factory=list)
+    total_amount: float = Field(..., ge=0, description="Total payment amount")
+    due_date: Optional[str] = Field(None, description="Due date in YYYY-MM-DD format")
+    actual_payment_date: Optional[str] = Field(None, description="Date payment was actually made")
+    receipt_link: Optional[str] = Field(None, description="URL to receipt/invoice document")
+    notes: Optional[str] = Field(None, description="Free-text notes")
+    created_at: str = Field(..., description="ISO 8601 creation timestamp")
+    updated_at: str = Field(..., description="ISO 8601 last-updated timestamp")
+
+
+class PaymentCreateRequest(BaseModel):
+    booking_id: Optional[str] = None
+    supplier_name: str = Field(..., min_length=1)
+    related_customer_order: Optional[str] = None
+    cost_items: List[PaymentCostItem] = Field(default_factory=list)
+    total_amount: float = Field(0, ge=0)
+    due_date: Optional[str] = None
+    receipt_link: Optional[str] = None
+    notes: Optional[str] = None
+
+
+class PaymentUpdateRequest(BaseModel):
+    booking_id: Optional[str] = None
+    supplier_name: Optional[str] = None
+    related_customer_order: Optional[str] = None
+    cost_items: Optional[List[PaymentCostItem]] = None
+    total_amount: Optional[float] = Field(None, ge=0)
+    due_date: Optional[str] = None
+    actual_payment_date: Optional[str] = None
+    receipt_link: Optional[str] = None
+    notes: Optional[str] = None
+
+
+class PaymentStatusUpdate(BaseModel):
+    status: Literal["pending", "paid", "archived"]
+
+
+class PaymentListResponse(BaseModel):
+    success: bool
+    payments: List[PaymentEntry] = Field(default_factory=list)
+    total_count: int = 0
+    stats: Optional[Dict[str, Any]] = Field(None, description="Aggregate statistics")
+    error: Optional[str] = None
+
+
+class PaymentDetailResponse(BaseModel):
+    success: bool
+    payment: Optional[PaymentEntry] = None
+    error: Optional[str] = None
+
+
+class PaymentSuppliersResponse(BaseModel):
+    success: bool
+    suppliers: List[str] = Field(default_factory=list)
+    cost_items: List[Dict[str, str]] = Field(default_factory=list, description="List of {code, name} pairs")
+    error: Optional[str] = None
+
+
+class PaymentStatsResponse(BaseModel):
+    success: bool
+    stats: Dict[str, Any] = Field(default_factory=dict)
+    error: Optional[str] = None

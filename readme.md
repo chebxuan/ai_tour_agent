@@ -9,14 +9,13 @@ Hexa Blueprint 是一个面向入境游业务链路的结构化 AI 系统。
 
 `LeadJSON -> CandidateProductsJSON -> PricingResultJSON -> PlanObject -> DeliveryDraftObject`
 
-## 当前实现状态（2026-04-29）
+## 当前实现状态（2026-05-10）
 
 - 已实现 v1 与 v2 API 并存，v2 覆盖 product-match/pricing/plan/delivery/full_chain。
-- 已实现 **Streamlit Web UI**（`streamlit_app.py`），运营人员可直接填写需求一键生成行程与报价。
+- 已实现 **Streamlit Web UI**（`streamlit_app.py`），含行程生成和付款管理两个 Tab。
 - 已实现 **`/api/v2/full_chain`** 一键全链路接口，简化输入，串联四接口 + Markdown 输出。
-- 已实现 4 个业务 Agent Prompt（产品匹配、报价解释、行程编排、交付生成）。
-- 已修复产品库与成本库主映射，映射类硬错误清零。
-- 已有多城市端到端测试脚本。
+- 已实现 **供应商付款管理看板**，三列 Kanban（待处理/已支付/已存档），支持筛选搜索和状态流转。
+- 已有多城市端到端回归测试（10/10 城市通过）。
 
 ## 目录概览（现状）
 
@@ -32,6 +31,7 @@ Hexa Blueprint 是一个面向入境游业务链路的结构化 AI 系统。
 │   ├── cost_engine.py
 │   ├── plan_engine.py
 │   ├── delivery_engine.py
+│   ├── payment_tracker.py
 │   ├── narrative_engine.py
 │   └── merge_city_products.py
 ├── data/                          # 数据资产
@@ -79,6 +79,17 @@ Hexa Blueprint 是一个面向入境游业务链路的结构化 AI 系统。
 - `POST /api/v2/plan` — 方案编排
 - `POST /api/v2/delivery` — 交付生成
 - `POST /api/v2/full_chain` — **一键全链路**（简化输入，串联四接口 + Markdown 输出）
+
+### v2 付款管理（新增）
+
+- `GET /api/v2/payments` — 付款列表/筛选
+- `POST /api/v2/payments` — 创建付款条目
+- `GET /api/v2/payments/{id}` — 付款详情
+- `PUT /api/v2/payments/{id}` — 更新付款
+- `PATCH /api/v2/payments/{id}/status` — 状态流转（待处理→已支付→已存档）
+- `DELETE /api/v2/payments/{id}` — 删除付款
+- `GET /api/v2/payments/suppliers` — 供应商列表（自动补全）
+- `GET /api/v2/payments/stats` — 看板统计
 
 ## 快速开始
 
@@ -242,14 +253,14 @@ data/products/services/mashes/
 
 ### 版本标记
 
-- 当前文档版本：`v1.1.0`
-- 更新时间：`2026-04-29`
+- 当前文档版本：`v1.2.0`
+- 更新时间：`2026-05-10`
 
 ---
 
 ## 一句话说清楚这个项目
 
-给入境游旅行社用的 AI 工具。填客户需求，自动匹配产品、算价格、生成中英双语行程单和报价单。后端 Python FastAPI，前端 Streamlit，全部规则引擎，不调 AI。
+给入境游旅行社用的 AI 工具。填客户需求，自动匹配产品、算价格、生成中英双语行程单。同时提供供应商付款管理看板，跟踪待处理/已支付/已存档的付款条目。后端 Python FastAPI，前端 Streamlit，全部规则引擎，不调 AI。
 
 ### 快速启动
 
@@ -270,6 +281,8 @@ streamlit run streamlit_app.py                                # 终端2
 | `engines/` | 核心逻辑（匹配产品/算价格/排行程/生成文档） |
 | `data/products/` | 产品库 CSV + 服务价格 CSV |
 | `schemas.py` | 数据模型定义 |
+| `engines/payment_tracker.py` | 付款管理引擎 |
+| `data/payments.json` | 付款数据存储 |
 
 ### API 接口
 
@@ -278,4 +291,6 @@ streamlit run streamlit_app.py                                # 终端2
 
 ### 部署到公网
 
-参见 [docs/deployment_guide.md](docs/deployment_guide.md)：GitHub + Railway（后端）+ Streamlit Cloud（前端），全部免费。
+- **前端（Streamlit Cloud）**：https://aitouragent-39dajfvlpujbydigehbkhc.streamlit.app/
+- **后端（Railway）**：https://hexa-blueprint-api-production.up.railway.app
+- 部署指南见 [docs/deployment_guide.md](docs/deployment_guide.md)

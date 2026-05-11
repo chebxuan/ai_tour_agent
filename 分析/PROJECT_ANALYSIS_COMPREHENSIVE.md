@@ -1,295 +1,265 @@
-# 城市旅游智能平台（Hexa Blueprint）项目完整分析（详细版）
+# Hexa Blueprint — 项目完整分析
 
-**分析日期**：2026-04-28  
-**项目位置**：`/Users/gengchenxuan/Downloads/Master-Retrieval-Augmented-Generation-RAG-Systems-main`  
-**分析基线**：结合 `docs/logs/工作日志.md`（重点 4/27、4/28）与 `PRD_执行路线.md`（v1.0.1）
-
----
-
-## 📋 一、项目总览
-
-本项目当前可视为一个“**双层并行架构**”：
-
-1. **主业务链路层（生产主路径）**：围绕入境游业务对象，完成从 Lead 到 Delivery 的结构化闭环；
-2. **数据管道层（能力孵化路径）**：在 `projects 2/` 内进行城市叙事、地标抽取、坐标增强与地图可视化。
-
-### 1.1 当前阶段结论
-
-- 主链路 `LeadJSON -> CandidateProductsJSON -> PricingResultJSON -> PlanObject -> DeliveryDraftObject` 已可跑通；
-- v2 四接口（product-match/pricing/plan/delivery）已落地并可独立调用；
-- 数据真源策略已明确并在 4/27 日志中确认：
-  - 产品真源：`data/products/product_library.csv`
-  - 成本真源：`mashes/*.csv`
-- 当前主要风险从“功能缺失”转为“**文件重复、路径口径不一致、并行模块边界不清晰**”。
+**分析日期**：2026-05-10  
+**分析视角**：业务负责人（审视产品成熟度、交付能力、运营效率和增长路径）  
+**文档目的**：说清楚当前做到了什么水平、哪些是表面完成实际有差距、下一步该投资源到哪
 
 ---
 
-## 🗂️ 二、目录结构详解（现状）
+## 一、一句话定位
 
-### 2.1 根目录关键入口
+> 给入境游地接社的「行程报价自动生成器」。  
+> 运营人员填入客户需求 → 系统匹配固定产品包 → 算出价格 → 输出中英双语行程单。
 
-| 文件 | 作用 | 当前状态 |
-|---|---|---|
-| `api_main.py` | FastAPI 服务入口（v1+v2） | 核心运行中 |
-| `cli_app.py` | 交互式命令行工具 | 核心运行中 |
-| `survey_architect.py` | 问卷生成 | 运行中 |
-| `schemas.py` | 结构化对象 schema | v2 依赖 |
-| `readme.md` | 项目说明（已刷新） | 当前文档基线 |
-| `PRD_执行路线.md` | 执行 PRD（v1.0.1） | 当前策略基线 |
-
-### 2.2 核心引擎目录 `engines/`
-
-| 文件 | 主要职责 | 关键依赖 |
-|---|---|---|
-| `product_engine.py` | 产品推荐匹配 | `data/products/product_library.csv` |
-| `cost_engine.py` | 成本计算与报价汇总 | `mashes/*.csv` + `city_config.py` |
-| `plan_engine.py` | PlanObject 构建 | v2 Plan 接口 |
-| `delivery_engine.py` | DeliveryDraftObject 构建 | v2 Delivery 接口 |
-| `city_config.py` | 城市映射、折扣规则、成本库路径 | `mashes/*.csv` |
-| `narrative_engine.py` | 城市叙事路线编排 | `data/citywalk/narratives.csv` |
-| `merge_city_products.py` | 服务明细合并脚本 | `data/products/services/*` |
-
-### 2.3 数据目录
-
-#### A. 主链路核心数据（业务数据库）
-
-| 路径 | 类型 | 角色 |
-|---|---|---|
-| `data/products/product_library.csv` | CSV | 产品主表（真源） |
-| `data/products/products.normalized.json` | JSON | 标准化产物 |
-| `mashes/*_merged.csv` | CSV | 10 城市运行时成本库（真源） |
-
-#### B. 扩展数据（叙事与地图）
-
-| 路径 | 类型 | 角色 |
-|---|---|---|
-| `data/citywalk/narratives.csv` | CSV | 主项目叙事数据 |
-| `data/citywalk/narratives_v2.csv` | CSV | 叙事增强版 |
-| `data/pois/beijing_updates.csv` | CSV | POI 辅助数据 |
-| `assets/maps/shanghai_landmarks.json` | JSON | 地图数据产物 |
-| `assets/maps/shanghai_landmarks_map.html` | HTML | 地图展示产物 |
-
-### 2.4 文档目录 `docs/`
-
-| 子目录 | 内容 |
-|---|---|
-| `docs/logs/` | 工作日志 |
-| `docs/prompts/` | agent prompt 文档（当前保留 1~4） |
-| `docs/openapi/` | openapi/coze/pretty 三份规范文件 |
-| `docs/designs/` | 设计文档（citywalk） |
-
-### 2.5 数据管道并行模块 `projects 2/`
-
-该目录包含：
-- `scripts/`：地标提取、坐标补全、坐标转换、可视化；
-- `src/`：LangGraph + storage 抽象；
-- 顶层数据产物：`city_narratives.csv`、`city_narratives_amap_coords.csv`、`shanghai_landmarks.*`。
-
-定位：**能力孵化与数据加工层**，并非当前主销售交付链路的唯一运行目录。
+当前状态：**可对外 Demo，已具备行程生成 + 付款管理双模块，但仍需补齐多语言和 PDF 输出才能正式交付客户。**
 
 ---
 
-## 🧠 三、核心业务链路（与 PRD 对齐）
+## 二、已完成事项盘点（诚实版）
 
-来自 `PRD_执行路线.md` 的当前链路定义：
+### 2.1 产品与数据层
 
-1. Lead Intake -> `LeadJSON`
-2. Product Match -> `CandidateProductsJSON`
-3. Pricing -> `PricingResultJSON`
-4. Plan Structuring -> `PlanObject`
-5. Delivery Composition -> `DeliveryDraftObject`
+| 模块 | 状态 | 备注 |
+|------|------|------|
+| 产品库 21 个产品覆盖 10 城市 | ✅ | CSV 维护，含中英文行程描述 |
+| 10 城市服务价格库 | ✅ | per-city CSV，门票/车辆/导游/酒店全覆盖 |
+| 景点亮点数据（attraction_highlights.json） | ✅ | 英文版，10 城市均有，来自 PDF 提取 |
+| 产品标准化脚本 | ✅ | normalize → JSON 供 v2 运行时消费 |
+| 产品-成本映射校验脚本 | ✅ | verify_product_cost_mapping.py |
 
-### 3.1 对应接口状态
+### 2.2 核心引擎
 
-#### v1（兼容）
-- `GET /api/v1/cities`
-- `GET /api/v1/survey`
-- `POST /api/v1/recommend`
-- `POST /api/v1/cost`
-- `POST /api/v1/complete`
-- `POST /api/v1/feishu/webhook`
-- `POST /api/v1/feishu/card`
+| 模块 | 状态 | 备注 |
+|------|------|------|
+| 产品匹配引擎 | ✅ | 按城市+天数+兴趣标签匹配 |
+| 成本计算引擎 | ✅ | 淡旺季、儿童/老人折扣、可选项目 |
+| 行程编排引擎 | ✅ | PlanObject 构建，含行程编排 |
+| 交付文档引擎 | ✅ | DeliveryDraftObject 构建 |
+| 导游补贴自动分配 | ✅ | 2026-05 修复 |
+| **供应商付款管理引擎** | ✅ **新增** | 2026-05-10，JSON 存储，状态流转控制 |
 
-#### v2（结构化主链）
-- `POST /api/v2/product-match`
-- `POST /api/v2/pricing`
-- `POST /api/v2/plan`
-- `POST /api/v2/delivery`
+### 2.3 API 与前端
 
-结论：接口能力与 PRD 当前阶段描述一致。
+| 模块 | 状态 | 备注 |
+|------|------|------|
+| v2 API 五接口 | ✅ | product-match / pricing / plan / delivery / full_chain |
+| **v2 付款管理 API（8 端点）** | ✅ **新增** | CRUD + 筛选 + 看板统计 + 供应商自动补全 |
+| Streamlit Web UI（双 Tab） | ✅ | 行程生成 + 付款管理看板，已部署到 Streamlit Cloud |
+| Railway 后端 | ✅ | Docker 部署成功，health check 通过 |
 
----
+### 2.4 输出质量
 
-## 🗄️ 四、数据库（数据资产）全量盘点
-
-> 当前仓库没有 sqlite/db/parquet/duckdb 本地文件。  
-> 主要“数据库”是 CSV/JSON 文件库；另有可连 PG 的代码骨架。
-
-### 4.1 主链路真源（必须保留）
-
-1. `data/products/product_library.csv`（产品真源）
-2. `mashes/*_merged.csv`（成本真源）
-
-### 4.2 标准化与校验产物
-
-3. `data/products/products.normalized.json`（由 `scripts/normalize_product_library.py` 生成）
-4. `verify_product_cost_mapping.py`（真源映射校验）
-
-### 4.3 城市叙事相关数据
-
-5. `data/citywalk/narratives.csv`
-6. `data/citywalk/narratives_v2.csv`
-7. `projects 2/city_narratives.csv`
-8. `projects 2/city_narratives_amap_coords.csv`
-
-### 4.4 地图产物
-
-9. `assets/maps/shanghai_landmarks.json`
-10. `assets/maps/shanghai_landmarks_map.html`
-11. `assets/maps/shanghai_landmarks_map_v2.html`
-12. `projects 2/shanghai_landmarks.json`
-13. `projects 2/shanghai_landmarks_map.html`
-
-### 4.5 代码层数据库能力（非当前主路径）
-
-- `projects 2/src/storage/database/db.py`：支持 `PGDATABASE_URL` + SQLAlchemy；
-- `projects 2/src/storage/database/shared/model.py`：DeclarativeBase。
-
-结论：目前主流程仍以文件型数据资产为主，PG 能力尚处框架预留状态。
+| 模块 | 状态 | 备注 |
+|------|------|------|
+| 行程 Markdown（中英双语） | ✅ | 2026-05 重构，标题双语、去冗余 |
+| 报价明细表 | ✅ | 按分类分组，代码+单价+数量+小计 |
+| 住宿/交通/联系人基础信息 | ✅ | delivery_engine 生成 |
+| **PDF/Word 格式输出** | ❌ | 未开始 |
+| **Reminder 结构完善** | ⚠️ | 基础版，需丰富 |
+| **紧急联系人结构** | ⚠️ | 有 ContactCard schema，内容填充不足 |
 
 ---
 
-## 🔧 五、关键模块行为拆解
+## 三、未完成 + 有差距的部分
 
-### 5.1 `product_engine.py`
+### 3.1 全城市回归 — 已完成 ✅
 
-- 从 `data/products/product_library.csv` 读取产品；
-- 按“城市 + 天数”筛选；
-- 返回行程、常规/可选项目、推荐可选项、以及项目编号列表；
-- 当前设计偏向“单路径命中”，适合标准产品流程。
+2026-05-08 执行了 `test_full_chain_10cities.py` 全城市 v2 full_chain 回归验证：
 
-### 5.2 `cost_engine.py`
+- **10/10 城市全部通过**，HTTP 200，成功返回行程 Markdown + 报价
+- 测试覆盖：北京/上海/广州/重庆/西安/阳朔/张家界/贵州/云南/成都
+- 报告归档：`docs/test_reports/10cities_report_20260508_212650.md`
+- 平均响应时间 < 0.01s（本地），所有城市均返回完整行程和报价
 
-- 基于城市映射读取 `mashes/{city}_merged.csv`；
-- 解析常规/可选项目编号，计算门票、酒店、交通、导游；
-- 对免费项、空价、范围价有兼容；
-- 返回结构化汇总与明细，契合 PricingResultJSON。
+> 该风险已消除。
 
-### 5.3 `city_config.py`
+### 3.2 多语言输出 — 只做了表层
 
-- 定义 10 城市成本库路径；
-- 提供折扣规则（儿童/老人）；
-- 提供交通车型选择规则。
+- 所有 section header 改为中英双语 ✅
+- 但 **景点描述（attraction_highlights.json）全是英文**，未翻译成中文
+- 运营人员若要发给国内客户看，需要手动翻译或理解英文内容
+- Transport notes、Hotel 描述、Contact 信息均为英文，不是双语
 
-### 5.4 `api_main.py`
+### 3.3 模板渲染 — 未启动
 
-- 同时支持 v1 和 v2；
-- `API_KEY` 认证；
-- 使用 `schemas.py` 做结构化响应；
-- 已引入 `products.normalized.json` 路径常量。
+PRD P1.7：「明确交付模板渲染层（Canva/Word/PDF）映射协议」
 
----
+当前只能输出 Markdown。如果客户要 PDF 或 Word：
+- ❌ 不能一键导出
+- ❌ 没有排版模板
+- ❌ 没有品牌视觉（Logo、配色、字体）
 
-## 📆 六、与工作日志（4/27 & 4/28）的一致性核对
+### 3.4 Agent 架构 — 名不副实
 
-### 6.1 4/27 关键声明对齐结果
+系统定义 4 个 Agent（产品匹配/报价解释/行程编排/交付生成），但：
 
-日志声明：
-- 产品真源 = `data/products/product_library.csv`
-- 成本真源 = `mashes/*.csv`
+- **全部是规则引擎**，没有 AI 调用
+- Agent 2「报价解释」的 `QuoteExplanationJSON` schema 定义好了但 **从未被实际填充使用**
+- full_chain 输出跳过了 QuoteExplanation，直接走 pricing + plan + delivery
 
-核对结果：
-- 与当前 PRD 和引擎代码一致；
-- 该结论应继续作为删除和收口的硬约束。
-
-### 6.2 4/28 关键声明对齐结果
-
-日志声明：
-- Delivery 层落地（`engines/delivery_engine.py` + `/api/v2/delivery`）；
-- 全链路结构化对象打通。
-
-核对结果：
-- 与 `api_main.py` 及当前 PRD 描述一致；
-- 当前工作重点应从“补功能”转到“治理重复资产 + 回归验证”。
+这意味着「报价解释」这个环节是空的。如果客户问「为什么这个价格」，系统给不出自然语言解释。
 
 ---
 
-## ⚠️ 七、问题与风险清单（按优先级）
+## 四、从业务负责人视角看
 
-### P0（需立刻控制）
+### 4.1 产品成熟度：Pre-alpha → Alpha（不是 Beta）
 
-1. **重复路径与同类文件并存**  
-   易出现“工程使用 A，文档写 B”的漂移。
+| 维度 | 评分 | 说明 |
+|------|------|------|
+| 功能完整度 | ⭐⭐⭐ | 核心链路能跑通，但边缘场景未覆盖 |
+| 稳定性 | ⭐⭐ | 无自动化回归，8/10 城市未验证 |
+| 交付质量 | ⭐⭐⭐ | 输出格式尚可，但缺少品牌感和多格式 |
+| 运维能力 | ⭐ | 无日志，无监控，无错误报警 |
+| 数据治理 | ⭐⭐ | 有真源策略，但重复文件未清理完 |
+| 用户自主性 | ⭐⭐⭐ | 运营人员可填表单出结果，但无法自定义配置 |
 
-2. **并行模块边界模糊**  
-   `projects 2/` 与主链路未形成明确输入输出契约。
+**结论**：可以给内部 ops 团队做 demo，不适合正式交付客户或大规模使用。
 
-3. **历史迁移痕迹仍影响认知**  
-   工作日志存在多个阶段性架构叙述，容易混读。
+### 4.2 竞品能力对比（参照）
 
-### P1（影响迭代效率）
+系统目前对标的是 Ops 手工做行程单的流程（人工查产品目录 → Excel 算价 → Word 排版），优势是自动化，劣势是灵活性。
 
-4. **测试资产分散**  
-   有脚本但缺少统一回归入口和结果归档规范。
+| 维度 | 手工流程 | Hexa Blueprint |
+|------|----------|----------------|
+| 单行程耗时 | 30-60 min | 1 min |
+| 价格准确率 | 依赖个人经验 | 依赖 CSV 数据质量 |
+| 多语言支持 | 人工翻译 | 半自动双语 |
+| 排版质量 | 高（Word/Canva） | 低（纯 Markdown） |
+| 客户感知 | 专业 | 够用 |
 
-5. **模板渲染层未固化**  
-   Delivery 对象已可用，但模板落地路径待标准化。
+当前最大的 gap 不在自动化程度，而在 **输出档次** 和 **数据覆盖面**。
 
-### P2（中长期）
+### 4.3 投入产出判断
 
-6. **数据库层演进策略未定**  
-   何时从 CSV/JSON 主存储转向 DB（PG）仍无正式路线。
+当前资源应投向哪里：
 
----
-
-## ✅ 八、已执行的文件治理动作（本轮）
-
-根据你的确认（批次 1 + 3）已执行：
-
-1. 删除 `docs/prompts/coze_agent.md`
-2. 删除 `docs/schemas/coze_plugin.json`
-3. 删除 `projects 2/scripts/rebuild_citywalk_data.py`
-
-解释：
-- 前两项用于收敛 Coze 配置真源（保留根目录新版）；
-- 第三项用于收敛重复脚本（保留根目录 `scripts/rebuild_citywalk_data.py`）。
-
----
-
-## 🚀 九、建议执行路线（与 PRD P0/P1 对齐）
-
-### 阶段 A：继续路径收口（P0）
-
-1. 明确每类资产唯一真源目录（配置、脚本、地图产物、叙事数据）；
-2. 对剩余疑似重复文件逐批确认删除；
-3. 同步更新 README 与工作日志“目录口径”。
-
-### 阶段 B：回归基线建立（P1）
-
-1. 固化 10 城市最小回归样本；
-2. 统一输出测试结果格式（通过/失败/原因分类）；
-3. 将失败样本沉淀进日志。
-
-### 阶段 C：模块契约化（P1-P2）
-
-1. 明确定义 `projects 2` 的输入输出契约；
-2. 统一“数据管道产物 -> 主链路可消费数据”的发布步骤；
-3. 再决定是否推进 PG 化存储。
+| 方向 | 投入 | 产出 | 建议 |
+|------|------|------|------|
+| 补齐 8 城市回归验证 | 低 | 中 | **立刻做** — 不然不知道系统啥时候炸 |
+| 完善多语言翻译 | 中 | 高 | **本周做** — 运营核心竞争力 |
+| PDF/Canva 模板 | 高 | 高 | 下阶段做 — 客户交付必需 |
+| 数据治理（去重/清理） | 低 | 中 | 持续做，每次改动顺手做 |
+| Agent 报价解释 | 中 | 中 | 可延后 — 客户目前不直接看系统 |
+| 监控/报警 | 中 | 高 | 部署后就应该有 |
 
 ---
 
-## 📈 十、成熟度与里程碑判断
+## 五、PRD 审视
 
-- 当前成熟度：**Beta+（可试运行）**
-- 运行稳定性：**主链路可用**
-- 主要短板：**资产治理和口径一致性**
-- 下一里程碑：**进入可持续运营态（可审计、可回归、可维护）**
+### 5.1 PRD 版本现状
+
+当前 PRD（v1.1.0, 2026-04-29）的定位准确，结构清晰，但存在几个问题：
+
+**问题 1：P1 验收标准未严格验证**
+
+PRD 写「10 城市均可生成完整行程+报价」——实际只验证了 2/10。  
+验收项「失败样本有明确分类」——没有执行记录。
+
+**建议**：PRD 增加「验证记录表」列，每完成一项标记实际验证日期和结果。
+
+**问题 2：「多语言输出」列在 P1 但定义模糊**
+
+PRD 只说「中英文双语」，没有定义：
+- 哪些字段必须双语？（header/activity/description/notes？）
+- 中文翻译的精度要求？（人工翻译 vs 机器翻译 vs 保留英文？）
+- 运营人员能否切换单语言模式？
+
+**建议**：细化多语言策略，明确各字段的语言优先级。
+
+**问题 3：缺少「非功能需求」**
+
+- 没有性能要求（API 响应时间？）
+- 没有并发要求（几个 ops 同时用？）
+- 没有可用性要求（SLA？）
+- 没有安全要求（客户数据怎么存？）
+
+这些在 Demo 阶段不重要，但要进生产就必须定义。
+
+**问题 4：Agent 架构定位不清**
+
+PRD 写 4 个 Agent，但实际不存在 AI 调用。要么：
+- 去掉 Agent 命名，改为 Engine
+- 或者真正引入 AI，让 Agent 2/4 做自然语言生成
+
+当前状态是「打着 AI 旗号的规则引擎」，对外宣传时要注意措辞。
+
+### 5.2 PRD 建议修改项
+
+```
+P1.6 多语言输出（中英文双语）
+  → 拆分为：P1.6a 界面/标题双语化 ✅已完成
+            P1.7 景点描述中文化（翻译 highlights JSON）
+            P1.8 输出语言切换开关（中/英/双语）
+
+新增 P1 验收条件：
+  □ 10 城市 full_chain 返回 HTTP 200
+  □ 10 城市行程 Markdown 人工审核通过
+  □ 测试结果记录归档到 docs/logs/
+
+删除 Agent 角色，改为 Engine：product_engine / cost_engine / plan_engine / delivery_engine
+
+P2 升 P1：PDF 导出 + 品牌模板
+```
 
 ---
 
-**维护建议**  
-每次目录重构、接口新增、文件清理后，至少同步更新：
-1. `PRD_执行路线.md`
-2. `docs/logs/工作日志.md`
-3. `readme.md`
-4. 本文档（综合分析）
+## 六、数据健康度审计
+
+### 6.1 产品库健康度
+
+| 检查项 | 结果 | 动作 |
+|--------|------|------|
+| 10 城市均有产品 | ✅ | 21 product IDs |
+| 产品-价格映射 100% | ⚠️ 需要重新 verify | 上次 verify 后改过数据 |
+| optional item 存在但为空 | ✅ 已修复 | get() or "" 防御 |
+| 中英文产品名对应 | ✅ | product_library_bilingual.csv |
+| 行程描述完整性 | ⚠️ | 部分产品 daily_itinerary 很短 |
+
+### 6.2 成本库健康度
+
+| 检查项 | 结果 | 动作 |
+|--------|------|------|
+| 10 城市均有 mash CSV | ✅ | 10 files |
+| 门票价格完整 | ⚠️ | 部分条目价格为 0 或空 |
+| 导游价格完整 | ✅ | 10 城市均有 GUIDE 条目 |
+| 车辆价格完整 | ✅ | 10 城市均有 TRANS 条目 |
+| 酒店价格完整 | ⚠️ | 部分城市缺失 |
+
+---
+
+## 七、下一步行动建议
+
+### 7.1 已完成 ✅
+
+1. ~~跑一遍 10 城市 full_chain 验证~~ → 10/10 通过（2026-05-08）
+2. ~~供应商付款管理看板~~ → 已上线（2026-05-10），三列 Kanban + 8 个 API 端点
+
+### 7.2 下一步（两周）
+
+3. **翻译 attraction_highlights.json 为中英双语** — 新增 `name_cn` / `description_cn` 字段
+4. **补全 QuoteExplanationJSON 的输出** — 让 full_chain 包含价格解释
+5. **增强 delivery_engine 的 Reminder 和 Contact 结构** — 参考 05-模版路书.md
+6. **付款看板能力增强** — 费用明细行内编辑、逾期自动提醒
+
+### 7.3 中期（一个月）
+
+7. **PDF 导出** — 用 weasyprint 或 reportlab 生成带品牌模板的 PDF
+8. **语言切换功能** — Streamlit UI 加一个中/英/双语切换开关
+9. **错误报告改进** — 前端显示具体错误原因而不是「生成失败」
+
+---
+
+## 八、底线判断
+
+| 问题 | 回答 |
+|------|------|
+| 这个系统现在能用吗？ | 能用。10 城市全验证通过，具备行程生成 + 付款管理两大模块 |
+| 可以给客户看吗？ | Demo 可以。正式交付缺少 PDF 和品牌模板 |
+| 最大的风险是什么？ | 数据质量和覆盖面。8 个城市没验证，部分条目价格为空 |
+| 要不要继续投钱做？ | 要。核心架构是对的，缺的是打磨和内容填充 |
+| 团队需要什么人？ | 一个全栈（Python + 前端）+ 一个运营（录入/审核数据）就够了 |
+
+---
+
+*本分析对应代码基线：main branch @ 2026-05-08*

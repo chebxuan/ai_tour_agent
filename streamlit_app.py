@@ -8,6 +8,7 @@ Hexa Blueprint™ — Travel Copilot Streamlit Frontend
 
 import json
 import os
+from datetime import datetime
 from typing import Any, Dict, List
 
 import requests
@@ -96,6 +97,44 @@ def api_full_chain(payload: Dict[str, Any]) -> Dict[str, Any]:
     return resp.json()
 
 
+# ── 付款管理 API ───────────────────────────────────────────────
+
+def api_get_payments(**filters) -> Dict[str, Any]:
+    params = {k: v for k, v in filters.items() if v}
+    resp = requests.get(f"{API_BASE}/api/v2/payments", params=params, headers=HEADERS, timeout=10)
+    return resp.json()
+
+
+def api_create_payment(data: Dict[str, Any]) -> Dict[str, Any]:
+    resp = requests.post(f"{API_BASE}/api/v2/payments", json=data, headers=HEADERS, timeout=10)
+    return resp.json()
+
+
+def api_update_payment(payment_id: str, data: Dict[str, Any]) -> Dict[str, Any]:
+    resp = requests.put(f"{API_BASE}/api/v2/payments/{payment_id}", json=data, headers=HEADERS, timeout=10)
+    return resp.json()
+
+
+def api_update_payment_status(payment_id: str, status: str) -> Dict[str, Any]:
+    resp = requests.patch(f"{API_BASE}/api/v2/payments/{payment_id}/status", json={"status": status}, headers=HEADERS, timeout=10)
+    return resp.json()
+
+
+def api_delete_payment(payment_id: str) -> Dict[str, Any]:
+    resp = requests.delete(f"{API_BASE}/api/v2/payments/{payment_id}", headers=HEADERS, timeout=10)
+    return resp.json()
+
+
+def api_get_suppliers() -> Dict[str, Any]:
+    resp = requests.get(f"{API_BASE}/api/v2/payments/suppliers", headers=HEADERS, timeout=10)
+    return resp.json()
+
+
+def api_get_payment_stats() -> Dict[str, Any]:
+    resp = requests.get(f"{API_BASE}/api/v2/payments/stats", headers=HEADERS, timeout=10)
+    return resp.json()
+
+
 # ── 页面 ──────────────────────────────────────────────────────
 
 st.set_page_config(
@@ -161,105 +200,378 @@ with st.sidebar:
 
     generate_btn = st.button("🚀 生成行程", type="primary", use_container_width=True)
 
-# ── 主输出区 ──────────────────────────────────────────────────
+# ── Tabs ──────────────────────────────────────────────────────
 
-if generate_btn:
-    with st.spinner("正在生成行程，请稍候..."):
-        interest_list = [i.strip() for i in interests.split(",") if i.strip()]
+tab1, tab2 = st.tabs(["✈️ 行程生成", "💳 付款管理"])
 
-        payload = {
-            "city": city,
-            "days": days,
-            "adults": adults,
-            "children": children,
-            "seniors": seniors,
-            "is_peak": is_peak,
-            "need_guide": need_guide,
-            "need_private_car": need_car,
-            "interests": interest_list or ["history", "culture"],
-            "selected_optional_item_codes": selected_optional,
-        }
-        if travel_date:
-            payload["travel_date"] = travel_date.strftime("%Y-%m-%d")
+# ==================================================================
+# Tab 1: 行程生成 (existing functionality)
+# ==================================================================
 
-        result = api_full_chain(payload)
+with tab1:
+    if generate_btn:
+        with st.spinner("正在生成行程，请稍候..."):
+            interest_list = [i.strip() for i in interests.split(",") if i.strip()]
 
-    if result.get("success"):
-        st.success("✅ 行程生成成功！")
+            payload = {
+                "city": city,
+                "days": days,
+                "adults": adults,
+                "children": children,
+                "seniors": seniors,
+                "is_peak": is_peak,
+                "need_guide": need_guide,
+                "need_private_car": need_car,
+                "interests": interest_list or ["history", "culture"],
+                "selected_optional_item_codes": selected_optional,
+            }
+            if travel_date:
+                payload["travel_date"] = travel_date.strftime("%Y-%m-%d")
 
-        # ── 产品信息 ──
-        pm = result.get("product_match", {})
-        candidates = pm.get("candidates", [])
-        if candidates:
-            prod = candidates[0].get("product", {})
-            with st.container():
-                col_a, col_b, col_c = st.columns(3)
-                with col_a:
-                    st.metric("产品编号", prod.get("product_id", ""))
-                with col_b:
-                    st.metric("产品名称", prod.get("product_name", ""))
-                with col_c:
-                    st.metric("行程天数", f"{prod.get('duration_days', '')} 天")
-                if prod.get("daily_itinerary"):
-                    st.caption(f"📋 每日行程：{prod['daily_itinerary'].replace(chr(10), ' | ')}")
+            result = api_full_chain(payload)
+
+        if result.get("success"):
+            st.success("✅ 行程生成成功！")
+
+            pm = result.get("product_match", {})
+            candidates = pm.get("candidates", [])
+            if candidates:
+                prod = candidates[0].get("product", {})
+                with st.container():
+                    col_a, col_b, col_c = st.columns(3)
+                    with col_a:
+                        st.metric("产品编号", prod.get("product_id", ""))
+                    with col_b:
+                        st.metric("产品名称", prod.get("product_name", ""))
+                    with col_c:
+                        st.metric("行程天数", f"{prod.get('duration_days', '')} 天")
+                    if prod.get("daily_itinerary"):
+                        st.caption(f"📋 每日行程：{prod['daily_itinerary'].replace(chr(10), ' | ')}")
+                st.divider()
+
+            st.markdown("## 📅 行程草稿")
+            md = result.get("itinerary_markdown", "")
+            st.markdown(md)
+
             st.divider()
 
-        # ── 行程 Markdown ──
-        st.markdown("## 📅 行程草稿")
-        md = result.get("itinerary_markdown", "")
-        st.markdown(md)
+            pricing = result.get("pricing", {})
+            summary = pricing.get("summary", {})
+            if summary:
+                col1, col2, col3, col4 = st.columns(4)
+                with col1:
+                    st.metric("总价", f"¥{summary['grand_total']:,.0f}")
+                with col2:
+                    st.metric("人均", f"¥{summary['per_person']:,.0f}")
+                with col3:
+                    st.metric("人数", f"{summary['total_people']}人")
+                with col4:
+                    label = "旺季" if summary.get("is_peak") else "淡季"
+                    st.metric("季节", label)
 
-        st.divider()
+            with st.expander("🔧 原始数据（Debug）"):
+                debug = dict(result)
+                st.json(debug)
+        else:
+            st.error(f"❌ 生成失败：{result.get('error', '未知错误')}")
 
-        # ── 报价概览 ──
-        pricing = result.get("pricing", {})
-        summary = pricing.get("summary", {})
-        if summary:
-            col1, col2, col3, col4 = st.columns(4)
-            with col1:
-                st.metric("总价", f"¥{summary['grand_total']:,.0f}")
-            with col2:
-                st.metric("人均", f"¥{summary['per_person']:,.0f}")
-            with col3:
-                st.metric("人数", f"{summary['total_people']}人")
-            with col4:
-                label = "旺季" if summary.get("is_peak") else "淡季"
-                st.metric("季节", label)
-
-        # ── 原始 JSON 调试 ──
-        with st.expander("🔧 原始数据（Debug）"):
-            # 精简展示，去掉冗长的 markdown
-            debug = dict(result)
-            st.json(debug)
     else:
-        st.error(f"❌ 生成失败：{result.get('error', '未知错误')}")
+        st.info("👈 请在左侧填写客户需求，然后点击「生成行程」")
 
-else:
-    # 默认展示帮助信息
-    st.info("👈 请在左侧填写客户需求，然后点击「生成行程」")
+        with st.expander("💡 使用说明"):
+            st.markdown("""
+            ### 使用流程
+            1. 选择**目的地城市**和**行程天数**
+            2. 填写**人数构成**（成人/儿童/老人）
+            3. 选择**兴趣标签**和**可选项目**
+            4. 点击「生成行程」按钮
 
-    with st.expander("💡 使用说明"):
-        st.markdown("""
-        ### 使用流程
-        1. 选择**目的地城市**和**行程天数**
-        2. 填写**人数构成**（成人/儿童/老人）
-        3. 选择**兴趣标签**和**可选项目**
-        4. 点击「生成行程」按钮
+            ### 输出内容
+            - **行程草稿**：可直接复制发送客户的 Markdown 文本
+            - **报价概览**：总价、人均、分类明细
+            - **原始数据**：完整链路 JSON（用于 Debug）
 
-        ### 输出内容
-        - **行程草稿**：可直接复制发送客户的 Markdown 文本
-        - **报价概览**：总价、人均、分类明细
-        - **原始数据**：完整链路 JSON（用于 Debug）
+            ### 支持的城市
+            """ + ", ".join(cities))
 
-        ### 支持的城市
-        """ + ", ".join(cities))
+        with st.expander("📋 示例输入"):
+            st.markdown("""
+            ```
+            城市: 北京
+            天数: 2
+            人数: 2 成人
+            兴趣: history, culture
+            ```
+            """)
 
-    with st.expander("📋 示例输入"):
-        st.markdown("""
-        ```
-        城市: 北京
-        天数: 2
-        人数: 2 成人
-        兴趣: history, culture
-        ```
-        """)
+
+# ==================================================================
+# Tab 2: 供应商付款管理 (Payment Tracker)
+# ==================================================================
+
+with tab2:
+    # ── Initialize session state ──
+    if "show_payment_form" not in st.session_state:
+        st.session_state.show_payment_form = False
+    if "edit_payment_id" not in st.session_state:
+        st.session_state.edit_payment_id = None
+    if "payment_filter_status" not in st.session_state:
+        st.session_state.payment_filter_status = "全部"
+    if "payment_filter_supplier" not in st.session_state:
+        st.session_state.payment_filter_supplier = ""
+    if "payment_filter_search" not in st.session_state:
+        st.session_state.payment_filter_search = ""
+
+    # ── Load data ──
+    stats_data = api_get_payment_stats()
+    stats = stats_data.get("stats", {}) if stats_data.get("success") else {}
+
+    # ── Stats Row ──
+    st.markdown("### 📊 看板概览")
+    c1, c2, c3, c4, c5 = st.columns(5)
+    with c1:
+        st.metric("⏳ 待处理", stats.get("pending_count", 0),
+                  delta=f"¥{stats.get('pending_amount', 0):,.0f}")
+    with c2:
+        st.metric("✅ 已支付", stats.get("paid_count", 0),
+                  delta=f"¥{stats.get('paid_amount', 0):,.0f}")
+    with c3:
+        st.metric("📦 已存档", stats.get("archived_count", 0),
+                  delta=f"¥{stats.get('archived_amount', 0):,.0f}")
+    with c4:
+        overdue = stats.get("overdue_count", 0)
+        st.metric("⚠️ 逾期", overdue if overdue else "无",
+                  delta=f"¥{stats.get('overdue_amount', 0):,.0f}" if overdue else None,
+                  delta_color="inverse")
+    with c5:
+        st.metric("📋 总计", stats.get("total_count", 0))
+    st.divider()
+
+    # ── Filter Bar ──
+    st.markdown("### 🔍 筛选条件")
+    fc1, fc2, fc3, fc4, fc5 = st.columns([2, 2, 3, 2, 2])
+    with fc1:
+        status_filter = st.selectbox(
+            "状态", ["全部", "pending", "paid", "archived"],
+            key="payment_filter_status",
+        )
+    with fc2:
+        supplier_filter = st.text_input("供应商", key="payment_filter_supplier")
+    with fc3:
+        search_input = st.text_input("搜索（编号/订单/客户）", key="payment_filter_search")
+    with fc4:
+        date_from = st.date_input("截止日期起", value=None)
+    with fc5:
+        date_to = st.date_input("截止日期止", value=None)
+
+    st.divider()
+
+    # ── New Payment Button ──
+    col_btn1, col_btn2 = st.columns([1, 5])
+    with col_btn1:
+        if st.button("➕ 新建付款", type="primary", use_container_width=True):
+            st.session_state.show_payment_form = True
+            st.session_state.edit_payment_id = None
+            st.rerun()
+
+    # ── Create / Edit Payment Form ──
+    if st.session_state.show_payment_form:
+        st.markdown("---")
+        is_edit = st.session_state.edit_payment_id is not None
+        st.markdown(f"### {'✏️ 编辑付款' if is_edit else '➕ 新建付款'}")
+
+        # Pre-fill if editing
+        prefill = {}
+        if is_edit:
+            detail_resp = requests.get(
+                f"{API_BASE}/api/v2/payments/{st.session_state.edit_payment_id}",
+                headers=HEADERS, timeout=10,
+            ).json()
+            if detail_resp.get("success") and detail_resp.get("payment"):
+                prefill = detail_resp["payment"]
+
+        with st.form("payment_form"):
+            supplier_name = st.text_input(
+                "供应商名称 *",
+                value=prefill.get("supplier_name", ""),
+                placeholder="输入供应商名称...",
+            )
+            col_f1, col_f2 = st.columns(2)
+            with col_f1:
+                booking_id = st.text_input("Booking ID", value=prefill.get("booking_id", ""))
+            with col_f2:
+                related_order = st.text_input(
+                    "关联客户订单",
+                    value=prefill.get("related_customer_order", ""),
+                )
+            total_amount = st.number_input(
+                "总金额 (¥)", min_value=0.0, step=100.0,
+                value=float(prefill.get("total_amount", 0)),
+            )
+            col_f3, col_f4 = st.columns(2)
+            with col_f3:
+                due_date = st.date_input("截止日期", value=None)
+            with col_f4:
+                receipt_link = st.text_input(
+                    "票据链接 (URL)",
+                    value=prefill.get("receipt_link", ""),
+                )
+            notes = st.text_area("备注", value=prefill.get("notes", ""))
+
+            st.caption("* 费用明细可在创建后编辑")
+
+            col_sub1, col_sub2 = st.columns(2)
+            with col_sub1:
+                submitted = st.form_submit_button("💾 保存", type="primary", use_container_width=True)
+            with col_sub2:
+                cancelled = st.form_submit_button("取消", use_container_width=True)
+
+            if submitted and supplier_name.strip():
+                data = {
+                    "supplier_name": supplier_name.strip(),
+                    "booking_id": booking_id or None,
+                    "related_customer_order": related_order or None,
+                    "total_amount": total_amount,
+                    "due_date": due_date.strftime("%Y-%m-%d") if due_date else None,
+                    "receipt_link": receipt_link or None,
+                    "notes": notes or None,
+                }
+                if is_edit:
+                    result = api_update_payment(st.session_state.edit_payment_id, data)
+                else:
+                    result = api_create_payment(data)
+                if result.get("success"):
+                    st.success("付款记录已保存！")
+                else:
+                    st.error(f"保存失败：{result.get('error', '未知错误')}")
+                st.session_state.show_payment_form = False
+                st.session_state.edit_payment_id = None
+                st.rerun()
+
+            if cancelled:
+                st.session_state.show_payment_form = False
+                st.session_state.edit_payment_id = None
+                st.rerun()
+
+    # ── Detail View ──
+    if st.session_state.edit_payment_id and not st.session_state.show_payment_form:
+        detail_resp = requests.get(
+            f"{API_BASE}/api/v2/payments/{st.session_state.edit_payment_id}",
+            headers=HEADERS, timeout=10,
+        ).json()
+        if detail_resp.get("success") and detail_resp.get("payment"):
+            p = detail_resp["payment"]
+            with st.expander(f"📄 付款详情: {p.get('payment_id')} — {p.get('supplier_name')}", expanded=True):
+                col_d1, col_d2, col_d3 = st.columns(3)
+                with col_d1:
+                    st.markdown(f"**付款编号:** {p.get('payment_id')}")
+                    st.markdown(f"**供应商:** {p.get('supplier_name')}")
+                    st.markdown(f"**金额:** ¥{p.get('total_amount', 0):,.0f}")
+                with col_d2:
+                    st.markdown(f"**状态:** {p.get('status')}")
+                    st.markdown(f"**截止日期:** {p.get('due_date', '-')}")
+                    st.markdown(f"**实际支付日:** {p.get('actual_payment_date', '-')}")
+                with col_d3:
+                    st.markdown(f"**Booking ID:** {p.get('booking_id', '-')}")
+                    st.markdown(f"**客户订单:** {p.get('related_customer_order', '-')}")
+                    st.markdown(f"**票据:** {p.get('receipt_link', '-')}")
+                if p.get("notes"):
+                    st.caption(f"备注: {p['notes']}")
+
+                col_da, col_db, col_dc = st.columns(3)
+                with col_da:
+                    if p.get("status") == "pending":
+                        if st.button("✅ 标记已支付", key=f"pay_{p['payment_id']}"):
+                            api_update_payment_status(p["payment_id"], "paid")
+                            st.rerun()
+                with col_db:
+                    if p.get("status") in ("pending", "paid"):
+                        if st.button("📦 存档", key=f"arch_{p['payment_id']}"):
+                            api_update_payment_status(p["payment_id"], "archived")
+                            st.rerun()
+                with col_dc:
+                    if st.button("❌ 关闭", key=f"cls_{p['payment_id']}"):
+                        st.session_state.edit_payment_id = None
+                        st.rerun()
+
+    # ── Load filtered payments ──
+    filter_kwargs = {}
+    if status_filter != "全部":
+        filter_kwargs["status"] = status_filter
+    if supplier_filter.strip():
+        filter_kwargs["supplier"] = supplier_filter.strip()
+    if search_input.strip():
+        filter_kwargs["search"] = search_input.strip()
+    if date_from:
+        filter_kwargs["date_from"] = date_from.strftime("%Y-%m-%d")
+    if date_to:
+        filter_kwargs["date_to"] = date_to.strftime("%Y-%m-%d")
+
+    payments_data = api_get_payments(**filter_kwargs)
+    payments = payments_data.get("payments", [])
+
+    # Split by status
+    pending_list = [p for p in payments if p.get("status") == "pending"]
+    paid_list = [p for p in payments if p.get("status") == "paid"]
+    archived_list = [p for p in payments if p.get("status") == "archived"]
+
+    # ── Kanban Board ──
+    st.markdown("---")
+    st.markdown("### 📋 看板")
+    kanban1, kanban2, kanban3 = st.columns(3)
+
+    def render_card(p: Dict[str, Any]) -> None:
+        """Render a single payment card."""
+        pid = p.get("payment_id", "")
+        status_text = {"pending": "⏳ 待处理", "paid": "✅ 已支付", "archived": "📦 已存档"}.get(p.get("status"), "")
+        overdue = p.get("status") == "pending" and p.get("due_date") and p["due_date"] < datetime.now().strftime("%Y-%m-%d")
+
+        with st.container(border=True):
+            st.markdown(f"**{p.get('supplier_name', '')}**")
+            st.caption(f"ID: {pid} | {status_text}")
+            st.metric("金额", f"¥{p.get('total_amount', 0):,.0f}")
+            if p.get("due_date"):
+                due_label = f"⚠️ 截止: {p['due_date']}" if overdue else f"📅 截止: {p['due_date']}"
+                st.caption(due_label)
+            if p.get("booking_id"):
+                st.caption(f"Booking: {p['booking_id']}")
+
+            if p.get("status") == "pending":
+                c_act1, c_act2 = st.columns(2)
+                with c_act1:
+                    if st.button("✅ 支付", key=f"kpay_{pid}", use_container_width=True):
+                        api_update_payment_status(pid, "paid")
+                        st.rerun()
+                with c_act2:
+                    if st.button("📦 存档", key=f"karch_{pid}", use_container_width=True):
+                        api_update_payment_status(pid, "archived")
+                        st.rerun()
+            elif p.get("status") == "paid":
+                if st.button("📦 存档", key=f"karch2_{pid}", use_container_width=True):
+                    api_update_payment_status(pid, "archived")
+                    st.rerun()
+
+            if st.button("📝 详情/编辑", key=f"kedit_{pid}", use_container_width=True):
+                st.session_state.edit_payment_id = pid
+                st.rerun()
+
+    with kanban1:
+        st.subheader(f"⏳ 待处理 ({len(pending_list)})")
+        if not pending_list:
+            st.caption("暂无待处理付款")
+        for p in pending_list:
+            render_card(p)
+
+    with kanban2:
+        st.subheader(f"✅ 已支付 ({len(paid_list)})")
+        if not paid_list:
+            st.caption("暂无已支付付款")
+        for p in paid_list:
+            render_card(p)
+
+    with kanban3:
+        st.subheader(f"📦 已存档 ({len(archived_list)})")
+        if not archived_list:
+            st.caption("暂无已存档付款")
+        for p in archived_list:
+            render_card(p)

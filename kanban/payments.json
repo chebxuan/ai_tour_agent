@@ -1,0 +1,43 @@
+[
+  {
+    "bookingId": "BOOK-001",
+    "supplierName": "桂林漓江旅行社",
+    "relatedCustomerOrder": "李先生-桂林4日游",
+    "bookingStatus": "InProgress",
+    "costItems": [
+      {
+        "itemName": "导游费用",
+        "amount": 1280,
+        "invoiceSource": "桂林漓江旅行社"
+      },
+      {
+        "itemName": "景区门票",
+        "amount": 320,
+        "invoiceSource": "导游代开"
+      }
+    ],
+    "totalAmount": 1600,
+    "paymentTasks": [
+      {
+        "taskId": "TASK-001-A",
+        "taskType": "定金",
+        "description": "预付一半导游费",
+        "amountDue": 640,
+        "dueDate": "2025-10-18",
+        "paymentStatus": "Pending",
+        "actualPaymentDate": null,
+        "invoiceLink": null
+      },
+      {
+        "taskId": "TASK-001-B",
+        "taskType": "尾款",
+        "description": "支付剩余导游费和门票",
+        "amountDue": 960,
+        "dueDate": "2025-10-19",
+        "paymentStatus": "Pending",
+        "actualPaymentDate": null,
+        "invoiceLink": null
+      }
+    ]
+  }
+]

@@ -1,5 +1,9 @@
 # 公网部署执行路线
 
+> ✅ 当前已部署完成
+> - 前端：https://aitouragent-39dajfvlpujbydigehbkhc.streamlit.app/
+> - 后端：https://hexa-blueprint-api-production.up.railway.app
+
 ## 架构
 
 ```
