@@ -1,6 +1,5 @@
 """
 Hexa Blueprint™ API - 多城市行程规划服务
-FastAPI 版本，用于扣子(Coze)智能体集成
 
 运行方式:
     uvicorn api_main:app --host 0.0.0.0 --port 8000 --reload
@@ -27,9 +26,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
-from engines.city_config import list_available_cities
+from engines.city_config import list_available_cities, get_city_code_prefix
 from engines.cost_engine import calculate_total_cost, load_cost_db
-from engines.delivery_engine import build_delivery_draft
+from engines.custom_route_engine import generate_route as generate_custom_route
 from engines.payment_tracker import (
     create_payment,
     delete_payment,
@@ -41,13 +40,10 @@ from engines.payment_tracker import (
     update_payment,
     update_payment_status,
 )
-from engines.plan_engine import build_plan_object
-from engines.product_engine import get_product_recommendation
+
 from schemas import (
     CandidateProductsJSON,
-    ConfirmedClientInfoJSON,
     ContactInfo,
-    DeliveryDraftObject,
     LeadIntent,
     LeadJSON,
     PassengerMix,
@@ -60,15 +56,12 @@ from schemas import (
     PaymentStatusUpdate,
     PaymentSuppliersResponse,
     PaymentUpdateRequest,
-    PlanObject,
     PricingResultJSON,
     ProductCandidate,
     ProductCandidateReason,
     ProductReference,
-    SelectedProduct,
     TravelWindow,
 )
-from survey_architect import get_beijing_survey
 
 # 加载环境变量
 load_dotenv()
@@ -133,177 +126,6 @@ async def verify_api_key(x_api_key: str = Header(..., description="API 认证密
     return x_api_key
 
 
-# ── Pydantic 数据模型 ────────────────────────────────────────────
-
-class SurveyStepOption(BaseModel):
-    """问卷选项"""
-
-    text: str = Field(..., description="选项文本")
-    weight: Dict[str, Any] = Field(..., description="权重映射")
-
-
-class SurveyStep(BaseModel):
-    """问卷步骤"""
-
-    question: str = Field(..., description="问题文本")
-    options: Optional[List[SurveyStepOption]] = Field(None, description="选项列表")
-    input_type: str = Field("choice", description="输入类型: choice/text")
-
-
-class SurveyResponse(BaseModel):
-    """问卷响应"""
-
-    survey: List[SurveyStep]
-    total_steps: int
-    version: str = "1.0.0"
-
-
-class UserIntentRequest(BaseModel):
-    """用户意图请求"""
-
-    city: str = Field("北京", description="目标城市")
-    days: int = Field(..., ge=1, le=7, description="行程天数")
-    persona: str = Field("standard", description="用户画像: family/couple/solo/senior")
-    has_child: bool = Field(False, description="是否带儿童")
-    interest: Optional[str] = Field(None, description="兴趣标签")
-    adults: int = Field(2, ge=1, description="成人数量")
-    children: int = Field(0, ge=0, description="儿童数量")
-    seniors: int = Field(0, ge=0, description="老人数量")
-    is_peak: bool = Field(True, description="是否旺季")
-    guide: Optional[str] = Field(None, description="导游代码")
-    hotel: Optional[str] = Field(None, description="酒店代码")
-    hotel_nights: int = Field(0, ge=0, description="酒店入住晚数")
-    transfer: Optional[str] = Field(None, description="接送代码")
-    transfer_times: int = Field(0, ge=0, description="接送次数")
-    car_days: int = Field(0, ge=0, description="包车天数")
-    selected_optional: List[str] = Field(default_factory=list, description="用户选择的可选项目代码列表")
-    recommend_optional: Optional[str] = Field(None, description="推荐可选项")
-
-
-class ProductInfo(BaseModel):
-    """产品信息"""
-
-    product_name: str
-    days: int
-    itinerary: str
-    regular_items: str
-    optional_items: str
-    recommended_optional: str
-
-
-class ProductResponse(BaseModel):
-    """产品推荐响应"""
-
-    success: bool
-    data: Optional[ProductInfo] = None
-    error: Optional[str] = None
-    timestamp: str
-
-
-class CostSummary(BaseModel):
-    """费用汇总"""
-
-    product_name: str
-    days: int
-    city: str
-    adults: int
-    children: int
-    seniors: int
-    total_people: int
-    is_peak: bool
-    hotel_nights: int
-    car_days: int
-    transfer_times: int
-    regular_items_count: Optional[int] = 0
-    optional_items_count: Optional[int] = 0
-    grand_total: float
-    per_person: float
-
-
-class CostBreakdown(BaseModel):
-    """费用明细项"""
-
-    code: str
-    name: str
-    unit_price: float
-    adults: int
-    children: int
-    seniors: int
-    line_total: float
-    note: str
-
-
-class TicketActivityCost(BaseModel):
-    """门票活动费用"""
-
-    breakdown: List[CostBreakdown]
-    subtotal: float
-
-
-class HotelCost(BaseModel):
-    """酒店费用"""
-
-    hotel_code: Optional[str]
-    hotel_name: Optional[str] = None
-    hotel_price: float
-    rooms: int
-    nights: int
-    subtotal: float
-
-
-class TransportCost(BaseModel):
-    """交通费用"""
-
-    car_code: Optional[str]
-    car_daily_price: float
-    car_days: int
-    car_subtotal: float
-    transfer_code: Optional[str]
-    transfer_price: float
-    transfer_times: int
-    transfer_subtotal: float
-    subtotal: float
-
-
-class GuideCost(BaseModel):
-    """导游费用"""
-
-    guide_code: Optional[str]
-    guide_name: Optional[str]
-    daily_price: float
-    days: int
-    subtotal: float
-
-
-class CostResponse(BaseModel):
-    """费用计算响应"""
-
-    success: bool
-    summary: Optional[CostSummary] = None
-    ticket_activity: Optional[TicketActivityCost] = None
-    hotel: Optional[HotelCost] = None
-    transport: Optional[TransportCost] = None
-    guide: Optional[GuideCost] = None
-    error: Optional[str] = None
-    timestamp: str
-
-
-class CompleteRequest(BaseModel):
-    """一键完成请求"""
-
-    intent: UserIntentRequest
-
-
-class CompleteResponse(BaseModel):
-    """一键完成响应"""
-
-    success: bool
-    product: Optional[ProductInfo] = None
-    cost: Optional[CostResponse] = None
-    error: Optional[str] = None
-    timestamp: str
-
-
 class HealthResponse(BaseModel):
     """健康检查响应"""
 
@@ -327,20 +149,6 @@ class PricingRequestV2(BaseModel):
     transfer_times: int = Field(0, ge=0)
     car_days: Optional[int] = Field(None, ge=0)
     selected_optional_item_codes: List[str] = Field(default_factory=list)
-
-
-class PlanRequestV2(BaseModel):
-    lead: LeadJSON
-    selected_product_ids: List[str] = Field(..., min_length=1, description="Ordered selected product ids")
-    selected_optional_item_codes: Dict[str, List[str]] = Field(
-        default_factory=dict,
-        description="Optional item codes keyed by product id",
-    )
-    selection_notes: List[str] = Field(default_factory=list)
-    custom_adjustments: Dict[str, List[str]] = Field(
-        default_factory=dict,
-        description="Manual adjustment notes keyed by product id",
-    )
 
 
 # ── v2 helper functions ──────────────────────────────────────────
@@ -537,54 +345,14 @@ def build_user_intent_from_pricing_request(request: PricingRequestV2, product: D
     }
 
 
-def build_selected_products_from_plan_request(request: PlanRequestV2) -> List[SelectedProduct]:
-    selected_products: List[SelectedProduct] = []
-    for product_id in request.selected_product_ids:
-        product = get_normalized_product_by_id(product_id)
-        if not product:
-            raise HTTPException(status_code=404, detail=f"未找到产品: {product_id}")
-
-        option_codes = request.selected_optional_item_codes.get(product_id, [])
-        optional_lookup = {
-            code: name for code, name in zip(product.get("optional_item_codes", []), product.get("optional_items", []))
-        }
-
-        selected_optional_items = [
-            {
-                "code": code,
-                "name": optional_lookup.get(code),
-                "selected": True,
-            }
-            for code in option_codes
-        ]
-
-        selected_products.append(
-            SelectedProduct(
-                product=ProductReference(
-                    product_id=product.get("product_id", ""),
-                    city=product.get("city", ""),
-                    product_name=product.get("product_name", ""),
-                    duration_days=int(product.get("duration_days", 1) or 1),
-                    daily_itinerary=product.get("itinerary_text", ""),
-                ),
-                selection_reason=None,
-                regular_item_codes=product.get("regular_item_codes", []),
-                selected_optional_items=selected_optional_items,
-                custom_adjustments=request.custom_adjustments.get(product_id, []),
-            )
-        )
-    return selected_products
-
-
 def format_itinerary_markdown(
     lead: LeadJSON,
     product_match: CandidateProductsJSON,
     pricing: Optional[PricingResultJSON],
-    plan: Optional[PlanObject],
-    delivery: Optional[DeliveryDraftObject],
+    normalized_product: Optional[Dict[str, Any]] = None,
 ) -> str:
-    """将全链路输出格式化为可发送客户的 Markdown 路书
-    对齐 05-模版路书.md 格式：标题 → 客户信息 → 提醒 → 行程表 → 酒店/交通/联系人 → 报价 → 备注
+    """将全链路输出格式化为 Markdown 行程单
+    结构：标题 → 产品信息 → 每日行程（day_plans + Highlights） → 可选项目 → 报价明细 → 提示
     """
     lines: List[str] = []
     top = product_match.candidates[0] if product_match.candidates else None
@@ -617,83 +385,64 @@ def format_itinerary_markdown(
         lines.append(f"| **产品编号 Product ID** | {top.product.product_id} |")
         lines.append(f"| **产品名称 Product Name** | {top.product.product_name} |")
         lines.append(f"| **行程天数 Duration** | {top.product.duration_days} 天 Days |")
-        if top.product.daily_itinerary:
-            itinerary_text = top.product.daily_itinerary.replace("\n", "<br>")
-            lines.append(f"| **每日行程 Daily Itinerary** | {itinerary_text} |")
         lines.append("")
 
-    # ── Welcome & Emergency ──
-    lines.append("Thanks for travelling with Hexa! To help you get ready, we have put together this itinerary with your daily schedule, accommodation, local contacts and all the essential details for your trip. If you have any question, please feel free to contact us.")
-    lines.append("")
-
-    # ── Kindly Note (从 delivery.global_reminders 提取) ──
-    if delivery and delivery.global_reminders:
-        lines.append("### 温馨提示 Kindly note:")
-        lines.append("")
-        for reminder in delivery.global_reminders:
-            lines.append(f"- {reminder.content}")
-        lines.append("")
-
-    # ── Day-by-Day Itinerary — Bilingual operations format ──
+    # ── Day-by-Day Itinerary ──
     highlights_data = load_highlights_data()
     city_h = highlights_data.get(lead.intent.destination_cities[0], {}) if lead.intent.destination_cities else {}
     product_id = top.product.product_id if top else ""
     day_routes = city_h.get("product_days", {}).get(product_id, {})
     all_routes = city_h.get("routes", {})
 
-    if plan and plan.day_plans:
+    # 从 normalized product 或 itinerary_text 提取 day_plans
+    day_plans_data = []
+    if normalized_product:
+        day_plans_data = normalized_product.get("day_plans", [])
+    # fallback: 从 top.product.daily_itinerary 解析
+    if not day_plans_data and top and top.product.daily_itinerary:
+        for line in top.product.daily_itinerary.strip().split("\n"):
+            line = line.strip()
+            if not line:
+                continue
+            # 格式: "Day 1: 景点A+景点B+..."
+            parts = line.split(":", 1)
+            if len(parts) == 2 and parts[0].strip().lower().startswith("day"):
+                day_num_str = parts[0].strip().replace("Day ", "").replace("day ", "")
+                try:
+                    day_num = int(day_num_str)
+                except ValueError:
+                    day_num = len(day_plans_data) + 1
+                act_names = [a.strip() for a in parts[1].split("+") if a.strip()]
+                day_plans_data.append({"day_number": day_num, "activity_names": act_names})
+
+    if day_plans_data:
         lines.append("## 每日行程 Day-by-Day Itinerary")
         lines.append("")
-        for day in plan.day_plans:
-            day_num = day.day_number
-            date_str = f" ({day.date})" if day.date else ""
+        for day in day_plans_data:
+            day_num = day.get("day_number", len(lines))
             route_key = day_routes.get(str(day_num))
             route = all_routes.get(route_key) if route_key else None
 
-            # Day header — bilingual
-            lines.append(f"### 第{day_num}天 Day {day_num}{date_str}")
+            # Day header
+            lines.append(f"### 第{day_num}天 Day {day_num}")
             if route and route.get("title"):
                 lines.append(f"*{route['title']}*")
             lines.append("")
 
-            # Activities grouped by time period
-            morning_acts: List[str] = []
-            afternoon_acts: List[str] = []
-            evening_acts: List[str] = []
-            for act in day.activities:
-                if not act.included:
-                    continue
-                entry = act.title
-                if act.notes:
-                    first = act.notes[0]
-                    if "optional" in first.lower():
-                        entry = f"{entry} (可选 Optional)"
-                if act.time_slot == "morning":
-                    morning_acts.append(entry)
-                elif act.time_slot == "afternoon":
-                    afternoon_acts.append(entry)
-                elif act.time_slot == "evening":
-                    evening_acts.append(entry)
-                else:
-                    morning_acts.append(entry)
-
-            if morning_acts:
-                lines.append("🌅 **上午 Morning**")
-                for a in morning_acts:
-                    lines.append(f"▪ {a}")
-                lines.append("")
-            if afternoon_acts:
-                lines.append("☀️ **下午 Afternoon**")
-                for a in afternoon_acts:
-                    lines.append(f"▪ {a}")
-                lines.append("")
-            if evening_acts:
-                lines.append("🌙 **晚上 Evening**")
-                for a in evening_acts:
-                    lines.append(f"▪ {a}")
+            # Activity list
+            activity_names = day.get("activity_names", [])
+            if activity_names:
+                for act in activity_names:
+                    marker = ""
+                    if any(kw in act for kw in ["(可选)", "(建议)", "(推荐)"]):
+                        marker = " *(可选 Optional)*"
+                    clean = act
+                    for kw in ["(可选)", "(建议)", "(推荐)"]:
+                        clean = clean.replace(kw, "")
+                    lines.append(f"▪ {clean.strip()}{marker}")
                 lines.append("")
 
-            # Attractions — compact inline list (removed redundant Highlight of the Day)
+            # Highlights from attraction_highlights.json
             if route and route.get("attractions"):
                 lines.append("🏛 **景点 Highlights**")
                 for attr in route["attractions"]:
@@ -708,106 +457,20 @@ def format_itinerary_markdown(
                     lines.append(" ".join(parts))
                 lines.append("")
 
-            # Transport notes
-            if day.transport_notes:
-                lines.append("🚗 **交通 Transport**")
-                for note in day.transport_notes:
-                    lines.append(f"▪ {note}")
-                lines.append("")
-
-            # Separator between days
             lines.append("---")
             lines.append("")
-
-    elif delivery:
-        # Fallback: use delivery table if no plan available
-        itinerary_section = next(
-            (s for s in delivery.sections if s.section_type == "itinerary_table"),
-            None,
-        )
-        if itinerary_section and itinerary_section.rows:
-            lines.append("## 每日行程 Day-by-Day Itinerary")
-            lines.append("")
-            lines.append("| 日期 Date | 时段 Period | 地点 Location | 活动 Activities | 提醒 Reminders |")
-            lines.append("|------|--------|----------|------------|---------------------|")
-            for row in itinerary_section.rows:
-                date = row.date_label or ""
-                time = row.time_range or ""
-                loc = row.city or ""
-                act = row.activity_title or ""
-                reminders = "; ".join(r.content for r in row.reminders) if row.reminders else ""
-                if len(reminders) > 80:
-                    reminders = reminders[:77] + "..."
-                lines.append(f"| {date} | {time} | {loc} | {act} | {reminders} |")
-            lines.append("")
-
-    # ── Hotel Stays ──
-    if delivery:
-        hotel_section = next(
-            (s for s in delivery.sections if s.section_type == "hotel"),
-            None,
-        )
-        if hotel_section:
-            lines.append("## 住宿 Accommodation")
-            lines.append("")
-            lines.append(hotel_section.content or "Hotel details to be confirmed.")
-            lines.append("")
-
-    # ── Transport Arrangements ──
-    if delivery:
-        transport_section = next(
-            (s for s in delivery.sections if s.section_type == "transport"),
-            None,
-        )
-        if transport_section and transport_section.content:
-            lines.append("## 交通 Transport Arrangements")
-            lines.append("")
-            lines.append(transport_section.content)
-            lines.append("")
-
-    # ── Key Contacts ──
-    if delivery:
-        contacts_section = next(
-            (s for s in delivery.sections if s.section_type == "contacts"),
-            None,
-        )
-        if contacts_section and contacts_section.rows:
-            first_row = contacts_section.rows[0]
-            if first_row.contacts:
-                lines.append("## 主要联系人 Key Contacts")
-                lines.append("")
-                # Check if there are city-specific contacts by looking for per-city rows
-                city_contacts = False
-                for row in contacts_section.rows:
-                    if row.city and row.contacts:
-                        city_contacts = True
-                        lines.append(f"### {row.city}")
-                        lines.append("")
-                        for c in row.contacts:
-                            phone_str = f" — {c.phone}" if c.phone else ""
-                            role_str = f" ({c.role})" if c.role and c.role != "Key Contacts" else ""
-                            lines.append(f"- **{c.name}**{role_str}{phone_str}")
-                        lines.append("")
-                if not city_contacts:
-                    # Global contacts as a simple list
-                    for c in first_row.contacts:
-                        phone_str = f" — {c.phone}" if c.phone else ""
-                        role_str = f" ({c.role})" if c.role else ""
-                        lines.append(f"- **{c.name}**{role_str}{phone_str}")
-                    lines.append("")
 
     # ── Optional Add-ons ──
     if top and top.optional_item_codes:
         lines.append("### 可选项目 Optional Add-ons")
         lines.append("")
-        # Load cost DB to get human-readable names
         _opt_db = load_cost_db(city=top.product.city) if top.product.city else {}
         for code in top.optional_item_codes:
             name = _opt_db.get(code, {}).get("name") or code
             lines.append(f"- {name} ({code})")
         lines.append("")
 
-    # ── Cost Breakdown (replaces old Pricing Summary) ──
+    # ── Cost Breakdown ──
     if pricing and pricing.summary:
         lines.append("## 费用明细 Cost Breakdown")
         lines.append("")
@@ -816,7 +479,6 @@ def format_itinerary_markdown(
         lines.append(f"_{pricing.summary.adults} 成人 Adult(s) | {pricing.summary.children} 儿童 Child(ren) | {pricing.summary.seniors} 老人 Senior(s) | {season_label}_")
         lines.append("")
 
-        # Group line items by category
         category_order = ["ticket_activity", "guide", "transport", "hotel", "other"]
         cat_labels = {
             "ticket_activity": "🎫 门票活动 Tickets & Activities",
@@ -862,17 +524,14 @@ def format_itinerary_markdown(
         lines.append(f"_*以上价格为{season_label}价格。餐饮不含，除非特别说明。Pricing based on {season_label}. Meals not included unless specified above._")
         lines.append("")
 
-    # ── Important Notes ──
-    if delivery:
-        notes_section = next(
-            (s for s in delivery.sections if s.section_type == "notes"),
-            None,
-        )
-        if notes_section and notes_section.content:
-            lines.append("## 重要提示 Important Notes")
-            lines.append("")
-            lines.append(notes_section.content)
-            lines.append("")
+    # ── Notes ──
+    lines.append("## 重要提示 Important Notes")
+    lines.append("")
+    lines.append("- Please carry your passport for attraction entry where required.")
+    lines.append("- Meals are not included unless specified above.")
+    lines.append("- Tipping is not mandatory but appreciated for good service.")
+    lines.append("- Keep valuables secure in crowded areas.")
+    lines.append("")
 
     # ── Footer ──
     lines.append("---")
@@ -937,8 +596,7 @@ async def health_check():
         timestamp=datetime.now().isoformat(),
     )
 
-
-@app.get("/api/v1/cities", response_model=Dict[str, Any])
+@app.get("/api/v2/cities", response_model=Dict[str, Any])
 async def get_cities(api_key: str = Depends(verify_api_key)):
     """获取支持的城市列表"""
     try:
@@ -954,113 +612,6 @@ async def get_cities(api_key: str = Depends(verify_api_key)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"获取城市列表失败: {str(e)}",
         )
-
-
-@app.get("/api/v1/survey", response_model=SurveyResponse)
-async def get_survey(api_key: str = Depends(verify_api_key)):
-    """获取问卷数据"""
-    try:
-        survey_data = get_beijing_survey()
-        return SurveyResponse(survey=survey_data, total_steps=len(survey_data), version="1.0.0")
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"问卷加载失败: {str(e)}",
-        )
-
-
-@app.post("/api/v1/recommend", response_model=ProductResponse)
-async def get_recommendation(intent: UserIntentRequest, api_key: str = Depends(verify_api_key)):
-    """获取产品推荐"""
-    try:
-        user_intent = intent.model_dump()
-        product = get_product_recommendation(user_intent)
-
-        if product.get("error"):
-            return ProductResponse(success=False, error=product["error"], timestamp=datetime.now().isoformat())
-
-        return ProductResponse(
-            success=True,
-            data=ProductInfo(**product),
-            timestamp=datetime.now().isoformat(),
-        )
-    except Exception as e:
-        return ProductResponse(success=False, error=f"推荐失败: {str(e)}", timestamp=datetime.now().isoformat())
-
-
-@app.post("/api/v1/cost", response_model=CostResponse)
-async def calculate_cost(intent: UserIntentRequest, api_key: str = Depends(verify_api_key)):
-    """计算行程费用"""
-    try:
-        user_intent = intent.model_dump()
-        product = get_product_recommendation(user_intent)
-
-        if product.get("error"):
-            return CostResponse(success=False, error=product["error"], timestamp=datetime.now().isoformat())
-
-        cost_result = calculate_total_cost(product, user_intent)
-        if not cost_result.get("success", True):
-            return CostResponse(
-                success=False,
-                summary=CostSummary(**cost_result["summary"]),
-                ticket_activity=TicketActivityCost(**cost_result["ticket_activity"]),
-                hotel=HotelCost(**cost_result["hotel"]),
-                transport=TransportCost(**cost_result["transport"]),
-                guide=GuideCost(**cost_result["guide"]),
-                error=cost_result.get("error"),
-                timestamp=datetime.now().isoformat(),
-            )
-
-        summary_payload = dict(cost_result["summary"])
-        summary_payload["regular_items_count"] = len(cost_result.get("regular_item_codes", []))
-        summary_payload["optional_items_count"] = len(cost_result.get("selected_optional_item_codes", []))
-
-        return CostResponse(
-            success=True,
-            summary=CostSummary(**summary_payload),
-            ticket_activity=TicketActivityCost(**cost_result["ticket_activity"]),
-            hotel=HotelCost(**cost_result["hotel"]),
-            transport=TransportCost(**cost_result["transport"]),
-            guide=GuideCost(**cost_result["guide"]),
-            timestamp=datetime.now().isoformat(),
-        )
-    except Exception as e:
-        return CostResponse(success=False, error=f"费用计算失败: {str(e)}", timestamp=datetime.now().isoformat())
-
-
-@app.post("/api/v1/complete", response_model=CompleteResponse)
-async def complete_planning(request: CompleteRequest, api_key: str = Depends(verify_api_key)):
-    """一键完成行程规划"""
-    try:
-        user_intent = request.intent.model_dump()
-        product = get_product_recommendation(user_intent)
-
-        if product.get("error"):
-            return CompleteResponse(success=False, error=product["error"], timestamp=datetime.now().isoformat())
-
-        cost_result = calculate_total_cost(product, user_intent)
-        summary_payload = dict(cost_result["summary"])
-        summary_payload["regular_items_count"] = len(cost_result.get("regular_item_codes", []))
-        summary_payload["optional_items_count"] = len(cost_result.get("selected_optional_item_codes", []))
-
-        return CompleteResponse(
-            success=cost_result.get("success", True),
-            product=ProductInfo(**product),
-            cost=CostResponse(
-                success=cost_result.get("success", True),
-                summary=CostSummary(**summary_payload),
-                ticket_activity=TicketActivityCost(**cost_result["ticket_activity"]),
-                hotel=HotelCost(**cost_result["hotel"]),
-                transport=TransportCost(**cost_result["transport"]),
-                guide=GuideCost(**cost_result["guide"]),
-                error=cost_result.get("error"),
-                timestamp=datetime.now().isoformat(),
-            ),
-            error=cost_result.get("error"),
-            timestamp=datetime.now().isoformat(),
-        )
-    except Exception as e:
-        return CompleteResponse(success=False, error=f"规划失败: {str(e)}", timestamp=datetime.now().isoformat())
 
 
 @app.post("/api/v2/product-match", response_model=CandidateProductsJSON)
@@ -1095,39 +646,8 @@ async def calculate_pricing_v2(request: PricingRequestV2, api_key: str = Depends
         )
 
 
-@app.post("/api/v2/plan", response_model=PlanObject)
-async def build_plan_v2(request: PlanRequestV2, api_key: str = Depends(verify_api_key)):
-    """Agent 3 风格方案骨架接口"""
-    try:
-        selected_products = build_selected_products_from_plan_request(request)
-        normalized_products = load_normalized_products()
-        plan_object = build_plan_object(
-            lead=request.lead,
-            selected_products=selected_products,
-            normalized_products=normalized_products,
-        )
-        if request.selection_notes:
-            plan_object.planning_notes.extend(request.selection_notes)
-        return plan_object
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"方案生成失败: {str(e)}",
-        )
-
-
-# ── 飞书 API 扩展接口（预留）──────────────────────────────────────
-
-class DeliveryRequestV2(BaseModel):
-    plan: PlanObject
-    confirmed_client_info: Optional[ConfirmedClientInfoJSON] = None
-    language: str = Field("en", description="Output language for the delivery draft")
-
-
 class FullChainRequest(BaseModel):
-    """一键全链路请求 — 简化输入，内部串联 product → pricing → plan → delivery"""
+    """一键全链路请求 — 简化输入，内部串联 product → pricing，输出行程 + Highlights + 报价"""
 
     city: str = Field("北京", description="目标城市")
     days: int = Field(..., ge=1, le=10, description="行程天数")
@@ -1149,35 +669,17 @@ class FullChainResponse(BaseModel):
     lead: Optional[LeadJSON] = None
     product_match: Optional[CandidateProductsJSON] = None
     pricing: Optional[PricingResultJSON] = None
-    plan: Optional[PlanObject] = None
-    delivery: Optional[DeliveryDraftObject] = None
     itinerary_markdown: str = ""
     error: Optional[str] = None
     generated_at: str = ""
 
 
-@app.post("/api/v2/delivery", response_model=DeliveryDraftObject)
-async def build_delivery_v2(request: DeliveryRequestV2, api_key: str = Depends(verify_api_key)):
-    """Agent 4 风格交付草稿生成接口"""
-    try:
-        return build_delivery_draft(
-            plan=request.plan,
-            confirmed_client_info=request.confirmed_client_info,
-            language=request.language,
-        )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"交付草稿生成失败: {str(e)}",
-        )
-
-
 @app.post("/api/v2/full_chain", response_model=FullChainResponse)
 async def full_chain_v2(request: FullChainRequest, api_key: str = Depends(verify_api_key)):
-    """一键全链路接口：简化输入 → 产品匹配 → 报价 → 方案 → 交付 + Markdown
+    """一键全链路接口：简化输入 → 产品匹配 → 报价 + Markdown 行程单
 
-    输入只需城市、天数、人数等基本信息，内部自动串联 v2 四接口。
-    输出包含各阶段结构化 JSON 和可直接发送客户的 Markdown 行程。
+    输入只需城市、天数、人数等基本信息，内部自动串联 product-match + pricing。
+    输出包含结构化 JSON 和可直接发送客户的 Markdown 行程（day_plans + Highlights + 报价表）。
     """
     generated_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
     partial = FullChainResponse(success=False, generated_at=generated_at)
@@ -1200,13 +702,11 @@ async def full_chain_v2(request: FullChainRequest, api_key: str = Depends(verify
             return partial
 
         top_product_id = product_match.recommended_product_id
-        top_candidate = product_match.candidates[0]
 
         # 3. Pricing
         try:
             product = get_normalized_product_by_id(top_product_id)
             hotel_nights = max(int(product.get("duration_days", 1)) - 1, 0) if product else max(request.days - 1, 0)
-            # Auto-assign guide code when guide is requested but no specific code given
             guide_code = None
             if request.need_guide:
                 from engines.city_config import get_city_code_prefix
@@ -1229,47 +729,12 @@ async def full_chain_v2(request: FullChainRequest, api_key: str = Depends(verify
             partial.error = f"报价计算失败: {str(e)}"
             return partial
 
-        # 4. Plan
-        try:
-            plan_request = PlanRequestV2(
-                lead=lead,
-                selected_product_ids=[top_product_id],
-                selected_optional_item_codes={
-                    top_product_id: request.selected_optional_item_codes
-                },
-            )
-            selected_products = build_selected_products_from_plan_request(plan_request)
-            normalized_products = load_normalized_products()
-            plan_object = build_plan_object(
-                lead=lead,
-                selected_products=selected_products,
-                normalized_products=normalized_products,
-            )
-            partial.plan = plan_object
-        except Exception as e:
-            partial.error = f"方案生成失败: {str(e)}"
-            return partial
-
-        # 5. Delivery
-        try:
-            delivery_request = DeliveryRequestV2(plan=plan_object)
-            delivery_draft = build_delivery_draft(
-                plan=plan_object,
-                confirmed_client_info=None,
-                language="en",
-            )
-            partial.delivery = delivery_draft
-        except Exception as e:
-            partial.error = f"交付生成失败: {str(e)}"
-            return partial
-
-        # 6. Format Markdown
+        # 4. Format Markdown（直接使用 normalized product day_plans + highlights + pricing）
         partial.itinerary_markdown = format_itinerary_markdown(
             lead=lead,
             product_match=product_match,
             pricing=partial.pricing,
-            plan=partial.plan,
-            delivery=partial.delivery,
+            normalized_product=product,
         )
 
         partial.success = True
@@ -1279,6 +744,231 @@ async def full_chain_v2(request: FullChainRequest, api_key: str = Depends(verify
     except Exception as e:
         partial.error = f"全链路执行失败: {str(e)}"
         return partial
+
+
+# ── Custom Route (上海 MVP 半定制路线) ────────────────────────────
+
+
+class CustomRouteRequest(BaseModel):
+    """上海半定制路线请求"""
+
+    city: str = Field("上海", description="目标城市（目前仅支持上海）")
+    duration_type: str = Field("one_day", description="半天还是全天: half_day / one_day")
+    interests: List[str] = Field(default_factory=lambda: ["culture"], description="兴趣标签")
+    pace: str = Field("moderate", description="节奏: relaxed / moderate / fast")
+    budget_level: str = Field("medium", description="预算: low / medium / flexible")
+    group_type: str = Field("couple", description="人群: couple / family / solo / senior")
+    adults: int = Field(2, ge=1, description="成人数量")
+    children: int = Field(0, ge=0, description="儿童数量")
+    seniors: int = Field(0, ge=0, description="老人数量")
+    is_peak: bool = Field(True, description="是否旺季")
+    rainy_day: bool = Field(False, description="是否雨天")
+    need_private_car: bool = Field(False, description="是否包车")
+    need_guide: bool = Field(False, description="是否需要导游")
+
+
+class CustomRouteResponse(BaseModel):
+    """半定制路线响应"""
+
+    success: bool
+    route: Optional[Dict[str, Any]] = None
+    pricing: Optional[Dict[str, Any]] = None
+    itinerary_markdown: str = ""
+    error: Optional[str] = None
+
+
+@app.post("/api/v2/custom-route", response_model=CustomRouteResponse)
+async def build_custom_route(request: CustomRouteRequest, api_key: str = Depends(verify_api_key)):
+    """上海半定制路线：兴趣匹配 → POI 编排 → 报价 → Markdown 行程单"""
+    try:
+        # 1. 调用 custom_route_engine 生成路线
+        route = generate_custom_route(
+            city=request.city,
+            duration_type=request.duration_type,
+            interests=request.interests,
+            pace=request.pace,
+            budget_level=request.budget_level,
+            group_type=request.group_type,
+            rainy_day=request.rainy_day,
+            need_private_car=request.need_private_car,
+            family_travel=request.children > 0,
+            elderly_travel=request.seniors > 0,
+        )
+
+        if not route.get("success"):
+            return CustomRouteResponse(success=False, error=route.get("error", "路线生成失败"))
+
+        # 2. 提取选中的 cost_item_code 接入 cost_engine 报价
+        selected_units = route.get("units", [])
+        cost_item_codes = [
+            u.get("cost_item_code") for u in selected_units
+            if u.get("cost_item_code")
+        ]
+
+        # 构建最小产品 dict（模拟 cost_engine 需要的 product 格式）
+        product = {
+            "city": request.city,
+            "days": 1,
+            "product_name": route.get("title_en", f"Custom {request.city} Route"),
+            "常规项目项目编号列表": ", ".join(cost_item_codes),
+            "regular_item_codes": cost_item_codes,
+        }
+
+        # 自动推断 hotel/guide/car 编码
+        prefix = get_city_code_prefix(request.city)
+        user_intent = {
+            "city": request.city,
+            "days": 1,
+            "adults": request.adults,
+            "children": request.children,
+            "seniors": request.seniors,
+            "is_peak": request.is_peak,
+            "guide": f"{prefix}-GUIDE-01" if request.need_guide else None,
+            "need_guide": request.need_guide,
+            "hotel": f"{prefix}-HOTEL-01" if request.duration_type == "one_day" else None,
+            "hotel_nights": 1 if request.duration_type == "one_day" else 0,
+            "transfer": f"{prefix}-TRANS-03" if request.need_private_car else None,
+            "transfer_times": 2 if request.need_private_car else 0,
+            "car_days": 1 if request.need_private_car else 0,
+            "need_private_car": request.need_private_car,
+            "selected_optional": [],
+        }
+
+        try:
+            pricing_result = calculate_total_cost(product, user_intent)
+        except Exception as e:
+            pricing_result = {
+                "success": False,
+                "error": f"报价计算失败: {str(e)}",
+                "summary": {"grand_total": route.get("estimated_cost_rmb", 0), "per_person": 0, "total_people": request.adults + request.children + request.seniors},
+            }
+
+        # 3. 生成 Markdown 行程单
+        md = _format_custom_route_markdown(route, pricing_result, request)
+
+        return CustomRouteResponse(
+            success=True,
+            route=route,
+            pricing=pricing_result if pricing_result.get("success") else None,
+            itinerary_markdown=md,
+        )
+
+    except Exception as e:
+        return CustomRouteResponse(success=False, error=f"半定制路线生成失败: {str(e)}")
+
+
+def _format_custom_route_markdown(
+    route: Dict[str, Any],
+    pricing: Dict[str, Any],
+    request: CustomRouteRequest,
+) -> str:
+    """将 custom_route 输出格式化为 Markdown 行程单"""
+    lines: List[str] = []
+
+    title = route.get("title_en", "Custom Shanghai Route")
+    lines.append(f"# {title}")
+    lines.append("")
+    lines.append(f"**Profile:** {route.get('target_profile_summary', '')}")
+    lines.append(f"**Duration:** {route.get('duration_type', '')}  |  "
+                 f"**Pace:** {request.pace}  |  **Budget:** {request.budget_level}")
+    lines.append(f"**Travelers:** {request.adults} Adult(s)" +
+                 (f" + {request.children} Child(ren)" if request.children else "") +
+                 (f" + {request.seniors} Senior(s)" if request.seniors else ""))
+    if request.rainy_day:
+        lines.append(f"**Weather Note:** 🌧️ Rainy day — indoor-focused route")
+    lines.append("")
+
+    # 路线节点
+    lines.append("## 推荐路线 Route Plan")
+    lines.append("")
+    units = route.get("units", [])
+    for u in units:
+        seq = u.get("sequence", 0)
+        name = u.get("name_en", "")
+        name_cn = u.get("name_cn", "")
+        area = u.get("area", "")
+        dur = u.get("duration_min", 0)
+        cost = u.get("estimated_cost_rmb", 0)
+        cost_label = f"¥{cost:.0f}" if cost > 0 else "Free"
+        desc = u.get("description_en", "")[:150]
+        lines.append(f"### {seq}. {name} ({name_cn})")
+        lines.append(f"📍 {area}  |  ⏱ {dur}min  |  💰 {cost_label}")
+        if desc:
+            lines.append(f"_{desc}_")
+        lines.append("")
+
+    # 交通
+    transfers = route.get("transfers", [])
+    if transfers:
+        lines.append("## 交通 Transfers")
+        lines.append("")
+        for t in transfers:
+            mode = t.get("mode", "unknown")
+            tmin = t.get("transit_min", 0)
+            from_area = t.get("from_area", "")
+            to_area = t.get("to_area", "")
+            has_edge = "✅" if t.get("has_edge") else "⚠️ estimated"
+            lines.append(f"- **{from_area} → {to_area}**: {mode} ~{tmin}min {has_edge}")
+        lines.append("")
+
+    # 报价
+    if pricing and pricing.get("success"):
+        summary = pricing.get("summary", {})
+        lines.append("## 报价 Pricing")
+        lines.append("")
+        season_label = "Peak Season" if request.is_peak else "Off-Peak Season"
+        lines.append(f"_{request.adults} Adult(s) | {season_label} | "
+                     f"{'with guide' if request.need_guide else 'no guide'} | "
+                     f"{'private car' if request.need_private_car else 'metro/walk'}_")
+        lines.append("")
+
+        line_items = pricing.get("line_items", [])
+        if line_items:
+            lines.append("| Category | Item | Unit Price | Qty | Subtotal |")
+            lines.append("|----------|------|-----------|-----|----------|")
+            for li in line_items:
+                lines.append(f"| {li.get('category','')} | {li.get('name','')} | ¥{li.get('unit_price',0):,.0f} | {li.get('quantity',0):.0f} | ¥{li.get('subtotal',0):,.0f} |")
+
+        lines.append("")
+        lines.append(f"| | **Grand Total** | | | **¥{summary.get('grand_total', 0):,.2f}** |")
+        lines.append(f"| | **Per Person** | | | **¥{summary.get('per_person', 0):,.2f}** |")
+        lines.append("")
+    else:
+        lines.append("## 报价 Pricing")
+        lines.append("")
+        lines.append(f"**Estimated Total:** ¥{route.get('estimated_cost_rmb', 0):.0f}")
+        lines.append(f"_Note: {route.get('cost_note', '')}_")
+        lines.append("")
+
+    # 逻辑与风险
+    logic = route.get("route_logic", [])
+    if logic:
+        lines.append("## 编排逻辑 Route Logic")
+        lines.append("")
+        for step in logic:
+            lines.append(f"- {step}")
+        lines.append("")
+
+    risks = route.get("risk_warnings", [])
+    if risks:
+        lines.append("## 注意事项 Risk Warnings")
+        lines.append("")
+        for r in risks:
+            lines.append(f"- ⚠️ {r}")
+        lines.append("")
+
+    # 定制选项
+    options = route.get("customization_options", [])
+    if options:
+        lines.append("## 可定制项 Customization Options")
+        lines.append("")
+        for opt in options:
+            lines.append(f"- **{opt.get('type')}**: {opt.get('description')} ({opt.get('cost_impact', '')})")
+        lines.append("")
+
+    lines.append("---")
+    lines.append("_Generated by Hexa Blueprint™ Custom Route Engine (Shanghai MVP)_")
+    return "\n".join(lines)
 
 
 # ── Item Names Lookup ─────────────────────────────────────────────
@@ -1310,74 +1000,6 @@ async def get_item_names(
         return ItemNamesResponse(success=True, items=result)
     except Exception as e:
         return ItemNamesResponse(success=False, error=str(e))
-
-
-# ── 飞书 API 扩展接口（预留）──────────────────────────────────────
-
-class FeishuWebhookRequest(BaseModel):
-    """飞书 Webhook 请求"""
-
-    challenge: Optional[str] = Field(None, description="飞书验证挑战")
-    token: Optional[str] = Field(None, description="验证 Token")
-    type: Optional[str] = Field(None, description="事件类型")
-    event: Optional[Dict[str, Any]] = Field(None, description="事件数据")
-
-
-class FeishuWebhookResponse(BaseModel):
-    """飞书 Webhook 响应"""
-
-    challenge: Optional[str] = None
-    message: str = "ok"
-
-
-@app.post("/api/v1/feishu/webhook", response_model=FeishuWebhookResponse)
-async def feishu_webhook(request: FeishuWebhookRequest):
-    """飞书机器人 Webhook 接口（预留）"""
-    if request.challenge:
-        return FeishuWebhookResponse(challenge=request.challenge)
-    return FeishuWebhookResponse(message="收到飞书事件")
-
-
-@app.post("/api/v1/feishu/card", response_model=Dict[str, Any])
-async def feishu_card_template(intent: UserIntentRequest, api_key: str = Depends(verify_api_key)):
-    """飞书卡片模板接口（预留）"""
-    try:
-        user_intent = intent.model_dump()
-        product = get_product_recommendation(user_intent)
-
-        if product.get("error"):
-            return {"success": False, "error": product["error"]}
-
-        cost_result = calculate_total_cost(product, user_intent)
-        grand_total = cost_result.get("summary", {}).get("grand_total", 0)
-
-        card = {
-            "config": {"wide_screen_mode": True},
-            "header": {
-                "title": {"tag": "plain_text", "content": f"🗺️ {product['product_name']}"},
-                "template": "blue",
-            },
-            "elements": [
-                {
-                    "tag": "div",
-                    "text": {
-                        "tag": "lark_md",
-                        "content": f"**行程天数:** {product['days']} 天\n**团费总计:** ¥{grand_total:.0f}",
-                    },
-                },
-                {
-                    "tag": "div",
-                    "text": {
-                        "tag": "lark_md",
-                        "content": f"**每日行程:**\n{product['itinerary']}",
-                    },
-                },
-            ],
-        }
-
-        return {"success": True, "card": card}
-    except Exception as e:
-        return {"success": False, "error": str(e)}
 
 
 # ── Supplier Payment Management (Kanban) ────────────────────────────

@@ -51,7 +51,7 @@ git push -u origin main
 
 ```bash
 # 替换成你的 Railway 域名
-curl https://hexa-api.up.railway.app/api/v1/cities
+curl https://hexa-api.up.railway.app/api/v2/cities
 # 应该返回城市列表，部署成功
 ```
 

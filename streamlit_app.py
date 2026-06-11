@@ -21,11 +21,186 @@ API_KEY = os.getenv("API_KEY", "hexa-tour-2024")
 HEADERS = {"X-API-Key": API_KEY, "Content-Type": "application/json"}
 
 
+# ── HR 演示视图辅助 ─────────────────────────────────────────────
+
+def _demo_duration_label(duration_type: str) -> str:
+    return "全天路线" if duration_type == "one_day" else "半天路线"
+
+
+def _demo_price_summary(pricing: Dict[str, Any], route: Dict[str, Any]) -> Dict[str, Any]:
+    if pricing and pricing.get("success"):
+        summary = pricing.get("summary", {})
+        return {
+            "grand_total": summary.get("grand_total", 0),
+            "per_person": summary.get("per_person", 0),
+            "total_people": summary.get("total_people", 0),
+        }
+    return {
+        "grand_total": route.get("estimated_cost_rmb", 0),
+        "per_person": 0,
+        "total_people": 0,
+    }
+
+
+def render_hr_demo_card(
+    route: Dict[str, Any],
+    pricing: Dict[str, Any],
+    request_payload: Dict[str, Any],
+) -> None:
+    """一屏截图友好的 HR 演示摘要。"""
+    units = route.get("units", [])
+    transfers = route.get("transfers", [])
+    price = _demo_price_summary(pricing, route)
+    route_names = " → ".join([u.get("name_cn") or u.get("name_en", "") for u in units[:4]])
+    tags = ", ".join(request_payload.get("interests", []))
+    total_min = int(route.get("total_duration_min", 0) or 0)
+    hours = f"{total_min // 60}h{total_min % 60}m" if total_min else "-"
+    mapped_count = sum(1 for u in units if u.get("cost_item_code"))
+    warning_count = len(route.get("risk_warnings", []))
+
+    st.markdown(
+        """
+        <style>
+        .hr-demo-card {
+            border: 1px solid #ead9d6;
+            background: linear-gradient(180deg, #fffafa 0%, #ffffff 62%);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin: 8px 0 22px;
+            box-shadow: 0 8px 24px rgba(30, 41, 59, 0.06);
+        }
+        .hr-demo-eyebrow {
+            color: #f05a54;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: .02em;
+            margin-bottom: 6px;
+        }
+        .hr-demo-title {
+            color: #272b3a;
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.18;
+            margin-bottom: 8px;
+        }
+        .hr-demo-subtitle {
+            color: #6b7280;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+        .hr-demo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .hr-demo-metric {
+            background: #f7f7fb;
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+        .hr-demo-label {
+            color: #7a7f8d;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+        .hr-demo-value {
+            color: #272b3a;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.15;
+        }
+        .hr-demo-section-title {
+            color: #272b3a;
+            font-size: 15px;
+            font-weight: 800;
+            margin-top: 16px;
+            margin-bottom: 7px;
+        }
+        .hr-demo-route {
+            color: #2f3443;
+            background: #fff;
+            border: 1px solid #ececf2;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 17px;
+            font-weight: 700;
+        }
+        .hr-demo-note {
+            color: #626978;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+        .hr-demo-pill {
+            display: inline-block;
+            background: #fff1f0;
+            color: #d9473f;
+            border-radius: 999px;
+            padding: 4px 10px;
+            margin-right: 8px;
+            margin-top: 6px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        @media (max-width: 900px) {
+            .hr-demo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .hr-demo-title { font-size: 28px; }
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        f"""
+        <div class="hr-demo-card">
+            <div class="hr-demo-eyebrow">HR DEMO SNAPSHOT · AI Travel Ops Copilot</div>
+            <div class="hr-demo-title">上海半定制路线生成器</div>
+            <div class="hr-demo-subtitle">
+                输入客户画像后，系统自动完成画像匹配、POI 编排、交通检查、成本报价，并生成可发送客户的行程草稿。
+            </div>
+            <div>
+                <span class="hr-demo-pill">{_demo_duration_label(request_payload.get("duration_type", ""))}</span>
+                <span class="hr-demo-pill">兴趣: {tags or "culture"}</span>
+                <span class="hr-demo-pill">人群: {request_payload.get("group_type", "-")}</span>
+                <span class="hr-demo-pill">预算: {request_payload.get("budget_level", "-")}</span>
+            </div>
+            <div class="hr-demo-grid">
+                <div class="hr-demo-metric">
+                    <div class="hr-demo-label">推荐时长</div>
+                    <div class="hr-demo-value">{hours}</div>
+                </div>
+                <div class="hr-demo-metric">
+                    <div class="hr-demo-label">路线节点</div>
+                    <div class="hr-demo-value">{len(units)} 个</div>
+                </div>
+                <div class="hr-demo-metric">
+                    <div class="hr-demo-label">总价 / 人均</div>
+                    <div class="hr-demo-value">¥{price["grand_total"]:,.0f} / ¥{price["per_person"]:,.0f}</div>
+                </div>
+                <div class="hr-demo-metric">
+                    <div class="hr-demo-label">成本映射</div>
+                    <div class="hr-demo-value">{mapped_count}/{len(units)}</div>
+                </div>
+            </div>
+            <div class="hr-demo-section-title">生成路线</div>
+            <div class="hr-demo-route">{route_names or "等待生成路线"}</div>
+            <div class="hr-demo-section-title">技术亮点</div>
+            <div class="hr-demo-note">
+                35 个上海体验单元 + {len(transfers)} 段交通关系参与编排；报价接入城市 mashes 成本库；
+                自动输出模板合规、交通风险和运营可审核说明。当前风险提示 {warning_count} 条。
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 # ── API 交互 ───────────────────────────────────────────────────
 
 def api_get_cities() -> List[str]:
     try:
-        resp = requests.get(f"{API_BASE}/api/v1/cities", headers=HEADERS, timeout=5)
+        resp = requests.get(f"{API_BASE}/api/v2/cities", headers=HEADERS, timeout=5)
         data = resp.json()
         return data.get("cities", [])
     except Exception:
@@ -90,6 +265,17 @@ def api_get_product_options(city: str, days: int) -> Dict[str, Any]:
 def api_full_chain(payload: Dict[str, Any]) -> Dict[str, Any]:
     resp = requests.post(
         f"{API_BASE}/api/v2/full_chain",
+        json=payload,
+        headers=HEADERS,
+        timeout=30,
+    )
+    return resp.json()
+
+
+def api_custom_route(payload: Dict[str, Any]) -> Dict[str, Any]:
+    """调用上海半定制路线 API"""
+    resp = requests.post(
+        f"{API_BASE}/api/v2/custom-route",
         json=payload,
         headers=HEADERS,
         timeout=30,
@@ -202,7 +388,7 @@ with st.sidebar:
 
 # ── Tabs ──────────────────────────────────────────────────────
 
-tab1, tab2 = st.tabs(["✈️ 行程生成", "💳 付款管理"])
+tab1, tab2, tab3 = st.tabs(["✈️ 行程生成", "🏙️ 上海半定制", "💳 付款管理"])
 
 # ==================================================================
 # Tab 1: 行程生成 (existing functionality)
@@ -306,10 +492,217 @@ with tab1:
 
 
 # ==================================================================
-# Tab 2: 供应商付款管理 (Payment Tracker)
+# Tab 2: 上海半定制路线 (Custom Route MVP)
 # ==================================================================
 
 with tab2:
+    st.subheader("🏙️ 上海半定制路线生成器")
+    st.caption("基于 POI 最小单元 + 人群画像 + 交通规则的半定制路线编排（与固定 21 产品链路并行）")
+
+    col_left, col_right = st.columns(2)
+
+    with col_left:
+        custom_duration = st.selectbox(
+            "路线时长", ["one_day", "half_day"],
+            format_func=lambda x: "全天 (One Day)" if x == "one_day" else "半天 (Half Day)",
+            key="custom_dur"
+        )
+
+        custom_interests = st.multiselect(
+            "兴趣标签",
+            ["history", "culture", "photography", "architecture", "food", "cafe",
+             "shopping", "street life", "museum", "garden", "night view", "literature"],
+            default=["culture", "photography"],
+            key="custom_int"
+        )
+
+        custom_pace = st.selectbox(
+            "节奏偏好",
+            ["moderate", "relaxed", "fast"],
+            format_func=lambda x: {"moderate": "适中 Moderate", "relaxed": "慢节奏 Relaxed", "fast": "快节奏 Fast"}[x],
+            key="custom_pace"
+        )
+
+    with col_right:
+        custom_budget = st.selectbox(
+            "预算等级",
+            ["medium", "low", "flexible"],
+            format_func=lambda x: {"medium": "中等 Medium", "low": "低预算 Budget", "flexible": "灵活 Flexible"}[x],
+            key="custom_budget"
+        )
+
+        custom_group = st.selectbox(
+            "人群类型",
+            ["couple", "family", "solo", "senior"],
+            format_func=lambda x: {"couple": "情侣 Couple", "family": "家庭 Family", "solo": "独自 Solo", "senior": "长者 Senior"}[x],
+            key="custom_group"
+        )
+
+    col_a, col_b, col_c, col_d = st.columns(4)
+    with col_a:
+        custom_adults = st.number_input("成人", 1, 10, 2, key="custom_adult")
+    with col_b:
+        custom_children = st.number_input("儿童", 0, 10, 0, key="custom_child")
+    with col_c:
+        custom_seniors = st.number_input("老人", 0, 10, 0, key="custom_senior")
+    with col_d:
+        pass
+
+    col_x, col_y, col_z = st.columns(3)
+    with col_x:
+        custom_rain = st.checkbox("🌧️ 雨天模式", value=False, key="custom_rain")
+    with col_y:
+        custom_car = st.checkbox("🚗 包车", value=False, key="custom_car")
+    with col_z:
+        custom_guide = st.checkbox("🎓 英文导游", value=False, key="custom_guide")
+
+    custom_is_peak = st.checkbox("旺季价格", value=True, key="custom_peak")
+
+    custom_btn = st.button("🎨 生成半定制路线", type="primary", use_container_width=True, key="custom_btn")
+
+    if custom_btn:
+        with st.spinner("正在编排路线 + 计算报价..."):
+            payload = {
+                "city": "上海",
+                "duration_type": custom_duration,
+                "interests": custom_interests or ["culture"],
+                "pace": custom_pace,
+                "budget_level": custom_budget,
+                "group_type": custom_group,
+                "adults": custom_adults,
+                "children": custom_children,
+                "seniors": custom_seniors,
+                "is_peak": custom_is_peak,
+                "rainy_day": custom_rain,
+                "need_private_car": custom_car,
+                "need_guide": custom_guide,
+            }
+            result = api_custom_route(payload)
+
+        if result.get("success"):
+            route = result.get("route", {})
+            pricing = result.get("pricing", {})
+
+            render_hr_demo_card(route, pricing, payload)
+
+            # 路线概览
+            with st.container():
+                c1, c2, c3, c4 = st.columns(4)
+                with c1:
+                    st.metric("路线标题", route.get("title_en", "")[:25] + "..." if len(route.get("title_en", "")) > 25 else route.get("title_en", ""))
+                with c2:
+                    total_min = route.get("total_duration_min", 0)
+                    st.metric("总时长", f"{total_min}min ({total_min//60}h{total_min%60}m)")
+                with c3:
+                    st.metric("活动时间", f"{route.get('activity_min', 0)}min")
+                with c4:
+                    st.metric("交通时间", f"{route.get('transit_min', 0)}min")
+
+            st.divider()
+
+            # 路线卡片
+            st.subheader("🗺️ 推荐路线")
+            units = route.get("units", [])
+            for u in units:
+                cost_label = f"💰 ¥{u['estimated_cost_rmb']:.0f}" if u['estimated_cost_rmb'] > 0 else "🆓 Free"
+                tags = []
+                if u.get("indoor_outdoor") == "indoor": tags.append("🏠 Indoor")
+                elif u.get("indoor_outdoor") == "outdoor": tags.append("🌳 Outdoor")
+                if u.get("rainy_day_friendly"): tags.append("☔ OK")
+                if u.get("elderly_friendly"): tags.append("👴 OK")
+                tag_str = " · ".join(tags) if tags else ""
+
+                with st.expander(
+                    f"{u['sequence']}. {u['name_en']} ({u['name_cn']}) — {u['duration_min']}min {cost_label}",
+                    expanded=(u['sequence'] <= 3)
+                ):
+                    col_a, col_b = st.columns([3, 1])
+                    with col_a:
+                        st.caption(f"📍 {u['area']}  |  {u['unit_type']}  |  fit={u['fit_score']:.1f}")
+                        if tag_str: st.caption(tag_str)
+                        if u.get("description_en"): st.write(u["description_en"][:300])
+                    with col_b:
+                        if u.get("cost_item_code"):
+                            st.caption(f"Mash: {u['cost_item_code']}")
+                        else:
+                            st.caption("No mash mapping")
+
+            # 交通
+            transfers = route.get("transfers", [])
+            if transfers:
+                st.subheader("🚗 交通 Transfers")
+                for t in transfers:
+                    icon = "✅" if t.get("has_edge") else "⚠️"
+                    st.caption(
+                        f"{icon} {t.get('from_area','')} → {t.get('to_area','')} : "
+                        f"{t.get('mode','')} ~{t.get('transit_min',0)}min"
+                        + (f" — {t.get('risk','')}" if t.get('risk') else "")
+                    )
+
+            st.divider()
+
+            # 报价
+            st.subheader("💵 报价明细")
+            if pricing and pricing.get("success"):
+                summary = pricing.get("summary", {})
+                c1, c2, c3 = st.columns(3)
+                with c1: st.metric("总价", f"¥{summary.get('grand_total', 0):,.0f}")
+                with c2: st.metric("人均", f"¥{summary.get('per_person', 0):,.0f}")
+                with c3: st.metric("人数", f"{summary.get('total_people', 0)}")
+
+                line_items = pricing.get("line_items", [])
+                if line_items:
+                    st.caption("费用分类明细：")
+                    for li in line_items:
+                        st.caption(
+                            f"  {li.get('category',''):>16s} | {li.get('name',''):20s} | "
+                            f"¥{li.get('unit_price',0):>6.0f} × {li.get('quantity',0):.0f} = "
+                            f"¥{li.get('subtotal',0):>8.0f}"
+                        )
+            else:
+                st.metric("估算成本", f"¥{route.get('estimated_cost_rmb', 0):.0f}")
+                st.caption(f"_{route.get('cost_note', '')}_")
+
+            # 逻辑与风险
+            st.divider()
+            with st.expander("🔍 编排逻辑与风险", expanded=False):
+                logic = route.get("route_logic", [])
+                if logic:
+                    st.markdown("**编排逻辑：**")
+                    for step in logic:
+                        st.caption(f"→ {step}")
+
+                risks = route.get("risk_warnings", [])
+                if risks:
+                    st.markdown("**风险提示：**")
+                    for r in risks:
+                        st.warning(r)
+
+                tc = route.get("template_compliance", {})
+                if tc:
+                    st.caption(f"模板合规: {tc.get('satisfied_types',[])} ✓  /  未满足: {tc.get('unsatisfied_types',[])}")
+
+            # 模板信息
+            with st.expander("📋 匹配详情", expanded=False):
+                st.caption(f"匹配画像: {route.get('target_profile_summary', '')}")
+                st.caption(f"使用模板: {route.get('template_name', '')} ({route.get('template_id', '')})")
+                st.caption(f"推荐交通: {route.get('recommended_transport', '')}")
+
+            # Markdown 预览
+            st.divider()
+            st.subheader("📄 Markdown 行程单预览")
+            md = result.get("itinerary_markdown", "")
+            st.markdown(md)
+
+        else:
+            st.error(f"❌ 生成失败: {result.get('error', 'Unknown error')}")
+
+
+# ==================================================================
+# Tab 3: 供应商付款管理 (Payment Tracker)
+# ==================================================================
+
+with tab3:
     # ── Initialize session state ──
     if "show_payment_form" not in st.session_state:
         st.session_state.show_payment_form = False

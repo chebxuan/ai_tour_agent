@@ -56,11 +56,6 @@ class ProductReference(BaseModel):
     daily_itinerary: Optional[str] = Field(None, description="Daily itinerary text from product library")
 
 
-class MoneyAmount(BaseModel):
-    currency: str = Field("RMB")
-    amount: float = Field(..., ge=0)
-
-
 # ============================================================
 # 1. Lead JSON
 # ============================================================
@@ -136,34 +131,7 @@ class CandidateProductsJSON(BaseModel):
 
 
 # ============================================================
-# 3. Selected Products JSON
-# ============================================================
-
-
-class SelectedOptionalItem(BaseModel):
-    code: str
-    name: Optional[str] = None
-    reason: Optional[str] = None
-    selected: bool = True
-
-
-class SelectedProduct(BaseModel):
-    product: ProductReference
-    selection_reason: Optional[str] = None
-    regular_item_codes: List[str] = Field(default_factory=list)
-    selected_optional_items: List[SelectedOptionalItem] = Field(default_factory=list)
-    custom_adjustments: List[str] = Field(default_factory=list)
-
-
-class SelectedProductsJSON(BaseModel):
-    lead_id: str
-    selected_products: List[SelectedProduct] = Field(default_factory=list)
-    selection_notes: List[str] = Field(default_factory=list)
-    generated_at: Optional[str] = None
-
-
-# ============================================================
-# 4. Pricing Result JSON
+# 3. Pricing Result JSON
 # ============================================================
 
 
@@ -219,166 +187,7 @@ class PricingResultJSON(BaseModel):
 
 
 # ============================================================
-# 5. Quote Explanation JSON
-# ============================================================
-
-
-class QuoteExplanationBlock(BaseModel):
-    title: str
-    content: str
-    related_codes: List[str] = Field(default_factory=list)
-
-
-class QuoteExplanationJSON(BaseModel):
-    lead_id: Optional[str] = None
-    selected_product_id: Optional[str] = None
-    customer_facing_title: str
-    summary_text: str
-    price_statement: str = Field(..., description="e.g. RMB 4,445 per Adult on 4 Pax")
-    included_blocks: List[QuoteExplanationBlock] = Field(default_factory=list)
-    optional_blocks: List[QuoteExplanationBlock] = Field(default_factory=list)
-    exclusions: List[str] = Field(default_factory=list)
-    assumptions: List[str] = Field(default_factory=list)
-    warnings: List[str] = Field(default_factory=list)
-    generated_by: str = Field("agent_2_pricing_copilot")
-    generated_at: Optional[str] = None
-
-
-# ============================================================
-# 6. Plan Object
-# ============================================================
-
-
-class PlanActivity(BaseModel):
-    activity_id: str
-    city: str
-    title: str
-    source_product_id: Optional[str] = None
-    day_number: int = Field(..., ge=1)
-    time_slot: Optional[str] = Field(None, description="morning / afternoon / evening / custom")
-    duration_hours: Optional[float] = Field(None, ge=0)
-    activity_type: Optional[str] = None
-    included: bool = True
-    notes: List[str] = Field(default_factory=list)
-
-
-class PlanDay(BaseModel):
-    day_number: int = Field(..., ge=1)
-    date: Optional[dt_date] = None
-    city: str
-    theme: Optional[str] = None
-    activities: List[PlanActivity] = Field(default_factory=list)
-    transport_notes: List[str] = Field(default_factory=list)
-    hotel_checkin: Optional[bool] = None
-    hotel_checkout: Optional[bool] = None
-
-
-class PlanObject(BaseModel):
-    lead_id: str
-    trip_title: Optional[str] = None
-    cities: List[str] = Field(default_factory=list)
-    total_days: int = Field(..., ge=1)
-    travel_window: TravelWindow = Field(default_factory=TravelWindow)
-    selected_products: List[SelectedProduct] = Field(default_factory=list)
-    day_plans: List[PlanDay] = Field(default_factory=list)
-    planning_notes: List[str] = Field(default_factory=list)
-    generated_by: str = Field("agent_3_plan_structurer")
-    generated_at: Optional[str] = None
-
-
-# ============================================================
-# 7. Confirmed Client Info JSON
-# ============================================================
-
-
-class PassportInfo(BaseModel):
-    passport_name: Optional[str] = None
-    passport_number: Optional[str] = None
-    expiry_date: Optional[dt_date] = None
-
-
-class EmergencyContact(BaseModel):
-    name: Optional[str] = None
-    relationship: Optional[str] = None
-    phone: Optional[str] = None
-
-
-class TravelerProfile(BaseModel):
-    traveler_id: str
-    full_name: Optional[str] = None
-    gender: Optional[str] = None
-    birth_date: Optional[dt_date] = None
-    nationality: Optional[str] = None
-    passport: PassportInfo = Field(default_factory=PassportInfo)
-    dietary_requirements: List[str] = Field(default_factory=list)
-    health_notes: List[str] = Field(default_factory=list)
-    roommate_preference: Optional[str] = None
-    special_requests: List[str] = Field(default_factory=list)
-
-
-class ConfirmedClientInfoJSON(BaseModel):
-    lead_id: str
-    booking_id: Optional[str] = None
-    contact: ContactInfo = Field(default_factory=ContactInfo)
-    emergency_contact: EmergencyContact = Field(default_factory=EmergencyContact)
-    travelers: List[TravelerProfile] = Field(default_factory=list)
-    arrival_notes: List[str] = Field(default_factory=list)
-    departure_notes: List[str] = Field(default_factory=list)
-    internal_notes: List[str] = Field(default_factory=list)
-    generated_at: Optional[str] = None
-
-
-# ============================================================
-# 8. Delivery Draft Object
-# ============================================================
-
-
-class DeliveryContactCard(BaseModel):
-    role: str
-    name: str
-    phone: Optional[str] = None
-    wechat: Optional[str] = None
-    notes: Optional[str] = None
-
-
-class DeliveryReminder(BaseModel):
-    type: Literal["general", "food", "ticket", "transport", "safety", "religion", "hotel"]
-    content: str
-
-
-class DeliveryRow(BaseModel):
-    date_label: str
-    time_range: Optional[str] = None
-    city: str
-    activity_title: str
-    activity_description: Optional[str] = None
-    location_name: Optional[str] = None
-    location_details: Optional[str] = None
-    contacts: List[DeliveryContactCard] = Field(default_factory=list)
-    reminders: List[DeliveryReminder] = Field(default_factory=list)
-
-
-class DeliverySection(BaseModel):
-    section_type: Literal["cover", "notes", "itinerary_table", "hotel", "contacts", "transport", "custom"]
-    title: str
-    content: Optional[str] = None
-    rows: List[DeliveryRow] = Field(default_factory=list)
-
-
-class DeliveryDraftObject(BaseModel):
-    lead_id: str
-    booking_id: Optional[str] = None
-    document_title: str
-    language: str = Field("en")
-    trip_summary: Optional[str] = None
-    sections: List[DeliverySection] = Field(default_factory=list)
-    global_reminders: List[DeliveryReminder] = Field(default_factory=list)
-    generated_by: str = Field("agent_4_delivery_composer")
-    generated_at: Optional[str] = None
-
-
-# ============================================================
-# 9. Supplier Payment Tracker (Kanban)
+# 4. Supplier Payment Tracker (Kanban)
 # ============================================================
 
 
