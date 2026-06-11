@@ -496,6 +496,11 @@ with tab1:
 # ==================================================================
 
 with tab2:
+    if "custom_route_result" not in st.session_state:
+        st.session_state.custom_route_result = None
+    if "custom_route_payload" not in st.session_state:
+        st.session_state.custom_route_payload = None
+
     st.subheader("🏙️ 上海半定制路线生成器")
     st.caption("基于 POI 最小单元 + 人群画像 + 交通规则的半定制路线编排（与固定 21 产品链路并行）")
 
@@ -578,7 +583,13 @@ with tab2:
                 "need_guide": custom_guide,
             }
             result = api_custom_route(payload)
+            st.session_state.custom_route_result = result
+            st.session_state.custom_route_payload = payload
 
+    result = st.session_state.custom_route_result
+    payload = st.session_state.custom_route_payload or {}
+
+    if result:
         if result.get("success"):
             route = result.get("route", {})
             pricing = result.get("pricing", {})
@@ -696,6 +707,8 @@ with tab2:
 
         else:
             st.error(f"❌ 生成失败: {result.get('error', 'Unknown error')}")
+    else:
+        st.info("设置上方条件后点击「生成半定制路线」，生成成功后会出现一张适合发给 HR 的演示摘要卡。")
 
 
 # ==================================================================
