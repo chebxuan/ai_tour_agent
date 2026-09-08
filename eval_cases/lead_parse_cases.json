@@ -1,0 +1,622 @@
+[
+  {
+    "case_id": "lead_parse_001_optional_car",
+    "category": "optional_car",
+    "customer_message": "We are two adults visiting Shanghai for 2 days. We like architecture and photography. An English guide is needed. Private car is optional.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "trip_days": 2,
+      "adults": 2,
+      "children": 0,
+      "seniors": 0,
+      "need_guide": true,
+      "need_private_car": null,
+      "interests_contains": ["architecture", "photography"],
+      "sales_notes_contains": ["private car"]
+    }
+  },
+  {
+    "case_id": "lead_parse_002_senior_mobility",
+    "category": "senior_mobility",
+    "customer_message": "I will travel with my 70-year-old mother in Beijing for 3 days. She cannot walk too much and does not like crowded places.",
+    "expected": {
+      "destination_cities": ["北京"],
+      "trip_days": 3,
+      "seniors": 1,
+      "avoid_contains": ["long_walking", "crowded_tourist_spots"],
+      "travel_style_contains": ["senior_friendly", "slow_pace"]
+    }
+  },
+  {
+    "case_id": "lead_parse_003_retired_not_senior",
+    "category": "over_inference_guard",
+    "customer_message": "We are a retired couple from Canada. We want to visit Shanghai next spring and enjoy tea culture and quiet neighborhoods.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "adults": 2,
+      "seniors": 0,
+      "season": "next spring",
+      "nationality": "Canada",
+      "interests_contains": ["tea_culture", "local_life"]
+    }
+  },
+  {
+    "case_id": "lead_parse_004_family_food",
+    "category": "family",
+    "customer_message": "Family of four, two adults and two kids, visiting Chengdu for 2 days. We love pandas, local food, and a relaxed schedule.",
+    "expected": {
+      "destination_cities": ["成都"],
+      "trip_days": 2,
+      "adults": 2,
+      "children": 2,
+      "interests_contains": ["pandas", "local_food"],
+      "travel_style_contains": ["family_friendly", "slow_pace"]
+    }
+  },
+  {
+    "case_id": "lead_parse_005_missing_destination",
+    "category": "missing_destination",
+    "customer_message": "Two adults want a 3-day cultural trip in China next autumn. We need an English-speaking guide and prefer boutique hotels.",
+    "expected": {
+      "destination_cities": [],
+      "trip_days": 3,
+      "adults": 2,
+      "need_guide": true,
+      "season": "next autumn",
+      "hotel_style_notes_contains": ["boutique"]
+    }
+  },
+  {
+    "case_id": "lead_parse_006_airport_transfer",
+    "category": "airport_transfer",
+    "customer_message": "Three adults will arrive in Beijing from Singapore and need airport pickup. We have 4 days and want history and local food.",
+    "expected": {
+      "destination_cities": ["北京"],
+      "trip_days": 4,
+      "adults": 3,
+      "need_airport_transfer": true,
+      "departure_city": "Singapore",
+      "interests_contains": ["history", "local_food"]
+    }
+  },
+  {
+    "case_id": "lead_parse_007_no_guide_no_car",
+    "category": "explicit_false",
+    "customer_message": "One adult visiting Guangzhou for 1 day. I do not need a guide or private car. I mainly want local markets and food.",
+    "expected": {
+      "destination_cities": ["广州"],
+      "trip_days": 1,
+      "adults": 1,
+      "need_guide": false,
+      "need_private_car": false,
+      "interests_contains": ["local_markets", "local_food"]
+    }
+  },
+  {
+    "case_id": "lead_parse_008_budget_per_person",
+    "category": "budget",
+    "customer_message": "Two adults are planning Xi'an for 2 days. Budget is around 1500 RMB per person. We like history and don't need luxury hotels.",
+    "expected": {
+      "destination_cities": ["西安"],
+      "trip_days": 2,
+      "adults": 2,
+      "budget_max_per_person": 1500,
+      "interests_contains": ["history"],
+      "avoid_contains": ["luxury_hotels"]
+    }
+  },
+  {
+    "case_id": "lead_parse_009_hotel_view",
+    "category": "hotel",
+    "customer_message": "A couple wants a 3-day Shanghai trip with a premium hotel and river view room if possible. We like skyline photography and fine dining.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "trip_days": 3,
+      "adults": 2,
+      "hotel_tier": "premium",
+      "room_view_priority": true,
+      "interests_contains": ["photography", "fine_dining"]
+    }
+  },
+  {
+    "case_id": "lead_parse_010_dietary_notes",
+    "category": "dietary",
+    "customer_message": "We are two adults and one child visiting Chongqing for 3 days. We like food tours but one traveler is vegetarian and cannot eat very spicy food.",
+    "expected": {
+      "destination_cities": ["重庆"],
+      "trip_days": 3,
+      "adults": 2,
+      "children": 1,
+      "interests_contains": ["food"],
+      "dietary_notes_contains": ["vegetarian", "spicy"]
+    }
+  },
+  {
+    "case_id": "lead_parse_011_multi_city",
+    "category": "multi_city",
+    "customer_message": "Four friends want 5 days split between Beijing and Xi'an. We like history, museums, and evening food streets.",
+    "expected": {
+      "destination_cities": ["北京", "西安"],
+      "trip_days": 5,
+      "adults": 4,
+      "interests_contains": ["history", "museums", "local_food"]
+    }
+  },
+  {
+    "case_id": "lead_parse_012_must_have",
+    "category": "must_have",
+    "customer_message": "For Beijing, the Forbidden City is a must. We are two adults, 2 days, and want an English guide.",
+    "expected": {
+      "destination_cities": ["北京"],
+      "trip_days": 2,
+      "adults": 2,
+      "need_guide": true,
+      "must_have_contains": ["Forbidden City"]
+    }
+  },
+  {
+    "case_id": "lead_parse_013_avoid_shopping",
+    "category": "avoid",
+    "customer_message": "Two adults in Shanghai for 2 days. We want architecture and local life, but please avoid shopping stops and crowded tourist traps.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "trip_days": 2,
+      "adults": 2,
+      "interests_contains": ["architecture", "local_life"],
+      "avoid_contains": ["shopping_stops", "crowded_tourist_spots"]
+    }
+  },
+  {
+    "case_id": "lead_parse_014_flexible_dates",
+    "category": "travel_window",
+    "customer_message": "We can travel any 3 days in late October. Two adults want Zhangjiajie nature views and photography.",
+    "expected": {
+      "destination_cities": ["张家界"],
+      "trip_days": 3,
+      "adults": 2,
+      "season": "late October",
+      "interests_contains": ["nature", "photography"]
+    }
+  },
+  {
+    "case_id": "lead_parse_015_child_age",
+    "category": "family",
+    "customer_message": "Two adults with a 6-year-old child want Shanghai Disneyland and easy transport for 4 days.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "trip_days": 4,
+      "adults": 2,
+      "children": 1,
+      "interests_contains": ["Disneyland"],
+      "travel_style_contains": ["family_friendly", "easy_transport"]
+    }
+  },
+  {
+    "case_id": "lead_parse_016_luxury_budget",
+    "category": "budget",
+    "customer_message": "Honeymoon couple visiting Yunnan for 5 days. We prefer luxury hotels, scenic views, photography, and a private car.",
+    "expected": {
+      "destination_cities": ["云南"],
+      "trip_days": 5,
+      "adults": 2,
+      "hotel_tier": "luxury",
+      "need_private_car": true,
+      "interests_contains": ["scenic_views", "photography"],
+      "travel_style_contains": ["honeymoon"]
+    }
+  },
+  {
+    "case_id": "lead_parse_017_budget_total",
+    "category": "budget",
+    "customer_message": "Three adults want a 2-day Yangshuo trip. Total budget should stay under 6000 RMB. We like cycling and river views.",
+    "expected": {
+      "destination_cities": ["阳朔"],
+      "trip_days": 2,
+      "adults": 3,
+      "budget_max_total": 6000,
+      "interests_contains": ["cycling", "river_view"]
+    }
+  },
+  {
+    "case_id": "lead_parse_018_airport_transfer_false",
+    "category": "explicit_false",
+    "customer_message": "Two adults in Chengdu for 2 days. No airport transfer needed. We need a guide and want pandas and tea houses.",
+    "expected": {
+      "destination_cities": ["成都"],
+      "trip_days": 2,
+      "adults": 2,
+      "need_airport_transfer": false,
+      "need_guide": true,
+      "interests_contains": ["pandas", "tea_culture"]
+    }
+  },
+  {
+    "case_id": "lead_parse_019_senior_group",
+    "category": "senior_mobility",
+    "customer_message": "Group of 6 seniors visiting Guizhou for 4 days. We want ethnic culture, no hiking, and a slow pace.",
+    "expected": {
+      "destination_cities": ["贵州"],
+      "trip_days": 4,
+      "seniors": 6,
+      "interests_contains": ["ethnic_culture"],
+      "avoid_contains": ["hiking"],
+      "travel_style_contains": ["slow_pace", "senior_friendly"]
+    }
+  },
+  {
+    "case_id": "lead_parse_020_language_chinese",
+    "category": "language",
+    "customer_message": "我们两位成人想去北京玩3天，喜欢历史和胡同，不想太赶，需要英文导游。",
+    "expected": {
+      "destination_cities": ["北京"],
+      "trip_days": 3,
+      "adults": 2,
+      "need_guide": true,
+      "language": "zh",
+      "interests_contains": ["history", "hutong"],
+      "travel_style_contains": ["slow_pace"]
+    }
+  },
+  {
+    "case_id": "lead_parse_021_unknown_days",
+    "category": "missing_days",
+    "customer_message": "Two adults are considering Guangzhou. We like history, Cantonese food, and old neighborhoods. Dates are not decided yet.",
+    "expected": {
+      "destination_cities": ["广州"],
+      "trip_days": null,
+      "adults": 2,
+      "interests_contains": ["history", "local_food", "local_life"]
+    }
+  },
+  {
+    "case_id": "lead_parse_022_hotel_special_requirement",
+    "category": "hotel",
+    "customer_message": "Family of 3 visiting Shanghai for 2 days. We need connecting rooms or one family room if available.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "trip_days": 2,
+      "adults": 3,
+      "children": 0,
+      "hotel_special_requirements_contains": ["connecting rooms", "family room"]
+    }
+  },
+  {
+    "case_id": "lead_parse_023_transport_preference",
+    "category": "transport",
+    "customer_message": "Two adults visiting Xi'an for 3 days. We prefer high-speed train arrival from Beijing and private car inside the city.",
+    "expected": {
+      "destination_cities": ["西安"],
+      "trip_days": 3,
+      "adults": 2,
+      "departure_city": "Beijing",
+      "transport_preference": "high-speed train",
+      "need_private_car": true
+    }
+  },
+  {
+    "case_id": "lead_parse_024_food_allergy",
+    "category": "dietary",
+    "customer_message": "Two adults in Chongqing for 2 days. We want food experiences, but one guest has a peanut allergy.",
+    "expected": {
+      "destination_cities": ["重庆"],
+      "trip_days": 2,
+      "adults": 2,
+      "interests_contains": ["food"],
+      "dietary_notes_contains": ["peanut"]
+    }
+  },
+  {
+    "case_id": "lead_parse_025_photography_quiet",
+    "category": "tag_normalization",
+    "customer_message": "Retired couple, not elderly, visiting Shanghai for 2 days. We like quiet neighborhoods, Art Deco buildings, coffee shops and photography.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "trip_days": 2,
+      "adults": 2,
+      "seniors": 0,
+      "interests_contains": ["local_life", "architecture", "coffee", "photography"]
+    }
+  },
+  {
+    "case_id": "lead_parse_026_budget_both_total_and_per_person",
+    "category": "budget",
+    "customer_message": "Two adults are planning a 4-day Yangshuo trip. Our total budget is around 9000 RMB and we can spend about 4500 RMB per person.",
+    "expected": {
+      "destination_cities": ["阳朔"],
+      "trip_days": 4,
+      "adults": 2,
+      "budget_max_total": 9000,
+      "budget_max_per_person": 4500
+    }
+  },
+  {
+    "case_id": "lead_parse_027_guide_maybe_null",
+    "category": "over_inference_guard",
+    "customer_message": "Two adults want 5 days in Chongqing. We might want an English guide for a couple of the days, but we are not sure yet.",
+    "expected": {
+      "destination_cities": ["重庆"],
+      "trip_days": 5,
+      "adults": 2,
+      "need_guide": null,
+      "sales_notes_contains": ["guide"]
+    }
+  },
+  {
+    "case_id": "lead_parse_028_car_conditional_null",
+    "category": "over_inference_guard",
+    "customer_message": "Four adults in Beijing for 2 days. If the weather is very hot we might want a private car, but otherwise we are happy with the metro.",
+    "expected": {
+      "destination_cities": ["北京"],
+      "trip_days": 2,
+      "adults": 4,
+      "need_private_car": null,
+      "sales_notes_contains": ["private car"]
+    }
+  },
+  {
+    "case_id": "lead_parse_029_arrival_only_transfer",
+    "category": "airport_transfer",
+    "customer_message": "Two adults flying into Xi'an from London, arriving around 11am. We need a pickup from the airport to the hotel. On departure we can take a taxi ourselves.",
+    "expected": {
+      "destination_cities": ["西安"],
+      "adults": 2,
+      "departure_city": "London",
+      "need_airport_transfer": true,
+      "trip_days": null
+    }
+  },
+  {
+    "case_id": "lead_parse_030_multigeneration_family",
+    "category": "family",
+    "customer_message": "We are a family of four traveling Guangzhou: me and my husband, our 12-year-old son, and my 80-year-old mother. We want 4 days of dim sum and classical gardens.",
+    "expected": {
+      "destination_cities": ["广州"],
+      "trip_days": 4,
+      "adults": 2,
+      "children": 1,
+      "seniors": 1,
+      "interests_contains": ["local_food"]
+    }
+  },
+  {
+    "case_id": "lead_parse_031_hotel_for_senior_not_senior_guest",
+    "category": "over_inference_guard",
+    "customer_message": "Just two adults in our 40s, 3 days in Chengdu. Please pick a hotel with elevator access — easy for our older parents if they visit, though they are not joining us.",
+    "expected": {
+      "destination_cities": ["成都"],
+      "trip_days": 3,
+      "adults": 2,
+      "seniors": 0,
+      "hotel_special_requirements_contains": ["elevator"]
+    }
+  },
+  {
+    "case_id": "lead_parse_032_nights_not_days",
+    "category": "units_trap",
+    "customer_message": "We will stay 3 nights in Shanghai. Two adults.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "adults": 2,
+      "trip_days": null,
+      "sales_notes_contains": ["nights"]
+    }
+  },
+  {
+    "case_id": "lead_parse_033_five_star_luxury",
+    "category": "hotel",
+    "customer_message": "Two adults, 3 days in Shanghai. We only book five-star hotels and want a room overlooking the Bund.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "trip_days": 3,
+      "adults": 2,
+      "hotel_tier": "luxury",
+      "room_view_priority": true
+    }
+  },
+  {
+    "case_id": "lead_parse_034_negative_to_avoid",
+    "category": "avoid",
+    "customer_message": "Two adults visiting Chengdu for 2 days. We want pandas and hotpot, but please no theme parks and no shopping tour stops.",
+    "expected": {
+      "destination_cities": ["成都"],
+      "trip_days": 2,
+      "adults": 2,
+      "interests_contains": ["pandas"],
+      "avoid_contains": ["shopping_stops", "theme_park"]
+    }
+  },
+  {
+    "case_id": "lead_parse_035_mixed_language",
+    "category": "language",
+    "customer_message": "两位大人去重庆玩3天，want to try the hotpot and walk slowly through the old streets.",
+    "expected": {
+      "destination_cities": ["重庆"],
+      "trip_days": 3,
+      "adults": 2,
+      "language": "zh",
+      "interests_contains": ["local_food"],
+      "travel_style_contains": ["slow_pace"]
+    }
+  },
+  {
+    "case_id": "lead_parse_036_usd_currency_notes",
+    "category": "currency",
+    "customer_message": "Two adults in Beijing for 3 days. Budget is about 600 USD per person all-in.",
+    "expected": {
+      "destination_cities": ["北京"],
+      "trip_days": 3,
+      "adults": 2,
+      "budget_max_total": null,
+      "budget_max_per_person": null,
+      "budget_notes_contains": ["USD"]
+    }
+  },
+  {
+    "case_id": "lead_parse_037_greeting_noise",
+    "category": "noise",
+    "customer_message": "Hi! Great to find your agency. We are a couple from Germany planning 4 days in Yunnan. Looking forward to your reply. Best wishes, Anna and Tom.",
+    "expected": {
+      "destination_cities": ["云南"],
+      "trip_days": 4,
+      "adults": 2,
+      "nationality": "Germany"
+    }
+  },
+  {
+    "case_id": "lead_parse_038_grown_children_stay_home",
+    "category": "over_inference_guard",
+    "customer_message": "My husband and I are visiting Beijing for 3 days. Our three children are grown adults now and staying home.",
+    "expected": {
+      "destination_cities": ["北京"],
+      "trip_days": 3,
+      "adults": 2,
+      "children": 0,
+      "seniors": 0
+    }
+  },
+  {
+    "case_id": "lead_parse_039_driver_guide",
+    "category": "over_inference_guard",
+    "customer_message": "Two adults, 4 days in Chongqing. We want a driver who can also act as our guide, in an SUV.",
+    "expected": {
+      "destination_cities": ["重庆"],
+      "trip_days": 4,
+      "adults": 2,
+      "need_private_car": true,
+      "need_guide": null,
+      "sales_notes_contains": ["driver", "guide"]
+    }
+  },
+  {
+    "case_id": "lead_parse_040_unsupported_province_verbatim",
+    "category": "missing_destination",
+    "customer_message": "Two adults would like a 4-day trip touring Shanxi province for its ancient wooden pagodas and cliff grottoes.",
+    "expected": {
+      "destination_cities": ["山西"],
+      "trip_days": 4,
+      "adults": 2
+    }
+  },
+  {
+    "case_id": "lead_parse_041_senior_and_child_boundary",
+    "category": "family",
+    "customer_message": "We are two adults plus my 70-year-old father and my 12-year-old daughter — 4 people in total — for 3 days in Xiamen.",
+    "expected": {
+      "destination_cities": ["厦门"],
+      "trip_days": 3,
+      "adults": 2,
+      "children": 1,
+      "seniors": 1
+    }
+  },
+  {
+    "case_id": "lead_parse_042_exact_date_range",
+    "category": "travel_window",
+    "customer_message": "Two adults. We want to be in Beijing from May 3rd to May 7th, 2027.",
+    "expected": {
+      "destination_cities": ["北京"],
+      "adults": 2,
+      "start_date": "2027-05-03",
+      "end_date": "2027-05-07",
+      "trip_days": null
+    }
+  },
+  {
+    "case_id": "lead_parse_043_no_budget_no_luxury_flag",
+    "category": "over_inference_guard",
+    "customer_message": "Honeymoon couple, 5 days in Yunnan. We have no fixed budget — we just want a great experience with good food and comfortable but not flashy hotels.",
+    "expected": {
+      "destination_cities": ["云南"],
+      "trip_days": 5,
+      "adults": 2,
+      "budget_tier": null,
+      "budget_max_total": null,
+      "budget_max_per_person": null
+    }
+  },
+  {
+    "case_id": "lead_parse_044_active_sixty_not_senior",
+    "category": "over_inference_guard",
+    "customer_message": "One very active 60-year-old traveler wants 2 days of full-day hiking in Zhangjiajie.",
+    "expected": {
+      "destination_cities": ["张家界"],
+      "trip_days": 2,
+      "adults": 1,
+      "seniors": 0,
+      "interests_contains": ["hiking"]
+    }
+  },
+  {
+    "case_id": "lead_parse_045_contradictory_guide_resolved",
+    "category": "over_inference_guard",
+    "customer_message": "Two adults in Shanghai for 3 days. We thought about an English guide, but actually we prefer to explore on our own.",
+    "expected": {
+      "destination_cities": ["上海"],
+      "trip_days": 3,
+      "adults": 2,
+      "need_guide": false
+    }
+  },
+  {
+    "case_id": "lead_parse_046_inconsistent_budget_both_stated",
+    "category": "budget",
+    "customer_message": "Two adults in Xi'an for 2 days. Budget is 1500 RMB per person; overall we are hoping to stay under 2000 RMB total.",
+    "expected": {
+      "destination_cities": ["西安"],
+      "trip_days": 2,
+      "adults": 2,
+      "budget_max_per_person": 1500,
+      "budget_max_total": 2000
+    }
+  },
+  {
+    "case_id": "lead_parse_047_offbeat_avoid_touristy",
+    "category": "tag_normalization",
+    "customer_message": "Two adults, 3 days in Chengdu. We would rather skip the famous tourist sites and see where locals hang out — teahouses, food markets, quiet parks.",
+    "expected": {
+      "destination_cities": ["成都"],
+      "trip_days": 3,
+      "adults": 2,
+      "interests_contains": ["tea_culture", "local_food", "local_life"],
+      "avoid_contains": ["crowded_tourist_spots"]
+    }
+  },
+  {
+    "case_id": "lead_parse_048_guide_and_car_full_trip",
+    "category": "transport",
+    "customer_message": "Two adults, Beijing, 5 days in the second week of October. We want a guide every day and a private car the whole time.",
+    "expected": {
+      "destination_cities": ["北京"],
+      "trip_days": 5,
+      "adults": 2,
+      "need_guide": true,
+      "need_private_car": true
+    }
+  },
+  {
+    "case_id": "lead_parse_049_multi_signal_passenger_count",
+    "category": "family",
+    "customer_message": "One adult with two young children aged 5 and 8, plus my mother who is 72. We want 3 days in Guangzhou, family-friendly and not too tiring.",
+    "expected": {
+      "destination_cities": ["广州"],
+      "trip_days": 3,
+      "adults": 1,
+      "children": 2,
+      "seniors": 1,
+      "travel_style_contains": ["family_friendly", "slow_pace"]
+    }
+  },
+  {
+    "case_id": "lead_parse_050_allergy_and_avoid_together",
+    "category": "dietary",
+    "customer_message": "Two adults in Chengdu for 3 days. We love Sichuan food, but one of us has a severe shellfish allergy; also please avoid any places with heavy cigarette smoke.",
+    "expected": {
+      "destination_cities": ["成都"],
+      "trip_days": 3,
+      "adults": 2,
+      "dietary_notes_contains": ["shellfish", "allergy"],
+      "interests_contains": ["local_food"],
+      "avoid_contains": ["smoke"]
+    }
+  }
+]

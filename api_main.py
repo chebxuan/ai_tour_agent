@@ -40,10 +40,15 @@ from engines.payment_tracker import (
     update_payment,
     update_payment_status,
 )
+from engines.delivery_composer import compose_delivery_draft
+from engines.risk_check_engine import check_workflow_risks
+from llm_client import LLMConfigurationError, LLMParseError, parse_lead_text
+from workflow_logger import append_workflow_event
 
 from schemas import (
     CandidateProductsJSON,
     ContactInfo,
+    DeliveryDraftJSON,
     LeadIntent,
     LeadJSON,
     PassengerMix,
@@ -57,6 +62,7 @@ from schemas import (
     PaymentSuppliersResponse,
     PaymentUpdateRequest,
     PricingResultJSON,
+    RiskCheckResultJSON,
     ProductCandidate,
     ProductCandidateReason,
     ProductReference,
@@ -134,6 +140,29 @@ class HealthResponse(BaseModel):
     timestamp: str
 
 
+class LLMStatusResponse(BaseModel):
+    configured: bool
+    model: Optional[str] = None
+    base_url_configured: bool = False
+    message: str
+
+
+class HumanApprovalRequest(BaseModel):
+    workflow_id: Optional[str] = Field(None, description="Optional workflow id from caller")
+    lead_id: Optional[str] = None
+    approved: bool = True
+    reviewer: Optional[str] = None
+    notes: Optional[str] = None
+
+
+class HumanApprovalResponse(BaseModel):
+    success: bool
+    workflow_id: str
+    step: str = "HumanApproved"
+    approved: bool
+    generated_at: str
+
+
 class ProductMatchRequest(BaseModel):
     lead: LeadJSON
 
@@ -148,6 +177,62 @@ class PricingRequestV2(BaseModel):
     transfer_code: Optional[str] = Field(None, description="Transfer service code")
     transfer_times: int = Field(0, ge=0)
     car_days: Optional[int] = Field(None, ge=0)
+    selected_optional_item_codes: List[str] = Field(default_factory=list)
+
+
+class LeadParseRequest(BaseModel):
+    raw_text: str = Field(..., min_length=1, description="Customer free-form inquiry text")
+    lead_id: Optional[str] = Field(None, description="Optional caller-provided lead id")
+    source_channel: Optional[str] = Field(None, description="e.g. email, form, whatsapp, sales chat")
+    source_id: Optional[str] = Field(None, description="External message/form/thread id")
+
+
+class LeadParseResponse(BaseModel):
+    success: bool
+    lead: Optional[LeadJSON] = None
+    error: Optional[str] = None
+    generated_at: str
+
+
+class RiskCheckRequest(BaseModel):
+    lead: LeadJSON
+    product_match: Optional[CandidateProductsJSON] = None
+    pricing: Optional[PricingResultJSON] = None
+    itinerary_markdown: str = ""
+
+
+class DeliveryComposeRequest(BaseModel):
+    lead: LeadJSON
+    product_match: Optional[CandidateProductsJSON] = None
+    pricing: Optional[PricingResultJSON] = None
+    risk_check: Optional[RiskCheckResultJSON] = None
+    itinerary_markdown: str = ""
+
+
+class LeadFullChainRequest(BaseModel):
+    """从已经结构化的 LeadJSON 直接跑产品匹配、报价、行程和风险检查。"""
+
+    lead: LeadJSON
+    is_peak: bool = Field(True, description="Whether current quote is peak season")
+    selected_product_id: Optional[str] = Field(None, description="Optional product id chosen by sales")
+    guide_code: Optional[str] = Field(None, description="Optional guide service code")
+    hotel_code: Optional[str] = Field(None, description="Optional hotel service code")
+    hotel_nights: Optional[int] = Field(None, ge=0)
+    transfer_code: Optional[str] = Field(None, description="Optional transfer service code")
+    transfer_times: int = Field(0, ge=0)
+    car_days: Optional[int] = Field(None, ge=0)
+    selected_optional_item_codes: List[str] = Field(default_factory=list)
+
+
+class LeadTextFullChainRequest(BaseModel):
+    """从客户长文本直接跑完整链路。"""
+
+    raw_text: str = Field(..., min_length=1, description="Customer free-form inquiry text")
+    lead_id: Optional[str] = Field(None, description="Optional caller-provided lead id")
+    source_channel: Optional[str] = Field(None, description="e.g. email, form, whatsapp, sales chat")
+    source_id: Optional[str] = Field(None, description="External message/form/thread id")
+    is_peak: bool = Field(True, description="Whether current quote is peak season")
+    selected_product_id: Optional[str] = Field(None, description="Optional product id chosen by sales")
     selected_optional_item_codes: List[str] = Field(default_factory=list)
 
 
@@ -310,7 +395,7 @@ def build_candidates_from_lead(lead: LeadJSON) -> CandidateProductsJSON:
         query_summary=build_query_summary_from_lead(lead),
         candidates=top_candidates,
         recommended_product_id=recommended_product_id,
-        generated_by="agent_1_product_matcher",
+        generated_by="product_matcher",
         generated_at=datetime.utcnow().isoformat(timespec="seconds") + "Z",
     )
 
@@ -575,6 +660,181 @@ def build_lead_from_full_chain_request(req: FullChainRequest) -> LeadJSON:
     )
 
 
+def infer_default_guide_code(city: str, need_guide: Optional[bool]) -> Optional[str]:
+    if not need_guide:
+        return None
+    city_prefix = get_city_code_prefix(city)
+    return f"{city_prefix}-GUIDE-01" if city_prefix else None
+
+
+def run_full_chain_for_lead(
+    *,
+    lead: LeadJSON,
+    is_peak: bool,
+    selected_product_id: Optional[str] = None,
+    guide_code: Optional[str] = None,
+    hotel_code: Optional[str] = None,
+    hotel_nights: Optional[int] = None,
+    transfer_code: Optional[str] = None,
+    transfer_times: int = 0,
+    car_days: Optional[int] = None,
+    selected_optional_item_codes: Optional[List[str]] = None,
+) -> FullChainResponse:
+    """LeadJSON → product match → pricing → markdown → risk check."""
+    generated_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+    workflow_id = f"lead_full_chain_{uuid4().hex[:8]}"
+    partial = FullChainResponse(success=False, lead=lead, generated_at=generated_at)
+
+    append_workflow_event(
+        workflow_id=workflow_id,
+        step="LeadReceived",
+        status="success",
+        lead_id=lead.lead_id,
+        details={
+            "destination_cities": lead.intent.destination_cities,
+            "trip_days": lead.intent.trip_days,
+        },
+    )
+
+    try:
+        product_match = build_candidates_from_lead(lead)
+        partial.product_match = product_match
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="ProductMatched",
+            status="success",
+            lead_id=lead.lead_id,
+            details={
+                "recommended_product_id": product_match.recommended_product_id,
+                "candidate_count": len(product_match.candidates),
+            },
+        )
+    except Exception as e:
+        partial.error = f"产品匹配失败: {str(e)}"
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="ProductMatched",
+            status="failed",
+            lead_id=lead.lead_id,
+            details={"error": str(e)},
+        )
+        return partial
+
+    if not partial.product_match or not partial.product_match.candidates:
+        partial.error = "未找到匹配产品"
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="ProductMatched",
+            status="failed",
+            lead_id=lead.lead_id,
+            details={"error": "no_candidates"},
+        )
+        return partial
+
+    top_product_id = selected_product_id or partial.product_match.recommended_product_id
+    product = get_normalized_product_by_id(top_product_id) if top_product_id else None
+    if not product:
+        partial.error = f"未找到产品: {top_product_id}"
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="ProductSelected",
+            status="failed",
+            lead_id=lead.lead_id,
+            details={"selected_product_id": top_product_id},
+        )
+        return partial
+
+    product_days = int(product.get("duration_days", lead.intent.trip_days or 1) or 1)
+    city = product.get("city") or (lead.intent.destination_cities[0] if lead.intent.destination_cities else "")
+    pricing_request = PricingRequestV2(
+        lead=lead,
+        selected_product_id=top_product_id,
+        is_peak=is_peak,
+        guide_code=guide_code or infer_default_guide_code(city, lead.intent.need_guide),
+        hotel_code=hotel_code,
+        hotel_nights=hotel_nights if hotel_nights is not None else max(product_days - 1, 0),
+        transfer_code=transfer_code,
+        transfer_times=transfer_times,
+        car_days=car_days if car_days is not None else (product_days if lead.intent.need_private_car else 0),
+        selected_optional_item_codes=selected_optional_item_codes or [],
+    )
+
+    try:
+        user_intent = build_user_intent_from_pricing_request(pricing_request, product)
+        pricing_result = calculate_total_cost(product, user_intent)
+        partial.pricing = PricingResultJSON(**pricing_result)
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="CostCalculated",
+            status="success" if partial.pricing.success else "failed",
+            lead_id=lead.lead_id,
+            details={
+                "selected_product_id": top_product_id,
+                "grand_total": partial.pricing.summary.grand_total if partial.pricing.summary else None,
+                "issue_count": len(partial.pricing.validation_issues),
+            },
+        )
+    except Exception as e:
+        partial.error = f"报价计算失败: {str(e)}"
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="CostCalculated",
+            status="failed",
+            lead_id=lead.lead_id,
+            details={"selected_product_id": top_product_id, "error": str(e)},
+        )
+        return partial
+
+    partial.itinerary_markdown = format_itinerary_markdown(
+        lead=lead,
+        product_match=partial.product_match,
+        pricing=partial.pricing,
+        normalized_product=product,
+    )
+    append_workflow_event(
+        workflow_id=workflow_id,
+        step="ItineraryGenerated",
+        status="success",
+        lead_id=lead.lead_id,
+        details={"output_chars": len(partial.itinerary_markdown)},
+    )
+
+    partial.risk_check = check_workflow_risks(
+        lead=lead,
+        product_match=partial.product_match,
+        pricing=partial.pricing,
+        itinerary_markdown=partial.itinerary_markdown,
+    )
+    append_workflow_event(
+        workflow_id=workflow_id,
+        step="RiskChecked",
+        status="success" if partial.risk_check.success else "failed",
+        lead_id=lead.lead_id,
+        details={
+            "issue_count": len(partial.risk_check.issues),
+            "human_review_required": partial.risk_check.human_review_required,
+        },
+    )
+
+    partial.delivery_draft = compose_delivery_draft(
+        lead=lead,
+        product_match=partial.product_match,
+        pricing=partial.pricing,
+        risk_check=partial.risk_check,
+        itinerary_markdown=partial.itinerary_markdown,
+    )
+    append_workflow_event(
+        workflow_id=workflow_id,
+        step="DeliveryComposed",
+        status="success",
+        lead_id=lead.lead_id,
+        details={"output_chars": len(partial.delivery_draft.body_markdown)},
+    )
+
+    partial.success = True
+    return partial
+
+
 # ── API 端点 ─────────────────────────────────────────────────────
 
 @app.get("/", response_model=HealthResponse)
@@ -596,6 +856,52 @@ async def health_check():
         timestamp=datetime.now().isoformat(),
     )
 
+
+@app.get("/api/llm/status", response_model=LLMStatusResponse)
+async def llm_status(api_key: str = Depends(verify_api_key)):
+    """返回 LLM 配置状态，供前端展示友好提示。"""
+    configured = bool(os.getenv("OPENAI_API_KEY"))
+    model = os.getenv("OPENAI_MODEL", "gpt-4.1-mini") if configured else None
+    base_url_configured = bool(os.getenv("OPENAI_BASE_URL"))
+    message = (
+        "LLM lead parsing is available."
+        if configured
+        else "LLM is not configured. Form-based product matching and pricing still work."
+    )
+    return LLMStatusResponse(
+        configured=configured,
+        model=model,
+        base_url_configured=base_url_configured,
+        message=message,
+    )
+
+
+@app.post("/api/v2/human-approval", response_model=HumanApprovalResponse)
+async def record_human_approval(request: HumanApprovalRequest, api_key: str = Depends(verify_api_key)):
+    """记录人工确认节点，用于 workflow trace。"""
+    generated_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+    workflow_id = request.workflow_id or f"human_review_{uuid4().hex[:8]}"
+    step = "HumanApproved" if request.approved else "HumanRejected"
+    append_workflow_event(
+        workflow_id=workflow_id,
+        step=step,
+        status="success",
+        lead_id=request.lead_id,
+        details={
+            "approved": request.approved,
+            "reviewer": request.reviewer,
+            "notes": request.notes,
+        },
+    )
+    return HumanApprovalResponse(
+        success=True,
+        workflow_id=workflow_id,
+        step=step,
+        approved=request.approved,
+        generated_at=generated_at,
+    )
+
+
 @app.get("/api/v2/cities", response_model=Dict[str, Any])
 async def get_cities(api_key: str = Depends(verify_api_key)):
     """获取支持的城市列表"""
@@ -614,9 +920,74 @@ async def get_cities(api_key: str = Depends(verify_api_key)):
         )
 
 
+@app.post("/api/lead/parse", response_model=LeadParseResponse)
+async def parse_lead(request: LeadParseRequest, api_key: str = Depends(verify_api_key)):
+    """客户长文本 → LeadJSON。
+
+    这是 AI workflow 的自然语言入口，只负责结构化客户需求。
+    后续产品匹配、报价、行程生成仍由独立工具处理。
+    """
+    generated_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+    workflow_id = f"lead_parse_{uuid4().hex[:8]}"
+    try:
+        lead = parse_lead_text(
+            request.raw_text,
+            lead_id=request.lead_id,
+            source_channel=request.source_channel,
+            source_id=request.source_id,
+        )
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="LeadParsed",
+            status="success",
+            lead_id=lead.lead_id,
+            details={
+                "destination_cities": lead.intent.destination_cities,
+                "trip_days": lead.intent.trip_days,
+            },
+        )
+        return LeadParseResponse(success=True, lead=lead, generated_at=generated_at)
+    except LLMConfigurationError as e:
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="LeadParsed",
+            status="failed",
+            details={"error_type": "configuration_error"},
+        )
+        return LeadParseResponse(
+            success=False,
+            error=f"LLM 配置缺失: {str(e)}",
+            generated_at=generated_at,
+        )
+    except (LLMParseError, ValueError) as e:
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="LeadParsed",
+            status="failed",
+            details={"error_type": "parse_error"},
+        )
+        return LeadParseResponse(
+            success=False,
+            error=f"LeadJSON 解析失败: {str(e)}",
+            generated_at=generated_at,
+        )
+    except Exception as e:
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="LeadParsed",
+            status="failed",
+            details={"error_type": e.__class__.__name__},
+        )
+        return LeadParseResponse(
+            success=False,
+            error=f"Lead parse failed: {str(e)}",
+            generated_at=generated_at,
+        )
+
+
 @app.post("/api/v2/product-match", response_model=CandidateProductsJSON)
 async def match_products_v2(request: ProductMatchRequest, api_key: str = Depends(verify_api_key)):
-    """Agent 1 风格产品匹配接口"""
+    """产品匹配引擎（确定性 Workflow step）"""
     try:
         return build_candidates_from_lead(request.lead)
     except Exception as e:
@@ -646,6 +1017,41 @@ async def calculate_pricing_v2(request: PricingRequestV2, api_key: str = Depends
         )
 
 
+@app.post("/api/v2/risk-check", response_model=RiskCheckResultJSON)
+async def risk_check_v2(request: RiskCheckRequest, api_key: str = Depends(verify_api_key)):
+    """检查 workflow 输出是否需要人工复核。"""
+    try:
+        return check_workflow_risks(
+            lead=request.lead,
+            product_match=request.product_match,
+            pricing=request.pricing,
+            itinerary_markdown=request.itinerary_markdown,
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"风险检查失败: {str(e)}",
+        )
+
+
+@app.post("/api/v2/delivery-compose", response_model=DeliveryDraftJSON)
+async def delivery_compose_v2(request: DeliveryComposeRequest, api_key: str = Depends(verify_api_key)):
+    """生成客户交付邮件草稿；不改变产品、价格和风险检查结果。"""
+    try:
+        return compose_delivery_draft(
+            lead=request.lead,
+            product_match=request.product_match,
+            pricing=request.pricing,
+            risk_check=request.risk_check,
+            itinerary_markdown=request.itinerary_markdown,
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"交付草稿生成失败: {str(e)}",
+        )
+
+
 class FullChainRequest(BaseModel):
     """一键全链路请求 — 简化输入，内部串联 product → pricing，输出行程 + Highlights + 报价"""
 
@@ -669,9 +1075,69 @@ class FullChainResponse(BaseModel):
     lead: Optional[LeadJSON] = None
     product_match: Optional[CandidateProductsJSON] = None
     pricing: Optional[PricingResultJSON] = None
+    risk_check: Optional[RiskCheckResultJSON] = None
+    delivery_draft: Optional[DeliveryDraftJSON] = None
     itinerary_markdown: str = ""
     error: Optional[str] = None
     generated_at: str = ""
+
+
+@app.post("/api/v2/lead-full-chain", response_model=FullChainResponse)
+async def lead_full_chain_v2(request: LeadFullChainRequest, api_key: str = Depends(verify_api_key)):
+    """LeadJSON → 产品匹配 → 报价 → Markdown 行程单 → 风险检查。
+
+    用于 AI Lead Parse 后的直接链路，避免把结构化 Lead 再降级回简化表单字段。
+    """
+    return run_full_chain_for_lead(
+        lead=request.lead,
+        is_peak=request.is_peak,
+        selected_product_id=request.selected_product_id,
+        guide_code=request.guide_code,
+        hotel_code=request.hotel_code,
+        hotel_nights=request.hotel_nights,
+        transfer_code=request.transfer_code,
+        transfer_times=request.transfer_times,
+        car_days=request.car_days,
+        selected_optional_item_codes=request.selected_optional_item_codes,
+    )
+
+
+@app.post("/api/v2/lead-text-full-chain", response_model=FullChainResponse)
+async def lead_text_full_chain_v2(request: LeadTextFullChainRequest, api_key: str = Depends(verify_api_key)):
+    """客户长文本 → LeadJSON → 产品匹配 → 报价 → Markdown 行程单 → 风险检查。"""
+    generated_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+    try:
+        lead = parse_lead_text(
+            request.raw_text,
+            lead_id=request.lead_id,
+            source_channel=request.source_channel,
+            source_id=request.source_id,
+        )
+    except LLMConfigurationError as e:
+        return FullChainResponse(
+            success=False,
+            error=f"LLM 配置缺失: {str(e)}",
+            generated_at=generated_at,
+        )
+    except (LLMParseError, ValueError) as e:
+        return FullChainResponse(
+            success=False,
+            error=f"LeadJSON 解析失败: {str(e)}",
+            generated_at=generated_at,
+        )
+    except Exception as e:
+        return FullChainResponse(
+            success=False,
+            error=f"Lead parse failed: {str(e)}",
+            generated_at=generated_at,
+        )
+
+    return run_full_chain_for_lead(
+        lead=lead,
+        is_peak=request.is_peak,
+        selected_product_id=request.selected_product_id,
+        selected_optional_item_codes=request.selected_optional_item_codes,
+    )
 
 
 @app.post("/api/v2/full_chain", response_model=FullChainResponse)
@@ -682,23 +1148,55 @@ async def full_chain_v2(request: FullChainRequest, api_key: str = Depends(verify
     输出包含结构化 JSON 和可直接发送客户的 Markdown 行程（day_plans + Highlights + 报价表）。
     """
     generated_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+    workflow_id = f"full_chain_{uuid4().hex[:8]}"
     partial = FullChainResponse(success=False, generated_at=generated_at)
 
     try:
         # 1. Build Lead
         lead = build_lead_from_full_chain_request(request)
         partial.lead = lead
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="LeadBuilt",
+            status="success",
+            lead_id=lead.lead_id,
+            details={"city": request.city, "days": request.days},
+        )
 
         # 2. Product Match
         try:
             product_match = build_candidates_from_lead(lead)
             partial.product_match = product_match
+            append_workflow_event(
+                workflow_id=workflow_id,
+                step="ProductMatched",
+                status="success",
+                lead_id=lead.lead_id,
+                details={
+                    "recommended_product_id": product_match.recommended_product_id,
+                    "candidate_count": len(product_match.candidates),
+                },
+            )
         except Exception as e:
             partial.error = f"产品匹配失败: {str(e)}"
+            append_workflow_event(
+                workflow_id=workflow_id,
+                step="ProductMatched",
+                status="failed",
+                lead_id=lead.lead_id,
+                details={"error": str(e)},
+            )
             return partial
 
         if not product_match.candidates:
             partial.error = "未找到匹配产品"
+            append_workflow_event(
+                workflow_id=workflow_id,
+                step="ProductMatched",
+                status="failed",
+                lead_id=lead.lead_id,
+                details={"error": "no_candidates"},
+            )
             return partial
 
         top_product_id = product_match.recommended_product_id
@@ -725,8 +1223,26 @@ async def full_chain_v2(request: FullChainRequest, api_key: str = Depends(verify
             user_intent = build_user_intent_from_pricing_request(pricing_request, product or {})
             pricing_result = calculate_total_cost(product or {}, user_intent)
             partial.pricing = PricingResultJSON(**pricing_result)
+            append_workflow_event(
+                workflow_id=workflow_id,
+                step="CostCalculated",
+                status="success" if partial.pricing.success else "failed",
+                lead_id=lead.lead_id,
+                details={
+                    "selected_product_id": top_product_id,
+                    "grand_total": partial.pricing.summary.grand_total if partial.pricing.summary else None,
+                    "issue_count": len(partial.pricing.validation_issues),
+                },
+            )
         except Exception as e:
             partial.error = f"报价计算失败: {str(e)}"
+            append_workflow_event(
+                workflow_id=workflow_id,
+                step="CostCalculated",
+                status="failed",
+                lead_id=lead.lead_id,
+                details={"selected_product_id": top_product_id, "error": str(e)},
+            )
             return partial
 
         # 4. Format Markdown（直接使用 normalized product day_plans + highlights + pricing）
@@ -735,6 +1251,46 @@ async def full_chain_v2(request: FullChainRequest, api_key: str = Depends(verify
             product_match=product_match,
             pricing=partial.pricing,
             normalized_product=product,
+        )
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="ItineraryGenerated",
+            status="success",
+            lead_id=lead.lead_id,
+            details={"output_chars": len(partial.itinerary_markdown)},
+        )
+
+        # 5. Risk Check（不改写行程，只标记需要人工确认的问题）
+        partial.risk_check = check_workflow_risks(
+            lead=lead,
+            product_match=product_match,
+            pricing=partial.pricing,
+            itinerary_markdown=partial.itinerary_markdown,
+        )
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="RiskChecked",
+            status="success" if partial.risk_check.success else "failed",
+            lead_id=lead.lead_id,
+            details={
+                "issue_count": len(partial.risk_check.issues),
+                "human_review_required": partial.risk_check.human_review_required,
+            },
+        )
+
+        partial.delivery_draft = compose_delivery_draft(
+            lead=lead,
+            product_match=product_match,
+            pricing=partial.pricing,
+            risk_check=partial.risk_check,
+            itinerary_markdown=partial.itinerary_markdown,
+        )
+        append_workflow_event(
+            workflow_id=workflow_id,
+            step="DeliveryComposed",
+            status="success",
+            lead_id=lead.lead_id,
+            details={"output_chars": len(partial.delivery_draft.body_markdown)},
         )
 
         partial.success = True

@@ -1,0 +1,78 @@
+[
+  {
+    "case_id": "delivery_001_basic_with_warning",
+    "category": "basic",
+    "lead": {
+      "lead_id": "DELIVERY-001",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["上海"],
+        "trip_days": 2,
+        "interests": ["architecture", "photography"],
+        "need_private_car": null
+      }
+    },
+    "product_match": {
+      "lead_id": "DELIVERY-001",
+      "city_scope": ["上海"],
+      "query_summary": "2 adults planning a 2-day Shanghai trip.",
+      "candidates": [
+        {
+          "rank": 1,
+          "product": {
+            "product_id": "SH-P-01",
+            "city": "上海",
+            "product_name": "上海精华2日游",
+            "duration_days": 2
+          },
+          "match_score": 0.9,
+          "fit_label": "high",
+          "reason": {
+            "matched_interests": ["architecture"],
+            "matched_constraints": ["destination=上海", "trip_days=2"],
+            "warnings": [],
+            "rationale": "Exact city and duration match."
+          }
+        }
+      ],
+      "recommended_product_id": "SH-P-01"
+    },
+    "pricing": {
+      "lead_id": "DELIVERY-001",
+      "selected_product_id": "SH-P-01",
+      "success": true,
+      "summary": {
+        "city": "上海",
+        "product_name": "上海精华2日游",
+        "days": 2,
+        "total_people": 2,
+        "adults": 2,
+        "children": 0,
+        "seniors": 0,
+        "is_peak": true,
+        "hotel_nights": 1,
+        "car_days": 0,
+        "transfer_times": 0,
+        "grand_total": 200.0,
+        "per_person": 100.0,
+        "currency": "RMB"
+      }
+    },
+    "risk_check": {
+      "lead_id": "DELIVERY-001",
+      "success": true,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "PRIVATE_CAR_NEEDS_CONFIRMATION",
+          "message": "Private car preference is not confirmed; sales should confirm before final pricing.",
+          "field": "intent.need_private_car",
+          "requires_human_review": true
+        }
+      ],
+      "human_review_required": true
+    },
+    "itinerary_markdown": "## Day 1\nShanghai Museum and the Bund.",
+    "expected_contains": ["SH-P-01", "RMB 200.00", "PRIVATE_CAR_NEEDS_CONFIRMATION", "Shanghai Museum"]
+  }
+]

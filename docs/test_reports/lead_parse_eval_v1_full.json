@@ -1,0 +1,3627 @@
+{
+  "generated_at": "2026-09-08T04:46:23Z",
+  "case_count": 50,
+  "passed_assertions": 205,
+  "total_assertions": 270,
+  "field_accuracy": 0.7593,
+  "results": [
+    {
+      "case_id": "lead_parse_001_optional_car",
+      "success": false,
+      "passed": 8,
+      "total": 9,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_001_optional_car",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "architecture",
+            "photography"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": true,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Private car is optional."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_001_optional_car",
+          "raw_text": "We are two adults visiting Shanghai for 2 days. We like architecture and photography. An English guide is needed. Private car is optional."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:19:37Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_002_senior_mobility",
+      "success": false,
+      "passed": 2,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['北京'], got ['Beijing']",
+        "avoid_contains: expected ['long_walking', 'crowded_tourist_spots'], got ['crowded_places']",
+        "travel_style_contains: expected ['senior_friendly', 'slow_pace'], got ['senior_friendly', 'long_walking']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_002_senior_mobility",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 1,
+          "children": 0,
+          "seniors": 1
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Beijing"
+          ],
+          "trip_days": 3,
+          "interests": [],
+          "travel_style": [
+            "senior_friendly",
+            "long_walking"
+          ],
+          "must_have": [],
+          "avoid": [
+            "crowded_places"
+          ],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_002_senior_mobility",
+          "raw_text": "I will travel with my 70-year-old mother in Beijing for 3 days. She cannot walk too much and does not like crowded places."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:20:38Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_003_retired_not_senior",
+      "success": false,
+      "passed": 4,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']",
+        "season: expected 'next spring', got 'spring'"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_003_retired_not_senior",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": "Canada"
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": "spring"
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": null,
+          "interests": [
+            "tea_culture",
+            "local_life"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Retired couple from Canada."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_003_retired_not_senior",
+          "raw_text": "We are a retired couple from Canada. We want to visit Shanghai next spring and enjoy tea culture and quiet neighborhoods."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:20:59Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_004_family_food",
+      "success": false,
+      "passed": 4,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['成都'], got ['Chengdu']",
+        "travel_style_contains: expected ['family_friendly', 'slow_pace'], got ['slow_pace']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_004_family_food",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 2,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Chengdu"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "pandas",
+            "local_food"
+          ],
+          "travel_style": [
+            "slow_pace"
+          ],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_004_family_food",
+          "raw_text": "Family of four, two adults and two kids, visiting Chengdu for 2 days. We love pandas, local food, and a relaxed schedule."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:21:29Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_005_missing_destination",
+      "success": false,
+      "passed": 4,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected [], got ['China']",
+        "season: expected 'next autumn', got 'autumn'"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_005_missing_destination",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": "autumn"
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": "boutique hotels",
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "China"
+          ],
+          "trip_days": 3,
+          "interests": [
+            "cultural"
+          ],
+          "travel_style": [],
+          "must_have": [
+            "English-speaking guide"
+          ],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": true,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "English-speaking guide required"
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_005_missing_destination",
+          "raw_text": "Two adults want a 3-day cultural trip in China next autumn. We need an English-speaking guide and prefer boutique hotels."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:22:13Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_006_airport_transfer",
+      "success": false,
+      "passed": 5,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['北京'], got ['Beijing']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_006_airport_transfer",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 3,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Beijing"
+          ],
+          "trip_days": 4,
+          "interests": [
+            "history",
+            "local_food"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": "Singapore",
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": true,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_006_airport_transfer",
+          "raw_text": "Three adults will arrive in Beijing from Singapore and need airport pickup. We have 4 days and want history and local food."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:22:28Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_007_no_guide_no_car",
+      "success": false,
+      "passed": 5,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['广州'], got ['Guangzhou']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_007_no_guide_no_car",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 1,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Guangzhou"
+          ],
+          "trip_days": 1,
+          "interests": [
+            "local_markets",
+            "local_food"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": false,
+          "need_private_car": false,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_007_no_guide_no_car",
+          "raw_text": "One adult visiting Guangzhou for 1 day. I do not need a guide or private car. I mainly want local markets and food."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:22:49Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_008_budget_per_person",
+      "success": false,
+      "passed": 4,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['西安'], got [\"Xi'an\"]",
+        "avoid_contains: expected ['luxury_hotels'], got []"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_008_budget_per_person",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": 1500.0,
+          "notes": "around 1500 RMB per person"
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": "not luxury",
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Xi'an"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "history"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Budget is around 1500 RMB per person.",
+          "Customer does not need luxury hotels."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_008_budget_per_person",
+          "raw_text": "Two adults are planning Xi'an for 2 days. Budget is around 1500 RMB per person. We like history and don't need luxury hotels."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:23:14Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_009_hotel_view",
+      "success": false,
+      "passed": 5,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_009_hotel_view",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": "premium",
+          "room_view_priority": true,
+          "style_notes": null,
+          "special_requirements": [
+            "river view room if possible"
+          ]
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": 3,
+          "interests": [
+            "skyline_photography",
+            "fine_dining"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "River view room requested if possible."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_009_hotel_view",
+          "raw_text": "A couple wants a 3-day Shanghai trip with a premium hotel and river view room if possible. We like skyline photography and fine dining."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:23:38Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_010_dietary_notes",
+      "success": false,
+      "passed": 5,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['重庆'], got ['Chongqing']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_010_dietary_notes",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 1,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Chongqing"
+          ],
+          "trip_days": 3,
+          "interests": [
+            "local_food"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [
+            "very_spicy_food"
+          ],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": [
+            "one traveler is vegetarian",
+            "one traveler cannot eat very spicy food"
+          ]
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_010_dietary_notes",
+          "raw_text": "We are two adults and one child visiting Chongqing for 3 days. We like food tours but one traveler is vegetarian and cannot eat very spicy food."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:23:53Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_011_multi_city",
+      "success": false,
+      "passed": 3,
+      "total": 4,
+      "failures": [
+        "destination_cities: expected ['北京', '西安'], got ['Beijing', \"Xi'an\"]"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_011_multi_city",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 4,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Beijing",
+            "Xi'an"
+          ],
+          "trip_days": 5,
+          "interests": [
+            "history",
+            "museums",
+            "local_food"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_011_multi_city",
+          "raw_text": "Four friends want 5 days split between Beijing and Xi'an. We like history, museums, and evening food streets."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:24:12Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_012_must_have",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['北京'], got ['Beijing']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_012_must_have",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Beijing"
+          ],
+          "trip_days": 2,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [
+            "Forbidden City"
+          ],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": true,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Customer wants an English guide."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_012_must_have",
+          "raw_text": "For Beijing, the Forbidden City is a must. We are two adults, 2 days, and want an English guide."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:24:26Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_013_avoid_shopping",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_013_avoid_shopping",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "architecture",
+            "local_life"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [
+            "shopping_stops",
+            "crowded_tourist_spots"
+          ],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_013_avoid_shopping",
+          "raw_text": "Two adults in Shanghai for 2 days. We want architecture and local life, but please avoid shopping stops and crowded tourist traps."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:24:44Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_014_flexible_dates",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['张家界'], got ['Zhangjiajie']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_014_flexible_dates",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": "late October"
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Zhangjiajie"
+          ],
+          "trip_days": 3,
+          "interests": [
+            "nature_views",
+            "photography"
+          ],
+          "travel_style": [],
+          "must_have": [
+            "Zhangjiajie nature views",
+            "photography"
+          ],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_014_flexible_dates",
+          "raw_text": "We can travel any 3 days in late October. Two adults want Zhangjiajie nature views and photography."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:25:13Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_015_child_age",
+      "success": false,
+      "passed": 4,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']",
+        "interests_contains: expected ['Disneyland'], got []"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_015_child_age",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 1,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": 4,
+          "interests": [],
+          "travel_style": [
+            "easy_transport",
+            "family_friendly"
+          ],
+          "must_have": [
+            "Shanghai Disneyland"
+          ],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": "easy_transport",
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_015_child_age",
+          "raw_text": "Two adults with a 6-year-old child want Shanghai Disneyland and easy transport for 4 days."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:25:47Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_016_luxury_budget",
+      "success": false,
+      "passed": 5,
+      "total": 7,
+      "failures": [
+        "destination_cities: expected ['云南'], got ['Yunnan']",
+        "travel_style_contains: expected ['honeymoon'], got []"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_016_luxury_budget",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": "luxury",
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Yunnan"
+          ],
+          "trip_days": 5,
+          "interests": [
+            "photography",
+            "scenic_views"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": true,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Honeymoon couple.",
+          "Prefers scenic views; clarify whether this means hotel room views or general scenic itinerary."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_016_luxury_budget",
+          "raw_text": "Honeymoon couple visiting Yunnan for 5 days. We prefer luxury hotels, scenic views, photography, and a private car."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:26:29Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_017_budget_total",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['阳朔'], got ['Yangshuo']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_017_budget_total",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 3,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": 6000.0,
+          "max_per_person": null,
+          "notes": "Total budget should stay under 6000 RMB"
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": true,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Yangshuo"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "cycling",
+            "river_views"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_017_budget_total",
+          "raw_text": "Three adults want a 2-day Yangshuo trip. Total budget should stay under 6000 RMB. We like cycling and river views."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:26:54Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_018_airport_transfer_false",
+      "success": false,
+      "passed": 5,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['成都'], got ['Chengdu']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_018_airport_transfer_false",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Chengdu"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "pandas",
+            "tea_culture"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": true,
+          "need_private_car": null,
+          "need_airport_transfer": false,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_018_airport_transfer_false",
+          "raw_text": "Two adults in Chengdu for 2 days. No airport transfer needed. We need a guide and want pandas and tea houses."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:27:20Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_019_senior_group",
+      "success": false,
+      "passed": 5,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['贵州'], got ['Guizhou']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_019_senior_group",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 6,
+          "children": 0,
+          "seniors": 6
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Guizhou"
+          ],
+          "trip_days": 4,
+          "interests": [
+            "ethnic_culture"
+          ],
+          "travel_style": [
+            "slow_pace",
+            "senior_friendly"
+          ],
+          "must_have": [],
+          "avoid": [
+            "hiking"
+          ],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_019_senior_group",
+          "raw_text": "Group of 6 seniors visiting Guizhou for 4 days. We want ethnic culture, no hiking, and a slow pace."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:28:37Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_020_language_chinese",
+      "success": true,
+      "passed": 7,
+      "total": 7,
+      "failures": [],
+      "lead": {
+        "lead_id": "lead_parse_020_language_chinese",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "北京"
+          ],
+          "trip_days": 3,
+          "interests": [
+            "history",
+            "hutongs"
+          ],
+          "travel_style": [
+            "slow_pace"
+          ],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": true,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Customer requires an English-speaking guide."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_020_language_chinese",
+          "raw_text": "我们两位成人想去北京玩3天，喜欢历史和胡同，不想太赶，需要英文导游。"
+        },
+        "language": "zh",
+        "created_at": "2026-09-08T04:29:09Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_021_unknown_days",
+      "success": false,
+      "passed": 2,
+      "total": 4,
+      "failures": [
+        "destination_cities: expected ['广州'], got ['Guangzhou']",
+        "interests_contains: expected ['history', 'local_food', 'local_life'], got ['history', 'cantonese_food', 'local_life']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_021_unknown_days",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Guangzhou"
+          ],
+          "trip_days": null,
+          "interests": [
+            "history",
+            "cantonese_food",
+            "local_life"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_021_unknown_days",
+          "raw_text": "Two adults are considering Guangzhou. We like history, Cantonese food, and old neighborhoods. Dates are not decided yet."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:29:59Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_022_hotel_special_requirement",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_022_hotel_special_requirement",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 3,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": [
+            "connecting rooms or one family room if available"
+          ]
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": 2,
+          "interests": [],
+          "travel_style": [
+            "family_friendly"
+          ],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Family of 3; exact adult/child breakdown not provided."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_022_hotel_special_requirement",
+          "raw_text": "Family of 3 visiting Shanghai for 2 days. We need connecting rooms or one family room if available."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:31:56Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_023_transport_preference",
+      "success": false,
+      "passed": 5,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['西安'], got [\"Xi'an\"]"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_023_transport_preference",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Xi'an"
+          ],
+          "trip_days": 3,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": "Beijing",
+          "transport_preference": "high-speed train",
+          "need_guide": null,
+          "need_private_car": true,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Private car requested for use inside Xi'an."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_023_transport_preference",
+          "raw_text": "Two adults visiting Xi'an for 3 days. We prefer high-speed train arrival from Beijing and private car inside the city."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:32:16Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_024_food_allergy",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['重庆'], got ['Chongqing']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_024_food_allergy",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Chongqing"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "local_food"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": [
+            "peanut allergy"
+          ]
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_024_food_allergy",
+          "raw_text": "Two adults in Chongqing for 2 days. We want food experiences, but one guest has a peanut allergy."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:32:33Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_025_photography_quiet",
+      "success": false,
+      "passed": 3,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']",
+        "interests_contains: expected ['local_life', 'architecture', 'coffee', 'photography'], got ['local_life', 'art_deco_buildings', 'coffee_shops', 'photography']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_025_photography_quiet",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "local_life",
+            "art_deco_buildings",
+            "coffee_shops",
+            "photography"
+          ],
+          "travel_style": [
+            "retired_couple"
+          ],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Customer is a retired couple but explicitly says not elderly; do not classify as seniors."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_025_photography_quiet",
+          "raw_text": "Retired couple, not elderly, visiting Shanghai for 2 days. We like quiet neighborhoods, Art Deco buildings, coffee shops and photography."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:33:37Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_026_budget_both_total_and_per_person",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['阳朔'], got ['Yangshuo']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_026_budget_both_total_and_per_person",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": 9000.0,
+          "max_per_person": 4500.0,
+          "notes": "Budget is approximate: around 9000 RMB total and about 4500 RMB per person."
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Yangshuo"
+          ],
+          "trip_days": 4,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_026_budget_both_total_and_per_person",
+          "raw_text": "Two adults are planning a 4-day Yangshuo trip. Our total budget is around 9000 RMB and we can spend about 4500 RMB per person."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:33:56Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_027_guide_maybe_null",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['重庆'], got ['Chongqing']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_027_guide_maybe_null",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Chongqing"
+          ],
+          "trip_days": 5,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Customer may want an English guide for a couple of the days but is not sure yet."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_027_guide_maybe_null",
+          "raw_text": "Two adults want 5 days in Chongqing. We might want an English guide for a couple of the days, but we are not sure yet."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:34:15Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_028_car_conditional_null",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['北京'], got ['Beijing']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_028_car_conditional_null",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 4,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Beijing"
+          ],
+          "trip_days": 2,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": "metro unless weather is very hot",
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Private car is optional and may be desired if the weather is very hot; otherwise the customer is happy with the metro."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_028_car_conditional_null",
+          "raw_text": "Four adults in Beijing for 2 days. If the weather is very hot we might want a private car, but otherwise we are happy with the metro."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:34:36Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_029_arrival_only_transfer",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['西安'], got [\"Xi'an\"]"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_029_arrival_only_transfer",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Xi'an"
+          ],
+          "trip_days": null,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": "London",
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": true,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Arriving around 11am.",
+          "Needs airport pickup to hotel.",
+          "No departure transfer needed; customer will take a taxi."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_029_arrival_only_transfer",
+          "raw_text": "Two adults flying into Xi'an from London, arriving around 11am. We need a pickup from the airport to the hotel. On departure we can take a taxi ourselves."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:34:55Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_030_multigeneration_family",
+      "success": false,
+      "passed": 4,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['广州'], got ['Guangzhou']",
+        "interests_contains: expected ['local_food'], got ['dim_sum', 'classical_gardens']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_030_multigeneration_family",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 1,
+          "seniors": 1
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Guangzhou"
+          ],
+          "trip_days": 4,
+          "interests": [
+            "dim_sum",
+            "classical_gardens"
+          ],
+          "travel_style": [
+            "family_friendly",
+            "senior_friendly"
+          ],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_030_multigeneration_family",
+          "raw_text": "We are a family of four traveling Guangzhou: me and my husband, our 12-year-old son, and my 80-year-old mother. We want 4 days of dim sum and classical gardens."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:35:34Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_031_hotel_for_senior_not_senior_guest",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['成都'], got ['Chengdu']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_031_hotel_for_senior_not_senior_guest",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": [
+            "elevator access"
+          ]
+        },
+        "intent": {
+          "destination_cities": [
+            "Chengdu"
+          ],
+          "trip_days": 3,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Hotel elevator access requested; older parents may visit but are not joining the trip."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_031_hotel_for_senior_not_senior_guest",
+          "raw_text": "Just two adults in our 40s, 3 days in Chengdu. Please pick a hotel with elevator access — easy for our older parents if they visit, though they are not joining us."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:36:11Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_032_nights_not_days",
+      "success": false,
+      "passed": 2,
+      "total": 4,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']",
+        "sales_notes_contains: expected ['nights'], got '(empty)'"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_032_nights_not_days",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": null,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_032_nights_not_days",
+          "raw_text": "We will stay 3 nights in Shanghai. Two adults."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:36:42Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_033_five_star_luxury",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_033_five_star_luxury",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": "luxury",
+          "room_view_priority": true,
+          "style_notes": "five-star hotels",
+          "special_requirements": [
+            "room overlooking the Bund"
+          ]
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": 3,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [
+            "room overlooking the Bund"
+          ],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_033_five_star_luxury",
+          "raw_text": "Two adults, 3 days in Shanghai. We only book five-star hotels and want a room overlooking the Bund."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:37:10Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_034_negative_to_avoid",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['成都'], got ['Chengdu']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_034_negative_to_avoid",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Chengdu"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "pandas",
+            "hotpot"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [
+            "theme_parks",
+            "shopping_stops"
+          ],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_034_negative_to_avoid",
+          "raw_text": "Two adults visiting Chengdu for 2 days. We want pandas and hotpot, but please no theme parks and no shopping tour stops."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:37:34Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_035_mixed_language",
+      "success": true,
+      "passed": 6,
+      "total": 6,
+      "failures": [],
+      "lead": {
+        "lead_id": "lead_parse_035_mixed_language",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "重庆"
+          ],
+          "trip_days": 3,
+          "interests": [
+            "local_food",
+            "local_life"
+          ],
+          "travel_style": [
+            "slow_pace"
+          ],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_035_mixed_language",
+          "raw_text": "两位大人去重庆玩3天，want to try the hotpot and walk slowly through the old streets."
+        },
+        "language": "zh",
+        "created_at": "2026-09-08T04:38:39Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_036_usd_currency_notes",
+      "success": false,
+      "passed": 4,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['北京'], got ['Beijing']",
+        "budget_max_per_person: expected None, got 600.0"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_036_usd_currency_notes",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": 600.0,
+          "notes": "about 600 USD per person all-in"
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Beijing"
+          ],
+          "trip_days": 3,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_036_usd_currency_notes",
+          "raw_text": "Two adults in Beijing for 3 days. Budget is about 600 USD per person all-in."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:38:52Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_037_greeting_noise",
+      "success": false,
+      "passed": 3,
+      "total": 4,
+      "failures": [
+        "destination_cities: expected ['云南'], got ['Yunnan']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_037_greeting_noise",
+        "stage": "lead",
+        "contact": {
+          "full_name": "Anna and Tom",
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": "Germany"
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Yunnan"
+          ],
+          "trip_days": 4,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_037_greeting_noise",
+          "raw_text": "Hi! Great to find your agency. We are a couple from Germany planning 4 days in Yunnan. Looking forward to your reply. Best wishes, Anna and Tom."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:39:36Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_038_grown_children_stay_home",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['北京'], got ['Beijing']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_038_grown_children_stay_home",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Beijing"
+          ],
+          "trip_days": 3,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Customer's three children are grown adults and staying home, so they are not included in the traveling party."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_038_grown_children_stay_home",
+          "raw_text": "My husband and I are visiting Beijing for 3 days. Our three children are grown adults now and staying home."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:39:52Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_039_driver_guide",
+      "success": false,
+      "passed": 4,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['重庆'], got ['Chongqing']",
+        "need_guide: expected None, got True"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_039_driver_guide",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Chongqing"
+          ],
+          "trip_days": 4,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [
+            "driver who can also act as guide",
+            "SUV"
+          ],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": "SUV",
+          "need_guide": true,
+          "need_private_car": true,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Customer requests a driver who can also act as guide in an SUV."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_039_driver_guide",
+          "raw_text": "Two adults, 4 days in Chongqing. We want a driver who can also act as our guide, in an SUV."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:40:14Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_040_unsupported_province_verbatim",
+      "success": false,
+      "passed": 2,
+      "total": 3,
+      "failures": [
+        "destination_cities: expected ['山西'], got ['Shanxi province']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_040_unsupported_province_verbatim",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanxi province"
+          ],
+          "trip_days": 4,
+          "interests": [
+            "ancient_wooden_pagodas",
+            "cliff_grottoes"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_040_unsupported_province_verbatim",
+          "raw_text": "Two adults would like a 4-day trip touring Shanxi province for its ancient wooden pagodas and cliff grottoes."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:40:37Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_041_senior_and_child_boundary",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['厦门'], got ['Xiamen']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_041_senior_and_child_boundary",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 1,
+          "seniors": 1
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Xiamen"
+          ],
+          "trip_days": 3,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_041_senior_and_child_boundary",
+          "raw_text": "We are two adults plus my 70-year-old father and my 12-year-old daughter — 4 people in total — for 3 days in Xiamen."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:40:52Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_042_exact_date_range",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['北京'], got ['Beijing']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_042_exact_date_range",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": "2027-05-03",
+          "end_date": "2027-05-07",
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Beijing"
+          ],
+          "trip_days": null,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_042_exact_date_range",
+          "raw_text": "Two adults. We want to be in Beijing from May 3rd to May 7th, 2027."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:41:12Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_043_no_budget_no_luxury_flag",
+      "success": false,
+      "passed": 5,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['云南'], got ['Yunnan']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_043_no_budget_no_luxury_flag",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": "No fixed budget"
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": "Comfortable but not flashy",
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Yunnan"
+          ],
+          "trip_days": 5,
+          "interests": [
+            "local_food",
+            "honeymoon"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Honeymoon couple",
+          "Wants a great experience with good food",
+          "Prefers comfortable but not flashy hotels"
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_043_no_budget_no_luxury_flag",
+          "raw_text": "Honeymoon couple, 5 days in Yunnan. We have no fixed budget — we just want a great experience with good food and comfortable but not flashy hotels."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:41:41Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_044_active_sixty_not_senior",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['张家界'], got ['Zhangjiajie']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_044_active_sixty_not_senior",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 1,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Zhangjiajie"
+          ],
+          "trip_days": 2,
+          "interests": [
+            "hiking"
+          ],
+          "travel_style": [
+            "active",
+            "full_day"
+          ],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_044_active_sixty_not_senior",
+          "raw_text": "One very active 60-year-old traveler wants 2 days of full-day hiking in Zhangjiajie."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:43:54Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_045_contradictory_guide_resolved",
+      "success": false,
+      "passed": 3,
+      "total": 4,
+      "failures": [
+        "destination_cities: expected ['上海'], got ['Shanghai']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_045_contradictory_guide_resolved",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Shanghai"
+          ],
+          "trip_days": 3,
+          "interests": [],
+          "travel_style": [
+            "self_guided"
+          ],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": false,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Customer considered an English guide but prefers to explore independently."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_045_contradictory_guide_resolved",
+          "raw_text": "Two adults in Shanghai for 3 days. We thought about an English guide, but actually we prefer to explore on our own."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:44:20Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_046_inconsistent_budget_both_stated",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['西安'], got [\"Xi'an\"]"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_046_inconsistent_budget_both_stated",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": 2000.0,
+          "max_per_person": 1500.0,
+          "notes": "Customer hopes to stay under 2000 RMB total."
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Xi'an"
+          ],
+          "trip_days": 2,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [
+          "Customer stated budget of 1500 RMB per person and hopes total is under 2000 RMB for two adults."
+        ],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_046_inconsistent_budget_both_stated",
+          "raw_text": "Two adults in Xi'an for 2 days. Budget is 1500 RMB per person; overall we are hoping to stay under 2000 RMB total."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:44:37Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_047_offbeat_avoid_touristy",
+      "success": false,
+      "passed": 2,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['成都'], got ['Chengdu']",
+        "interests_contains: expected ['tea_culture', 'local_food', 'local_life'], got ['tea_culture', 'local_food']",
+        "avoid_contains: expected ['crowded_tourist_spots'], got ['famous_tourist_sites']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_047_offbeat_avoid_touristy",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Chengdu"
+          ],
+          "trip_days": 3,
+          "interests": [
+            "tea_culture",
+            "local_food"
+          ],
+          "travel_style": [
+            "local_life"
+          ],
+          "must_have": [],
+          "avoid": [
+            "famous_tourist_sites"
+          ],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_047_offbeat_avoid_touristy",
+          "raw_text": "Two adults, 3 days in Chengdu. We would rather skip the famous tourist sites and see where locals hang out — teahouses, food markets, quiet parks."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:45:10Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_048_guide_and_car_full_trip",
+      "success": false,
+      "passed": 4,
+      "total": 5,
+      "failures": [
+        "destination_cities: expected ['北京'], got ['Beijing']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_048_guide_and_car_full_trip",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Beijing"
+          ],
+          "trip_days": 5,
+          "interests": [],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": "private_car",
+          "need_guide": true,
+          "need_private_car": true,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_048_guide_and_car_full_trip",
+          "raw_text": "Two adults, Beijing, 5 days in the second week of October. We want a guide every day and a private car the whole time."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:45:29Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_049_multi_signal_passenger_count",
+      "success": false,
+      "passed": 5,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['广州'], got ['Guangzhou']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_049_multi_signal_passenger_count",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 1,
+          "children": 2,
+          "seniors": 1
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Guangzhou"
+          ],
+          "trip_days": 3,
+          "interests": [],
+          "travel_style": [
+            "family_friendly",
+            "slow_pace"
+          ],
+          "must_have": [],
+          "avoid": [],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": []
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_049_multi_signal_passenger_count",
+          "raw_text": "One adult with two young children aged 5 and 8, plus my mother who is 72. We want 3 days in Guangzhou, family-friendly and not too tiring."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:46:02Z",
+        "updated_at": null
+      }
+    },
+    {
+      "case_id": "lead_parse_050_allergy_and_avoid_together",
+      "success": false,
+      "passed": 4,
+      "total": 6,
+      "failures": [
+        "destination_cities: expected ['成都'], got ['Chengdu']",
+        "avoid_contains: expected ['smoke'], got ['heavy_smoking']"
+      ],
+      "lead": {
+        "lead_id": "lead_parse_050_allergy_and_avoid_together",
+        "stage": "lead",
+        "contact": {
+          "full_name": null,
+          "email": null,
+          "phone": null,
+          "wechat": null,
+          "nationality": null
+        },
+        "travel_window": {
+          "start_date": null,
+          "end_date": null,
+          "flexible_days": null,
+          "season": null
+        },
+        "passenger_mix": {
+          "adults": 2,
+          "children": 0,
+          "seniors": 0
+        },
+        "budget_preference": {
+          "tier": null,
+          "max_total": null,
+          "max_per_person": null,
+          "notes": null
+        },
+        "hotel_preference": {
+          "tier": null,
+          "room_view_priority": false,
+          "style_notes": null,
+          "special_requirements": []
+        },
+        "intent": {
+          "destination_cities": [
+            "Chengdu"
+          ],
+          "trip_days": 3,
+          "interests": [
+            "local_food"
+          ],
+          "travel_style": [],
+          "must_have": [],
+          "avoid": [
+            "heavy_smoking"
+          ],
+          "departure_city": null,
+          "transport_preference": null,
+          "need_guide": null,
+          "need_private_car": null,
+          "need_airport_transfer": null,
+          "dietary_notes": [
+            "severe_shellfish_allergy"
+          ]
+        },
+        "sales_notes": [],
+        "source": {
+          "channel": "eval",
+          "source_id": "lead_parse_050_allergy_and_avoid_together",
+          "raw_text": "Two adults in Chengdu for 3 days. We love Sichuan food, but one of us has a severe shellfish allergy; also please avoid any places with heavy cigarette smoke."
+        },
+        "language": "en",
+        "created_at": "2026-09-08T04:46:23Z",
+        "updated_at": null
+      }
+    }
+  ]
+}

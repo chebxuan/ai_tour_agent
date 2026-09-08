@@ -1,0 +1,182 @@
+[
+  {
+    "case_id": "pm_001_beijing_2d",
+    "category": "exact_city_duration",
+    "lead": {
+      "lead_id": "PM-001",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["北京"],
+        "trip_days": 2,
+        "interests": ["history", "culture"]
+      }
+    },
+    "expected_top1": "BJ-P-01",
+    "expected_top3_contains": ["BJ-P-01"]
+  },
+  {
+    "case_id": "pm_002_beijing_3d",
+    "category": "exact_city_duration",
+    "lead": {
+      "lead_id": "PM-002",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["北京"],
+        "trip_days": 3,
+        "interests": ["history", "hutong"],
+        "need_guide": true
+      }
+    },
+    "expected_top1": "BJ-P-02",
+    "expected_top3_contains": ["BJ-P-02"]
+  },
+  {
+    "case_id": "pm_003_shanghai_2d",
+    "category": "exact_city_duration",
+    "lead": {
+      "lead_id": "PM-003",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["上海"],
+        "trip_days": 2,
+        "interests": ["architecture", "photography"]
+      }
+    },
+    "expected_top1": "SH-P-01",
+    "expected_top3_contains": ["SH-P-01"]
+  },
+  {
+    "case_id": "pm_004_shanghai_3d",
+    "category": "exact_city_duration",
+    "lead": {
+      "lead_id": "PM-004",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["上海"],
+        "trip_days": 3,
+        "interests": ["water_town", "local_life"]
+      }
+    },
+    "expected_top1": "SH-P-02",
+    "expected_top3_contains": ["SH-P-02"]
+  },
+  {
+    "case_id": "pm_005_shanghai_family_4d",
+    "category": "family",
+    "lead": {
+      "lead_id": "PM-005",
+      "passenger_mix": {"adults": 2, "children": 1, "seniors": 0},
+      "intent": {
+        "destination_cities": ["上海"],
+        "trip_days": 4,
+        "interests": ["Disneyland", "family_friendly"],
+        "travel_style": ["family_friendly"]
+      }
+    },
+    "expected_top1": "SH-P-03",
+    "expected_top3_contains": ["SH-P-03"]
+  },
+  {
+    "case_id": "pm_006_chongqing_5d",
+    "category": "exact_city_duration",
+    "lead": {
+      "lead_id": "PM-006",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["重庆"],
+        "trip_days": 5,
+        "interests": ["river_views", "food"]
+      }
+    },
+    "expected_top1": "CQ-P-03",
+    "expected_top3_contains": ["CQ-P-03"]
+  },
+  {
+    "case_id": "pm_007_xian_3d",
+    "category": "exact_city_duration",
+    "lead": {
+      "lead_id": "PM-007",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["西安"],
+        "trip_days": 3,
+        "interests": ["history", "food_street"]
+      }
+    },
+    "expected_top1": "XA-P-02",
+    "expected_top3_contains": ["XA-P-02"]
+  },
+  {
+    "case_id": "pm_008_guangzhou_1d",
+    "category": "exact_city_duration",
+    "lead": {
+      "lead_id": "PM-008",
+      "passenger_mix": {"adults": 1, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["广州"],
+        "trip_days": 1,
+        "interests": ["local_food", "markets"]
+      }
+    },
+    "expected_top1": "GZ-P-01",
+    "expected_top3_contains": ["GZ-P-01"]
+  },
+  {
+    "case_id": "pm_009_zhangjiajie_3d",
+    "category": "exact_city_duration",
+    "lead": {
+      "lead_id": "PM-009",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["张家界"],
+        "trip_days": 3,
+        "interests": ["nature", "photography"]
+      }
+    },
+    "expected_top1": "ZJJ-P-02",
+    "expected_top3_contains": ["ZJJ-P-02"]
+  },
+  {
+    "case_id": "pm_010_yunnan_5d",
+    "category": "exact_city_duration",
+    "lead": {
+      "lead_id": "PM-010",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["云南"],
+        "trip_days": 5,
+        "interests": ["scenic_views", "photography"]
+      }
+    },
+    "expected_top1": "YN-P-01",
+    "expected_top3_contains": ["YN-P-01"]
+  },
+  {
+    "case_id": "pm_011_near_duration_beijing",
+    "category": "near_duration",
+    "lead": {
+      "lead_id": "PM-011",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["北京"],
+        "trip_days": 5,
+        "interests": ["history", "culture"]
+      }
+    },
+    "expected_top3_contains": ["BJ-P-03"]
+  },
+  {
+    "case_id": "pm_012_missing_city",
+    "category": "missing_city",
+    "lead": {
+      "lead_id": "PM-012",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": [],
+        "trip_days": 2,
+        "interests": ["history", "culture"]
+      }
+    },
+    "expected_top3_contains_any": ["BJ-P-01", "XA-P-01", "GZ-P-02", "CD-P-01", "SH-P-01"]
+  }
+]

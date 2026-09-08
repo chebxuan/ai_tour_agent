@@ -1,0 +1,144 @@
+[
+  {
+    "case_id": "price_001_bj_2_adults_peak",
+    "category": "base_pricing",
+    "product_id": "BJ-P-01",
+    "lead": {
+      "lead_id": "PRICE-001",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["北京"],
+        "trip_days": 2,
+        "need_guide": false,
+        "need_private_car": false
+      }
+    },
+    "pricing_options": {
+      "is_peak": true,
+      "hotel_nights": 1,
+      "car_days": 0,
+      "transfer_times": 0
+    },
+    "expected": {
+      "success": true,
+      "grand_total": 3004.0,
+      "per_person": 1502.0,
+      "category_subtotals": {"ticket_activity": 3004.0, "transport": 0, "guide": 0},
+      "validation_issue_count": 0
+    }
+  },
+  {
+    "case_id": "price_002_sh_2_adults_peak_car",
+    "category": "transport",
+    "product_id": "SH-P-01",
+    "lead": {
+      "lead_id": "PRICE-002",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["上海"],
+        "trip_days": 2,
+        "need_guide": false,
+        "need_private_car": true
+      }
+    },
+    "pricing_options": {
+      "is_peak": true,
+      "hotel_nights": 1,
+      "car_days": 2,
+      "transfer_times": 0
+    },
+    "expected": {
+      "success": true,
+      "grand_total": 1400.0,
+      "per_person": 700.0,
+      "category_subtotals": {"ticket_activity": 200.0, "transport": 1200.0, "guide": 0},
+      "validation_issue_count": 0
+    }
+  },
+  {
+    "case_id": "price_003_cd_family_offpeak",
+    "category": "family",
+    "product_id": "CD-P-01",
+    "lead": {
+      "lead_id": "PRICE-003",
+      "passenger_mix": {"adults": 2, "children": 1, "seniors": 0},
+      "intent": {
+        "destination_cities": ["成都"],
+        "trip_days": 2,
+        "need_guide": false,
+        "need_private_car": false
+      }
+    },
+    "pricing_options": {
+      "is_peak": false,
+      "hotel_nights": 1,
+      "car_days": 0,
+      "transfer_times": 0
+    },
+    "expected": {
+      "success": true,
+      "grand_total": 465.0,
+      "per_person": 155.0,
+      "category_subtotals": {"ticket_activity": 465.0, "transport": 0, "guide": 0},
+      "validation_issue_count": 0
+    }
+  },
+  {
+    "case_id": "price_004_bj_guide_peak",
+    "category": "guide",
+    "product_id": "BJ-P-01",
+    "lead": {
+      "lead_id": "PRICE-004",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["北京"],
+        "trip_days": 2,
+        "need_guide": true,
+        "need_private_car": false
+      }
+    },
+    "pricing_options": {
+      "is_peak": true,
+      "guide_code": "BJ-GUIDE-01",
+      "hotel_nights": 1,
+      "car_days": 0,
+      "transfer_times": 0
+    },
+    "expected": {
+      "success": true,
+      "grand_total": 4604.0,
+      "per_person": 2302.0,
+      "category_subtotals": {"ticket_activity": 3004.0, "transport": 0, "guide": 1600.0},
+      "validation_issue_count": 0
+    }
+  },
+  {
+    "case_id": "price_005_invalid_optional",
+    "category": "validation_error",
+    "product_id": "SH-P-01",
+    "lead": {
+      "lead_id": "PRICE-005",
+      "passenger_mix": {"adults": 2, "children": 0, "seniors": 0},
+      "intent": {
+        "destination_cities": ["上海"],
+        "trip_days": 2,
+        "need_guide": false,
+        "need_private_car": false
+      }
+    },
+    "pricing_options": {
+      "is_peak": true,
+      "hotel_nights": 1,
+      "car_days": 0,
+      "transfer_times": 0,
+      "selected_optional_item_codes": ["NO-SUCH-CODE"]
+    },
+    "expected": {
+      "success": false,
+      "grand_total": 200.0,
+      "per_person": 100.0,
+      "validation_issue_count": 2,
+      "validation_issue_fields_contains": ["selected_optional_item_codes", "cost_lookup"]
+    }
+  }
+]

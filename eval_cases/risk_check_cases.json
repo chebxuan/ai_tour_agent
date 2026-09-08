@@ -1,0 +1,166 @@
+[
+  {
+    "case_id": "risk_001_optional_car",
+    "category": "optional_car",
+    "lead": {
+      "lead_id": "RISK-001",
+      "intent": {
+        "destination_cities": ["上海"],
+        "trip_days": 2,
+        "need_private_car": null
+      }
+    },
+    "expected_issue_codes": ["PRIVATE_CAR_NEEDS_CONFIRMATION"]
+  },
+  {
+    "case_id": "risk_002_guide_required_missing_pricing",
+    "category": "pricing_gap",
+    "lead": {
+      "lead_id": "RISK-002",
+      "intent": {
+        "destination_cities": ["北京"],
+        "trip_days": 3,
+        "need_guide": true,
+        "need_private_car": false
+      }
+    },
+    "pricing": {
+      "lead_id": "RISK-002",
+      "selected_product_id": "BJ-P-02",
+      "success": true,
+      "summary": {
+        "city": "北京",
+        "product_name": "北京深度3日游",
+        "days": 3,
+        "total_people": 2,
+        "adults": 2,
+        "children": 0,
+        "seniors": 0,
+        "is_peak": true,
+        "hotel_nights": 2,
+        "car_days": 0,
+        "transfer_times": 0,
+        "grand_total": 3200,
+        "per_person": 1600,
+        "currency": "RMB"
+      },
+      "line_items": [
+        {
+          "category": "ticket_activity",
+          "name": "Attraction tickets",
+          "unit_price": 800,
+          "quantity": 2,
+          "subtotal": 1600
+        }
+      ]
+    },
+    "expected_issue_codes": ["GUIDE_REQUIRED_BUT_NOT_PRICED"]
+  },
+  {
+    "case_id": "risk_003_private_car_required_zero_days",
+    "category": "pricing_gap",
+    "lead": {
+      "lead_id": "RISK-003",
+      "intent": {
+        "destination_cities": ["上海"],
+        "trip_days": 2,
+        "need_private_car": true
+      }
+    },
+    "pricing": {
+      "lead_id": "RISK-003",
+      "selected_product_id": "SH-P-01",
+      "success": true,
+      "summary": {
+        "city": "上海",
+        "product_name": "上海精华2日",
+        "days": 2,
+        "total_people": 2,
+        "adults": 2,
+        "children": 0,
+        "seniors": 0,
+        "is_peak": true,
+        "hotel_nights": 1,
+        "car_days": 0,
+        "transfer_times": 0,
+        "grand_total": 2600,
+        "per_person": 1300,
+        "currency": "RMB"
+      },
+      "line_items": []
+    },
+    "expected_issue_codes": ["PRIVATE_CAR_REQUIRED_BUT_NOT_PRICED"]
+  },
+  {
+    "case_id": "risk_004_avoid_constraint",
+    "category": "avoid",
+    "lead": {
+      "lead_id": "RISK-004",
+      "intent": {
+        "destination_cities": ["上海"],
+        "trip_days": 2,
+        "avoid": ["crowded_tourist_spots"],
+        "need_private_car": false
+      }
+    },
+    "itinerary_markdown": "Day 1 includes a crowded_tourist_spots photo stop near the Bund.",
+    "expected_issue_codes": ["AVOID_CONSTRAINT_MAY_BE_TRIGGERED"]
+  },
+  {
+    "case_id": "risk_005_senior_pace",
+    "category": "senior_mobility",
+    "lead": {
+      "lead_id": "RISK-005",
+      "passenger_mix": {
+        "adults": 1,
+        "children": 0,
+        "seniors": 1
+      },
+      "intent": {
+        "destination_cities": ["张家界"],
+        "trip_days": 2,
+        "need_private_car": false
+      }
+    },
+    "itinerary_markdown": "The route includes mountain hiking and a tight schedule.",
+    "expected_issue_codes": ["SENIOR_TRAVEL_PACE_RISK"]
+  },
+  {
+    "case_id": "risk_006_clean_case",
+    "category": "clean",
+    "lead": {
+      "lead_id": "RISK-006",
+      "intent": {
+        "destination_cities": ["成都"],
+        "trip_days": 2,
+        "interests": ["pandas", "tea_culture"],
+        "need_guide": false,
+        "need_private_car": false
+      }
+    },
+    "pricing": {
+      "lead_id": "RISK-006",
+      "selected_product_id": "CD-P-01",
+      "success": true,
+      "summary": {
+        "city": "成都",
+        "product_name": "成都悠闲2日",
+        "days": 2,
+        "total_people": 2,
+        "adults": 2,
+        "children": 0,
+        "seniors": 0,
+        "is_peak": false,
+        "hotel_nights": 1,
+        "car_days": 0,
+        "transfer_times": 0,
+        "grand_total": 1800,
+        "per_person": 900,
+        "currency": "RMB"
+      },
+      "line_items": []
+    },
+    "itinerary_markdown": "A relaxed Chengdu route with pandas and tea houses.",
+    "expected_issue_codes": []
+  }
+]

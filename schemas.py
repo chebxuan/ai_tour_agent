@@ -126,7 +126,7 @@ class CandidateProductsJSON(BaseModel):
     query_summary: str = Field(..., description="Short normalized summary of the lead")
     candidates: List[ProductCandidate] = Field(default_factory=list)
     recommended_product_id: Optional[str] = None
-    generated_by: str = Field("agent_1_product_matcher")
+    generated_by: str = Field("product_matcher")
     generated_at: Optional[str] = None
 
 
@@ -187,7 +187,43 @@ class PricingResultJSON(BaseModel):
 
 
 # ============================================================
-# 4. Supplier Payment Tracker (Kanban)
+# 4. Risk Check JSON
+# ============================================================
+
+
+class RiskIssue(BaseModel):
+    severity: Literal["info", "warning", "blocking"]
+    code: str
+    message: str
+    field: Optional[str] = None
+    requires_human_review: bool = False
+
+
+class RiskCheckResultJSON(BaseModel):
+    lead_id: Optional[str] = None
+    success: bool = True
+    issues: List[RiskIssue] = Field(default_factory=list)
+    human_review_required: bool = False
+    generated_by: str = Field("risk_check_tool")
+    generated_at: Optional[str] = None
+
+
+# ============================================================
+# 5. Delivery Draft JSON
+# ============================================================
+
+
+class DeliveryDraftJSON(BaseModel):
+    lead_id: Optional[str] = None
+    subject: str
+    body_markdown: str
+    warnings: List[str] = Field(default_factory=list)
+    generated_by: str = Field("delivery_composer")
+    generated_at: Optional[str] = None
+
+
+# ============================================================
+# 6. Supplier Payment Tracker (Kanban)
 # ============================================================
 
 

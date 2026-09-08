@@ -1,0 +1,58 @@
+{
+  "method": "Deterministic in-process chain: run_full_chain_for_lead (product match -> pricing -> itinerary markdown -> risk check -> delivery draft). Warmup once per sample; then N timed runs. LLM lead-parse not re-called here.",
+  "is_peak": false,
+  "runs_per_sample": 2,
+  "samples": 3,
+  "overall_mean_ms": 1.5,
+  "overall_min_ms": 1.4,
+  "overall_max_ms": 1.6,
+  "per_sample": [
+    {
+      "label": "shanghai_couple_2d_clean",
+      "text": "Two adults, 2 days in Shanghai, architecture and local food, no guide, no private car.",
+      "runs": 2,
+      "mean_ms": 1.6,
+      "min_ms": 1.6,
+      "max_ms": 1.6,
+      "success": true,
+      "error": null,
+      "recommended_product_id": "SH-P-01",
+      "grand_total": 180.0,
+      "risk_human_review_required": false,
+      "human_review_items": []
+    },
+    {
+      "label": "beijing_3d_guide_car_optional",
+      "text": "Two adults, 3 days in Beijing, history and hutongs, need an English guide; private car is optional.",
+      "runs": 2,
+      "mean_ms": 1.5,
+      "min_ms": 1.5,
+      "max_ms": 1.5,
+      "success": true,
+      "error": null,
+      "recommended_product_id": "BJ-P-02",
+      "grand_total": 5500.0,
+      "risk_human_review_required": true,
+      "human_review_items": [
+        "[PRIVATE_CAR_NEEDS_CONFIRMATION] Private car preference is not confirmed; sales should confirm before final pricing."
+      ]
+    },
+    {
+      "label": "xian_2d_senior_pace",
+      "text": "Two adults with my 70-year-old mother, 2 days in Xi'an, Terracotta Army a must, slow pace, need a guide.",
+      "runs": 2,
+      "mean_ms": 1.5,
+      "min_ms": 1.4,
+      "max_ms": 1.6,
+      "success": true,
+      "error": null,
+      "recommended_product_id": "XA-P-01",
+      "grand_total": 2745.0,
+      "risk_human_review_required": true,
+      "human_review_items": [
+        "[PRIVATE_CAR_NEEDS_CONFIRMATION] Private car preference is not confirmed; sales should confirm before final pricing.",
+        "[SENIOR_TRAVEL_PACE_RISK] Senior traveler detected; review pace and mobility risks: crowded."
+      ]
+    }
+  ]
+}
