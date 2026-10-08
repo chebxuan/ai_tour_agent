@@ -3,7 +3,7 @@ import Button from "./Button";
 import Icon from "./Icon";
 import styles from "./Planner.module.css";
 
-export default function TripForm({ form, onChange, onSubmit, busy, preferredJourney }) {
+export default function TripForm({ form, onChange, onSubmit, busy, preferredJourney, selectedDestination }) {
   function changeField(event) {
     const { name, value, type, checked } = event.target;
     onChange({ ...form, [name]: type === "checkbox" ? checked : value });
@@ -13,10 +13,11 @@ export default function TripForm({ form, onChange, onSubmit, busy, preferredJour
   }
   return <form className={styles.formCard} onSubmit={onSubmit}>
     <div className={styles.cardHeading}><span className={styles.stepNumber}>01</span><div><h2>告诉我们，你想怎样旅行</h2><p>从几个简单的选择开始。</p></div></div>
+    {selectedDestination && <div className={styles.selectedJourney}><Icon name="location" size={18} /><span>你想探索：{selectedDestination.name}<small>再选日期、天数和你喜欢的旅行方式</small></span></div>}
     {preferredJourney && <div className={styles.selectedJourney}><Icon name="check" size={18} /><span>已选择：{preferredJourney.title}<small>可在下方调整目的地与天数</small></span></div>}
     <fieldset className={styles.formFields} disabled={busy}>
       <section className={styles.formSection} aria-labelledby="destination-heading"><h3 id="destination-heading"><Icon name="location" size={19} />你的旅程</h3>
-        <label className={styles.field} htmlFor="trip-city"><span>想去哪里 <small>必填</small></span><select id="trip-city" name="city" value={form.city} onChange={changeField} required><option value="">选择一个目的地</option>{demoCities.map((city) => <option key={city} value={city}>{city}</option>)}</select></label>
+        {!selectedDestination && <label className={styles.field} htmlFor="trip-city"><span>想去哪里 <small>必填</small></span><select id="trip-city" name="city" value={form.city} onChange={changeField} required><option value="">选择一个目的地</option>{demoCities.map((city) => <option key={city} value={city}>{city}</option>)}</select></label>}
         <div className={styles.fieldRow}><label className={styles.field} htmlFor="trip-date"><span>出发日期 <small>可选</small></span><input id="trip-date" name="date" type="date" value={form.date} onChange={changeField} /></label><label className={styles.field} htmlFor="trip-days"><span>旅行天数</span><select id="trip-days" name="days" value={form.days} onChange={changeField}>{Array.from({ length: 10 }, (_, i) => <option key={i + 1} value={i + 1}>{i + 1} 天</option>)}</select></label></div>
       </section>
       <section className={styles.formSection} aria-labelledby="travelers-heading"><h3 id="travelers-heading"><Icon name="people" size={19} />与谁同行</h3><div className={styles.peopleFields}>{[{ name: "adults", label: "成人", min: 1 }, { name: "children", label: "儿童", min: 0 }, { name: "seniors", label: "长者", min: 0 }].map((person) => <label className={styles.field} key={person.name} htmlFor={`trip-${person.name}`}><span>{person.label}</span><input id={`trip-${person.name}`} name={person.name} type="number" min={person.min} max="20" required value={form[person.name]} onChange={changeField} /></label>)}</div></section>

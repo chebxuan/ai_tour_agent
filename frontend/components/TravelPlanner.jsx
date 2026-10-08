@@ -2,13 +2,14 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { demoJourneys } from "@/data/demoJourneys";
+import { destinations } from "@/data/destinations";
 import { createDemoPreview } from "@/lib/demoPreview";
 import TripForm from "./TripForm";
 import ItineraryPreview from "./ItineraryPreview";
 import styles from "./Planner.module.css";
 
-function PlannerWorkspace({ initialJourney }) {
-  const [form, setForm] = useState({ city: initialJourney?.city || "", days: String(initialJourney?.days || 3), date: "", adults: "2", children: "0", seniors: "0", interests: ["文化探索", "轻松慢游"], guide: true, car: false, notes: "" });
+function PlannerWorkspace({ initialJourney, initialDestination }) {
+  const [form, setForm] = useState({ city: initialDestination?.name || initialJourney?.city || "", days: String(initialJourney?.days || 3), date: "", adults: "2", children: "0", seniors: "0", interests: ["文化探索", "轻松慢游"], guide: true, car: false, notes: "" });
   const [result, setResult] = useState(null);
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
@@ -29,11 +30,12 @@ function PlannerWorkspace({ initialJourney }) {
       setError("请稍后重试，或调整你的需求。");
     }
   }
-  return <div className={styles.workspace}><TripForm form={form} onChange={setForm} onSubmit={generate} busy={status === "loading"} preferredJourney={preferredJourney} /><ItineraryPreview result={result} status={status} dirty={dirty} error={error} /></div>;
+  return <div className={styles.workspace}><TripForm form={form} onChange={setForm} onSubmit={generate} busy={status === "loading"} preferredJourney={preferredJourney} selectedDestination={initialDestination?.name === form.city ? initialDestination : null} /><ItineraryPreview result={result} status={status} dirty={dirty} error={error} /></div>;
 }
 
 export default function TravelPlanner() {
   const searchParams = useSearchParams();
-  const initialJourney = demoJourneys.find((journey) => journey.id === searchParams.get("journey"));
-  return <PlannerWorkspace key={initialJourney?.id || "custom"} initialJourney={initialJourney} />;
+  const initialDestination = destinations.find((destination) => destination.slug === searchParams.get("destination"));
+  const initialJourney = initialDestination ? null : demoJourneys.find((journey) => journey.id === searchParams.get("journey"));
+  return <PlannerWorkspace key={initialDestination?.slug || initialJourney?.id || "custom"} initialJourney={initialJourney} initialDestination={initialDestination} />;
 }
