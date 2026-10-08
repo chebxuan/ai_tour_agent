@@ -1,0 +1,97 @@
+from_unit_id,from_area,to_unit_id,to_area,distance_km,walk_min,taxi_min,metro_min,recommended_mode,transfer_difficulty,elderly_friendly,rainy_day_risk,notes
+SH-001,外滩/陆家嘴,SH-002,外滩/陆家嘴,2.5,30,10,15,WALK+L4,Low,TRUE,LOW,"Walk via Lujiazui pedestrian bridge; taxi if raining"
+SH-001,外滩/陆家嘴,SH-030,外滩/陆家嘴,1.2,15,8,12,WALK,Low,TRUE,LOW,"Adjacent; visible from each other"
+SH-001,外滩/陆家嘴,SH-004,外滩/陆家嘴,0.5,6,5,N/A,WALK,Low,TRUE,LOW,"Cruise terminal adjacent to Bund viewing platform"
+SH-001,外滩/陆家嘴,SH-005,豫园/老城厢,2.8,35,15,20,TAXI,Medium,FALSE,MEDIUM,"Cross Huangpu; metro requires transfer"
+SH-001,外滩/陆家嘴,SH-009,武康路/衡复风貌区,7.5,90,25,35,TAXI,High,FALSE,HIGH,"Cross-city; walking not feasible; metro line 10 direct"
+SH-001,外滩/陆家嘴,SH-015,田子坊/新天地,4.2,55,20,25,TAXI,Medium,FALSE,MEDIUM,"Metro line 10 to Xintiandi then walk"
+SH-001,外滩/陆家嘴,SH-018,南京路/人民广场,1.5,20,10,10,WALK+L4,Low,TRUE,LOW,"Walk east along Nanjing Road from People's Square"
+SH-002,外滩/陆家嘴,SH-030,外滩/陆家嘴,1.5,20,10,15,WALK,Low,TRUE,LOW,"Lujiazui cluster—all three towers walkable"
+SH-002,外滩/陆家嘴,SH-004,外滩/陆家嘴,1.8,22,12,15,TAXI,Low,TRUE,LOW,"Taxi easy; walking possible via riverside promenade"
+SH-003,南京路/人民广场,SH-001,外滩/陆家嘴,1.5,20,8,8,WALK,Low,TRUE,LOW,"Nanjing Road East terminus is The Bund"
+SH-003,南京路/人民广场,SH-018,南京路/人民广场,0.3,5,5,N/A,WALK,Low,TRUE,LOW,"Adjacent—museum is at People's Square south end"
+SH-003,南京路/人民广场,SH-019,南京路/人民广场,0.5,8,5,N/A,WALK,Low,TRUE,LOW,"Marriage market inside People's Park"
+SH-003,南京路/人民广场,SH-020,南京路/人民广场,0.6,8,5,N/A,WALK,Low,TRUE,LOW,"Museum building adjacent to People's Park"
+SH-005,豫园/老城厢,SH-006,豫园/老城厢,0.3,5,5,N/A,WALK,Low,TRUE,LOW,"Same complex—walk through bazaar"
+SH-005,豫园/老城厢,SH-007,豫园/老城厢,0.2,3,5,N/A,WALK,Low,TRUE,LOW,"Food stalls inside Yuyuan Bazaar"
+SH-005,豫园/老城厢,SH-008,豫园/老城厢,0.1,2,3,N/A,WALK,Low,TRUE,LOW,"Bazaar surrounds Yu Garden entrance"
+SH-005,豫园/老城厢,SH-024,豫园/老城厢,0.8,12,8,N/A,WALK,Medium,TRUE,LOW,"Walk south on Fangbang Road—takes about 12 minutes"
+SH-005,豫园/老城厢,SH-015,田子坊/新天地,3.5,45,15,20,TAXI,Medium,FALSE,MEDIUM,"Cross-city; metro line 10 Yuyuan → Xintiandi"
+SH-009,武康路/衡复风貌区,SH-010,武康路/衡复风貌区,0.0,0,0,N/A,WALK,Low,TRUE,LOW,"SH-010 IS the city walk along this same road"
+SH-009,武康路/衡复风貌区,SH-011,武康路/衡复风貌区,0.8,10,8,N/A,WALK,Low,TRUE,LOW,"Walk north on Wukang Road"
+SH-009,武康路/衡复风貌区,SH-012,武康路/衡复风貌区,0.3,4,5,N/A,WALK,Low,TRUE,LOW,"Same street—1 minute walk south"
+SH-009,武康路/衡复风貌区,SH-014,武康路/衡复风貌区,0.6,8,8,N/A,WALK,Low,TRUE,LOW,"Walk north on Wukang Road"
+SH-009,武康路/衡复风貌区,SH-013,武康路/衡复风貌区,0.2,3,3,N/A,WALK,Low,TRUE,LOW,"Cafes dotted along Wukang Road itself"
+SH-009,武康路/衡复风貌区,SH-023,武康路/衡复风貌区,2.5,30,10,15,WALK+L4,Medium,FALSE,LOW,"Walk southwest along Hengshan Road or take metro line 1"
+SH-010,武康路/衡复风貌区,SH-015,田子坊/新天地,3.5,45,15,25,TAXI,Medium,FALSE,MEDIUM,"Cross-neighborhood; metro line 10 from Shanghai Library to Xintiandi"
+SH-010,武康路/衡复风貌区,SH-016,田子坊/新天地,3.8,50,18,25,TAXI,Medium,FALSE,MEDIUM,"Adjacent to Tianzifang conceptually but different area"
+SH-015,田子坊/新天地,SH-016,田子坊/新天地,1.8,25,10,10,WALK+L4,Low,TRUE,LOW,"Tianzifang to Xintiandi—walkable in 25 min via Ruijin Road"
+SH-016,田子坊/新天地,SH-017,田子坊/新天地,0.3,5,5,N/A,WALK,Low,TRUE,LOW,"Adjacent to Xintiandi plaza"
+SH-016,田子坊/新天地,SH-031,田子坊/新天地,1.2,18,8,10,WALK+L4,Low,TRUE,LOW,"Walk via Fuxing Middle Road—pleasant residential streets"
+SH-018,南京路/人民广场,SH-020,南京路/人民广场,0.4,6,7,N/A,WALK,Low,TRUE,LOW,"Same square—different buildings"
+SH-022,田子坊/新天地,SH-016,田子坊/新天地,0.8,12,8,N/A,WALK,Low,TRUE,LOW,"Many bars in Xintiandi itself"
+SH-030,外滩/陆家嘴,SH-033,外滩/陆家嘴,0.8,12,6,15,WALK,Low,TRUE,LOW,"Walk from Shanghai Tower to riverside promenade via pedestrian underpass"
+SH-027,其他区域,SH-005,豫园/老城厢,50,N/A,60,N/A,CAR,High,FALSE,HIGH,"Zhujiajiao is 50km from city center—requires private car or tour bus. Not walkable."
+SH-027,其他区域,SH-001,外滩/陆家嘴,50,N/A,60,N/A,CAR,High,FALSE,HIGH,"Same—50km from city center"
+SH-027,其他区域,SH-025,其他区域,45,N/A,55,N/A,CAR,High,FALSE,HIGH,"Zhujiajiao to Disney both on city outskirts but opposite directions"
+SH-025,其他区域,SH-001,外滩/陆家嘴,30,N/A,40,60,TAXI+L4,High,FALSE,MEDIUM,"Disney is in Pudong but 30km southeast of The Bund; metro line 11 direct"
+SH-025,其他区域,SH-003,南京路/人民广场,28,N/A,35,50,TAXI,High,FALSE,MEDIUM,"Metro line 11 → line 10 transfer at Jiaotong University"
+SH-035,其他区域,SH-018,南京路/人民广场,5.5,70,25,30,TAXI,Medium,FALSE,MEDIUM,"M50 in Putuo district; metro line 13 to Hanzhong Rd station"
+SH-035,其他区域,SH-001,外滩/陆家嘴,7.0,85,30,35,TAXI,Medium,FALSE,MEDIUM,"Cross-city; Suzhou Creek area to Bund"
+SH-029,其他区域,SH-001,外滩/陆家嘴,4.5,55,20,25,TAXI,Medium,FALSE,MEDIUM,"1933 in Hongkou district; metro line 4/10 to Hailun Rd"
+SH-001,外滩/陆家嘴,SH-012,武康路/衡复风貌区,7.5,90,25,35,TAXI,High,FALSE,MEDIUM,Cross-city via metro line 10 or taxi ~25min
+SH-012,武康路/衡复风貌区,SH-001,外滩/陆家嘴,7.5,90,25,35,TAXI,High,FALSE,MEDIUM,Cross-city via metro line 10 or taxi ~25min
+SH-002,外滩/陆家嘴,SH-007,豫园/老城厢,3.2,40,15,20,TAXI,Medium,FALSE,MEDIUM,Cross Huangpu via metro line 10 or taxi ~15min
+SH-007,豫园/老城厢,SH-002,外滩/陆家嘴,3.2,40,15,20,TAXI,Medium,FALSE,MEDIUM,Cross Huangpu via metro line 10 or taxi ~15min
+SH-002,外滩/陆家嘴,SH-004,外滩/陆家嘴,1.8,22,10,15,WALK+L2,Low,TRUE,LOW,"Both in Lujiazui area, walk via riverside"
+SH-004,外滩/陆家嘴,SH-002,外滩/陆家嘴,1.8,22,10,15,WALK+L2,Low,TRUE,LOW,Both in Lujiazui area
+SH-007,豫园/老城厢,SH-004,外滩/陆家嘴,3.5,45,15,25,TAXI,Medium,FALSE,MEDIUM,Yuyuan to Lujiazui: metro line 10 or taxi
+SH-020,南京路/人民广场,SH-007,豫园/老城厢,2.8,35,12,15,TAXI,Low,TRUE,LOW,"People's Square to Yuyuan: metro line 10, 2 stops"
+SH-007,豫园/老城厢,SH-020,南京路/人民广场,2.8,35,12,15,TAXI,Low,TRUE,LOW,Yuyuan to People's Square: metro line 10
+SH-001,外滩/陆家嘴,SH-010,武康路/衡复风貌区,7.8,95,28,38,TAXI,High,FALSE,MEDIUM,Bund to Wukang Road: taxi ~28min or metro line 10 to Shanghai Library
+SH-020,南京路/人民广场,SH-018,南京路/人民广场,0.4,6,5,0,WALK,Low,TRUE,LOW,"Same square, adjacent buildings"
+SH-018,南京路/人民广场,SH-003,南京路/人民广场,0.5,8,5,0,WALK,Low,TRUE,LOW,Walk east from Museum onto Nanjing Road Pedestrian Street
+SH-001,外滩/陆家嘴,SH-034,武康路/衡复风貌区,8.0,95,30,40,TAXI,High,FALSE,MEDIUM,Bund to Hengshan Road: taxi ~30min
+SH-034,武康路/衡复风貌区,SH-001,外滩/陆家嘴,8.0,95,30,40,TAXI,High,FALSE,MEDIUM,Hengshan Road to Bund: taxi ~30min
+SH-034,武康路/衡复风貌区,SH-012,武康路/衡复风貌区,1.0,12,8,N/A,WALK,Low,TRUE,LOW,Both in FCC area—walk via Hengshan→Wukang Road ~12min
+SH-007,豫园/老城厢,SH-008,豫园/老城厢,0.2,3,5,N/A,WALK,Low,TRUE,LOW,Same Yuyuan complex—walk through bazaar to find food stalls
+SH-012,武康路/衡复风貌区,SH-034,武康路/衡复风貌区,1.0,12,8,N/A,WALK,Low,TRUE,LOW,Same FCC area—Wukang Road south to Hengshan Road
+SH-001,外滩/陆家嘴,SH-007,豫园/老城厢,3.2,40,15,20,TAXI,Medium,FALSE,MEDIUM,"Bund to Yuyuan: cross Huangpu, metro line 10 ~20min"
+SH-007,豫园/老城厢,SH-001,外滩/陆家嘴,3.2,40,15,20,TAXI,Medium,FALSE,MEDIUM,Yuyuan to Bund: metro line 10
+SH-005,豫园/老城厢,SH-012,武康路/衡复风貌区,6.5,80,22,30,TAXI,High,FALSE,MEDIUM,Yuyuan to Wukang: metro line 10 → line 11 or taxi ~22min
+SH-012,武康路/衡复风貌区,SH-005,豫园/老城厢,6.5,80,22,30,TAXI,High,FALSE,MEDIUM,Wukang to Yuyuan: taxi ~22min or metro
+SH-017,田子坊/新天地,SH-032,南京路/人民广场,2.5,30,12,15,TAXI,Low,TRUE,LOW,Xintiandi to Peace Hotel: taxi 12min along Huaihai Rd
+SH-032,南京路/人民广场,SH-017,田子坊/新天地,2.5,30,12,15,TAXI,Low,TRUE,LOW,Peace Hotel to Xintiandi: taxi 12min
+SH-017,田子坊/新天地,SH-034,武康路/衡复风貌区,3.0,38,12,18,TAXI,Medium,FALSE,LOW,Xintiandi to Hengshan: taxi 12min via Fuxing Rd
+SH-017,田子坊/新天地,SH-014,武康路/衡复风貌区,3.2,40,12,20,TAXI,Medium,FALSE,LOW,Xintiandi to Ba Jin故居: taxi 12min via Huaihai Rd
+SH-018,南京路/人民广场,SH-004,外滩/陆家嘴,3.0,38,15,18,TAXI,Medium,FALSE,MEDIUM,People's Square to Huangpu River cruise terminal: taxi 15min
+SH-004,外滩/陆家嘴,SH-018,南京路/人民广场,3.0,38,15,18,TAXI,Medium,FALSE,MEDIUM,Cruise terminal to People's Square: taxi 15min
+SH-018,南京路/人民广场,SH-012,武康路/衡复风貌区,5.5,70,18,25,TAXI,Medium,FALSE,MEDIUM,Shanghai Museum to Wukang: metro line 1 to Hengshan Rd
+SH-018,南京路/人民广场,SH-034,武康路/衡复风貌区,5.5,70,18,25,TAXI,Medium,FALSE,MEDIUM,Shanghai Museum to One Step Garden: taxi ~18min
+SH-018,南京路/人民广场,SH-032,南京路/人民广场,1.0,12,8,N/A,WALK,Low,TRUE,LOW,Shanghai Museum to Peace Hotel: walk east along Nanjing Rd ~12min
+SH-004,外滩/陆家嘴,SH-032,南京路/人民广场,2.0,25,10,15,TAXI,Low,TRUE,LOW,"Huangpu cruise → Peace Hotel: across the Bund, walk 25min or taxi 10min"
+SH-032,南京路/人民广场,SH-004,外滩/陆家嘴,2.0,25,10,15,TAXI,Low,TRUE,LOW,Peace Hotel → cruise terminal: walk along Bund ~25min
+SH-034,武康路/衡复风貌区,SH-032,南京路/人民广场,5.0,65,18,25,TAXI,Medium,FALSE,MEDIUM,One Step Garden to Peace Hotel: taxi 18min via Hengshan→Yan'an Elevated Rd
+SH-032,南京路/人民广场,SH-034,武康路/衡复风貌区,5.0,65,18,25,TAXI,Medium,FALSE,MEDIUM,Peace Hotel to One Step Garden: taxi 18min
+SH-034,武康路/衡复风貌区,SH-014,武康路/衡复风貌区,0.6,8,5,N/A,WALK,Low,TRUE,LOW,Same FCC area: Wukang→Hengshan area walk
+SH-014,武康路/衡复风貌区,SH-034,武康路/衡复风貌区,0.6,8,5,N/A,WALK,Low,TRUE,LOW,Ba Jin故居 → One Step Garden: walk within FCC
+SH-014,武康路/衡复风貌区,SH-032,南京路/人民广场,5.2,68,20,28,TAXI,Medium,FALSE,MEDIUM,Ba Jin故居 to Peace Hotel: taxi 20min via Huaihai Rd
+SH-029,其他区域,SH-034,武康路/衡复风貌区,6.0,75,22,30,TAXI,Medium,FALSE,MEDIUM,1933 Old Millfun to FCC: taxi 22min
+SH-029,其他区域,SH-012,武康路/衡复风貌区,6.3,78,25,32,TAXI,Medium,FALSE,MEDIUM,1933 to Wukang Rd: taxi ~25min
+SH-016,田子坊/新天地,SH-014,武康路/衡复风貌区,3.0,38,12,18,TAXI,Medium,FALSE,LOW,Xintiandi to Ba Jin Residence: taxi 12min via Fuxing Rd
+SH-016,田子坊/新天地,SH-034,武康路/衡复风貌区,3.2,40,12,18,TAXI,Medium,FALSE,LOW,Xintiandi to One Step Garden: taxi 12min
+SH-016,田子坊/新天地,SH-032,南京路/人民广场,2.8,35,12,15,TAXI,Low,TRUE,LOW,Xintiandi to Peace Hotel: taxi 12min along Huaihai Rd
+SH-001,外滩/陆家嘴,SH-014,武康路/衡复风貌区,7.5,95,25,35,TAXI,High,FALSE,HIGH,Bund to Ba Jin故居: taxi 25min via Yan'an Elevated Rd
+SH-001,外滩/陆家嘴,SH-023,武康路/衡复风貌区,8.0,100,28,38,TAXI,High,FALSE,HIGH,Bund to Xujiahui Cathedral: metro line 1 to Xujiahui
+SH-001,外滩/陆家嘴,SH-013,武康路/衡复风貌区,7.8,95,28,38,TAXI,High,FALSE,HIGH,Bund to Wukang Cafe area: taxi ~28min
+SH-001,外滩/陆家嘴,SH-024,豫园/老城厢,2.8,35,15,20,TAXI,Medium,FALSE,MEDIUM,Bund to Old Street: walk 35min south or taxi 15min
+SH-024,豫园/老城厢,SH-001,外滩/陆家嘴,2.8,35,15,20,TAXI,Medium,FALSE,MEDIUM,Old Street to Bund: walk 35min north or taxi 15min
+SH-024,豫园/老城厢,SH-023,武康路/衡复风貌区,6.0,75,20,28,TAXI,Medium,FALSE,MEDIUM,Old Street to Xujiahui Cathedral: metro line 10
+SH-023,武康路/衡复风貌区,SH-024,豫园/老城厢,6.0,75,20,28,TAXI,Medium,FALSE,MEDIUM,Xujiahui to Old Street: metro line 10
+SH-005,豫园/老城厢,SH-023,武康路/衡复风貌区,5.5,70,18,25,TAXI,Medium,FALSE,MEDIUM,Yu Garden to Xujiahui: metro line 10 → line 1
+SH-023,武康路/衡复风貌区,SH-005,豫园/老城厢,5.5,70,18,25,TAXI,Medium,FALSE,MEDIUM,Xujiahui to Yu Garden: metro line 1 → line 10
+SH-005,豫园/老城厢,SH-013,武康路/衡复风貌区,6.0,75,18,25,TAXI,Medium,FALSE,MEDIUM,Yu Garden to Wukang Cafe: taxi 18min
+SH-005,豫园/老城厢,SH-034,武康路/衡复风貌区,6.2,78,18,25,TAXI,Medium,FALSE,MEDIUM,Yu Garden to One Step Garden: taxi 18min
+SH-005,豫园/老城厢,SH-014,武康路/衡复风貌区,6.0,75,18,25,TAXI,Medium,FALSE,MEDIUM,Yu Garden to Ba Jin故居: taxi 18min
+SH-017,田子坊/新天地,SH-013,武康路/衡复风貌区,3.5,45,12,20,TAXI,Medium,FALSE,LOW,Xintiandi to Wukang Cafe area: taxi 12min via Fuxing Rd
+SH-017,田子坊/新天地,SH-012,武康路/衡复风貌区,3.5,45,12,20,TAXI,Medium,FALSE,LOW,Xintiandi to Romeo's Balcony: taxi 12min

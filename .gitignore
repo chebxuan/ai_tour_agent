@@ -1,43 +1,54 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+.claude/
+.qoder/
+.local-backups/
+
+# Python environments and generated files
+.venv/
 venv/
 env/
 ENV/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
-# Data files (large)
-*.pdf
-*.csv
+# Frontend dependencies and build output
+node_modules/
+.next/
+dist/
+out/
+coverage/
+*.tsbuildinfo
+
+# Mutable runtime storage and private references
+logs/
+data/payments.json
+references/private/
 *.db
+*.db-*
 *.sqlite
 *.sqlite3
-*.parquet
-*.xlsx
-*.xls
 *.jsonl
 
-# 屏蔽整个data目录下的所有文件
-data/
-assets/data/
+# Large source documents; keep runtime CSV/JSON data versionable
+*.pdf
+*.numbers
+*.xlsx
+*.xls
+*.parquet
 
-# Exclude large raw CSV, keep core data files
-!Product\ Logic\ Library_final_updated.csv
-!beijing_pois_updates.csv
-!mashes/北京_merged.csv
-
-# IDE
+# Editors and operating-system metadata
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS
 .DS_Store
 Thumbs.db
-
-# Qoder
-.qoder/
-.env

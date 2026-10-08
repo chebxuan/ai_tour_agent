@@ -22,7 +22,7 @@
 | ~25–30s | LLM 文本→LeadJSON 单次 | `llm_calls.jsonl` 实测 | 实测（256 条累计日志） |
 | 5 分钟 | 曾被使用的自动化耗时 | 无 | **撤销**（无测量依据） |
 
-确定性链计时脚本：`scripts/time_full_chain.py`。它**只测进程内确定性链**（生产路径 `run_full_chain_for_lead`，
+确定性链计时脚本：`evals/time_full_chain.py`。它**只测进程内确定性链**（生产路径 `run_full_chain_for_lead`，
 即 `POST /api/v2/lead-full-chain` 的同一函数），先 warmup 一次以加载数据文件/缓存再计时；**不重复调用 LLM**
 （LLM 延迟单列，绝不与"自动链"混淆）。
 
@@ -45,7 +45,7 @@
 | xian_2d_senior_pace | 1.4ms | [1.4, 1.5] | XA-P-01 | 2745.0 | **是** |
 | **整体** | **1.5ms** | **[1.4, 1.6]** | — | — | — |
 
-复现：`python3 scripts/time_full_chain.py --runs 5 --out docs/test_reports/time_trial_data.json`
+复现：`python3 evals/time_full_chain.py --runs 5 --out docs/test_reports/time_trial_data.json`
 
 ## 4. LLM 解析延迟（真实日志实测）
 

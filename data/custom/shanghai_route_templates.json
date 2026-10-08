@@ -1,0 +1,138 @@
+{
+  "version": "1.0.0",
+  "city": "上海",
+  "templates": [
+    {
+      "template_id": "SH-TPL-01",
+      "template_name": "Classic Shanghai First-timer Full Day",
+      "duration_type": "one_day",
+      "target_profile_tags": ["TAG-01"],
+      "required_unit_types": ["sightseeing", "dining", "photo_spot"],
+      "preferred_areas": ["外滩/陆家嘴", "豫园/老城厢", "南京路/人民广场"],
+      "pacing_rule": "morning: high-priority anchor (museum or garden); lunch: local food near anchor area; afternoon: second anchor + street walk + rest stop; evening: Bund night view + dinner",
+      "commercial_rule": "include at least 1 paid sightseeing ticket; optional: river cruise upsell; guide recommended but not mandatory for the Bund section",
+      "route_story_angle": "Shanghai in a Day: from 16th-century gardens to 21st-century skyscrapers"
+    },
+    {
+      "template_id": "SH-TPL-02",
+      "template_name": "Photogenic FCC City Walk Half Day",
+      "duration_type": "half_day",
+      "target_profile_tags": ["TAG-03", "TAG-10"],
+      "required_unit_types": ["photo_spot", "City Walk", "Cafe", "shopping"],
+      "preferred_areas": ["武康路/衡复风貌区"],
+      "pacing_rule": "morning: Wukang Mansion photo → walk north along Wukang Road (stop at Romeo's Balcony, Ba Jin故居, cafes) → Anfu Road boutiques → lunch or cafe break → optional: extend to Sinan Mansions",
+      "commercial_rule": "free-dominant; commercial value in curated route knowledge—clients pay for the guide's eye, not for tickets; optional paid photography workshop or Hanfu experience upsell",
+      "route_story_angle": "Shanghai's Most Photographed Street: Art Deco, Plane Trees, and the City's Creative Soul"
+    },
+    {
+      "template_id": "SH-TPL-03",
+      "template_name": "Family-friendly Shanghai One Day",
+      "duration_type": "one_day",
+      "target_profile_tags": ["TAG-05"],
+      "required_unit_types": ["sightseeing", "dining", "activity"],
+      "preferred_areas": ["外滩/陆家嘴", "南京路/人民广场", "其他区域"],
+      "pacing_rule": "morning: Shanghai Museum or History Museum (indoor, interactive, free) → lunch: xiaolongbao near People's Square → afternoon: Nanjing Road walk → Bund viewing platform → optional: Huangpu River cruise (kids love boats) → dinner early (finish by 19:00)",
+      "commercial_rule": "children ticket discounts where applicable; family-friendly restaurants (no spicy, no long waits); private car recommended for young children",
+      "route_story_angle": "Shanghai Through a Child's Eyes: Museums, Dumplings, Boats and Bright Lights"
+    },
+    {
+      "template_id": "SH-TPL-04",
+      "template_name": "Rainy Day Culture Deep-dive",
+      "duration_type": "one_day",
+      "target_profile_tags": ["TAG-12", "TAG-02"],
+      "required_unit_types": ["Museum", "Gallery", "History", "dining"],
+      "preferred_areas": ["南京路/人民广场", "田子坊/新天地", "其他区域"],
+      "pacing_rule": "morning: Shanghai Museum (2h) → coffee break at museum cafe (20min) → Shanghai History Museum (1h) → lunch at indoor restaurant (xintiandi or People's Square area) → afternoon: M50 Art District (galleries are all indoor) or 1933 Old Millfun (indoor, dramatic architecture) → dinner: Bund-side indoor restaurant with river view",
+      "commercial_rule": "minimal outdoor time; all POIs are rainy-day-friendly; private car recommended to minimize wet walks; guide value high on rainy days for indoor commentary",
+      "route_story_angle": "Shanghai Indoors: 5,000 Years of Art, a Century of History, and the City's Creative Present"
+    },
+    {
+      "template_id": "SH-TPL-05",
+      "template_name": "Budget Shanghai Half Day",
+      "duration_type": "half_day",
+      "target_profile_tags": ["TAG-08"],
+      "required_unit_types": ["Free Entry", "photography", "Local Food", "City Walk"],
+      "preferred_areas": ["外滩/陆家嘴", "武康路/衡复风貌区", "豫园/老城厢"],
+      "pacing_rule": "morning: Wukang Road walk (free architecture + vibes) → metro to People's Square (Marriage Market if weekend) → walk along Nanjing Road → Bund viewing platform (free) → Yuyuan Bazaar exterior (free to wander, food at own cost) → end at Old Street",
+      "commercial_rule": "zero required ticket cost; all POIs are free entry or exterior-only; food is buyer's choice—recommend street food stalls for authenticity and low cost; no guide needed; metro card is the only transport cost",
+      "route_story_angle": "Shanghai for Free: Architecture, Street Life, and the Best Views That Don't Cost a Yuan"
+    },
+    {
+      "template_id": "SH-TPL-06",
+      "template_name": "Romantic Shanghai Evening",
+      "duration_type": "half_day",
+      "target_profile_tags": ["TAG-07"],
+      "required_unit_types": ["photo_spot", "dining", "night_view", "activity"],
+      "preferred_areas": ["外滩/陆家嘴", "田子坊/新天地", "武康路/衡复风貌区"],
+      "pacing_rule": "late afternoon: Wukang Road walk at golden hour (plane trees, soft light) → taxi to The Bund (arrive before sunset) → sunset photos at Bund viewing platform → Huangpu River night cruise (optional upsell) → dinner at Bund-side restaurant with river view → evening: Xintiandi or bar for drinks",
+      "commercial_rule": "high upsell potential: cruise (¥286/person), Bund-view dinner (¥250+/person), rooftop bar (¥150+/person); guide recommended for curated romantic storytelling",
+      "route_story_angle": "Shanghai After Dark: Colonial Lights, River Reflections, and a Table for Two"
+    },
+    {
+      "template_id": "SH-TPL-07",
+      "template_name": "Off-the-Beaten-Path Creative Shanghai",
+      "duration_type": "one_day",
+      "target_profile_tags": ["TAG-10", "TAG-02"],
+      "required_unit_types": ["Gallery", "Shopping", "Cafe", "Art", "City Walk"],
+      "preferred_areas": ["武康路/衡复风貌区", "田子坊/新天地", "其他区域"],
+      "pacing_rule": "morning: M50 Art District (contemporary galleries in old textile mill) → taxi to Wukang Road → lunch at One Step Garden cafe (lane house garden setting) → afternoon: Wukang-Anfu City Walk (concept stores, indie bookshops, vintage shops) → 1933 Old Millfun (photography) → evening: speakeasy bar in FCC",
+      "commercial_rule": "medium spend on food/drinks; minimal ticket cost; value is in curation—client pays for access to hidden spots they wouldn't find alone; guide with design/art background adds significant value",
+      "route_story_angle": "The Other Shanghai: Where Artists, Designers and Coffee Roasters Reinvented the Concession"
+    },
+    {
+      "template_id": "SH-TPL-08",
+      "template_name": "Water Town Escape Half Day",
+      "duration_type": "one_day",
+      "target_profile_tags": ["TAG-01", "TAG-03", "TAG-07"],
+      "required_unit_types": ["sightseeing", "photo_spot", "dining"],
+      "preferred_areas": ["其他区域"],
+      "pacing_rule": "morning: drive to Zhujiajiao (1h from city center) → canal walk + stone bridges photography → boat ride → lunch at waterside restaurant (local freshwater cuisine) → afternoon: return to city; optional stop at Qibao Old Street en route",
+      "commercial_rule": "private car mandatory (1h each way); guide recommended for historical context; boat ride is a paid upsell; lunch is moderate cost; this is a half-day extension that converts a one-day into a fuller experience",
+      "route_story_angle": "Venice of the East: 1,700 Years of Canals, Stone Bridges and Riverside Life, One Hour from Shanghai"
+    },
+    {
+      "template_id": "SH-TPL-09",
+      "template_name": "Photo & Cafe Lover Full Day",
+      "duration_type": "one_day",
+      "target_profile_tags": ["TAG-03", "TAG-10"],
+      "required_unit_types": ["Photography", "Cafe", "City Walk", "dining"],
+      "preferred_areas": ["武康路/衡复风貌区", "外滩/陆家嘴", "田子坊/新天地"],
+      "pacing_rule": "morning: Wukang Mansion photo → Anfu Road concept stores → lunch at FCC cafe → afternoon: Bund viewing platform (golden hour) → optional 1933 Old Millfun → evening: Xintiandi bar or Bund夜景",
+      "commercial_rule": "free-dominant; guide optional but camera-savvy guide adds value; paid upsell: Huangpu River cruise at dusk",
+      "route_story_angle": "Frame by Frame: Shanghai Through a Photographer's Lens — from Art Deco to Neon Nights"
+    },
+    {
+      "template_id": "SH-TPL-10",
+      "template_name": "Family Half Day",
+      "duration_type": "half_day",
+      "target_profile_tags": ["TAG-05"],
+      "required_unit_types": ["Family", "Free Entry", "dining"],
+      "preferred_areas": ["南京路/人民广场", "外滩/陆家嘴"],
+      "pacing_rule": "morning: Shanghai Museum (interactive, free, indoor) → lunch: xiaolongbao near People's Square → afternoon: Nanjing Road walk → Bund viewing + boat spotting",
+      "commercial_rule": "children discounts where applicable; keep walking < 2km; restaurant must have high chairs; private car strongly recommended",
+      "route_story_angle": "Small Steps, Big City: Shanghai for Families — Museums, Dumplings, and the Magic of the Bund"
+    },
+    {
+      "template_id": "SH-TPL-11",
+      "template_name": "Culture & History Half Day",
+      "duration_type": "half_day",
+      "target_profile_tags": ["TAG-02"],
+      "required_unit_types": ["History", "Museum", "Architecture"],
+      "preferred_areas": ["南京路/人民广场", "豫园/老城厢", "田子坊/新天地"],
+      "pacing_rule": "morning: Shanghai History Museum or Shanghai Museum → walk to Yu Garden (classical garden) → Yuyuan Bazaar exterior → lunch: local food → optional: Site of First CPC Congress",
+      "commercial_rule": "museum-heavy = low ticket cost; guide value is high for historical commentary; Yu Garden ¥40 ticket is the only required admission",
+      "route_story_angle": "Layers of Shanghai: 5,000 Years of Art, a Ming Dynasty Garden, and Revolution"
+    },
+    {
+      "template_id": "SH-TPL-12",
+      "template_name": "Senior Slow Half Day",
+      "duration_type": "half_day",
+      "target_profile_tags": ["TAG-06"],
+      "required_unit_types": ["Free Entry", "Indoor", "Garden"],
+      "preferred_areas": ["南京路/人民广场", "豫园/老城厢"],
+      "pacing_rule": "morning: People's Park stroll (Marriage Market if weekend) → Shanghai Museum (indoor, wheelchair-accessible, free) → lunch at Peace Hotel (historic lobby visit, rest) → Yu Garden exterior or Old Street",
+      "commercial_rule": "zero required tickets; focus on comfort: frequent rest stops, private car, minimal walking (<3km total); guide adds significant value for elderly clients",
+      "route_story_angle": "Shanghai at Ease: Garden Strolls, Museum Galleries, and Stories at a Gentle Pace"
+    }
+  ]
+}

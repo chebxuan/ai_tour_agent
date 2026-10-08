@@ -1,0 +1,373 @@
+运行 315 个场景...
+
+  #  Dur                              Interests    Pace     Bud    Grp |   Pro     Tmpl | u A+T=TTL | ¥cost | t%
+--------------------------------------------------------------------------------------------------------------------------------------------
+  1 one_day            culture,history,photography moderate medium  couple | First-time Visitor SH-TPL-01 | 4 195+52=247 |   120 | 100%   
+  2 one_day            culture,history,photography moderate medium  family | First-time Visitor SH-TPL-01 | 4 270+28=298 |   406 | 67% ⚠️
+  3 one_day            culture,history,photography moderate medium  solo   | First-time Visitor SH-TPL-01 | 4 280+8=288 |   120 | 100%   
+  4 one_day            culture,history,photography moderate medium  senior | First-time Visitor SH-TPL-01 | 4 175+26=201 |    90 | 100%   
+  5 one_day            culture,history,photography moderate low     couple | Budget-conscious / Backpacker SH-TPL-01 | 4 120+25=145 |    45 | 100%   
+  6 one_day            culture,history,photography moderate low     family | Budget-conscious / Backpacker SH-TPL-01 | 4 225+0=225 |    50 | 67% ⚠️
+  7 one_day            culture,history,photography moderate low     solo   | Budget-conscious / Backpacker SH-TPL-01 | 4 145+0=145 |    45 | 100%   
+  8 one_day            culture,history,photography moderate low     senior | Budget-conscious / Backpacker SH-TPL-01 | 4 160+0=160 |    60 | 100%   
+  9 one_day            culture,history,photography moderate flexible couple | First-time Visitor SH-TPL-01 | 4 195+52=247 |   120 | 100%   
+ 10 one_day            culture,history,photography moderate flexible family | First-time Visitor SH-TPL-01 | 4 270+28=298 |   406 | 67% ⚠️
+ 11 one_day            culture,history,photography moderate flexible solo   | First-time Visitor SH-TPL-01 | 4 280+8=288 |   120 | 100%   
+ 12 one_day            culture,history,photography moderate flexible senior | First-time Visitor SH-TPL-01 | 4 175+26=201 |    90 | 100%   
+ 13 one_day            culture,history,photography relaxed medium  couple | First-time Visitor SH-TPL-01 | 4 195+52=247 |   120 | 100%   
+ 14 one_day            culture,history,photography relaxed medium  family | First-time Visitor SH-TPL-01 | 4 270+28=298 |   406 | 67% ⚠️
+ 15 one_day            culture,history,photography relaxed medium  solo   | First-time Visitor SH-TPL-01 | 4 280+8=288 |   120 | 100%   
+ 16 one_day            culture,history,photography relaxed medium  senior | First-time Visitor SH-TPL-01 | 4 175+26=201 |    90 | 100%   
+ 17 one_day            culture,history,photography relaxed low     couple | First-time Visitor SH-TPL-01 | 4 150+55=205 |    80 | 100%   
+ 18 one_day            culture,history,photography relaxed low     family | First-time Visitor SH-TPL-01 | 4 195+0=195 |    90 | 67% ⚠️
+ 19 one_day            culture,history,photography relaxed low     solo   | First-time Visitor SH-TPL-01 | 4 235+38=273 |    80 | 100%   
+ 20 one_day            culture,history,photography relaxed low     senior | First-time Visitor SH-TPL-01 | 4 175+26=201 |    80 | 100%   
+ 21 one_day            culture,history,photography relaxed flexible couple | First-time Visitor SH-TPL-01 | 4 195+52=247 |   120 | 100%   
+ 22 one_day            culture,history,photography relaxed flexible family | First-time Visitor SH-TPL-01 | 4 270+28=298 |   406 | 67% ⚠️
+ 23 one_day            culture,history,photography relaxed flexible solo   | First-time Visitor SH-TPL-01 | 4 280+8=288 |   120 | 100%   
+ 24 one_day            culture,history,photography relaxed flexible senior | First-time Visitor SH-TPL-01 | 4 175+26=201 |    90 | 100%   
+ 25 one_day            culture,history,photography fast    medium  couple | First-time Visitor SH-TPL-01 | 4 195+52=247 |   120 | 100%   
+ 26 one_day            culture,history,photography fast    medium  family | First-time Visitor SH-TPL-01 | 4 270+28=298 |   406 | 67% ⚠️
+ 27 one_day            culture,history,photography fast    medium  solo   | First-time Visitor SH-TPL-01 | 4 280+8=288 |   120 | 100%   
+ 28 one_day            culture,history,photography fast    flexible couple | First-time Visitor SH-TPL-01 | 4 195+52=247 |   120 | 100%   
+ 29 one_day            culture,history,photography fast    flexible family | First-time Visitor SH-TPL-01 | 4 270+28=298 |   406 | 67% ⚠️
+ 30 one_day            culture,history,photography fast    flexible solo   | First-time Visitor SH-TPL-01 | 4 280+8=288 |   120 | 100%   
+ 31 one_day          photography,architecture,cafe moderate medium  couple | Photography & Social Media SH-TPL-09 | 4 170+10=180 |    80 | 75%   
+ 32 one_day          photography,architecture,cafe moderate medium  family | Photography & Social Media SH-TPL-09 | 4 230+0=230 |   130 | 75%   
+ 33 one_day          photography,architecture,cafe moderate medium  solo   | Photography & Social Media SH-TPL-09 | 4 200+0=200 |    80 | 75%   
+ 34 one_day          photography,architecture,cafe moderate medium  senior | Photography & Social Media SH-TPL-09 | 4 170+0=170 |    80 | 75%   
+ 35 one_day          photography,architecture,cafe moderate low     couple | Budget-conscious / Backpacker SH-TPL-01 | 4 165+28=193 |    45 | 100%   
+ 36 one_day          photography,architecture,cafe moderate low     family | Budget-conscious / Backpacker SH-TPL-01 | 4 255+28=283 |    45 | 67% ⚠️
+ 37 one_day          photography,architecture,cafe moderate low     solo   | Budget-conscious / Backpacker SH-TPL-01 | 4 195+30=225 |    45 | 100%   
+ 38 one_day          photography,architecture,cafe moderate low     senior | Budget-conscious / Backpacker SH-TPL-01 | 4 165+0=165 |    45 | 100%   
+ 39 one_day          photography,architecture,cafe moderate flexible couple | Photography & Social Media SH-TPL-09 | 4 170+10=180 |    80 | 75%   
+ 40 one_day          photography,architecture,cafe moderate flexible family | Photography & Social Media SH-TPL-09 | 4 230+0=230 |   130 | 75%   
+ 41 one_day          photography,architecture,cafe moderate flexible solo   | Photography & Social Media SH-TPL-09 | 4 200+0=200 |    80 | 75%   
+ 42 one_day          photography,architecture,cafe moderate flexible senior | Photography & Social Media SH-TPL-09 | 4 170+0=170 |    80 | 75%   
+ 43 one_day          photography,architecture,cafe relaxed medium  couple | Photography & Social Media SH-TPL-09 | 4 170+10=180 |    80 | 75%   
+ 44 one_day          photography,architecture,cafe relaxed medium  family | Photography & Social Media SH-TPL-09 | 4 230+0=230 |   130 | 75%   
+ 45 one_day          photography,architecture,cafe relaxed medium  solo   | Photography & Social Media SH-TPL-09 | 4 200+0=200 |    80 | 75%   
+ 46 one_day          photography,architecture,cafe relaxed medium  senior | Photography & Social Media SH-TPL-09 | 4 170+0=170 |    80 | 75%   
+ 47 one_day          photography,architecture,cafe relaxed low     couple | Budget-conscious / Backpacker SH-TPL-01 | 4 165+28=193 |    45 | 100%   
+ 48 one_day          photography,architecture,cafe relaxed low     family | Budget-conscious / Backpacker SH-TPL-01 | 4 255+28=283 |    45 | 67% ⚠️
+ 49 one_day          photography,architecture,cafe relaxed low     solo   | Budget-conscious / Backpacker SH-TPL-01 | 4 195+30=225 |    45 | 100%   
+ 50 one_day          photography,architecture,cafe relaxed low     senior | Budget-conscious / Backpacker SH-TPL-01 | 4 165+0=165 |    45 | 100%   
+ 51 one_day          photography,architecture,cafe relaxed flexible couple | Photography & Social Media SH-TPL-09 | 4 170+10=180 |    80 | 75%   
+ 52 one_day          photography,architecture,cafe relaxed flexible family | Photography & Social Media SH-TPL-09 | 4 230+0=230 |   130 | 75%   
+ 53 one_day          photography,architecture,cafe relaxed flexible solo   | Photography & Social Media SH-TPL-09 | 4 200+0=200 |    80 | 75%   
+ 54 one_day          photography,architecture,cafe relaxed flexible senior | Photography & Social Media SH-TPL-09 | 4 170+0=170 |    80 | 75%   
+ 55 one_day          photography,architecture,cafe fast    medium  couple | Photography & Social Media SH-TPL-09 | 4 170+10=180 |    80 | 75%   
+ 56 one_day          photography,architecture,cafe fast    medium  family | Photography & Social Media SH-TPL-09 | 4 230+0=230 |   130 | 75%   
+ 57 one_day          photography,architecture,cafe fast    medium  solo   | Photography & Social Media SH-TPL-09 | 4 200+0=200 |    80 | 75%   
+ 58 one_day          photography,architecture,cafe fast    flexible couple | Photography & Social Media SH-TPL-09 | 4 170+10=180 |    80 | 75%   
+ 59 one_day          photography,architecture,cafe fast    flexible family | Photography & Social Media SH-TPL-09 | 4 230+0=230 |   130 | 75%   
+ 60 one_day          photography,architecture,cafe fast    flexible solo   | Photography & Social Media SH-TPL-09 | 4 200+0=200 |    80 | 75%   
+ 61 one_day              history,literature,garden moderate medium  couple | Culture & History Deep-dive SH-TPL-04 | 4 220+26=246 |    80 | 100%   
+ 62 one_day              history,literature,garden moderate medium  family | Culture & History Deep-dive SH-TPL-04 | 4 270+0=270 |    45 | 100%   
+ 63 one_day              history,literature,garden moderate medium  solo   | Culture & History Deep-dive SH-TPL-04 | 4 220+28=248 |    80 | 100%   
+ 64 one_day              history,literature,garden moderate medium  senior | Culture & History Deep-dive SH-TPL-04 | 4 190+38=228 |    80 | 100%   
+ 65 one_day              history,literature,garden moderate low     couple | Budget-conscious / Backpacker SH-TPL-01 | 4 190+18=208 |    85 | 100%   
+ 66 one_day              history,literature,garden moderate low     family | Budget-conscious / Backpacker SH-TPL-01 | 4 255+0=255 |    50 | 67% ⚠️
+ 67 one_day              history,literature,garden moderate low     solo   | Budget-conscious / Backpacker SH-TPL-01 | 4 190+0=190 |    45 | 100%   
+ 68 one_day              history,literature,garden moderate low     senior | Budget-conscious / Backpacker SH-TPL-01 | 4 205+0=205 |    50 | 100%   
+ 69 one_day              history,literature,garden moderate flexible couple | Culture & History Deep-dive SH-TPL-04 | 4 220+26=246 |    80 | 100%   
+ 70 one_day              history,literature,garden moderate flexible family | Culture & History Deep-dive SH-TPL-04 | 4 270+0=270 |    45 | 100%   
+ 71 one_day              history,literature,garden moderate flexible solo   | Culture & History Deep-dive SH-TPL-04 | 4 220+28=248 |    80 | 100%   
+ 72 one_day              history,literature,garden moderate flexible senior | Culture & History Deep-dive SH-TPL-04 | 4 190+38=228 |    80 | 100%   
+ 73 one_day              history,literature,garden relaxed medium  couple | Culture & History Deep-dive SH-TPL-04 | 4 220+26=246 |    80 | 100%   
+ 74 one_day              history,literature,garden relaxed medium  family | Culture & History Deep-dive SH-TPL-04 | 4 270+0=270 |    45 | 100%   
+ 75 one_day              history,literature,garden relaxed medium  solo   | Culture & History Deep-dive SH-TPL-04 | 4 220+28=248 |    80 | 100%   
+ 76 one_day              history,literature,garden relaxed medium  senior | Culture & History Deep-dive SH-TPL-04 | 4 190+38=228 |    80 | 100%   
+ 77 one_day              history,literature,garden relaxed low     couple | Budget-conscious / Backpacker SH-TPL-01 | 4 190+18=208 |    85 | 100%   
+ 78 one_day              history,literature,garden relaxed low     family | Budget-conscious / Backpacker SH-TPL-01 | 4 255+0=255 |    50 | 67% ⚠️
+ 79 one_day              history,literature,garden relaxed low     solo   | Budget-conscious / Backpacker SH-TPL-01 | 4 190+0=190 |    45 | 100%   
+ 80 one_day              history,literature,garden relaxed low     senior | Budget-conscious / Backpacker SH-TPL-01 | 4 205+0=205 |    50 | 100%   
+ 81 one_day              history,literature,garden relaxed flexible couple | Culture & History Deep-dive SH-TPL-04 | 4 220+26=246 |    80 | 100%   
+ 82 one_day              history,literature,garden relaxed flexible family | Culture & History Deep-dive SH-TPL-04 | 4 270+0=270 |    45 | 100%   
+ 83 one_day              history,literature,garden relaxed flexible solo   | Culture & History Deep-dive SH-TPL-04 | 4 220+28=248 |    80 | 100%   
+ 84 one_day              history,literature,garden relaxed flexible senior | Culture & History Deep-dive SH-TPL-04 | 4 190+38=228 |    80 | 100%   
+ 85 one_day              history,literature,garden fast    medium  couple | Culture & History Deep-dive SH-TPL-04 | 4 160+28=188 |    80 | 100%   
+ 86 one_day              history,literature,garden fast    medium  family | Culture & History Deep-dive SH-TPL-04 | 4 270+0=270 |    45 | 100%   
+ 87 one_day              history,literature,garden fast    medium  solo   | Culture & History Deep-dive SH-TPL-04 | 4 220+28=248 |    80 | 100%   
+ 88 one_day              history,literature,garden fast    flexible couple | Culture & History Deep-dive SH-TPL-04 | 4 160+28=188 |    80 | 100%   
+ 89 one_day              history,literature,garden fast    flexible family | Culture & History Deep-dive SH-TPL-04 | 4 270+0=270 |    45 | 100%   
+ 90 one_day              history,literature,garden fast    flexible solo   | Culture & History Deep-dive SH-TPL-04 | 4 220+28=248 |    80 | 100%   
+ 91 one_day              family,museum,interactive moderate medium  couple | Family with Children SH-TPL-03 | 4 285+30=315 |   200 | 67% ⚠️
+ 92 one_day              family,museum,interactive moderate medium  family | Family with Children SH-TPL-03 | 4 315+0=315 |   100 | 100%   
+ 93 one_day              family,museum,interactive moderate medium  solo   | Family with Children SH-TPL-03 | 4 250+32=282 |    45 | 67% ⚠️
+ 94 one_day              family,museum,interactive moderate medium  senior | Family with Children SH-TPL-03 | 4 265+12=277 |    50 | 67% ⚠️
+ 95 one_day              family,museum,interactive moderate low     couple | Budget-conscious / Backpacker SH-TPL-01 | 4 225+18=243 |    45 | 100%   
+ 96 one_day              family,museum,interactive moderate low     family | Budget-conscious / Backpacker SH-TPL-01 | 4 315+0=315 |    50 | 67% ⚠️
+ 97 one_day              family,museum,interactive moderate low     solo   | Budget-conscious / Backpacker SH-TPL-01 | 4 250+0=250 |    45 | 100%   
+ 98 one_day              family,museum,interactive moderate low     senior | Budget-conscious / Backpacker SH-TPL-01 | 4 265+12=277 |    50 | 100%   
+ 99 one_day              family,museum,interactive moderate flexible couple | Family with Children SH-TPL-03 | 4 285+30=315 |   200 | 67% ⚠️
+100 one_day              family,museum,interactive moderate flexible family | Family with Children SH-TPL-03 | 4 315+0=315 |   100 | 100%   
+101 one_day              family,museum,interactive moderate flexible solo   | Family with Children SH-TPL-03 | 4 250+32=282 |    45 | 67% ⚠️
+102 one_day              family,museum,interactive moderate flexible senior | Family with Children SH-TPL-03 | 4 265+12=277 |    50 | 67% ⚠️
+103 one_day              family,museum,interactive relaxed medium  couple | Family with Children SH-TPL-03 | 4 285+30=315 |   200 | 67% ⚠️
+104 one_day              family,museum,interactive relaxed medium  family | Family with Children SH-TPL-03 | 4 315+0=315 |   100 | 100%   
+105 one_day              family,museum,interactive relaxed medium  solo   | Family with Children SH-TPL-03 | 4 250+32=282 |    45 | 67% ⚠️
+106 one_day              family,museum,interactive relaxed medium  senior | Family with Children SH-TPL-03 | 4 265+12=277 |    50 | 67% ⚠️
+107 one_day              family,museum,interactive relaxed low     couple | Family with Children SH-TPL-03 | 4 225+18=243 |    45 | 67% ⚠️
+108 one_day              family,museum,interactive relaxed low     family | Family with Children SH-TPL-03 | 4 315+0=315 |   100 | 100%   
+109 one_day              family,museum,interactive relaxed low     solo   | Family with Children SH-TPL-03 | 4 250+32=282 |    45 | 67% ⚠️
+110 one_day              family,museum,interactive relaxed low     senior | Family with Children SH-TPL-03 | 4 265+12=277 |    50 | 67% ⚠️
+111 one_day              family,museum,interactive relaxed flexible couple | Family with Children SH-TPL-03 | 4 285+30=315 |   200 | 67% ⚠️
+112 one_day              family,museum,interactive relaxed flexible family | Family with Children SH-TPL-03 | 4 315+0=315 |   100 | 100%   
+113 one_day              family,museum,interactive relaxed flexible solo   | Family with Children SH-TPL-03 | 4 250+32=282 |    45 | 67% ⚠️
+114 one_day              family,museum,interactive relaxed flexible senior | Family with Children SH-TPL-03 | 4 265+12=277 |    50 | 67% ⚠️
+115 one_day              family,museum,interactive fast    medium  couple | Family with Children SH-TPL-03 | 4 225+18=243 |    45 | 67% ⚠️
+116 one_day              family,museum,interactive fast    medium  family | Family with Children SH-TPL-03 | 4 315+0=315 |   100 | 100%   
+117 one_day              family,museum,interactive fast    medium  solo   | Family with Children SH-TPL-03 | 4 250+32=282 |    45 | 67% ⚠️
+118 one_day              family,museum,interactive fast    flexible couple | Family with Children SH-TPL-03 | 4 225+18=243 |    45 | 67% ⚠️
+119 one_day              family,museum,interactive fast    flexible family | Family with Children SH-TPL-03 | 4 315+0=315 |   100 | 100%   
+120 one_day              family,museum,interactive fast    flexible solo   | Family with Children SH-TPL-03 | 4 250+32=282 |    45 | 67% ⚠️
+121 one_day   street life,photography,architecture moderate medium  couple | Photography & Social Media SH-TPL-09 | 4 155+10=165 |    80 | 75%   
+122 one_day   street life,photography,architecture moderate medium  family | Photography & Social Media SH-TPL-09 | 4 215+0=215 |   130 | 75%   
+123 one_day   street life,photography,architecture moderate medium  solo   | Photography & Social Media SH-TPL-09 | 4 155+20=175 |    80 | 75%   
+124 one_day   street life,photography,architecture moderate medium  senior | Photography & Social Media SH-TPL-09 | 4 170+0=170 |    80 | 75%   
+125 one_day   street life,photography,architecture moderate low     couple | Budget-conscious / Backpacker SH-TPL-01 | 4 150+28=178 |    45 | 100%   
+126 one_day   street life,photography,architecture moderate low     family | Budget-conscious / Backpacker SH-TPL-01 | 4 225+0=225 |   100 | 67% ⚠️
+127 one_day   street life,photography,architecture moderate low     solo   | Budget-conscious / Backpacker SH-TPL-01 | 4 150+35=185 |    45 | 100%   
+128 one_day   street life,photography,architecture moderate low     senior | Budget-conscious / Backpacker SH-TPL-01 | 4 180+0=180 |    50 | 100%   
+129 one_day   street life,photography,architecture moderate flexible couple | First-time Visitor SH-TPL-01 | 4 195+28=223 |    80 | 100%   
+130 one_day   street life,photography,architecture moderate flexible family | First-time Visitor SH-TPL-01 | 4 240+0=240 |   130 | 67% ⚠️
+131 one_day   street life,photography,architecture moderate flexible solo   | First-time Visitor SH-TPL-01 | 4 225+30=255 |    80 | 100%   
+132 one_day   street life,photography,architecture moderate flexible senior | First-time Visitor SH-TPL-01 | 4 195+0=195 |    80 | 100%   
+133 one_day   street life,photography,architecture relaxed medium  couple | First-time Visitor SH-TPL-01 | 4 195+28=223 |    80 | 100%   
+134 one_day   street life,photography,architecture relaxed medium  family | First-time Visitor SH-TPL-01 | 4 240+0=240 |   130 | 67% ⚠️
+135 one_day   street life,photography,architecture relaxed medium  solo   | First-time Visitor SH-TPL-01 | 4 225+30=255 |    80 | 100%   
+136 one_day   street life,photography,architecture relaxed medium  senior | First-time Visitor SH-TPL-01 | 4 195+0=195 |    80 | 100%   
+137 one_day   street life,photography,architecture relaxed low     couple | First-time Visitor SH-TPL-01 | 4 195+28=223 |    80 | 100%   
+138 one_day   street life,photography,architecture relaxed low     family | First-time Visitor SH-TPL-01 | 4 225+0=225 |   100 | 67% ⚠️
+139 one_day   street life,photography,architecture relaxed low     solo   | First-time Visitor SH-TPL-01 | 4 225+30=255 |    80 | 100%   
+140 one_day   street life,photography,architecture relaxed low     senior | First-time Visitor SH-TPL-01 | 4 195+0=195 |    80 | 100%   
+141 one_day   street life,photography,architecture relaxed flexible couple | First-time Visitor SH-TPL-01 | 4 195+28=223 |    80 | 100%   
+142 one_day   street life,photography,architecture relaxed flexible family | First-time Visitor SH-TPL-01 | 4 240+0=240 |   130 | 67% ⚠️
+143 one_day   street life,photography,architecture relaxed flexible solo   | First-time Visitor SH-TPL-01 | 4 225+30=255 |    80 | 100%   
+144 one_day   street life,photography,architecture relaxed flexible senior | First-time Visitor SH-TPL-01 | 4 195+0=195 |    80 | 100%   
+145 one_day   street life,photography,architecture fast    medium  couple | First-time Visitor SH-TPL-01 | 4 195+28=223 |    80 | 100%   
+146 one_day   street life,photography,architecture fast    medium  family | First-time Visitor SH-TPL-01 | 4 240+0=240 |   130 | 67% ⚠️
+147 one_day   street life,photography,architecture fast    medium  solo   | First-time Visitor SH-TPL-01 | 4 225+30=255 |    80 | 100%   
+148 one_day   street life,photography,architecture fast    flexible couple | First-time Visitor SH-TPL-01 | 4 195+28=223 |    80 | 100%   
+149 one_day   street life,photography,architecture fast    flexible family | First-time Visitor SH-TPL-01 | 4 240+0=240 |   130 | 67% ⚠️
+150 one_day   street life,photography,architecture fast    flexible solo   | First-time Visitor SH-TPL-01 | 4 225+30=255 |    80 | 100%   
+151 half_day            culture,history,photography moderate medium  couple | First-time Visitor SH-TPL-02 | 3 105+0=105 |    80 | 50% ⚠️
+152 half_day            culture,history,photography moderate medium  family | First-time Visitor SH-TPL-02 | 3 135+10=145 |   286 | 25% ⚠️
+153 half_day            culture,history,photography moderate medium  solo   | First-time Visitor SH-TPL-02 | 3 145+0=145 |     0 | 25% ⚠️
+154 half_day            culture,history,photography moderate medium  senior | First-time Visitor SH-TPL-02 | 3 130+38=168 |    80 | 50% ⚠️
+155 half_day            culture,history,photography moderate low     couple | Budget-conscious / Backpacker SH-TPL-05 | 2 60+25=85 |     0 | 50% ⚠️
+156 half_day            culture,history,photography moderate low     family | Budget-conscious / Backpacker SH-TPL-05 | 3 135+0=135 |     0 | 50% ⚠️
+157 half_day            culture,history,photography moderate low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 3 85+0=85 |     0 | 50% ⚠️
+158 half_day            culture,history,photography moderate low     senior | Budget-conscious / Backpacker SH-TPL-05 | 3 115+20=135 |    50 | 50% ⚠️
+159 half_day            culture,history,photography moderate flexible couple | First-time Visitor SH-TPL-02 | 3 105+0=105 |    80 | 50% ⚠️
+160 half_day            culture,history,photography moderate flexible family | First-time Visitor SH-TPL-02 | 3 135+10=145 |   286 | 25% ⚠️
+161 half_day            culture,history,photography moderate flexible solo   | First-time Visitor SH-TPL-02 | 3 145+0=145 |     0 | 25% ⚠️
+162 half_day            culture,history,photography moderate flexible senior | First-time Visitor SH-TPL-02 | 3 130+38=168 |    80 | 50% ⚠️
+163 half_day            culture,history,photography relaxed medium  couple | First-time Visitor SH-TPL-02 | 3 105+0=105 |    80 | 50% ⚠️
+164 half_day            culture,history,photography relaxed medium  family | First-time Visitor SH-TPL-02 | 3 135+10=145 |   286 | 25% ⚠️
+165 half_day            culture,history,photography relaxed medium  solo   | First-time Visitor SH-TPL-02 | 3 145+0=145 |     0 | 25% ⚠️
+166 half_day            culture,history,photography relaxed medium  senior | First-time Visitor SH-TPL-02 | 3 130+38=168 |    80 | 50% ⚠️
+167 half_day            culture,history,photography relaxed low     couple | First-time Visitor SH-TPL-02 | 3 75+0=75 |    45 | 50% ⚠️
+168 half_day            culture,history,photography relaxed low     family | First-time Visitor SH-TPL-02 | 3 75+0=75 |     0 | 25% ⚠️
+169 half_day            culture,history,photography relaxed low     solo   | First-time Visitor SH-TPL-02 | 3 145+0=145 |     0 | 25% ⚠️
+170 half_day            culture,history,photography relaxed low     senior | First-time Visitor SH-TPL-02 | 3 115+20=135 |    50 | 25% ⚠️
+171 half_day            culture,history,photography relaxed flexible couple | First-time Visitor SH-TPL-02 | 3 105+0=105 |    80 | 50% ⚠️
+172 half_day            culture,history,photography relaxed flexible family | First-time Visitor SH-TPL-02 | 3 135+10=145 |   286 | 25% ⚠️
+173 half_day            culture,history,photography relaxed flexible solo   | First-time Visitor SH-TPL-02 | 3 145+0=145 |     0 | 25% ⚠️
+174 half_day            culture,history,photography relaxed flexible senior | First-time Visitor SH-TPL-02 | 3 130+38=168 |    80 | 50% ⚠️
+175 half_day            culture,history,photography fast    medium  couple | First-time Visitor SH-TPL-02 | 3 105+0=105 |    80 | 50% ⚠️
+176 half_day            culture,history,photography fast    medium  family | First-time Visitor SH-TPL-02 | 3 135+10=145 |   286 | 25% ⚠️
+177 half_day            culture,history,photography fast    medium  solo   | First-time Visitor SH-TPL-02 | 3 145+0=145 |     0 | 25% ⚠️
+178 half_day            culture,history,photography fast    low     couple | First-time Visitor SH-TPL-02 | 3 75+0=75 |    45 | 50% ⚠️
+179 half_day            culture,history,photography fast    low     family | First-time Visitor SH-TPL-02 | 3 75+0=75 |     0 | 25% ⚠️
+180 half_day            culture,history,photography fast    low     solo   | First-time Visitor SH-TPL-02 | 3 145+0=145 |     0 | 25% ⚠️
+181 half_day            culture,history,photography fast    flexible couple | First-time Visitor SH-TPL-02 | 3 105+0=105 |    80 | 50% ⚠️
+182 half_day            culture,history,photography fast    flexible family | First-time Visitor SH-TPL-02 | 3 135+10=145 |   286 | 25% ⚠️
+183 half_day            culture,history,photography fast    flexible solo   | First-time Visitor SH-TPL-02 | 3 145+0=145 |     0 | 25% ⚠️
+184 half_day          photography,architecture,cafe moderate medium  couple | Photography & Social Media SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+185 half_day          photography,architecture,cafe moderate medium  family | Photography & Social Media SH-TPL-02 | 3 180+0=180 |    50 | 25% ⚠️
+186 half_day          photography,architecture,cafe moderate medium  solo   | Photography & Social Media SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+187 half_day          photography,architecture,cafe moderate medium  senior | Photography & Social Media SH-TPL-02 | 3 150+0=150 |    80 | 50% ⚠️
+188 half_day          photography,architecture,cafe moderate low     couple | Budget-conscious / Backpacker SH-TPL-05 | 2 75+28=103 |     0 | 50% ⚠️
+189 half_day          photography,architecture,cafe moderate low     family | Budget-conscious / Backpacker SH-TPL-05 | 2 165+28=193 |     0 | 75%   
+190 half_day          photography,architecture,cafe moderate low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 2 135+30=165 |     0 | 50% ⚠️
+191 half_day          photography,architecture,cafe moderate low     senior | Budget-conscious / Backpacker SH-TPL-05 | 3 135+0=135 |    45 | 50% ⚠️
+192 half_day          photography,architecture,cafe moderate flexible couple | Photography & Social Media SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+193 half_day          photography,architecture,cafe moderate flexible family | Photography & Social Media SH-TPL-02 | 3 180+0=180 |    50 | 25% ⚠️
+194 half_day          photography,architecture,cafe moderate flexible solo   | Photography & Social Media SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+195 half_day          photography,architecture,cafe moderate flexible senior | Photography & Social Media SH-TPL-02 | 3 150+0=150 |    80 | 50% ⚠️
+196 half_day          photography,architecture,cafe relaxed medium  couple | Photography & Social Media SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+197 half_day          photography,architecture,cafe relaxed medium  family | Photography & Social Media SH-TPL-02 | 3 180+0=180 |    50 | 25% ⚠️
+198 half_day          photography,architecture,cafe relaxed medium  solo   | Photography & Social Media SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+199 half_day          photography,architecture,cafe relaxed medium  senior | Photography & Social Media SH-TPL-02 | 3 150+0=150 |    80 | 50% ⚠️
+200 half_day          photography,architecture,cafe relaxed low     couple | Budget-conscious / Backpacker SH-TPL-05 | 2 75+28=103 |     0 | 50% ⚠️
+201 half_day          photography,architecture,cafe relaxed low     family | Budget-conscious / Backpacker SH-TPL-05 | 2 165+28=193 |     0 | 75%   
+202 half_day          photography,architecture,cafe relaxed low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 2 135+30=165 |     0 | 50% ⚠️
+203 half_day          photography,architecture,cafe relaxed low     senior | Budget-conscious / Backpacker SH-TPL-05 | 3 135+0=135 |    45 | 50% ⚠️
+204 half_day          photography,architecture,cafe relaxed flexible couple | Photography & Social Media SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+205 half_day          photography,architecture,cafe relaxed flexible family | Photography & Social Media SH-TPL-02 | 3 180+0=180 |    50 | 25% ⚠️
+206 half_day          photography,architecture,cafe relaxed flexible solo   | Photography & Social Media SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+207 half_day          photography,architecture,cafe relaxed flexible senior | Photography & Social Media SH-TPL-02 | 3 150+0=150 |    80 | 50% ⚠️
+208 half_day          photography,architecture,cafe fast    medium  couple | Photography & Social Media SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+209 half_day          photography,architecture,cafe fast    medium  family | Photography & Social Media SH-TPL-02 | 3 180+0=180 |    50 | 25% ⚠️
+210 half_day          photography,architecture,cafe fast    medium  solo   | Photography & Social Media SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+211 half_day          photography,architecture,cafe fast    low     couple | Budget-conscious / Backpacker SH-TPL-05 | 3 80+10=90 |    45 | 50% ⚠️
+212 half_day          photography,architecture,cafe fast    low     family | Budget-conscious / Backpacker SH-TPL-05 | 3 170+0=170 |     0 | 75%   
+213 half_day          photography,architecture,cafe fast    low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 3 140+0=140 |     0 | 50% ⚠️
+214 half_day          photography,architecture,cafe fast    flexible couple | Photography & Social Media SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+215 half_day          photography,architecture,cafe fast    flexible family | Photography & Social Media SH-TPL-02 | 3 180+0=180 |    50 | 25% ⚠️
+216 half_day          photography,architecture,cafe fast    flexible solo   | Photography & Social Media SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+217 half_day              history,literature,garden moderate medium  couple | Culture & History Deep-dive SH-TPL-11 | 2 100+0=100 |     0 | 67% ⚠️
+218 half_day              history,literature,garden moderate medium  family | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+219 half_day              history,literature,garden moderate medium  solo   | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+220 half_day              history,literature,garden moderate medium  senior | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |    45 | 100%   
+221 half_day              history,literature,garden moderate low     couple | Budget-conscious / Backpacker SH-TPL-05 | 3 85+0=85 |    45 | 50% ⚠️
+222 half_day              history,literature,garden moderate low     family | Budget-conscious / Backpacker SH-TPL-05 | 3 160+0=160 |     0 | 25% ⚠️
+223 half_day              history,literature,garden moderate low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 3 85+0=85 |     0 | 50% ⚠️
+224 half_day              history,literature,garden moderate low     senior | Budget-conscious / Backpacker SH-TPL-05 | 3 115+20=135 |    50 | 50% ⚠️
+225 half_day              history,literature,garden moderate flexible couple | Culture & History Deep-dive SH-TPL-11 | 2 100+0=100 |     0 | 67% ⚠️
+226 half_day              history,literature,garden moderate flexible family | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+227 half_day              history,literature,garden moderate flexible solo   | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+228 half_day              history,literature,garden moderate flexible senior | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |    45 | 100%   
+229 half_day              history,literature,garden relaxed medium  couple | Culture & History Deep-dive SH-TPL-11 | 2 100+0=100 |     0 | 67% ⚠️
+230 half_day              history,literature,garden relaxed medium  family | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+231 half_day              history,literature,garden relaxed medium  solo   | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+232 half_day              history,literature,garden relaxed medium  senior | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |    45 | 100%   
+233 half_day              history,literature,garden relaxed low     couple | Budget-conscious / Backpacker SH-TPL-05 | 3 85+0=85 |    45 | 50% ⚠️
+234 half_day              history,literature,garden relaxed low     family | Budget-conscious / Backpacker SH-TPL-05 | 3 160+0=160 |     0 | 25% ⚠️
+235 half_day              history,literature,garden relaxed low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 3 85+0=85 |     0 | 50% ⚠️
+236 half_day              history,literature,garden relaxed low     senior | Budget-conscious / Backpacker SH-TPL-05 | 3 115+20=135 |    50 | 50% ⚠️
+237 half_day              history,literature,garden relaxed flexible couple | Culture & History Deep-dive SH-TPL-11 | 2 100+0=100 |     0 | 67% ⚠️
+238 half_day              history,literature,garden relaxed flexible family | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+239 half_day              history,literature,garden relaxed flexible solo   | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+240 half_day              history,literature,garden relaxed flexible senior | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |    45 | 100%   
+241 half_day              history,literature,garden fast    medium  couple | Culture & History Deep-dive SH-TPL-11 | 2 100+0=100 |     0 | 67% ⚠️
+242 half_day              history,literature,garden fast    medium  family | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+243 half_day              history,literature,garden fast    medium  solo   | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+244 half_day              history,literature,garden fast    low     couple | Budget-conscious / Backpacker SH-TPL-05 | 3 85+0=85 |    45 | 50% ⚠️
+245 half_day              history,literature,garden fast    low     family | Budget-conscious / Backpacker SH-TPL-05 | 3 160+0=160 |     0 | 25% ⚠️
+246 half_day              history,literature,garden fast    low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 3 85+0=85 |     0 | 50% ⚠️
+247 half_day              history,literature,garden fast    flexible couple | Culture & History Deep-dive SH-TPL-11 | 2 100+0=100 |     0 | 67% ⚠️
+248 half_day              history,literature,garden fast    flexible family | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+249 half_day              history,literature,garden fast    flexible solo   | Culture & History Deep-dive SH-TPL-11 | 3 120+0=120 |     0 | 100%   
+250 half_day              family,museum,interactive moderate medium  couple | Family with Children SH-TPL-10 | 3 165+0=165 |   220 | 67% ⚠️
+251 half_day              family,museum,interactive moderate medium  family | Family with Children SH-TPL-10 | 2 180+0=180 |     0 | 33% ⚠️
+252 half_day              family,museum,interactive moderate medium  solo   | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+253 half_day              family,museum,interactive moderate medium  senior | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+254 half_day              family,museum,interactive moderate low     couple | Budget-conscious / Backpacker SH-TPL-05 | 2 60+25=85 |     0 | 50% ⚠️
+255 half_day              family,museum,interactive moderate low     family | Budget-conscious / Backpacker SH-TPL-05 | 3 180+0=180 |     0 | 25% ⚠️
+256 half_day              family,museum,interactive moderate low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 3 85+0=85 |     0 | 50% ⚠️
+257 half_day              family,museum,interactive moderate low     senior | Budget-conscious / Backpacker SH-TPL-05 | 3 115+20=135 |    50 | 50% ⚠️
+258 half_day              family,museum,interactive moderate flexible couple | Family with Children SH-TPL-10 | 3 165+0=165 |   220 | 67% ⚠️
+259 half_day              family,museum,interactive moderate flexible family | Family with Children SH-TPL-10 | 2 180+0=180 |     0 | 33% ⚠️
+260 half_day              family,museum,interactive moderate flexible solo   | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+261 half_day              family,museum,interactive moderate flexible senior | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+262 half_day              family,museum,interactive relaxed medium  couple | Family with Children SH-TPL-10 | 3 165+0=165 |   220 | 67% ⚠️
+263 half_day              family,museum,interactive relaxed medium  family | Family with Children SH-TPL-10 | 2 180+0=180 |     0 | 33% ⚠️
+264 half_day              family,museum,interactive relaxed medium  solo   | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+265 half_day              family,museum,interactive relaxed medium  senior | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+266 half_day              family,museum,interactive relaxed low     couple | Family with Children SH-TPL-10 | 2 165+18=183 |     0 | 33% ⚠️
+267 half_day              family,museum,interactive relaxed low     family | Family with Children SH-TPL-10 | 2 180+0=180 |     0 | 33% ⚠️
+268 half_day              family,museum,interactive relaxed low     solo   | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+269 half_day              family,museum,interactive relaxed low     senior | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+270 half_day              family,museum,interactive relaxed flexible couple | Family with Children SH-TPL-10 | 3 165+0=165 |   220 | 67% ⚠️
+271 half_day              family,museum,interactive relaxed flexible family | Family with Children SH-TPL-10 | 2 180+0=180 |     0 | 33% ⚠️
+272 half_day              family,museum,interactive relaxed flexible solo   | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+273 half_day              family,museum,interactive relaxed flexible senior | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+274 half_day              family,museum,interactive fast    medium  couple | Family with Children SH-TPL-10 | 3 105+0=105 |    65 | 67% ⚠️
+275 half_day              family,museum,interactive fast    medium  family | Family with Children SH-TPL-10 | 2 180+0=180 |     0 | 33% ⚠️
+276 half_day              family,museum,interactive fast    medium  solo   | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+277 half_day              family,museum,interactive fast    low     couple | Budget-conscious / Backpacker SH-TPL-05 | 3 65+4=69 |    45 | 50% ⚠️
+278 half_day              family,museum,interactive fast    low     family | Family with Children SH-TPL-10 | 2 180+0=180 |     0 | 33% ⚠️
+279 half_day              family,museum,interactive fast    low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 3 85+0=85 |     0 | 50% ⚠️
+280 half_day              family,museum,interactive fast    flexible couple | Family with Children SH-TPL-10 | 3 105+0=105 |    65 | 67% ⚠️
+281 half_day              family,museum,interactive fast    flexible family | Family with Children SH-TPL-10 | 2 180+0=180 |     0 | 33% ⚠️
+282 half_day              family,museum,interactive fast    flexible solo   | Family with Children SH-TPL-10 | 2 180+12=192 |     0 | 33% ⚠️
+283 half_day   street life,photography,architecture moderate medium  couple | Photography & Social Media SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+284 half_day   street life,photography,architecture moderate medium  family | Photography & Social Media SH-TPL-02 | 3 165+0=165 |    50 | 25% ⚠️
+285 half_day   street life,photography,architecture moderate medium  solo   | Photography & Social Media SH-TPL-02 | 3 135+20=155 |     0 | 25% ⚠️
+286 half_day   street life,photography,architecture moderate medium  senior | Photography & Social Media SH-TPL-02 | 3 150+0=150 |    80 | 50% ⚠️
+287 half_day   street life,photography,architecture moderate low     couple | Budget-conscious / Backpacker SH-TPL-05 | 2 75+28=103 |     0 | 50% ⚠️
+288 half_day   street life,photography,architecture moderate low     family | Budget-conscious / Backpacker SH-TPL-05 | 3 180+0=180 |    50 | 50% ⚠️
+289 half_day   street life,photography,architecture moderate low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 3 120+35=155 |     0 | 50% ⚠️
+290 half_day   street life,photography,architecture moderate low     senior | Budget-conscious / Backpacker SH-TPL-05 | 3 150+0=150 |    50 | 75%   
+291 half_day   street life,photography,architecture moderate flexible couple | First-time Visitor SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+292 half_day   street life,photography,architecture moderate flexible family | First-time Visitor SH-TPL-02 | 3 165+0=165 |    50 | 25% ⚠️
+293 half_day   street life,photography,architecture moderate flexible solo   | First-time Visitor SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+294 half_day   street life,photography,architecture moderate flexible senior | First-time Visitor SH-TPL-02 | 3 150+0=150 |    80 | 50% ⚠️
+295 half_day   street life,photography,architecture relaxed medium  couple | First-time Visitor SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+296 half_day   street life,photography,architecture relaxed medium  family | First-time Visitor SH-TPL-02 | 3 165+0=165 |    50 | 25% ⚠️
+297 half_day   street life,photography,architecture relaxed medium  solo   | First-time Visitor SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+298 half_day   street life,photography,architecture relaxed medium  senior | First-time Visitor SH-TPL-02 | 3 150+0=150 |    80 | 50% ⚠️
+299 half_day   street life,photography,architecture relaxed low     couple | First-time Visitor SH-TPL-02 | 3 120+0=120 |    45 | 50% ⚠️
+300 half_day   street life,photography,architecture relaxed low     family | First-time Visitor SH-TPL-02 | 3 165+0=165 |    50 | 25% ⚠️
+301 half_day   street life,photography,architecture relaxed low     solo   | First-time Visitor SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+302 half_day   street life,photography,architecture relaxed low     senior | First-time Visitor SH-TPL-02 | 3 135+0=135 |    50 | 25% ⚠️
+303 half_day   street life,photography,architecture relaxed flexible couple | First-time Visitor SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+304 half_day   street life,photography,architecture relaxed flexible family | First-time Visitor SH-TPL-02 | 3 165+0=165 |    50 | 25% ⚠️
+305 half_day   street life,photography,architecture relaxed flexible solo   | First-time Visitor SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+306 half_day   street life,photography,architecture relaxed flexible senior | First-time Visitor SH-TPL-02 | 3 150+0=150 |    80 | 50% ⚠️
+307 half_day   street life,photography,architecture fast    medium  couple | First-time Visitor SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+308 half_day   street life,photography,architecture fast    medium  family | First-time Visitor SH-TPL-02 | 3 165+0=165 |    50 | 25% ⚠️
+309 half_day   street life,photography,architecture fast    medium  solo   | First-time Visitor SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+310 half_day   street life,photography,architecture fast    low     couple | Budget-conscious / Backpacker SH-TPL-05 | 3 80+10=90 |    45 | 50% ⚠️
+311 half_day   street life,photography,architecture fast    low     family | Budget-conscious / Backpacker SH-TPL-05 | 3 155+0=155 |    50 | 50% ⚠️
+312 half_day   street life,photography,architecture fast    low     solo   | Budget-conscious / Backpacker SH-TPL-05 | 3 95+20=115 |     0 | 50% ⚠️
+313 half_day   street life,photography,architecture fast    flexible couple | First-time Visitor SH-TPL-02 | 3 150+22=172 |    80 | 50% ⚠️
+314 half_day   street life,photography,architecture fast    flexible family | First-time Visitor SH-TPL-02 | 3 165+0=165 |    50 | 25% ⚠️
+315 half_day   street life,photography,architecture fast    flexible solo   | First-time Visitor SH-TPL-02 | 3 180+0=180 |     0 | 25% ⚠️
+
+============================================================================================================================================
+唯一路线指纹: 90  |  重复出现: 225 次（不同输入产出相同路线）
+总场景数: 315
+
+🔁 重复路线指纹（出现 >5 次）:
+  12×  SH-023 → SH-029 → SH-034
+       inputs: ha|photography,architecture,|mo|me|co; ha|photography,architecture,|mo|fl|co; ha|photography,architecture,|re|me|co
+  12×  SH-023 → SH-035 → SH-029
+       inputs: ha|photography,architecture,|mo|me|so; ha|photography,architecture,|mo|fl|so; ha|photography,architecture,|re|me|so
+  12×  SH-018 → SH-032
+       inputs: ha|family,museum,interactive|mo|me|so; ha|family,museum,interactive|mo|me|se; ha|family,museum,interactive|mo|fl|so
+   8×  SH-014 → SH-035 → SH-012
+       inputs: ha|culture,history,photograp|mo|me|so; ha|culture,history,photograp|mo|fl|so; ha|culture,history,photograp|re|me|so
+   8×  SH-023 → SH-033 → SH-034
+       inputs: ha|photography,architecture,|mo|me|se; ha|photography,architecture,|mo|fl|se; ha|photography,architecture,|re|me|se
+   8×  SH-018 → SH-019
+       inputs: ha|family,museum,interactive|mo|me|fa; ha|family,museum,interactive|mo|fl|fa; ha|family,museum,interactive|re|me|fa
+   7×  SH-018 → SH-028 → SH-032 → SH-007
+       inputs: on|family,museum,interactive|mo|me|fa; on|family,museum,interactive|mo|fl|fa; on|family,museum,interactive|re|me|fa
+   7×  SH-018 → SH-032 → SH-014 → SH-013
+       inputs: on|family,museum,interactive|mo|me|so; on|family,museum,interactive|mo|fl|so; on|family,museum,interactive|re|me|so
+   7×  SH-023 → SH-028 → SH-024
+       inputs: ha|street life,photography,a|mo|me|fa; ha|street life,photography,a|mo|fl|fa; ha|street life,photography,a|re|me|fa
+   6×  SH-005 → SH-012 → SH-034 → SH-032
+       inputs: on|culture,history,photograp|mo|me|co; on|culture,history,photograp|mo|fl|co; on|culture,history,photograp|re|me|co
+   6×  SH-005 → SH-004 → SH-032 → SH-034
+       inputs: on|culture,history,photograp|mo|me|fa; on|culture,history,photograp|mo|fl|fa; on|culture,history,photograp|re|me|fa
+   6×  SH-005 → SH-035 → SH-014 → SH-034
+       inputs: on|culture,history,photograp|mo|me|so; on|culture,history,photograp|mo|fl|so; on|culture,history,photograp|re|me|so
+   6×  SH-009 → SH-023 → SH-034 → SH-033
+       inputs: on|photography,architecture,|mo|me|co; on|photography,architecture,|mo|fl|co; on|photography,architecture,|re|me|co
+   6×  SH-009 → SH-028 → SH-033 → SH-034
+       inputs: on|photography,architecture,|mo|me|fa; on|photography,architecture,|mo|fl|fa; on|photography,architecture,|re|me|fa
+   6×  SH-009 → SH-035 → SH-023 → SH-034
+       inputs: on|photography,architecture,|mo|me|so; on|photography,architecture,|mo|fl|so; on|photography,architecture,|re|me|so
+   6×  SH-020 → SH-010 → SH-032 → SH-013
+       inputs: on|history,literature,garden|mo|me|fa; on|history,literature,garden|mo|fl|fa; on|history,literature,garden|re|me|fa
+   6×  SH-020 → SH-032 → SH-014 → SH-034
+       inputs: on|history,literature,garden|mo|me|so; on|history,literature,garden|mo|fl|so; on|history,literature,garden|re|me|so
+   6×  SH-018 → SH-032 → SH-007 → SH-014
+       inputs: on|family,museum,interactive|mo|me|se; on|family,museum,interactive|mo|lo|se; on|family,museum,interactive|mo|fl|se
+   6×  SH-001 → SH-023 → SH-034 → SH-033
+       inputs: on|street life,photography,a|mo|fl|co; on|street life,photography,a|re|me|co; on|street life,photography,a|re|lo|co
+   6×  SH-001 → SH-035 → SH-023 → SH-034
+       inputs: on|street life,photography,a|mo|fl|so; on|street life,photography,a|re|me|so; on|street life,photography,a|re|lo|so
+
+📊 画像分布: [('First-time Visitor', 99), ('Budget-conscious / Backpacker', 67), ('Family with Children', 53), ('Photography & Social Media', 52), ('Culture & History Deep-dive', 44)]
+📊 模板分布: [('SH-TPL-02', 77), ('SH-TPL-01', 76), ('SH-TPL-05', 39), ('SH-TPL-10', 27), ('SH-TPL-09', 26), ('SH-TPL-03', 26), ('SH-TPL-04', 22), ('SH-TPL-11', 22)]
+
+💰 低预算超支: 13/95 (>50) — max=100
+  low: cost range ¥0-¥100, avg ¥35
+  medium: cost range ¥0-¥406, avg ¥80
+  flexible: cost range ¥0-¥406, avg ¥80

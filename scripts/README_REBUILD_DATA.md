@@ -1,152 +1,37 @@
-# 城市叙事数据重构脚本使用说明
+# 数据维护脚本
 
-## 📋 功能概述
+所有命令从本仓库根目录执行。数据维护会写文件，先确认源数据与输出位置；只做功能检查时使用 `verify_project.py`。
 
-`scripts/rebuild_citywalk_data.py` 是一个数据重构工具，用于将原始的地标数据转换为结构化的城市叙事数据。
-
-### 核心功能
-
-1. **故事线映射**：根据地理区域自动分配到对应的故事线
-2. **节点排序优化**：按 `sequence_weight` 降序排列，确保重要节点优先
-3. **节奏过滤**：避免连续3个相同类型的节点，提升游览体验
-4. **数据补全**：
-   - 统一节点类型命名
-   - 转换停留时间为整数
-   - 自动识别免费景点（`is_free` 字段）
-5. **统计报告**：生成每条故事线的详细统计信息
-
----
-
-## 🚀 使用方法
-
-### 基本运行
+## 标准产品
 
 ```bash
-cd /Users/gengchenxuan/Downloads/Master-Retrieval-Augmented-Generation-RAG-Systems-main
-python scripts/rebuild_citywalk_data.py
+.venv/bin/python scripts/normalize_product_library.py
 ```
 
-### 输入输出
+输入 `data/products/product_library.csv`，输出 `data/products/products.normalized.json`。
 
-- **输入文件**: `projects 2/city_narratives.csv`
-- **输出文件**: `data/citywalk/narratives_v2.csv`
+## 城市成本合并
 
----
-
-## 📊 故事线映射规则
-
-| 原始 region | 映射 storyline | 节点数 |
-|------------|---------------|--------|
-| 武康路-安福路 | 武康安福：多巴胺生活家 | 26 |
-| 愚园路 (长宁段) | 愚园路上：电台与弄堂往事 | 18 |
-| 苏州河 (静安/黄浦段) | 苏河彼岸：工业遗存与影像 | 24 |
-| 衡山路-复兴西路 | 衡复乐章：梧桐树下的变奏 | 16 |
-| 其他区域 | 城市经典：B面上海 | 88 |
-
----
-
-## 📁 输出字段说明
-
-| 字段名 | 类型 | 说明 |
-|--------|------|------|
-| `node_name` | string | 节点名称 |
-| `address` | string | 地址 |
-| `node_type` | string | 节点类型（统一命名）：视觉打卡、味觉停留、历史锚点、过渡节点、购物发现 |
-| `node_type_original` | string | 原始节点类型 |
-| `storyline` | string | 所属故事线 |
-| `region` | string | 原始区域 |
-| `brief_intro` | string | 简介 |
-| `practical_info` | string | 实用信息 |
-| `is_free` | boolean | 是否免费 |
-| `recommended_action` | string | 推荐活动 |
-| `dwell_time_min` | int | 停留时间（分钟） |
-| `sequence_weight` | float | 序列权重（用于排序） |
-| `tags` | string | 标签 |
-
----
-
-## 📈 统计报告示例
-
-```
-📍 故事线: 武康安福：多巴胺生活家
-────────────────────────────────────────
-  节点数量: 26
-  总预测时长: 775 分钟 (12.9 小时)
-  平均停留时间: 30 分钟/节点
-
-  节点类型分布:
-    购物发现      :  8 ( 30.8%) ██████
-    味觉停留      :  6 ( 23.1%) ████
-    视觉打卡      :  4 ( 15.4%) ███
-    历史锚点      :  4 ( 15.4%) ███
-    过渡节点      :  4 ( 15.4%) ███
-
-  💰 免费景点: 6/26
+```bash
+.venv/bin/python scripts/merge_city_products.py --city 北京 --src-dir data/products/services --out data/products/services/mashes/北京_merged.csv
 ```
 
----
+按分类服务目录重新生成指定城市成本库，不自动替其他城市改价。
 
-## 🔧 节奏优化规则
+## 城市叙事实验
 
-**问题**：连续3个"视觉打卡"类型节点会导致游览疲劳
-
-**解决方案**：
-1. 检测连续相同类型节点
-2. 在中间插入"味觉停留"或"过渡节点"
-3. 保持整体排序权重的前提下优化节奏
-
-**示例**：
-```
-优化前: 视觉 → 视觉 → 视觉 → 味觉
-优化后: 视觉 → 视觉 → 味觉 → 视觉
+```bash
+.venv/bin/python scripts/rebuild_citywalk_data.py
 ```
 
----
+输入 `experiments/city_narrative/city_narratives.csv`，输出 `data/citywalk/narratives_v2.csv`。它属于历史实验，当前 API 不要求运行此脚本。
 
-## 💡 后续建议
+## 本地业务检查
 
-1. **检查节点排序**：打开 `narratives_v2.csv` 确认排序是否符合预期
-2. **补充待定路线**：为"待定：其他路线"的节点分配更具体的故事线
-3. **完善实用信息**：补充缺失的 `practical_info` 数据
-4. **成本库标记**：将 `is_free=True` 的景点在 `mashes/` 成本库中标记为免费
-5. **引擎更新**：使用 `narratives_v2.csv` 更新 `narrative_engine.py` 的数据源
+```bash
+.venv/bin/python -B scripts/verify_project.py
+```
 
----
+不重建数据、不调用外部 LLM、不写真实付款或日志。`auto_verify.sh` 会先运行产品标准化，再执行本地检查，适用于主动维护源数据之后。
 
-## ⚠️ 注意事项
-
-1. **数据备份**：运行前建议备份原始 `city_narratives.csv`
-2. **字段兼容**：新增 `is_free` 和 `node_type_original` 字段，确保下游系统兼容
-3. **节奏优化限制**：如果某故事线缺少味觉/过渡节点，可能无法完全优化节奏
-4. **节点数量变化**：由于节奏优化时可能重新排序，总节点数保持不变（172个）
-
----
-
-## 📝 版本历史
-
-- **v1.0** (2026-04-14): 初始版本
-  - 支持5条故事线映射
-  - 实现节奏优化算法
-  - 生成详细统计报告
-
----
-
-## 🆘 常见问题
-
-**Q: 为什么总节点数从165变成了172？**  
-A: 原始数据可能有重复或空行，脚本会自动清理。如果数字差异较大，请检查原始数据。
-
-**Q: 如何自定义故事线映射？**  
-A: 编辑脚本中的 `STORYLINE_MAPPING` 字典即可。
-
-**Q: 节奏优化不理想怎么办？**  
-A: 可以调整 `MAX_CONSECUTIVE_SAME_TYPE` 参数，或手动编辑输出CSV。
-
----
-
-## 📞 技术支持
-
-如有问题，请查看：
-- 项目文档: `readme.md`
-- 工作日志: `docs/logs/工作日志.md`
-- 验证报告: `VERIFICATION_REPORT.md`
+更多数据边界见 [数据说明](../data/README.md)。

@@ -1,9 +1,3 @@
-# API 后端
-fastapi>=0.104.0
-uvicorn[standard]>=0.24.0
-pydantic>=2.5.0
-python-dotenv>=1.0.0
-
-# Streamlit 前端
-streamlit>=1.28.0
-requests>=2.31.0
+# Compatibility installation for the existing backend + Streamlit demo.
+-r backend/requirements.txt
+-r legacy/requirements.txt

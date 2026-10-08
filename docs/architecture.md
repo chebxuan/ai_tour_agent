@@ -1,86 +1,68 @@
-# 系统架构（真相源 / Source of Truth）
+# 当前系统架构
 
-> 本文档是**现行运行时架构**的唯一权威说明。所有"系统能做什么"的表述都应能在这份文档、
-> 对应代码路径、以及 `docs/test_reports/` 下的真实评测报告里找到产物。
-> 早期按「Agent」措辞撰写的设计稿已归档，见
-> [`docs/prompts/archive_agent_designs_2026/README.md`](prompts/archive_agent_designs_2026/README.md)，
-> 不参与运行时，也不代表当前能力。
+更新：2026-10-07。代码位置已整理，业务规则与 API 契约保持。本文只描述现行实现；早期 Agent 设计保存在 [历史设计](archive/agent-designs-2026/README.md)。
 
-## 一句话
-
-把"客户自由文本 → 结构化交付物"拆成两步：**LLM 只负责自然语言结构化抽取**
-（客户文本 → `LeadJSON`），**其余环节全部是确定性规则引擎**（产品匹配、报价、行程渲染、风险检查、
-交付草稿）。这样报价/产品不会被模型编造，中间对象可评测、可审计、可回放。
-
-## 端到端 Workflow
+## 业务链路
 
 ```text
-                       ┌─────────────────────────────────────────────┐
-  客户自由文本          │  LLM（唯一自然语言环节）                       │
-  (email/whatsapp/…) ─▶│  llm_client.parse_lead_text()               │
-                       │  prompt = docs/prompts/lead_parse_vX.md      │
-                       │  输出经 JSON parse + Pydantic(LeadJSON) 校验   │
-                       │  + 一次修复重试；调用全量落 logs/llm_calls.jsonl│
-                       └──────────────────────┬──────────────────────┘
-                                              ▼ LeadJSON
-                       ┌─────────────────────────────────────────────┐
-                       │  确定性引擎链（无 LLM）                       │
-                       │  product match → pricing → risk → itinerary  │
-                       │  → delivery draft                            │
-                       └──────────────────────┬──────────────────────┘
-                                              ▼
-                        CandidateProductsJSON → PricingResultJSON
-                        → RiskCheckResultJSON → Markdown 行程单 → DeliveryDraftJSON
+客户原文
+  └─ llm_client.parse_lead_text → LeadJSON（JSON/Pydantic 校验，允许一次修复重试）
+       └─ 匹配产品 → 成本计算 → 行程渲染 → 风险检查 → 邮件草稿
+
+Streamlit 旧界面 → HTTP + 服务端 API Key → FastAPI
+上海半定制 → 静态体验单元/模板/交通边 → 路线与部分成本
+付款管理 → data/payments.json
 ```
 
-## 各环节：LLM vs 规则、落地状态、评测
+LLM 用于自然语言结构化抽取，其余主链路使用确定性规则。项目中存在历史 Coze/LangGraph 实验，但未接入现行主 API。
 
-| 环节 | 运行时实现（文件/函数） | 类型 | 评测 |
-|------|------------------------|------|------|
-| 客户文本 → `LeadJSON` | `llm_client.parse_lead_text()` | **LLM（Structured Output 抽取）** | 字段级准确率 v1 **75.93%**（205/270）→ v2 **97.78%**（264/270）：[eval_v1](test_reports/lead_parse_eval_v1.md)、[eval_v2](test_reports/lead_parse_eval_v2.md)；坏例分类：[lead_parse_bad_cases.md](test_reports/lead_parse_bad_cases.md) |
-| `LeadJSON` → 候选产品 | `engines/product_engine.py` / `api_main.build_candidates_from_lead()` | 确定性规则 | [product_match_eval_latest.md](test_reports/product_match_eval_latest.md) |
-| 报价 | `engines/cost_engine.py` `calculate_total_cost()` | 确定性成本库 | [pricing_eval_latest.md](test_reports/pricing_eval_latest.md) |
-| 风险检查 | `engines/risk_check_engine.py` `check_workflow_risks()` | 确定性规则 | [risk_check_eval_latest.md](test_reports/risk_check_eval_latest.md) |
-| 行程 Markdown | `format_itinerary_markdown()`（读 day_plans + Highlights） | 确定性渲染 | 端到端：[test_multi_city.py](../test_multi_city.py)、[test_custom_route_shanghai.py](../test_custom_route_shanghai.py) |
-| 销售邮件草稿 | `engines/delivery_composer.py` `compose_delivery_draft()` | 确定性模板 | [delivery_compose_eval_latest.md](test_reports/delivery_compose_eval_latest.md) |
-| 半定制路线（上海 MVP） | `engines/custom_route_engine.py` | 确定性规则 | [custom_route_mvp.md](custom_route_mvp.md) + matrix 测试 |
-| 一键链路（含计时） | `api_main.run_full_chain_for_lead()` | 确定性链 | [time_trial.md](test_reports/time_trial.md) |
+## 实现位置
 
-## 唯一的 LLM 环节：Lead Parse
+| 环节 | 当前实现 |
+|---|---|
+| FastAPI、匹配评分、完整工作流、Markdown 渲染 | `backend/app/main.py` |
+| LLM 请求、解析、校验、重试和调用统计 | `backend/app/llm_client.py` |
+| Pydantic 业务结构 | `backend/app/schemas.py` |
+| 成本计算 | `backend/app/engines/cost_engine.py` |
+| 风险检查 | `backend/app/engines/risk_check_engine.py` |
+| 邮件草稿 | `backend/app/engines/delivery_composer.py` |
+| 上海路线 | `backend/app/engines/custom_route_engine.py` |
+| 付款文件与状态管理 | `backend/app/engines/payment_tracker.py` |
+| CLI 使用的 CSV 产品匹配 | `backend/app/engines/product_engine.py` |
+| 旧网页 | `legacy/streamlit_app.py` |
+| 运行根路径 | `backend/app/core/paths.py` |
 
-- 目的：把非结构化客户文本转成 `LeadJSON`；**prompt 明确禁止**该步骤推荐产品 / 算价格 / 写行程。
-- 运行时：`llm_client.py`。JSON 输出 → `parse_json_output` → `LeadJSON.model_validate`；
-  失败则用一次"修复重试"（`_build_fix_prompt`），仍失败即报错（不静默丢字段）。
-- 每次调用写入 `logs/llm_calls.jsonl`：prompt_version / model / tokens / latency_ms / success /
-  error_type / retry_used。该日志**只存 token/字符计数，不存客户原文与输出正文**（`input_chars` /
-  `output_chars` 为长度而非内容，见 `llm_client.py` 的 `log_record`），本身已匿名；但因
-  `*.jsonl` 被 `.gitignore` 屏蔽无法随仓库提交，可提交证据节录见
-  [`docs/AI_EVIDENCE_llm_log_excerpt.md`](AI_EVIDENCE_llm_log_excerpt.md)。
-- 配置：走 OpenAI 兼容端点（本仓库实测为 DashScope `OPENAI_BASE_URL`），模型名读 `OPENAI_MODEL`
-  （实测可用模型见 [readme](../readme.md) `.env` 示例）。模型名随 `.env` 而定，不硬编码进代码语义。
-- 迭代：prompt 版本化（`docs/prompts/lead_parse_v1.md` → `v2`），eval 脚本用 `--prompt-version` 复跑，
-  坏例驱动修订，`## Changes vs vX` 记录差异。v1 与 v2 报告同源可比。
-- **运行时默认 `lead_parse_v2`**（`llm_client.parse_lead_text` 签名默认值，2026-09-08 起）：live 接口
-  `/api/lead/parse`、`/api/v2/lead-text-full-chain` 未显式传版本即用 v2（97.78%）。eval 脚本 CLI 默认仍为
-  v1，供复现 v1 基线；两处命令都显式带 `--prompt-version` 保证可比。
+API 的候选评分不等同于 CLI 的 CSV 精确匹配。当前 `main.py` 仍集中多项职责，拆成路由与服务属于后续工作。本轮没有为目录规范化重写这些算法。
 
-## `generated_by` 命名的约定
+## 数据和提示词
 
-早期把每个环节称作 `agent_N_*`，但运行时这些环节是确定性代码，`generated_by` 字符串却不一致地
-写成 `agent_1_product_matcher`，造成"文档说 Agent、代码没有"的信任风险。现已统一为**引擎名**：
+- 产品真源 `data/products/product_library.csv` → 标准化运行副本 `products.normalized.json`。
+- 分类服务目录 `data/products/services/*.csv` → 城市运行成本库 `services/mashes/*.csv`。
+- 展示增强 `data/products/attraction_highlights.json`。
+- 上海路线四份输入保留在 `data/custom/`，已取消整体忽略。
+- 运行提示词在 `backend/app/resources/prompts/`；默认 `lead_parse_v2`，v1 保留用于基线复现。
+- 可写付款文件 `data/payments.json` 和运行日志 `logs/*.jsonl` 不随 Git 或镜像发布。
 
-- `generated_by="product_matcher"`（`schemas.py` `CandidateProductsJSON`、`api_main.py`）
-- `RiskCheckResultJSON.generated_by="risk_check_tool"`、`DeliveryDraftJSON.generated_by="delivery_composer"`
-  （这两个本来就不含 agent 字样）
+LLM 调用统计记录字符/token 数和耗时，不保存输入正文；LeadJSON 本身可以包含客户原文。工作流日志包含调用方填写的审核信息，因此不等同于完善的用户权限和审核数据库。
 
-## 数据层（四层治理）
+## 主要接口
 
-产品真源 `product_library.csv` → `products.normalized.json`（day_plans + item_codes）；
-服务目录 `services/*.csv` → 按城市成本库 `mashes/*.csv`（运行时真源）。
-原则：**优先修源数据，不用 runtime alias 掩盖数据问题**。
+- `POST /api/lead/parse`：客户文本结构化。
+- `POST /api/v2/product-match`、`/pricing`：分步产品与成本计算。
+- `POST /api/v2/full_chain`：简化表单生成。
+- `POST /api/v2/lead-full-chain`：结构化需求生成。
+- `POST /api/v2/lead-text-full-chain`：文本解析后生成。
+- `POST /api/v2/risk-check`、`/delivery-compose`：风险与草稿。
+- `POST /api/v2/custom-route`：上海半定制。
+- `POST /api/v2/human-approval`：追加人工审核事件。
+- `/api/v2/payments` 及关联路径：付款记录管理。
+- `/health`：健康检查。完整契约由运行中的 `/docs`、`/openapi.json` 提供。
 
-## 现状声明纪律
+## 验证证据与限制
 
-- 凡写"评测/准确率/耗时"都必须指向可复现产物：`docs/test_reports/` 下的报告或
-  `logs/`（运行证据）。
-- 未实测的叙述（如旧人工流程耗时）只在 [time_trial.md](test_reports/time_trial.md) 中**明确标注"自估、非实测"**。
+- [本次整理验证](test_reports/organization_20261007.md)：目录迁移与现有接口/业务基线对比。
+- 规则评测：[`product_match`](test_reports/product_match_eval_latest.md)、[`pricing`](test_reports/pricing_eval_latest.md)、[`risk_check`](test_reports/risk_check_eval_latest.md)、[`delivery_compose`](test_reports/delivery_compose_eval_latest.md)。
+- 历史文本抽取评测：v1 [75.93%](test_reports/lead_parse_eval_v1.md) → v2 [97.78%](test_reports/lead_parse_eval_v2.md)，50 条样例、270 个字段断言；本次未重跑外部模型。
+- 耗时口径见 [历史计时报告](test_reports/time_trial.md)，不能把旧人工自估与程序执行时间混成实测节省效果。
+
+共享 API Key、同步 LLM 调用、JSON 存储、工作流标识与审核关联等限制仍存在。新浏览器前端不能直接复用服务端共享密钥。完善身份、业务记录和调用策略见 [路线图](roadmap.md)。

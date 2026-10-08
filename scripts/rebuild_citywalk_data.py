@@ -253,7 +253,7 @@ def main():
     # 1. 确定路径
     base_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(base_dir)  # 项目根目录
-    input_path = os.path.join(project_root, 'projects 2', 'city_narratives.csv')
+    input_path = os.path.join(project_root, 'experiments', 'city_narrative', 'city_narratives.csv')
     output_path = os.path.join(project_root, 'data', 'citywalk', 'narratives_v2.csv')
     
     # 检查输入文件

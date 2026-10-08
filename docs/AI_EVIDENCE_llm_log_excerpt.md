@@ -68,9 +68,9 @@ output_chars, retry_used, latency_ms
 ```bash
 set -a && . ./.env && set +a
 # 全量 v1
-python3 scripts/eval_lead_parse.py --prompt-version lead_parse_v1 --report docs/test_reports/lead_parse_eval_v1.md --out-json docs/test_reports/lead_parse_eval_v1_full.json
+python3 evals/eval_lead_parse.py --prompt-version lead_parse_v1 --report docs/test_reports/lead_parse_eval_v1.md --out-json docs/test_reports/lead_parse_eval_v1_full.json
 # 全量 v2
-python3 scripts/eval_lead_parse.py --prompt-version lead_parse_v2 --report docs/test_reports/lead_parse_eval_v2.md --out-json docs/test_reports/lead_parse_eval_v2_full.json
+python3 evals/eval_lead_parse.py --prompt-version lead_parse_v2 --report docs/test_reports/lead_parse_eval_v2.md --out-json docs/test_reports/lead_parse_eval_v2_full.json
 ```
 
 每次运行会追加写入 `logs/llm_calls.jsonl`。校验日志是否真实：重新跑一次任意子集，`wc -l logs/llm_calls.jsonl` 应增加。
