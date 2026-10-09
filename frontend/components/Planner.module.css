@@ -176,3 +176,11 @@
 .enquirySuccess small { display: block; color: var(--muted); font-size: 14px; margin-top: 12px; }
 @media (max-width: 1024px) { .enquiryCard { margin-inline: 22px; } }
 @media (max-width: 480px) { .enquiryCard { margin-inline: 18px; padding: 18px; } .enquiryCard h3 { font-size: 24px; } }
+
+.resultHero > div:first-child, .emptyArt > div:first-child { position:absolute; inset:0; }
+.resultHero > div:last-child { pointer-events:none; position:relative; z-index:1; background:linear-gradient(transparent,#10291fb3); padding:26px; width:100%; }
+.resultHero { isolation:isolate; }
+.emptyArt { position:relative; }
+
+.field { font-size:16px; }
+.field small { font-size:14px; }

@@ -30,3 +30,15 @@
   .footerBrand { flex-wrap: wrap; }
   .footerBrand span { margin-left: 4px; }
 }
+
+.photoCredits { width:100%; font-size:13px; color:var(--muted); }
+.photoCredits summary { cursor:pointer; padding-block:12px; }
+.photoCredits li { margin:8px 0; overflow-wrap:anywhere; }
+.photoCredits a { text-decoration:underline; }
+
+.headerHome { position:absolute; inset:0 0 auto; background:transparent; backdrop-filter:none; border-bottom:1px solid #ffffff28; color:white; }
+.headerHome .mark, .headerHome .headerCta { border-color:#ffffff80; }
+.headerHome .nav a, .headerHome .menuButton { color:#fff; }
+.headerHome .nav a[aria-current] { box-shadow:0 2px #fff; }
+.headerHome .headerCta:hover { background:#ffffff18; }
+@media(max-width:600px) { .headerHome .navOpen a { color:var(--ink); box-shadow:none; } }

@@ -164,12 +164,16 @@ class SalesQuoteResponse(BaseModel):
     quote_token: str | None = None
 
 
+HotelPreference = Literal['discuss', 'arrange', 'self_booked']
+
+
 class JourneyEnquiryRequest(BaseModel):
     model_config = ConfigDict(extra='forbid', str_strip_whitespace=True)
     request_id: UUID
     name: Annotated[str, Field(min_length=1, max_length=120)]
     email: Annotated[str, Field(min_length=3, max_length=254, pattern=r'^[^\s@]+@[^\s@]+\.[^\s@]+$')]
     message: str = Field('', max_length=2000)
+    hotel_preference: HotelPreference = 'discuss'
     preview_token: Annotated[str, Field(min_length=100, max_length=100000)]
     quote_token: Annotated[str, Field(min_length=100, max_length=20000)] | None = None
     route_choices: list[RouteChoice] = Field(default_factory=list, max_length=10)
@@ -179,3 +183,18 @@ class JourneyEnquiryRequest(BaseModel):
 class JourneyEnquiryReceipt(BaseModel):
     reference: str
     status: Literal['received']
+
+
+class CustomEnquiryRequest(BaseModel):
+    model_config = ConfigDict(extra='forbid', str_strip_whitespace=True)
+    request_id: UUID
+    name: Annotated[str, Field(min_length=1, max_length=120)]
+    email: Annotated[str, Field(min_length=3, max_length=254, pattern=r'^[^\s@]+@[^\s@]+\.[^\s@]+$')]
+    message: str = Field('', max_length=2000)
+    destinations: str = Field('', max_length=300)
+    travel_dates: str = Field('', max_length=120)
+    duration: str = Field('', max_length=120)
+    travellers: int = Field(2, ge=1, le=60)
+    interests: str = Field('', max_length=1000)
+    hotel_preference: HotelPreference = 'discuss'
+    website: str = Field('', max_length=0)

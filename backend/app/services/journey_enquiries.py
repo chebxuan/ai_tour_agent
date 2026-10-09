@@ -63,16 +63,33 @@ def save_in_connection(conn, enquiry, signing_key):
                 (snapshot_id, product.product_id, data['configuration']['sales_policy']['id'], Jsonb(trip.model_dump(mode='json')), Jsonb(internal), Jsonb(current), Jsonb(versions), 'journey-enquiry'))
         id = uuid.uuid4()
         reference = 'TC-' + id.hex[:16].upper()
-        conn.execute('INSERT INTO journey_enquiries(id,reference,idempotency_key,request_hash,name,email,message,product_id,preview_snapshot,shown_quote,verified_quote,quote_changed,quote_snapshot_id,review_reason) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
+        conn.execute('INSERT INTO journey_enquiries(id,reference,idempotency_key,request_hash,name,email,message,product_id,preview_snapshot,shown_quote,verified_quote,quote_changed,quote_snapshot_id,review_reason,preferences) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
             (id, reference, enquiry.request_id, fingerprint, enquiry.name, enquiry.email, enquiry.message, product.product_id,
              Jsonb({'preview': preview.model_dump(mode='json', exclude={'preview_token'}), 'request': trip.model_dump(mode='json')}),
-             Jsonb(shown_quote) if shown_quote is not None else None, Jsonb(current), changed, snapshot_id, reason))
+             Jsonb(shown_quote) if shown_quote is not None else None, Jsonb(current), changed, snapshot_id, reason, Jsonb({'hotel_preference': enquiry.hotel_preference, 'hotel_quote_status': 'not_included'})))
         return receipt({'reference': reference})
     finally:
         _snapshot.reset(token)
 
 
-def submit(enquiry, signing_key):
+def save_custom_in_connection(conn, enquiry):
+    fingerprint = hashlib.sha256(json.dumps({'kind': 'custom', **enquiry.model_dump(mode='json', exclude={'request_id'})}, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+    existing = conn.execute('SELECT reference,request_hash FROM journey_enquiries WHERE idempotency_key=%s', (enquiry.request_id,)).fetchone()
+    if existing:
+        if existing['request_hash'] != fingerprint:
+            raise HTTPException(409, detail={'code': 'ENQUIRY_RETRY_CONFLICT'})
+        return receipt(existing)
+    preferences = enquiry.model_dump(mode='json', exclude={'request_id', 'name', 'email', 'message', 'website'})
+    preferences['hotel_quote_status'] = 'not_included'
+    id = uuid.uuid4()
+    reference = 'TC-' + id.hex[:16].upper()
+    conn.execute("INSERT INTO journey_enquiries(id,reference,idempotency_key,request_hash,name,email,message,product_id,enquiry_kind,preferences,preview_snapshot,verified_quote,quote_changed,review_reason) VALUES(%s,%s,%s,%s,%s,%s,%s,NULL,'custom',%s,%s,%s,false,'CUSTOM_JOURNEY_REQUIRES_REVIEW')",
+        (id, reference, enquiry.request_id, fingerprint, enquiry.name, enquiry.email, enquiry.message,
+         Jsonb(preferences), Jsonb({'preferences': preferences}), Jsonb({'status': 'pending_confirmation', 'amount': None, 'currency': 'CNY', 'reason': 'CUSTOM_JOURNEY_REQUIRES_REVIEW'})))
+    return receipt({'reference': reference})
+
+
+def submit(enquiry, signing_key=None, *, custom=False):
     if settings()['source'] != 'postgres':
         raise HTTPException(503, detail={'code': 'ENQUIRY_UNAVAILABLE'})
     # Unique idempotency constraints handle simultaneous retries. A failed transaction
@@ -81,7 +98,7 @@ def submit(enquiry, signing_key):
         try:
             with intake_connection() as conn:
                 conn.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ')
-                response = save_in_connection(conn, enquiry, signing_key)
+                response = save_custom_in_connection(conn, enquiry) if custom else save_in_connection(conn, enquiry, signing_key)
             return response  # Only report received after COMMIT succeeds.
         except (psycopg.errors.UniqueViolation, psycopg.errors.SerializationFailure):
             if attempt == 2: break

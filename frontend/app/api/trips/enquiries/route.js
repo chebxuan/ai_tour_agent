@@ -1,7 +1,8 @@
 import { travelPost } from "@/lib/server/travelApi";
+import { hasEnquiryOrigin } from "@/lib/server/enquiryOrigin.mjs";
 
 export async function POST(request) {
-  if (request.headers.get("origin") !== new URL(request.url).origin) {
+  if (!hasEnquiryOrigin(request)) {
     return Response.json({ error: "Please send your enquiry from this website." }, { status: 403 });
   }
   if (!request.headers.get("content-type")?.startsWith("application/json")) {

@@ -8,7 +8,7 @@ from backend.app.travel_schemas import (
     CatalogueResponse, CostEstimateRequest, InternalCostResponse,
     TripPreviewRequest, TripPreviewResponse,
     SalesQuoteResponse,
-    JourneyEnquiryRequest, JourneyEnquiryReceipt,
+    JourneyEnquiryRequest, JourneyEnquiryReceipt, CustomEnquiryRequest,
 )
 
 
@@ -48,5 +48,9 @@ def create_travel_router(auth_dependency, signing_key):
     @router.post('/trips/enquiries', response_model=JourneyEnquiryReceipt, status_code=201)
     def enquiry(request: JourneyEnquiryRequest):
         return journey_enquiries.submit(request, signing_key)
+
+    @router.post('/trips/custom-enquiries', response_model=JourneyEnquiryReceipt, status_code=201)
+    def custom_enquiry(request: CustomEnquiryRequest):
+        return journey_enquiries.submit(request, custom=True)
 
     return router

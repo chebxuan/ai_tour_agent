@@ -5,13 +5,14 @@ import { products, availableDurations } from "@/data/products";
 import { destinations } from "@/data/destinations";
 import { createProductPreview } from "@/lib/productPreview";
 import TripForm from "./TripForm";
+import ContactPage from "./ContactPage";
 import ItineraryPreview from "./ItineraryPreview";
 import styles from "./Planner.module.css";
 
 function PlannerWorkspace({ initialJourney, initialDestination }) {
   const initialCity = initialDestination?.name || initialJourney?.city || "";
   const initialDays = availableDurations(initialCity);
-  const [form, setForm] = useState({ city: initialCity, days: String(initialJourney?.days || (initialDays.includes(3) ? 3 : initialDays[0]) || ""), date: "", adults: "2", children: "0", seniors: "0", optionalItems: [], car: false, routeChoice: "", notes: "" });
+  const [form, setForm] = useState({ city: initialCity, days: String(initialJourney?.days || (initialDays.includes(3) ? 3 : initialDays[0]) || ""), date: "", adults: "2", children: "0", seniors: "0", optionalItems: [], car: false, routeChoice: "", hotelPreference: "discuss", notes: "" });
   const [catalogue, setCatalogue] = useState({ city: "", products: [], error: "" });
   const [retry, setRetry] = useState(0);
   const [result, setResult] = useState(null);
@@ -74,5 +75,6 @@ export default function TravelPlanner() {
   const searchParams = useSearchParams();
   const initialDestination = destinations.find((destination) => destination.slug === searchParams.get("destination"));
   const initialJourney = initialDestination ? null : products.find((journey) => journey.id === searchParams.get("journey"));
-  return <PlannerWorkspace key={initialDestination?.slug || initialJourney?.id || "custom"} initialJourney={initialJourney} initialDestination={initialDestination} />;
+  if (!initialDestination && !initialJourney) return <ContactPage />;
+  return <><div className={styles.pageHeading}><div><p className="eyebrow">DESIGNED AROUND YOU</p><h1>Discover your journey through China.</h1><p>The places, stories and experiences that could shape your days.</p></div></div><PlannerWorkspace key={initialDestination?.slug || initialJourney?.id || "custom"} initialJourney={initialJourney} initialDestination={initialDestination} /></>;
 }

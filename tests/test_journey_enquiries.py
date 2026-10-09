@@ -43,7 +43,7 @@ class EnquiryApiTests(unittest.TestCase):
 
     def test_validation_auth_and_file_mode(self):
         payload=self.payload()
-        for extra in [{'name':' '},{'email':'bad address'},{'message':'x'*2001},{'request_id':'not-a-uuid'},{'website':'spam'},{'amount':1}]:
+        for extra in [{'name':' '},{'email':'bad address'},{'message':'x'*2001},{'request_id':'not-a-uuid'},{'website':'spam'},{'amount':1},{'hotel_preference':'invented'}]:
             response=self.client.post('/api/v3/trips/enquiries',headers=self.headers,json={**payload,**extra})
             self.assertEqual(response.status_code,422)
         self.assertEqual(self.client.post('/api/v3/trips/enquiries',headers={'X-API-Key':'wrong'},json=payload).status_code,401)
@@ -61,6 +61,20 @@ class EnquiryApiTests(unittest.TestCase):
         with patch.dict(os.environ,{'TRAVEL_DATA_SOURCE':'postgres'}),patch('backend.app.services.journey_enquiries.intake_connection',side_effect=RuntimeError('No config')):
             response=self.client.post('/api/v3/trips/enquiries',headers=self.headers,json=payload)
         self.assertEqual(response.status_code,503)
+
+    def test_custom_enquiry_validation_and_receipt(self):
+        payload = {'request_id': str(uuid.uuid4()), 'name': 'Example', 'email': 'custom@example.invalid', 'hotel_preference': 'arrange', 'destinations': 'Shanghai and Yunnan'}
+        path = '/api/v3/trips/custom-enquiries'
+        for extra in [{'email': 'bad'}, {'travellers': 0}, {'travellers': 61}, {'hotel_preference': 'invented'}, {'website': 'spam'}, {'amount': 100}, {'destinations': 'x'*301}]:
+            self.assertEqual(self.client.post(path, headers=self.headers, json={**payload, **extra}).status_code, 422)
+        self.assertEqual(self.client.post(path, headers={"X-API-Key":"wrong"}, json=payload).status_code, 401)
+        with patch('backend.app.services.journey_enquiries.submit', return_value={'reference': 'TC-CUSTOM', 'status': 'received', 'email': 'private'} ) as submit:
+            response = self.client.post(path, headers=self.headers, json=payload)
+            self.assertEqual(response.status_code, 201)
+            self.assertEqual(response.json(), {'reference': 'TC-CUSTOM', 'status': 'received'})
+            self.assertTrue(submit.call_args.kwargs['custom'])
+        with patch.dict(os.environ, {'TRAVEL_DATA_SOURCE': 'files'}):
+            self.assertEqual(self.client.post(path, headers=self.headers, json=payload).status_code, 503)
 
 
 if __name__=='__main__':unittest.main()

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
+import { hotelLabels } from "./HotelPreference";
 import Icon from "./Icon";
 import styles from "./Planner.module.css";
 
@@ -33,7 +34,7 @@ export default function JourneyEnquiry({ result, visible, dirty, onBusyChange })
     event.preventDefault();
     if (!ready || inFlight.current) return;
     const payload = { name: contact.name.trim(), email: contact.email.trim(), message: contact.message.trim(), website: contact.website,
-      preview_token: result.enquiry.previewToken, quote_token: result.enquiry.quoteToken || null,
+      hotel_preference: result.request.hotelPreference || "discuss", preview_token: result.enquiry.previewToken, quote_token: result.enquiry.quoteToken || null,
       route_choices: result.route ? [{ day: result.route.day, choice: result.route.choice }] : [] };
     const fingerprint = JSON.stringify(payload);
     if (attempt.current?.fingerprint !== fingerprint) attempt.current = { fingerprint, id: crypto.randomUUID() };
@@ -63,7 +64,7 @@ export default function JourneyEnquiry({ result, visible, dirty, onBusyChange })
       {dirty && <p className={styles.enquiryHint} role="status">Your choices have changed. Preview your journey again before sending your enquiry.</p>}
       {!ready && !dirty && <p className={styles.enquiryHint} role="status">Preview your journey again to prepare your enquiry.</p>}
       {!open ? <Button disabled={!ready} className={styles.enquiryButton} onClick={() => setOpen(true)} aria-expanded={false} aria-controls="journey-enquiry-form">Talk to a Travel Expert <Icon /></Button> : <form id="journey-enquiry-form" onSubmit={submit} aria-busy={busy}>
-        <div className={styles.enquirySummary}><strong>Your journey is already attached</strong><p>{result.product.menu.city_name} · {result.product.days} days · {Number(result.request.adults) + Number(result.request.children) + Number(result.request.seniors)} travellers{result.request.date ? ` · ${result.request.date}` : " · Dates to be confirmed"}</p>{result.route && <p>{result.route.label}</p>}<small>Your selected experiences, services, notes and estimate will be included.</small></div>
+        <div className={styles.enquirySummary}><strong>Your journey is already attached</strong><p>{result.product.menu.city_name} · {result.product.days} days · {Number(result.request.adults) + Number(result.request.children) + Number(result.request.seniors)} travellers{result.request.date ? ` · ${result.request.date}` : " · Dates to be confirmed"}</p>{result.route && <p>{result.route.label}</p>}<p>Hotels: {hotelLabels[result.request.hotelPreference || "discuss"]} · Quoted separately</p><small>Your selected experiences, services, notes and estimate will be included.</small></div>
         <fieldset className={styles.formFields} disabled={busy || !ready}>
           <div className={styles.enquiryFields}><label className={styles.field} htmlFor="enquiry-name"><span>Name</span><input ref={nameInput} id="enquiry-name" name="name" autoComplete="name" value={contact.name} onChange={change} required maxLength={120} /></label><label className={styles.field} htmlFor="enquiry-email"><span>Email</span><input id="enquiry-email" name="email" type="email" autoComplete="email" value={contact.email} onChange={change} required maxLength={254} /></label><label className={styles.field} htmlFor="enquiry-message"><span>Message <small>Optional</small></span><textarea id="enquiry-message" name="message" value={contact.message} onChange={change} rows={3} maxLength={2000} placeholder="Anything you’d like our team to know?" /></label></div>
           <div className={styles.enquiryTrap} aria-hidden="true"><label>Website<input name="website" value={contact.website} onChange={change} tabIndex={-1} autoComplete="off" /></label></div>

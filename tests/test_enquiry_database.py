@@ -7,7 +7,7 @@ from fastapi import HTTPException
 from backend.app.services import journey_enquiries, enquiry_tokens, travel_catalog, sales_pricing
 from backend.app.storage.connection import connect, intake_connection
 from backend.app.storage.repository import _snapshot, read_dataset
-from backend.app.travel_schemas import JourneyEnquiryRequest, TripPreviewRequest, TripPreviewResponse, CostEstimateRequest, SalesQuoteResponse, RouteChoice
+from backend.app.travel_schemas import JourneyEnquiryRequest, TripPreviewRequest, TripPreviewResponse, CostEstimateRequest, SalesQuoteResponse, RouteChoice, CustomEnquiryRequest
 
 
 @unittest.skipUnless(os.environ.get('RUN_DATABASE_TESTS')=='1','Requires explicit PostgreSQL test opt-in')
@@ -27,11 +27,14 @@ class EnquiryDatabaseTests(unittest.TestCase):
     def test_atomic_save_idempotence_and_snapshot(self):
         with connect(admin=True) as conn,conn.transaction(force_rollback=True):
             payload,key=self.payload(conn)
+            payload=payload.model_copy(update={'hotel_preference':'arrange'})
             response=journey_enquiries.save_in_connection(conn,payload,key)
             again=journey_enquiries.save_in_connection(conn,payload,key)
             self.assertEqual(response,again)
             row=conn.execute('SELECT * FROM journey_enquiries WHERE reference=%s',(response['reference'],)).fetchone()
             self.assertEqual(row['email'],payload.email)
+            self.assertEqual(row['preferences']['hotel_preference'],'arrange')
+            self.assertEqual(row['preferences']['hotel_quote_status'],'not_included')
             self.assertFalse(row['quote_changed'])
             self.assertIsNotNone(row['quote_snapshot_id'])
             self.assertEqual(row['preview_snapshot']['request']['guide_code'],'SH-GUIDE-01')
@@ -78,6 +81,24 @@ class EnquiryDatabaseTests(unittest.TestCase):
             payload,key=self.payload(conn)
             response=journey_enquiries.save_in_connection(conn,payload,key)
             self.assertEqual(response['status'],'received')
+
+    def test_custom_enquiry_without_product_or_quote(self):
+        with intake_connection() as conn, conn.transaction(force_rollback=True):
+            payload = CustomEnquiryRequest(request_id=uuid.uuid4(), name='Rollback Custom Test', email='custom-rollback@example.invalid', destinations='Shanghai and Yunnan', interests='Tea and crafts', hotel_preference='arrange')
+            response = journey_enquiries.save_custom_in_connection(conn, payload)
+            self.assertEqual(journey_enquiries.save_custom_in_connection(conn, payload), response)
+            row = conn.execute('SELECT * FROM journey_enquiries WHERE reference=%s', (response['reference'],)).fetchone()
+            self.assertEqual(row['enquiry_kind'], 'custom')
+            self.assertIsNone(row['product_id'])
+            self.assertIsNone(row['quote_snapshot_id'])
+            self.assertIsNone(row['shown_quote'])
+            self.assertIsNone(row['verified_quote']['amount'])
+            self.assertEqual(row['preferences']['hotel_preference'], 'arrange')
+            self.assertEqual(row['preferences']['interests'], 'Tea and crafts')
+            self.assertEqual(conn.execute('SELECT count(*) AS n FROM journey_enquiries WHERE idempotency_key=%s', (payload.request_id,)).fetchone()['n'], 1)
+            with self.assertRaises(HTTPException) as error:
+                journey_enquiries.save_custom_in_connection(conn, payload.model_copy(update={'interests': 'Different'}))
+            self.assertEqual(error.exception.status_code, 409)
 
 
 if __name__=='__main__':unittest.main()

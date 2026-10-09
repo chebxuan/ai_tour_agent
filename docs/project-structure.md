@@ -27,6 +27,7 @@
 ├── scripts/                      # 数据维护和本地检查
 ├── legacy/                       # 原 Streamlit、CLI、历史工具
 ├── frontend/                     # Next.js 两页旅客 UI；真实预览和销售报价接口
+├── deploy/                       # 全站 Compose、运行入口、配置、发布包及备份
 ├── .local/database/              # 忽略的本地数据库、备份、核对报告
 ├── experiments/                  # 城市叙事、POI 实验
 ├── references/                   # 业务参考、个人作品集、私人材料

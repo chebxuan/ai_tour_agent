@@ -85,7 +85,7 @@ def main() -> int:
             print(result.stdout)
             print(result.stderr)
             return result.returncode
-        print("Standalone travel API, Menu, sales pricing and enquiry validation: 20/20 test groups (21 products)")
+        print("Standalone travel API, Menu, sales pricing and enquiry validation: 21/21 test groups (21 products)")
     return 0
 
 

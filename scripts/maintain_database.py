@@ -39,7 +39,7 @@ def main():
         elif args.action=='quotes':
             for row in conn.execute('SELECT id,product_id,policy_id,actor,created_at FROM quote_snapshots ORDER BY created_at DESC LIMIT 50'):print(json.dumps(row,ensure_ascii=False,default=str))
         elif args.action=='enquiries':
-            for row in conn.execute('SELECT reference,created_at,name,email,product_id,status,quote_changed,review_reason FROM journey_enquiries ORDER BY created_at DESC LIMIT 50'):print(json.dumps(row,ensure_ascii=False,default=str))
+            for row in conn.execute('SELECT reference,created_at,name,email,enquiry_kind,product_id,preferences,status,quote_changed,review_reason FROM journey_enquiries ORDER BY created_at DESC LIMIT 50'):print(json.dumps(row,ensure_ascii=False,default=str))
         elif args.action=='enquiry':
             row=conn.execute('SELECT * FROM journey_enquiries WHERE reference=%s',(args.reference,)).fetchone()
             if not row:raise ValueError('Enquiry not found')

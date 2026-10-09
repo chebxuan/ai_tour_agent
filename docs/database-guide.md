@@ -278,3 +278,21 @@ RUN_DATABASE_TESTS=1 .venv/bin/python -B -m unittest tests.test_database_integra
 ```bash
 RUN_DATABASE_TESTS=1 .venv/bin/python -B -m unittest tests.test_enquiry_database
 ```
+
+
+## 新增联系页与酒店需求
+
+本轮新增迁移 `003_custom_enquiries.sql`，已有数据保留。本地已应用；其他环境升级前备份，然后从根目录执行 `.venv/bin/python -B scripts/database.py migrate`。沿用现有 intake 权限，未增加维护权限。
+
+旅客直接通过 `/plan` 提交后，同样使用以下命令接单：
+
+```bash
+.venv/bin/python -B scripts/maintain_database.py enquiries
+.venv/bin/python -B scripts/maintain_database.py enquiry --reference TC-实际编号
+```
+
+列表新增 `enquiry_kind` 和 `preferences`：`product` 为带产品与预览快照的咨询，`custom` 为尚未选定产品的咨询。自定义咨询 `product_id`、展示报价、报价快照均为空，不应当作金额为零的订单。
+
+`preferences.hotel_preference` 可为 `discuss`（希望听取建议）、`arrange`（请安排酒店）、`self_booked`（自行安排）；`hotel_quote_status=not_included` 明确当前金额不含住宿。自定义咨询还保存目的地意向、日期、时长、人数与兴趣。运营先联系旅客确认，再单独报价住宿。
+
+当前没有自动业务邮件或运营网页登录，成功保存并不等于团队已收到外部通知。

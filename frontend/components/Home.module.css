@@ -1,57 +1,80 @@
-.hero { display: grid; grid-template-columns: 1fr 1.04fr; align-items: center; gap: 64px; padding-block: 52px; }
-.heroCopy > .eyebrow { display: flex; align-items: center; gap: 10px; }
-.shortLine { width: 26px; height: 1px; background: var(--green); }
-.heroCopy h1 { font: 500 clamp(38px, 4.5vw, 60px)/1.36 var(--font-display); letter-spacing: -.04em; margin-top: 24px; }
-.heroCopy h1 span { display: block; color: #6b8065; }
-.heroDescription { font-size: 18px; line-height: 1.9; color: var(--muted); margin-top: 24px; }
-.heroActions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-.heroNote { display: flex; gap: 10px; align-items: center; color: var(--muted); font-size: 14px; margin-top: 28px; }
-.heroVisual { min-height: 510px; align-self: stretch; border-radius: 120px 20px 20px 20px; overflow: hidden; position: relative; background: var(--sage); }
-.heroVisual > svg { width: 100%; height: 100%; position: absolute; inset: 0; }
-.visualTop { position: absolute; top: 28px; right: 24px; left: 30px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.visualTop > span:last-child { font-size: 9px; color: #314d3d; letter-spacing: .14em; }
-.visualBottom { position: absolute; bottom: 34px; left: 32px; color: #faf8ee; }
-.visualBottom > span { font: 500 28px var(--font-display); }
-.visualBottom p { margin-top: 10px; font-size: 14px; }
-.heroStamp { position: absolute; right: 24px; bottom: 31px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; width: 96px; height: 96px; border: 1px solid #e4e6ca88; border-radius: 50%; color: #e7ead5; font-size: 11px; text-align: center; transform: rotate(10deg); }
-.valueStrip { display: flex; justify-content: space-around; gap: 20px; padding: 26px 16px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: #536651; font-size: 15px; }
-.valueStrip > div { display: flex; align-items: center; gap: 12px; }
-.catalog { padding-top: 76px; }
-.sectionHeading { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 30px; }
-.sectionHeading h2 { margin-top: 12px; }
-.sectionHeading > p { font-size: 15px; }
-.cityFilters { display: flex; gap: 6px; flex-wrap: wrap; }
-.cityFilters button { border: 1px solid transparent; background: transparent; border-radius: 7px; padding: 10px 18px; min-height: 44px; color: var(--muted); font-size: 15px; }
-.cityFilters button:hover { background: var(--sage); }
-.cityFilters .filterActive, .cityFilters .filterActive:hover { background: var(--green); color: #fff; }
-.catalogNote { color: var(--muted); font-size: 13px; margin-block: 20px; }
-.destinationsGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.destinationCard { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
-.destinationCard:hover { transform: translateY(-5px); box-shadow: 0 14px 36px #2646330c; }
-.cardImage { aspect-ratio: 1.6; position: relative; overflow: hidden; display: block; }
-.cardImage > svg { width: 100%; height: 100%; transition: transform .6s; }
-.destinationCard:hover .cardImage > svg { transform: scale(1.04); }
-.artLabel { position: absolute; bottom: 12px; right: 12px; }
-.cardBody { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-.cardBody h3 { font: 500 28px/1.4 var(--font-display); }
-.cardStory { font-size: 16px; color: var(--muted); margin-top: 16px; line-height: 1.9; }
-.cardTitle { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-.cardTitle > span { color: var(--muted); font-size: 11px; letter-spacing: .12em; }
-.cardTags { display: flex; gap: 6px; flex-wrap: wrap; margin-block: 18px; }
-.cardLink { margin-top: auto; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 16px; color: var(--green); font-size: 15px; }
-.howItWorks { margin-top: 90px; padding-block: 48px; border-top: 1px solid var(--line); }
-.howItWorks h2 { margin-block: 12px; }
-.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; margin-top: 40px; }
-.step > span { font: 500 34px var(--font-display); color: #97aa8e; }
-.step h3 { font-size: 20px; font-weight: 500; margin-top: 16px; }
-.step p { font-size: 15px; color: var(--muted); margin-top: 10px; max-width: 300px; }
-.customBanner { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 20px; padding: 48px; border-radius: 18px; background: #28513e; color: white; position: relative; overflow: hidden; }
-.customBanner > div, .customBanner > a { position: relative; z-index: 1; }
-.customBanner .eyebrow { color: #c2cdb3; }
-.customBanner h2 { font: 500 30px/1.5 var(--font-display); margin-top: 12px; }
-.customBanner p:not(.eyebrow) { color: #c8d2c4; margin-top: 8px; }
-.customBanner > a { flex-shrink: 0; }
-.bannerIcon { position: absolute; right: 170px; opacity: .08; transform: rotate(15deg); }
-@media (max-width: 1100px) { .hero { gap: 36px; } .heroVisual { min-height: 490px; } .heroActions > a { padding-inline: 18px; } .visualBottom p { max-width: 210px; } .heroStamp { width: 76px; height: 76px; } .cityFilters button { padding-inline: 13px; } }
-@media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-block: 40px; gap: 36px; } .heroCopy h1 { font-size: 48px; } .heroCopy h1 span { display: inline; } .heroVisual { min-height: 400px; border-radius: 70px 16px 16px 16px; } .destinationsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sectionHeading { flex-direction: column; align-items: flex-start; gap: 16px; } .sectionHeading > p br { display: none; } .filters { align-items: flex-start; flex-direction: column; } .customBanner { flex-direction: column; align-items: flex-start; } }
-@media (max-width: 600px) { .heroCopy h1 { font-size: 36px; } .heroDescription { font-size: 16px; } .heroVisual { min-height: 330px; } .visualBottom { left: 22px; bottom: 24px; } .visualBottom > span { font-size: 25px; } .visualBottom p { font-size: 13px; } .heroNote { font-size: 13px; } .visualTop { left: 24px; right: 18px; } .visualTop > span:last-child { display: none; } .heroStamp { right: 16px; bottom: 22px; } .valueStrip { flex-wrap: wrap; justify-content: flex-start; padding: 22px 0; gap: 16px; font-size: 14px; } .catalog { padding-top: 50px; } .cityFilters { gap: 4px; } .cityFilters button { padding-inline: 12px; } .destinationsGrid { grid-template-columns: 1fr; gap: 20px; } .steps { grid-template-columns: 1fr; gap: 28px; } .step { border-top: 1px solid var(--line); padding-top: 24px; } .step h3 { margin-top: 8px; } .step p { max-width: none; } .howItWorks { margin-top: 54px; padding-block: 36px; } .customBanner { padding: 30px 24px; } .customBanner h2 { font-size: 26px; } }
+.hero { position:relative; display:flex; align-items:center; min-height:100svh; padding-block:140px 110px; overflow:hidden; color:white; isolation:isolate; }
+.heroShade { position:absolute; inset:0; background:linear-gradient(180deg,#10291f66,transparent 30%),linear-gradient(90deg,#102c23a6,#102c2338 70%,#102c2318); pointer-events:none; }
+.heroCopy { position:relative; z-index:1; }
+.heroCopy > :global(.eyebrow) { color:#f0e9d7; letter-spacing:.2em; }
+.heroCopy h1 { font:400 clamp(46px,5.4vw,78px)/1.13 var(--font-display); letter-spacing:-.03em; margin-top:25px; max-width:900px; }
+.heroCopy h1 em { font-weight:400; }
+.heroDescription { font-size:20px; line-height:1.7; margin-top:26px; }
+.heroActions { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+.heroActions > a:last-child { color:white; border-color:#ffffff88; }
+.heroActions > a:last-child:hover { background:#ffffff18; }
+.heroNote { color:#eee6d7; font-size:11px; letter-spacing:.18em; margin-top:38px; }
+.editorialIntro { text-align:center; max-width:840px; margin:90px auto 0; }
+.editorialIntro h2 { font:400 clamp(30px,3vw,43px)/1.4 var(--font-display); margin-block:20px; letter-spacing:-.025em; }
+.editorialIntro h2 em { color:var(--green); }
+.editorialIntro > p:last-child { color:var(--muted); font-size:18px; max-width:730px; margin:auto; line-height:1.9; }
+.catalog { padding-top:76px; }
+.sectionHeading { display:flex; justify-content:space-between; align-items:flex-end; gap:32px; margin-bottom:30px; }
+.sectionHeading h2 { margin-top:12px; }
+.cityFilters { display:flex; gap:6px; flex-wrap:wrap; }
+.cityFilters button { border:1px solid transparent; background:transparent; border-radius:7px; padding:10px 18px; min-height:44px; color:var(--muted); font-size:15px; }
+.cityFilters button:hover { background:var(--sage); }
+.cityFilters .filterActive { background:var(--green); color:white; }
+.catalogNote { color:var(--muted); font-size:14px; margin-block:20px; }
+.destinationsGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:42px 28px; }
+.destinationCard { display:flex; flex-direction:column; min-width:0; }
+.cardImage { aspect-ratio:1.55; position:relative; overflow:hidden; }
+.imageLink { position:absolute; inset:0; z-index:2; }
+.cardBody { padding-top:24px; flex:1; display:flex; flex-direction:column; }
+.cardBody h3 { font:400 34px/1.4 var(--font-display); }
+.cardTitle { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.cardStory { margin-top:12px; font-size:17px; color:var(--muted); line-height:1.9; }
+.cardTags { display:flex; gap:6px; flex-wrap:wrap; margin-block:18px; }
+.cardLink { margin-top:auto; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:16px; color:var(--green); font-size:16px; }
+.howItWorks { margin-top:90px; padding-block:48px; border-top:1px solid var(--line); }
+.howItWorks h2 { margin-block:12px; }
+.steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:48px; margin-top:40px; }
+.step > svg { color:#8b9b80; }
+.step h3 { font-size:20px; font-weight:500; margin-top:16px; }
+.step p { font-size:16px; color:var(--muted); margin-top:10px; max-width:340px; }
+.customBanner { min-height:400px; padding:64px; position:relative; overflow:hidden; isolation:isolate; color:white; }
+.customBanner > div:first-child { z-index:-2; }
+.bannerShade { pointer-events:none; position:absolute; inset:0; background:#10291fb3; z-index:-1; }
+.bannerCopy { position:relative; max-width:650px; }
+.bannerCopy > :global(.eyebrow) { color:#dedfcf; }
+.bannerCopy h2 { font:400 42px/1.25 var(--font-display); margin-top:14px; }
+.bannerCopy p:not(:first-child) { margin-top:18px; }
+.bannerCopy a { margin-top:24px; }
+@media(max-width:900px) {
+  .destinationsGrid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .heroCopy h1 { font-size:56px; }
+  .editorialIntro { margin-top:64px; }
+  .sectionHeading { align-items:flex-start; flex-direction:column; gap:16px; }
+  .customBanner { padding:40px; }
+}
+@media(max-width:600px) {
+  .hero { padding-block:120px 110px; } .heroCopy h1 { font-size:43px; }
+  .heroDescription { font-size:18px; } .heroActions { flex-direction:column; align-items:flex-start; }
+  .editorialIntro h2 { font-size:31px; } .catalog { padding-top:50px; }
+  .cityFilters button { padding-inline:12px; }
+  .destinationsGrid { grid-template-columns:1fr; gap:34px; } .cardBody h3 { font-size:30px; }
+  .steps { grid-template-columns:1fr; gap:28px; } .step { border-top:1px solid var(--line); padding-top:24px; }
+  .step h3 { margin-top:8px; } .step p { max-width:none; }
+  .howItWorks { margin-top:54px; padding-block:36px; }
+  .customBanner { padding:30px 24px; } .bannerCopy h2 { font-size:34px; }
+}
+
+.destinationCard:hover img, .destinationCard:focus-within img { transform:scale(1.07); }
+
+.heroBackground { position:absolute; inset:0; overflow:hidden; }
+.movingPhoto { object-fit:cover; transform-origin:55% 50%; animation:driftThroughLandscape 32s ease-in-out infinite alternate; will-change:transform; }
+@keyframes driftThroughLandscape {
+  from { transform:scale(1.04) translate3d(-.8%, .3%, 0); }
+  to { transform:scale(1.14) translate3d(.8%, -.5%, 0); }
+}
+.sceneBar { position:absolute; bottom:28px; left:0; right:0; display:flex; align-items:center; justify-content:space-between; gap:20px; z-index:2; }
+.sceneBar .heroNote { margin:0; font-size:12px; }
+.motionToggle { min-height:44px; padding:10px 14px; border:1px solid #ffffff70; border-radius:6px; background:#10291f20; color:white; font-size:13px; }
+.motionToggle:hover { background:#10291f55; }
+@media(max-width:600px) { .sceneBar { bottom:20px; } }
+@media(prefers-reduced-motion:reduce) { .movingPhoto { animation:none !important; transform:scale(1.04); } .motionToggle { display:none; } }
