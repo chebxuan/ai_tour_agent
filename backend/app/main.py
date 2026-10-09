@@ -44,6 +44,7 @@ from backend.app.engines.delivery_composer import compose_delivery_draft
 from backend.app.engines.risk_check_engine import check_workflow_risks
 from backend.app.llm_client import LLMConfigurationError, LLMParseError, parse_lead_text
 from backend.app.workflow_logger import append_workflow_event
+from backend.app.routers.travel import create_travel_router
 
 from backend.app.schemas import (
     CandidateProductsJSON,
@@ -130,6 +131,9 @@ async def verify_api_key(x_api_key: str = Header(..., description="API 认证密
             detail="无效的 API Key",
         )
     return x_api_key
+
+
+app.include_router(create_travel_router(verify_api_key, API_KEY))
 
 
 class HealthResponse(BaseModel):
@@ -239,6 +243,10 @@ class LeadTextFullChainRequest(BaseModel):
 # ── v2 helper functions ──────────────────────────────────────────
 
 def load_normalized_product_payload() -> Dict[str, Any]:
+    from backend.app.storage.repository import database_enabled, dataset
+    if database_enabled():
+        products = dataset()['products']
+        return {'version': 'postgres-v1', 'source': 'postgres', 'record_count': len(products), 'products': products}
     if not NORMALIZED_PRODUCTS_JSON.exists():
         raise FileNotFoundError(
             f"Normalized product library not found: {NORMALIZED_PRODUCTS_JSON}. "

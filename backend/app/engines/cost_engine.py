@@ -73,6 +73,9 @@ def load_cost_db(csv_path=None, city=None):
     读取成本库 CSV，返回以项目编号为 Key 的字典
     输出格式: {"BJ-TICKET-05": {"price": 40, "price_peak": 60, ...}}
     """
+    from backend.app.storage.repository import database_enabled, dataset
+    if csv_path is None and database_enabled():
+        return dataset()['costs'].get(city or '北京', {})
     if csv_path is None:
         if city:
             csv_path = get_cost_file_path(city)
@@ -572,7 +575,8 @@ def calculate_total_cost(product, user_intent):
     transport_result = calc_transport_cost(
         total_people, car_days, transfer_code, transfer_times, city, is_peak, missing_codes
     )
-    guide_result = calc_guide_cost(guide_code, days, city, is_peak, missing_codes)
+    guide_days = parse_int(user_intent.get('guide_days', days), default=days, minimum=0)
+    guide_result = calc_guide_cost(guide_code, guide_days, city, is_peak, missing_codes)
 
     validation_issues = build_validation_issues(invalid_optional_codes, missing_codes)
 

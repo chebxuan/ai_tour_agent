@@ -32,11 +32,15 @@ def get_product_recommendation(user_intent):
         
         # 使用csv模块读取，更好地处理换行符
         products = []
-        with open(csv_path, 'r', encoding='utf-8') as f:
-            # 使用QUOTE_MINIMAL来处理包含换行符的字段
-            reader = csv.DictReader(f, quotechar='"', skipinitialspace=True)
-            for row in reader:
-                products.append(row)
+        from backend.app.storage.repository import database_enabled, dataset
+        if database_enabled():
+            products = [{'城市 (City)': p['city'], '产品编号 (ProductID)': p['product_id'], '产品名称 (ProductName)': p['product_name'], '行程天数 (Duration)': str(p['duration_days']), '每日行程 (Daily Itinerary)': p['itinerary_text'], '常规项目 (Regular Items)': ','.join(p['regular_items']), '可选项目 (Optional Items)': ','.join(p['optional_items']), '常规项目项目编号列表': ','.join(p['regular_item_codes']), '可选项目项目编号列表': ','.join(p['optional_item_codes'])} for p in dataset()['products']]
+        else:
+            with open(csv_path, 'r', encoding='utf-8') as f:
+                # 使用QUOTE_MINIMAL来处理包含换行符的字段
+                reader = csv.DictReader(f, quotechar='"', skipinitialspace=True)
+                for row in reader:
+                    products.append(row)
         
         # --- 第一步：城市 + 天数硬过滤 ---
         target_city = str(user_intent.get('city', ''))

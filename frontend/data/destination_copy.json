@@ -1,0 +1,82 @@
+{
+  "beijing": {
+    "story": "An early morning in the hutongs, a glimpse through a courtyard gate, the red walls of the imperial city. From the Forbidden City to the Summer Palace, explore both Beijing’s grand architecture and its everyday life.",
+    "tags": [
+      "Imperial Heritage",
+      "Hutong Life",
+      "Royal Gardens"
+    ]
+  },
+  "shanghai": {
+    "story": "A river breeze along the Bund, tree-lined streets around Wukang Road, a quiet turn through Yu Garden. From Shanghai’s city life to the stone bridges of Zhujiajiao, discover different chapters of Jiangnan culture.",
+    "tags": [
+      "Haipai Culture",
+      "Jiangnan Gardens",
+      "Water-Town Life"
+    ]
+  },
+  "xian": {
+    "story": "Walk the city walls above the old streets, then follow the aromas and voices of the Muslim Quarter. The stillness of the Terracotta Army and the echoes of the Tang dynasty meet in Xi’an.",
+    "tags": [
+      "Qin & Tang Heritage",
+      "Silk Road Stories",
+      "Old-City Life"
+    ]
+  },
+  "guangzhou": {
+    "story": "Look closely at the craft of the Chen Clan Ancestral Hall, trace trading stories on Shamian Island, and encounter today’s Guangzhou in Yongqing Fang. Heritage, commerce and local life shape the city.",
+    "tags": [
+      "Lingnan Culture",
+      "Trading History",
+      "Living Craft"
+    ]
+  },
+  "chongqing": {
+    "story": "Follow stone steps through hillside lanes, cross the Yangtze by cable car, and discover life in the old riverside streets. Beyond the city, the stone art of Dazu opens another chapter.",
+    "tags": [
+      "Mountain-City Life",
+      "Port Stories",
+      "Stone Art"
+    ]
+  },
+  "yangshuo": {
+    "story": "Drift along the Yulong River, cycle through fields beneath karst peaks, and explore the energy of West Street. A cooking experience can bring another flavour to Yangshuo’s landscape.",
+    "tags": [
+      "Rivers & Fields",
+      "Rural Life",
+      "Local Cooking"
+    ]
+  },
+  "zhangjiajie": {
+    "story": "Mist reveals a landscape of towering peaks. Beyond the mountains, discover the ancient towns, stilt architecture and communal dining traditions of Xiangxi.",
+    "tags": [
+      "Xiangxi Culture",
+      "Tujia Architecture",
+      "Miao Dining"
+    ]
+  },
+  "guizhou": {
+    "story": "Miao silverwork tells stories of village life, while Dong drum towers and wind-and-rain bridges gather a community around them. Ancient towns and Xiaoqikong’s flowing waters reveal another side of Guizhou.",
+    "tags": [
+      "Miao Silverwork",
+      "Dong Culture",
+      "Ancient Towns"
+    ]
+  },
+  "yunnan": {
+    "story": "Bai courtyards beside Erhai and the water lanes of Lijiang lead to different ways of life. Continue towards Shangri-La, where Thangka art and the highland landscape open a new chapter.",
+    "tags": [
+      "Bai Culture",
+      "Naxi Old Towns",
+      "Tibetan Art"
+    ]
+  },
+  "chengdu": {
+    "story": "Sit down in People’s Park and discover how a cup of tea can shape an afternoon. From Wuhou Shrine to old lanes, Sichuan opera and local food, Chengdu has a rhythm of its own.",
+    "tags": [
+      "Sichuan Heritage",
+      "Tea-House Life",
+      "Sichuan Opera"
+    ]
+  }
+}

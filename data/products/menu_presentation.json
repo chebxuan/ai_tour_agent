@@ -1,0 +1,560 @@
+{
+  "city_names": {
+    "北京": "Beijing",
+    "上海": "Shanghai",
+    "西安": "Xi’an",
+    "广州": "Guangzhou",
+    "重庆": "Chongqing",
+    "阳朔": "Yangshuo",
+    "张家界": "Zhangjiajie",
+    "贵州": "Guizhou",
+    "云南": "Yunnan",
+    "成都": "Chengdu"
+  },
+  "product_titles": {
+    "BJ-P-01": "Imperial Beijing",
+    "BJ-P-02": "Beijing in Depth",
+    "BJ-P-03": "Beijing Panorama",
+    "SH-P-01": "Shanghai Essentials",
+    "SH-P-02": "Shanghai & the Water Town",
+    "SH-P-03": "Shanghai, Water Town & Disneyland",
+    "CQ-P-01": "Chongqing Mountain City",
+    "CQ-P-02": "Chongqing: City, Karst & Stone Art",
+    "CQ-P-03": "Chongqing & the Three Gorges",
+    "XA-P-01": "Xi’an: An Imperial Encounter",
+    "XA-P-02": "Xi’an & the Tang Legacy",
+    "YS-P-01": "Yangshuo: Rivers & Fields",
+    "YS-P-02": "Yangshuo: Landscape & Adventure",
+    "ZJJ-P-01": "Zhangjiajie: Gates & Peaks",
+    "ZJJ-P-02": "Zhangjiajie & Xiangxi",
+    "GZ-P-01": "Guangzhou: Inside the World’s Factory",
+    "GZ-P-02": "Guangzhou: Lingnan Life & Canyon Thrills",
+    "GZ-P-03": "Guangzhou: History, Heritage & Nature",
+    "GZH-P-01": "Guizhou: Miao, Dong & Karst Landscapes",
+    "YN-P-01": "Yunnan: From Old Towns to Shangri-La",
+    "CD-P-01": "Chengdu: Pandas & Local Life"
+  },
+  "products": {
+    "BJ-P-01": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        }
+      ]
+    },
+    "BJ-P-02": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        },
+        {
+          "route": "Route 3"
+        }
+      ]
+    },
+    "BJ-P-03": {
+      "days": [
+        {
+          "route": "Route 3"
+        },
+        {
+          "route": "Route 2",
+          "attractions": [
+            0
+          ],
+          "title": "The Great Wall · Might of an Empire",
+          "description": "Discover the formidable military genius of the Great Wall at Mutianyu, where legendary fortifications follow the mountain ridges."
+        },
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2",
+          "attractions": [
+            1
+          ],
+          "title": "The Summer Palace · An Imperial Retreat",
+          "description": "Explore the poetic, man-made paradise of the Summer Palace, with imperial gardens shaped by philosophies of harmony."
+        }
+      ]
+    },
+    "SH-P-01": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        }
+      ]
+    },
+    "SH-P-02": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 3"
+        },
+        {
+          "route": "Route 2"
+        }
+      ]
+    },
+    "SH-P-03": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 3"
+        },
+        {
+          "route": "Route 2"
+        },
+        {
+          "route": "Route 4"
+        }
+      ]
+    },
+    "CQ-P-01": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "title": "Two Paths Beyond the Mountain City",
+          "description": "Choose between Wulong’s dramatic karst landscape and the sacred rock art and riverside streets of Dazu and Ciqikou.",
+          "alternatives": [
+            {
+              "route": "Route 2",
+              "choice": "wulong"
+            },
+            {
+              "route": "Route 3",
+              "choice": "dazu"
+            }
+          ]
+        }
+      ]
+    },
+    "CQ-P-02": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        },
+        {
+          "route": "Route 3"
+        }
+      ]
+    },
+    "CQ-P-03": {
+      "days": [],
+      "overview": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 3"
+        },
+        {
+          "route": "Route 4"
+        }
+      ]
+    },
+    "XA-P-01": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        }
+      ]
+    },
+    "XA-P-02": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        },
+        {
+          "title": "Tang Paradise & Everbright City",
+          "activity": "Tang Paradise & Everbright City"
+        }
+      ]
+    },
+    "YS-P-01": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        }
+      ]
+    },
+    "YS-P-02": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        },
+        {
+          "route": "Route 3",
+          "attractions": [
+            0,
+            1
+          ],
+          "alternatives": [
+            {
+              "route": "Route 3",
+              "attractions": [
+                2
+              ],
+              "title": "Karst Cave Exploration",
+              "description": "Descend into a hidden cave to discover subterranean wonders and natural geological art.",
+              "choice": "cave"
+            },
+            {
+              "route": "Route 3",
+              "attractions": [
+                3
+              ],
+              "title": "Via Ferrata Climb",
+              "description": "Take the cliffside iron path for a secured vertical climb through Yangshuo’s karst landscape.",
+              "choice": "via_ferrata"
+            }
+          ]
+        }
+      ]
+    },
+    "ZJJ-P-01": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        }
+      ]
+    },
+    "ZJJ-P-02": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        },
+        {
+          "title": "Two Ways to Discover Xiangxi",
+          "description": "Choose waterfall towns and riverside lanterns, or a cliffside adventure paired with architectural fantasy.",
+          "alternatives": [
+            {
+              "route": "Route 3",
+              "choice": "heritage"
+            },
+            {
+              "route": "Route 4",
+              "choice": "adventure"
+            }
+          ]
+        }
+      ]
+    },
+    "GZ-P-01": {
+      "days": [
+        {
+          "route": "Route 4"
+        }
+      ]
+    },
+    "GZ-P-02": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 3"
+        }
+      ]
+    },
+    "GZ-P-03": {
+      "days": [
+        {
+          "route": "Route 1"
+        },
+        {
+          "route": "Route 2"
+        },
+        {
+          "route": "Route 3"
+        }
+      ]
+    },
+    "GZH-P-01": {
+      "days": [
+        {
+          "route": "Route 1",
+          "attractions": [
+            0,
+            1
+          ],
+          "title": "Guiyang & Qingyan · A Literary Landmark and a Stone Town",
+          "description": "Discover Guiyang’s literary heritage at Jiaxiu Tower, then explore the stone streets and Ming Dynasty character of Qingyan Ancient Town."
+        },
+        {
+          "route": "Route 1",
+          "attractions": [
+            2,
+            3
+          ],
+          "title": "Miao Silver & Riverside Stories",
+          "description": "Meet the living traditions of Miao silverwork in Shidong and the tranquil merchants’ port of Xiasi."
+        },
+        {
+          "route": "Route 1",
+          "attractions": [
+            4
+          ],
+          "title": "Zhaoxing · In the Heart of Dong Culture",
+          "description": "Discover drum towers, wind-and-rain bridges and the cultural landscape of a Dong village."
+        },
+        {
+          "route": "Route 1",
+          "attractions": [
+            5
+          ],
+          "title": "Xiaoqikong · An Emerald Karst Sanctuary",
+          "description": "Follow sapphire rivers and cascading waterfalls through the karst landscape of Xiaoqikong."
+        }
+      ]
+    },
+    "YN-P-01": {
+      "days": [
+        {
+          "route": "Route 1",
+          "attractions": [
+            0
+          ],
+          "title": "Kunming · Stone Forest and Old Streets",
+          "description": "Discover Kunming’s Stone Forest and the Dian-style architecture and local life of Kunming Old Street."
+        },
+        {
+          "route": "Route 1",
+          "attractions": [
+            1
+          ],
+          "title": "Dali · The Living Heritage of the Bai Kingdom",
+          "description": "Explore Dali’s cobblestone lanes against the Cangshan mountains and discover the local Bai cultural traditions."
+        },
+        {
+          "route": "Route 1",
+          "attractions": [
+            2,
+            3
+          ],
+          "title": "Erhai to Lijiang · Lakeside Life and Naxi Lanes",
+          "description": "From Erhai’s lakeside landscape to Lijiang’s canals and wooden architecture, discover two distinctive chapters of Yunnan’s local life."
+        },
+        {
+          "route": "Route 1",
+          "attractions": [
+            5,
+            6
+          ],
+          "title": "Into Shangri-La · Gorge, Faith and Sacred Art",
+          "description": "Travel through Tiger Leaping Gorge to Shangri-La and Dukezong, with Thangka painting introducing the highlands’ sacred art."
+        },
+        {
+          "route": "Route 1",
+          "attractions": [
+            7
+          ],
+          "title": "Pudacuo · A Highland Sanctuary",
+          "description": "Explore alpine wilderness, shimmering lakes and forests before returning to Lijiang."
+        }
+      ]
+    },
+    "CD-P-01": {
+      "days": [
+        {
+          "route": "Route 1",
+          "attractions": [
+            0,
+            1,
+            2
+          ],
+          "title": "Chengdu · History and Contemporary Life",
+          "description": "From Wuhou Shrine and Chengdu Museum to Taikoo Li, discover the city’s historical stories and contemporary streets."
+        },
+        {
+          "route": "Route 1",
+          "attractions": [
+            3,
+            4,
+            5
+          ],
+          "title": "Pandas, Tea and Old Lanes",
+          "description": "Meet Chengdu’s pandas, explore the tea-house life of People’s Park and wander the traditional lanes of Kuanzhai Alley."
+        }
+      ]
+    }
+  },
+  "optional_labels": {
+    "梨园京剧": {
+      "name": "Peking Opera & Dinner",
+      "activity": "Peking Opera & Dinner"
+    },
+    "涮肉": {
+      "name": "Beijing Hotpot",
+      "activity": null
+    },
+    "烤鸭": {
+      "name": "Peking Duck",
+      "activity": null
+    },
+    "汉服体验": {
+      "name": "Hanfu Photography",
+      "activity": "Hanfu Shooting"
+    },
+    "胡同酒馆": {
+      "name": "Hutong Bar Visit",
+      "activity": null
+    },
+    "黄浦江夜游": {
+      "name": "Huangpu River Night Cruise",
+      "activity": "Huangpu River Night Cruise"
+    },
+    "外滩用餐": {
+      "name": "Dining by the Bund",
+      "activity": null
+    },
+    "法租界小酌": {
+      "name": "Drinks in the Former French Concession",
+      "activity": null
+    },
+    "非遗老布手工体验": {
+      "name": "Zhujiajiao Heritage Cloth Workshop",
+      "activity": "Zujiajiao Cloth Workshop"
+    },
+    "本帮菜": {
+      "name": "Shanghai Local Cuisine",
+      "activity": null
+    },
+    "盖碗茶": {
+      "name": "Gaiwan Tea",
+      "activity": null
+    },
+    "川剧变脸表演": {
+      "name": "Sichuan Opera Face-Changing",
+      "activity": "Sichuan Opera Face-Changing"
+    },
+    "两江夜游": {
+      "name": "Two Rivers Night Cruise",
+      "activity": null
+    },
+    "洪崖洞火锅": {
+      "name": "Chongqing Hotpot at Hongyadong",
+      "activity": null
+    },
+    "唐乐舞表演": {
+      "name": "Tang Dynasty Palace Show",
+      "activity": "Tang Dynasty Palace Show"
+    },
+    "三下锅": {
+      "name": "Tujia Sanxiaguo Hotpot",
+      "activity": null
+    },
+    "魅力湘西表演": {
+      "name": "Charming Xiangxi Show",
+      "activity": "Charming Xiangxi Show"
+    },
+    "网红直播基地探访": {
+      "name": "Live-Streaming Hub Visit",
+      "activity": "Live-Streaming Hub Visit"
+    },
+    "冰啤收尾": {
+      "name": "A Beer to End the Day",
+      "activity": null
+    },
+    "非遗体验": {
+      "name": "Lingnan Heritage Experience",
+      "activity": null
+    },
+    "夜市大排档": {
+      "name": "Night-Market Dining",
+      "activity": null
+    },
+    "SPA自助": {
+      "name": "Wellness SPA",
+      "activity": "Wellness SPA"
+    },
+    "咏春拳体验": {
+      "name": "Wing Chun Kung Fu",
+      "activity": "Wing Chun Kung Fu"
+    },
+    "地道粤菜": {
+      "name": "Cantonese Cuisine",
+      "activity": null
+    },
+    "串串": {
+      "name": "Chengdu Chuanchuan",
+      "activity": null
+    }
+  },
+  "optional_descriptions": {
+    "涮肉": "Discover Beijing’s hotpot tradition over a meal selected to complement your journey.",
+    "烤鸭": "Explore one of Beijing’s signature culinary traditions with a Peking duck dining experience.",
+    "胡同酒馆": "Pause in a hutong bar and experience another side of the old city’s local life.",
+    "外滩用餐": "Pair your exploration of Shanghai’s waterfront with a meal by the Bund.",
+    "法租界小酌": "Take time for a drink amid the former French Concession’s tree-lined streets.",
+    "本帮菜": "Discover the flavours of Shanghai’s local cooking as part of your visit.",
+    "盖碗茶": "Slow down over a traditional covered-bowl tea and enjoy a moment of local life.",
+    "两江夜游": "See Chongqing’s riverside cityscape from the water after dark.",
+    "洪崖洞火锅": "Experience Chongqing’s hotpot culture alongside the atmosphere of Hongyadong.",
+    "三下锅": "Taste a local Tujia hotpot tradition during your Zhangjiajie journey.",
+    "冰啤收尾": "Round off your market exploration with a relaxed beer stop.",
+    "非遗体验": "Explore Lingnan craftsmanship through a heritage experience; the specific activity will be confirmed separately.",
+    "夜市大排档": "Discover the lively atmosphere and local flavours of Guangzhou’s night-market dining.",
+    "地道粤菜": "Explore Cantonese culinary traditions over a locally arranged meal.",
+    "串串": "Discover Chengdu’s casual dining culture through its skewer-style hotpot."
+  },
+  "introductions": {
+    "BJ-P-01": "Encounter Beijing through the imperial axis, hutong life, the Great Wall and the gardens of the Summer Palace.",
+    "BJ-P-02": "Explore imperial Beijing, then discover the rituals and beliefs that shaped the capital’s spiritual life.",
+    "BJ-P-03": "Four days reveal Beijing’s imperial architecture, mountain fortifications, old-city life and royal gardens.",
+    "SH-P-01": "Explore the contrasts of Shanghai, from classical gardens and the Bund to historic streets and Haipai culture.",
+    "SH-P-02": "Three days weave together Shanghai’s garden city, the canals of Zhujiajiao and the history and elegance of its urban neighbourhoods.",
+    "SH-P-03": "Combine Shanghai’s city stories and water-town life with a day exploring Disneyland.",
+    "CQ-P-01": "Discover Chongqing’s river crossings and hillside lanes, then choose karst scenery or the stone art and old streets of Dazu and Ciqikou.",
+    "CQ-P-02": "Journey from Chongqing’s mountain-city streets to Wulong’s karst landscape and the stone art of Dazu.",
+    "CQ-P-03": "Follow Chongqing’s mountain-city stories and Dazu’s sacred stone art towards a Three Gorges river voyage.",
+    "XA-P-01": "Encounter the First Emperor’s terracotta army, then discover the city walls, markets and Silk Road heritage of Xi’an.",
+    "XA-P-02": "Explore Xi’an’s imperial legacy and ancient-capital life before discovering the gardens and nighttime atmosphere of its Tang-inspired cultural landmarks.",
+    "YS-P-01": "Drift, cycle and walk through Yangshuo’s river valleys, karst peaks and historic riverside settlements.",
+    "YS-P-02": "Pair Yangshuo’s river landscapes with a day of outdoor adventure and hands-on cooking.",
+    "ZJJ-P-01": "From the heights of Tianmen Mountain to the sandstone pillars of the forest park, discover two sides of Zhangjiajie’s dramatic landscapes.",
+    "ZJJ-P-02": "Explore Zhangjiajie’s mountain worlds, then choose the cultural towns of Xiangxi or a cliffside adventure and architectural fantasy.",
+    "GZ-P-01": "Discover Guangzhou’s trading networks and wholesale markets through an insider-led sourcing journey.",
+    "GZ-P-02": "Explore Lingnan craftsmanship and Guangzhou’s local life before a day in the landscape of Gu Long Gorge.",
+    "GZ-P-03": "Follow Guangzhou’s cultural and historical chapters, with time for the outdoor landscape of Gu Long Gorge.",
+    "GZH-P-01": "",
+    "YN-P-01": "",
+    "CD-P-01": "Discover Chengdu through its historical landmarks, pandas, tea-house culture and traditional city lanes."
+  }
+}

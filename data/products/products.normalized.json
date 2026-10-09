@@ -49,17 +49,17 @@
       ],
       "regular_item_codes": [
         "BJ-TICKET-02",
-        "BJ-ACTIVITY-04",
-        "BJ-ACTIVITY-01",
-        "BJ-ACTIVITY-02",
+        "BJ-TICKET-10",
+        "BJ-TICKET-09",
+        "BJ-TICKET-05",
         "BJ-TICKET-06",
         "BJ-ACTIVITY-05",
         "BJ-TICKET-04",
-        "BJ-TICKET-09"
+        "BJ-TICKET-08"
       ],
       "optional_item_codes": [
-        "BJ-ACTIVITY-03",
-        "BJ-ACTIVITY-06"
+        "BJ-ACTIVITY-01",
+        "BJ-ACTIVITY-03"
       ],
       "metadata": {
         "source": "data/products/product_library.csv",
@@ -125,19 +125,19 @@
       ],
       "regular_item_codes": [
         "BJ-TICKET-02",
-        "BJ-ACTIVITY-04",
-        "BJ-ACTIVITY-01",
-        "BJ-ACTIVITY-02",
+        "BJ-TICKET-10",
+        "BJ-TICKET-09",
+        "BJ-TICKET-05",
         "BJ-TICKET-06",
         "BJ-ACTIVITY-05",
         "BJ-TICKET-04",
-        "BJ-TICKET-09",
         "BJ-TICKET-08",
+        "BJ-TICKET-07",
         "BJ-TICKET-01"
       ],
       "optional_item_codes": [
+        "BJ-ACTIVITY-01",
         "BJ-ACTIVITY-03",
-        "BJ-ACTIVITY-06",
         "BJ-ACTIVITY-04"
       ],
       "metadata": {
@@ -216,23 +216,23 @@
       ],
       "regular_item_codes": [
         "BJ-TICKET-01",
-        "BJ-TICKET-08",
+        "BJ-TICKET-07",
         "BJ-TICKET-04",
         "BJ-TICKET-03",
         "BJ-TICKET-02",
-        "BJ-ACTIVITY-04",
-        "BJ-ACTIVITY-01",
-        "BJ-ACTIVITY-02",
+        "BJ-TICKET-10",
+        "BJ-TICKET-09",
+        "BJ-TICKET-05",
         "BJ-TICKET-06",
         "BJ-ACTIVITY-05",
-        "BJ-TICKET-09"
+        "BJ-TICKET-08"
       ],
       "optional_item_codes": [
+        "BJ-ACTIVITY-01",
         "BJ-ACTIVITY-03",
-        "BJ-ACTIVITY-06",
         "BJ-ACTIVITY-04",
         "BJ-ACTIVITY-02",
-        "BJ-TICKET-07"
+        "BJ-ACTIVITY-06"
       ],
       "metadata": {
         "source": "data/products/product_library.csv",
@@ -662,9 +662,7 @@
         "盖碗茶",
         "洪崖洞火锅",
         "大足石刻",
-        "开始游轮行",
-        "三峡游轮",
-        "返回重庆"
+        "三峡游轮"
       ],
       "optional_items": [],
       "regular_item_codes": [
@@ -675,9 +673,7 @@
         "CQ-ACTIVITY-08",
         "CQ-ACTIVITY-07",
         "CQ-TICKET-02",
-        "CQ-ACTIVITY-01",
-        "CQ-ACTIVITY-02",
-        "CQ-TICKET-04"
+        "CQ-ACTIVITY-02"
       ],
       "optional_item_codes": [],
       "metadata": {

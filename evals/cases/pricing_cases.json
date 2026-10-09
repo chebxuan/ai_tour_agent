@@ -21,9 +21,9 @@
     },
     "expected": {
       "success": true,
-      "grand_total": 3004.0,
-      "per_person": 1502.0,
-      "category_subtotals": {"ticket_activity": 3004.0, "transport": 0, "guide": 0},
+      "grand_total": 1144.0,
+      "per_person": 572.0,
+      "category_subtotals": {"ticket_activity": 1144.0, "transport": 0, "guide": 0},
       "validation_issue_count": 0
     }
   },
@@ -106,9 +106,9 @@
     },
     "expected": {
       "success": true,
-      "grand_total": 4604.0,
-      "per_person": 2302.0,
-      "category_subtotals": {"ticket_activity": 3004.0, "transport": 0, "guide": 1600.0},
+      "grand_total": 2744.0,
+      "per_person": 1372.0,
+      "category_subtotals": {"ticket_activity": 1144.0, "transport": 0, "guide": 1600.0},
       "validation_issue_count": 0
     }
   },

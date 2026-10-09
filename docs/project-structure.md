@@ -1,6 +1,6 @@
 # 目录说明与整理记录
 
-更新：2026-10-07。此次主要调整文件位置、导入、资源路径和文档状态，保留业务规则与现有 API 契约。数据库建设与后端业务分层仍是后续工作。
+更新：2026-10-09。下方迁移记录保留 2026-10-07 整理口径；当前已接入旅行 v3 接口与本地 PostgreSQL，数据库维护方法见 [数据库使用说明](database-guide.md)。
 
 ```text
 项目根目录/
@@ -15,6 +15,9 @@
 │   │   ├── workflow_logger.py
 │   │   ├── core/paths.py         # 稳定的仓库根路径
 │   │   ├── engines/              # 活跃业务规则
+│   │   ├── routers/              # 旅行网站 v3 接口
+│   │   ├── services/             # 产品、Menu、计费范围与销售报价
+│   │   ├── storage/              # PostgreSQL 连接、读取、导入、维护与 migrations/
 │   │   └── resources/prompts/    # Lead Parse v1/v2
 │   ├── requirements.txt
 │   └── requirements-dev.txt
@@ -23,7 +26,8 @@
 ├── evals/                        # 评测脚本与 cases/
 ├── scripts/                      # 数据维护和本地检查
 ├── legacy/                       # 原 Streamlit、CLI、历史工具
-├── frontend/                     # Next.js 两页旅客 UI；组件完成，示意数据
+├── frontend/                     # Next.js 两页旅客 UI；真实预览和销售报价接口
+├── .local/database/              # 忽略的本地数据库、备份、核对报告
 ├── experiments/                  # 城市叙事、POI 实验
 ├── references/                   # 业务参考、个人作品集、私人材料
 ├── docs/                         # 当前说明、历史和评测
@@ -33,7 +37,7 @@
 └── requirements.txt              # 后端与旧界面的兼容安装入口
 ```
 
-新前端已创建于 `frontend/`；当前使用模拟数据，与后端联调尚未进行。`.venv/`、`logs/`、`.local-backups/` 是本地环境或运行产物，不进入 Git。
+新前端已创建于 `frontend/`，已联调预览和报价。`.venv/`、`logs/`、`.local/`、`.local-backups/` 是本地环境或运行产物，不进入 Git；数据库连接配置 `.env.database.local` 同样忽略。
 
 ## 主要位置对照
 

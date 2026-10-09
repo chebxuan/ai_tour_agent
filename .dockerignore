@@ -2,6 +2,8 @@
 .env
 .env.*
 .local-backups
+.local
+*.dump
 .claude
 .qoder
 **/__pycache__

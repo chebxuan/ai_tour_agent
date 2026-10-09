@@ -52,3 +52,7 @@ references/private/
 *.swo
 .DS_Store
 Thumbs.db
+
+# Local PostgreSQL cluster, credentials, import/verification artefacts and dumps
+.local/
+*.dump

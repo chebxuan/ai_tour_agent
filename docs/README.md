@@ -9,6 +9,7 @@
 | [前端开发流程](frontend-guide.md) | 下一阶段创建 Next.js、开发页面与阶段检查 |
 | [运营使用说明](operations-guide.md) | 现有 Streamlit 询单、报价与付款流程 |
 | [数据说明](../data/README.md) | 数据来源、运行输入、私有存储与维护 |
+| [数据库使用说明](database-guide.md) | 本地 PostgreSQL 启停、查看、改价、文案、供应商、报价快照及备份恢复 |
 | [部署说明](deployment-guide.md) | 当前启动入口与容器打包；未完成的新网站部署 |
 | [路线图](roadmap.md) | 按“先前端”的顺序维护后续计划 |
 | [上海半定制 MVP](custom_route_mvp.md) | 上海路线能力、数据和限制 |

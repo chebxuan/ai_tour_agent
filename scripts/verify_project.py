@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT))
 
 def main() -> int:
     # This key is used only inside TestClient. No network services are contacted.
-    with patch.dict(os.environ, {"API_KEY": "local-verification-only"}):
+    with patch.dict(os.environ, {"API_KEY": "local-verification-only", "TRAVEL_DATA_SOURCE": "files"}):
         from backend.app import main as api
         from backend.app.core.paths import ROOT as runtime_root
         from backend.app.llm_client import read_prompt_template
@@ -77,6 +77,15 @@ def main() -> int:
             return result.returncode
         print("Shanghai route scenarios: 5/5")
         print("Compatibility entrypoint and runtime prompt: PASS")
+        result = subprocess.run(
+            [sys.executable, "-B", "-m", "unittest", "tests.test_travel_api", "tests.test_menu_content", "tests.test_sales_pricing", "tests.test_journey_enquiries"],
+            cwd=ROOT, capture_output=True, text=True,
+        )
+        if result.returncode:
+            print(result.stdout)
+            print(result.stderr)
+            return result.returncode
+        print("Standalone travel API, Menu, sales pricing and enquiry validation: 20/20 test groups (21 products)")
     return 0
 
 
